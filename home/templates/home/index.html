@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Minet Kenya Retail">
+    <meta property="og:url" content="https://retail.minet.co.ke/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Minet Kenya Retail">
+    <meta property="og:type" content="website">
+
+    <title>Minet Ecommerce - Home</title>
+    <meta name="theme-color" content="#e32636">
+    <meta name="description" content="Minet's insurance solutions for individuals, SMEs, corporates, and teachers.">
+    <meta name="keywords"
+        content="Minet, insurance, brokers, solutions, individual, SME, corporate, teacher, medical, scheme">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="{% static 'base/manifest.webmanifest' %}">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="{% static 'base/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'base/img/apple-touch-icon.png' %}">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'base/vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'base/vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/vendor/bootstrap/bootstrap.custom.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/vendor/swiper/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+
+    <!-- JS Files -->
+    <script defer src="{% static 'base/vendor/aos/aos.js' %}"></script>
+    <script defer src="{% static 'base/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script defer src="{% static 'base/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script defer src="{% static 'base/js/script.js' %}"></script>
+
+</head>
+
+<body class="vh-100 w-100 d-flex flex-column text-white bg-primary overflow-hidden">
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="container-fluid py-2" data-aos="slide-right">
+
+        <!-- ======= Top Bar ======= -->
+        <div class="row topbar px-3">
+
+            <div class="col d-none d-sm-flex align-items-center">
+                <img src="{% static 'home/img/endorsement-logo-white.png' %}" alt="" class="img-fluid endorse">
+            </div>
+
+            <form class="col search-form d-flex justify-content-end align-items-center" action="">
+                <div class="input-group">
+                    <input type="text" class="form-control h-100 bg-white text-dark " placeholder="Search...">
+                    <button type="submit"
+                        class="input-group-text h-100 d-flex justify-content-center align-items-center">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+        <!-- ======= Nav Bar ======= -->
+        <div class="pt-3 d-flex align-items-center">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <a href="{% url 'home' %}" class="logo">
+                            <img src="{% static 'home/img/logo-white_.png' %}" class="img-fluid" alt="logo">
+                        </a>
+                    </div>
+                    <div class="col d-flex justify-content-end align-items-center">
+                        <nav class="navbar navbar-expand-lg">
+                            <ul class="navbar-nav d-none d-lg-flex align-items-center justify-content-evenly">
+                                <li class="nav-item me-4">
+                                    <a href="" class="nav-link link-light">Retail</a>
+                                </li>
+                                <li class="nav-item me-4">
+                                    <a href="" class="nav-link link-light">Cart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link link-light">About Us</a>
+                                </li>
+                            </ul>
+
+                            <button class="navbar-toggler border-light" type="button" data-bs-toggle="modal"
+                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon text-light"></span>
+                            </button>
+                        </nav>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </header>
+
+    <!-- ======= Main ======= -->
+    <main id="home-content" class="flex-grow-1 row ps-5">
+        <div class="col col-md-4 d-flex flex-column justify-content-evenly">
+            <h1 class="m-0">
+                <span>Welcome to
+                    <br />
+                    Minet</span> Insurance
+                <br />
+                Brokers Solutions
+            </h1>
+            <div>
+                <p>
+                    Minet is a trusted pan-African advisor that meets the uncertainties of tomorrow by delivering
+                    risk and human capital solutions today.
+                </p>
+                <a class="btn btn-dark" href="">Login</a>
+                <a class="btn btn-dark" href="{% url 'retail' %}">Get Started</a>
+            </div>
+        </div>
+        <div class="col col-md-8 d-flex align-items-center">
+            <div class="swiper w-100 h-100">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide slide-1"></div>
+                    <div class="swiper-slide slide-2"></div>
+                    <div class="swiper-slide slide-3"></div>
+                    <div class="swiper-slide slide-4"></div>
+                </div>
+                <div class="swiper-pagination position-fixed d-none d-md-block"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ======= Footer ======= -->
+    <footer class="ps-md-5 pb-4 pt-2 d-flex justify-content-center justify-content-md-start">
+        <div class="social-links d-flex align-items-center ">
+            <a href="#" class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
+                    class="bi bi-twitter-x"></i></a>
+            <a href="#" class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
+                    class="bi bi-facebook"></i></a>
+            <a href="#" class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
+                    class="bi bi-instagram"></i></a>
+            <a href="#" class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
+                    class="bi bi-whatsapp"></i></a>
+            <a href="#" class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
+                    class="bi bi-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation Modal -->
+    {% include "base/mobile-nav.html" %}
+
+    <!-- Preloader -->
+    {% include "base/preloader.html" %}
+
+</body>
+
+</html>

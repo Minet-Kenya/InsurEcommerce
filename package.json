@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Repo containing code for Minet Retail website",
   "scripts": {
-    "watch": "sass --watch ./main/static/scss/custom.scss ./main/static/vendor/bootstrap/bootstrap.custom.min.css --style compressed",
+    "watch": "sass --watch ./base/staticfiles/base/scss/custom.scss ./base/staticfiles/base/vendor/bootstrap/bootstrap.custom.min.css --style compressed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,40 +1,53 @@
-﻿@font-face {
-  font-family: "preloslab-medium-regular";
-  src: url("../font/preloslab-book1.otf");
+﻿/*--------------------------------------------------------------
+# Topbar
+--------------------------------------------------------------*/
+.topbar {
+  transition: all 0.5s;
 }
 
-@font-face {
-  font-family: "preloslab-medium-bold";
-  src: url("../font/preloslab-bold2_1.otf");
+.topbar .endorse {
+  max-width: 250px;
 }
 
-@font-face {
-  font-family: "Titillium-Regular";
-  src: url("../font/Titillium-Regular.otf");
+.topbar .search-form .input-group {
+  max-width: 200px;
+  height: 30px;
 }
 
-:root {
-  --font-default: "Titillium-Regular", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-primary: "preloslab-medium-bold", sans-serif;
-  --font-secondary: "preloslab-medium-regular", sans-serif;
+.topbar .search-form input {
+  font-size: var(--font-size-sm);
+}
+
+.topbar .search-form button {
+  transition: 0.3s;
+}
+
+.topbar .search-form button:hover {
+  background-color: rgba(var(--bs-primary-rgb), 0.8);
+}
+
+.topbar .search-form button:hover i {
+  color: var(--bs-white);
 }
 
 /*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
+# NavBar
 --------------------------------------------------------------*/
-@media screen and (max-width: 767.98px) {
-  [data-aos-delay] {
-    transition-delay: 0 !important;
-  }
+.logo img {
+  max-height: 70px;
 }
 
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
-#preloader .spinner-border {
-  width: 3rem;
-  height: 3rem;
-}
+/* Desktop Navigation
+------------------------------*/
+
+
+/* Mobile Navigation
+------------------------------*/
+.modal-content {
+  min-height: 98%;
+  font-family: var(--font-secondary);
+} 
+
 
 /*--------------------------------------------------------------
 # Home-Content
@@ -48,18 +61,14 @@
 }
 
 .social-links a {
-  padding: 8px;
-  margin-right: 7px;
-  border-radius: 50%;
   width: 34px;
   height: 34px;
   transition: 0.3s;
 }
 
 .social-links a:hover {
-  background: var(--color-nav-hover);
-  color: var(--color-inverse);
-  text-decoration: none;
+  background: var(--bs-dark) !important;
+  color: var(--bs-white) !important;
 }
 
 .swiper {

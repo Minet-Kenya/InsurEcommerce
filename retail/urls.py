@@ -17,15 +17,14 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 from main import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", views.home, name="home"),
-    path("retail/", views.retail, name="retail"),
-    path("privacy_policy/", views.retail, name="privacy_policy"),
+    path("Ecommerce/admin/", admin.site.urls),
+    path("Ecommerce/", include("home.urls")),
+    path("Ecommerce/retail/", include("main.urls")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
