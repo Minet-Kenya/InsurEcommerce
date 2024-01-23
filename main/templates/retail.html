@@ -1,1 +1,54 @@
-{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" ltr="dir">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Minet Kenya Retail">
+    <meta property="og:url" content="https://retail.minet.co.ke/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Minet Kenya Retail">
+    <meta property="og:type" content="website">
+
+    <title>Minet Ecommerce - Retail</title>
+    <meta name="theme-color" content="#e32636">
+    <meta name="description" content="Minet's insurance solutions for individuals, SMEs, corporates, and teachers.">
+    <meta name="keywords"
+        content="Minet, insurance, brokers, solutions, individual, SME, corporate, teacher, medical, scheme">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="{% static 'manifest.webmanifest' %}">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="mimg/apple-touch-icon.png">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.custom.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/glightbox/glightbox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- JS Files -->
+    <script defer src="{% static 'vendor/aos/aos.js' %}"></script>
+    <script defer src="{% static 'vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script defer src="{% static 'vendor/glightbox/glightbox.min.js' %}"></script>
+    <script defer src="{% static 'js/script.js' %}"></script>
+
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader"
+        class="position-fixed bg-white top-0 bottom-0 start-0 end-0 overflow-hidden d-flex justify-content-center align-items-center z-3">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+</body>
+
+</html>

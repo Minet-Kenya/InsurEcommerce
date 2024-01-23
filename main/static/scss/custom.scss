@@ -44,19 +44,6 @@ $primary-rgb: 232, 69, 69;
 @import "../vendor/bootstrap/scss/utilities/api";
 
 
-/*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
-@media screen and (max-width: 767.98px) {
-    [data-aos-delay] {
-        transition-delay: 0 !important;
-    }
-}
 
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
-#preloader .spinner-border {
-    width: 3rem;
-    height: 3rem;
-}
+
+
