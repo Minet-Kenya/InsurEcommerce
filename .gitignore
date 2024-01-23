@@ -1,0 +1,6 @@
+.vscode
+*env
+static
+!static
+media
+__pycache__

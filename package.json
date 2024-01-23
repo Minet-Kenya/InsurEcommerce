@@ -1,0 +1,22 @@
+{
+  "name": "retail",
+  "version": "1.0.0",
+  "description": "Repo containing code for Minet Retail website",
+  "scripts": {
+    "watch": "sass --watch ./main/static/scss/style.scss ./main/static/css/style.css --style compressed",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WaksKevin/Retail.git"
+  },
+  "keywords": [
+    "business insurance, risk management, insurance solutions, free quote, Minet Kenya Insurance Brokers Limited, Minet Kenya"
+  ],
+  "author": "Kevin Wakhisi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WaksKevin/Retail/issues"
+  },
+  "homepage": "https://github.com/WaksKevin/Retail#readme"
+}
