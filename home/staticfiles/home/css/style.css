@@ -37,17 +37,22 @@
   max-height: 70px;
 }
 
-/* Desktop Navigation
-------------------------------*/
-
-
-/* Mobile Navigation
-------------------------------*/
 .modal-content {
   min-height: 98%;
   font-family: var(--font-secondary);
-} 
+}
 
+@media (min-width: 992px) {
+  .nav-item .nav-link {
+    color: var(--bs-white);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .nav-item .nav-link {
+    color: var(--bs-dark)
+  }
+}
 
 /*--------------------------------------------------------------
 # Home-Content
