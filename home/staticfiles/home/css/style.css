@@ -37,9 +37,12 @@
   max-height: 70px;
 }
 
+.navbar {
+  font-family: var(--font-secondary);
+}
+
 .modal-content {
   min-height: 98%;
-  font-family: var(--font-secondary);
 }
 
 @media (min-width: 992px) {
