@@ -1,22 +1,22 @@
 {
-  "name": "retail",
+  "name": "ecommerce",
   "version": "1.0.0",
-  "description": "Repo containing code for Minet Retail website",
+  "description": "Repo containing code for Insurance Ecommerce website",
   "scripts": {
-    "watch": "sass --watch ./base/staticfiles/base/scss/custom.scss ./base/staticfiles/base/vendor/bootstrap/bootstrap.custom.min.css --style compressed",
+    "watch": "sass --watch ./base/assets/base/scss/custom.scss ./base/assets/base/vendor/bootstrap/bootstrap.custom.min.css --style compressed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WaksKevin/Retail.git"
+    "url": "git+https://github.com/WaksKevin/InsurEcommerce.git"
   },
   "keywords": [
-    "business insurance, risk management, insurance solutions, free quote, Minet Kenya Insurance Brokers Limited, Minet Kenya"
+    "business insurance, risk management, insurance solutions, free quote"
   ],
   "author": "Kevin Wakhisi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WaksKevin/Retail/issues"
+    "url": "https://github.com/WaksKevin/InsurEcommerce/issues"
   },
-  "homepage": "https://github.com/WaksKevin/Retail#readme"
+  "homepage": "https://github.com/WaksKevin/InsurEcommerce#readme"
 }

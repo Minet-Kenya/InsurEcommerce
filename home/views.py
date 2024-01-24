@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 
-def home(request):
+def landing(request):
     context = {}
-    return render(request, "home/index.html", context)
+    return render(request, "home/landing.html", context)
 
 
 def privacy_policy(request):
