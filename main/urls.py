@@ -19,6 +19,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from django.conf import urls
+from base.views import custom_404
+
+urls.handler404 = custom_404
+
 urlpatterns = [
     path("Ecommerce/admin/", admin.site.urls),
     path("Ecommerce/home/", include("home.urls")),

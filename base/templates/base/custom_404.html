@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Minet Ecommerce - Page Not Found 404</title>
+  <meta name="theme-color" content="#e32636">
+  <meta name="description" content="Minet's insurance solutions for individuals, SMEs, corporates, and teachers.">
+  <meta name="keywords"
+    content="Minet, insurance, brokers, solutions, individual, SME, corporate, teacher, medical, scheme">
+
+  <!-- Manifest -->
+  <link rel="manifest" href="{% static 'base/manifest.webmanifest' %}">
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="{% static 'base/img/favicon.ico' %}" type="image/x-icon">
+  <link rel="apple-touch-icon" href="{% static 'base/img/apple-touch-icon.png' %}">
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="{% static 'base/vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/vendor/bootstrap/bootstrap.custom.min.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+
+  <script defer src="{% static 'base/js/script.js' %}"></script>
+</head>
+
+<body>
+
+  <main>
+    <div class="container">
+
+      <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+        <h1 class="text-primary mb-0">404</h1>
+        <h2 class="text-secondary fs-3">The page you are looking for doesn't exist.</h2>
+        <a class="btn link-light" href="index.html">Back to home</a>
+        <img src="assets/img/not-found.svg" class="img-fluid py-5" alt="Page Not Found">
+        <div class="credits">
+          <a href="https://bootstrapmade.com/">Minet Kenya</a>
+        </div>
+      </section>
+
+    </div>
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+</body>
+
+</html>
