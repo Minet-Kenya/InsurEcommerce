@@ -1,9 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 
-def products(request):
-    if not request.user.is_authenticated:
-        return redirect("landing")
-    else:
-        context = {}
-        return render(request, "ecommerce/products.html", context)
+def home(request):
+    context = {}
+    return render(request, "ecommerce/home.html", context)

@@ -20,9 +20,9 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("Ecommerce/admin/", admin.site.urls),
-    path("Ecommerce/home/", include("home.urls")),
-    path("Ecommerce/", include("ecommerce.urls")),
+    path("admin/", admin.site.urls),
+    path("", include("home.urls")),
+    path("ecommerce/", include("ecommerce.urls")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

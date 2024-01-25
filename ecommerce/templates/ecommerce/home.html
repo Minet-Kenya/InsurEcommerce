@@ -1,0 +1,436 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" ltr="dir">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Minet Kenya Retail">
+    <meta property="og:url" content="https://retail.minet.co.ke/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Minet Kenya Retail">
+    <meta property="og:type" content="website">
+
+    <title>Minet Ecommerce</title>
+    <meta name="theme-color" content="#e32636">
+    <meta name="description" content="Minet's insurance solutions for individuals, SMEs, corporates, and teachers.">
+    <meta name="keywords"
+        content="Minet, insurance, brokers, solutions, individual, SME, corporate, teacher, medical, scheme">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="{% static 'base/manifest.webmanifest' %}">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="{% static 'base/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'base/img/apple-touch-icon.png' %}">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'base/vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'base/vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/vendor/bootstrap/bootstrap.custom.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
+
+    <!-- JS Files -->
+    <script defer src="{% static 'base/vendor/aos/aos.js' %}"></script>
+    <script defer src="{% static 'base/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script defer src="{% static 'base/js/script.js' %}"></script>
+    <script defer src="{% static 'ecommerce/js/script.js' %}"></script>
+
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center z-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="https://www.minet.com/kenya/" class="logo lh-1 d-flex align-items-center me-4">
+                <img src="{% static 'ecommerce/img/logo-white_.png' %}" alt="" class="logo-lg d-none d-sm-inline">
+                <img src="{% static 'ecommerce/img/logo_sm.png' %}" alt="" class="logo-sm d-inline d-sm-none">
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn text-white"></i>
+        </div>
+        <!-- End Logo -->
+        <div class="search-bar">
+            <form class="search-form w-100 d-flex align-items-center" method="post" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search" class="p-0">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+        </div>
+
+         <!-- Profile and notifications can be placed here -->
+         
+         <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number">4</span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                        <li class="dropdown-header">
+                            You have 4 new notifications
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="notification-item">
+                            <i class="bi bi-exclamation-circle text-warning"></i>
+                            <div>
+                                <h4>Lorem Ipsum</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>30 min. ago</p>
+                            </div>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4>Atque rerum nesciunt</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>1 hr. ago</p>
+                            </div>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="notification-item">
+                            <i class="bi bi-check-circle text-success"></i>
+                            <div>
+                                <h4>Sit rerum fuga</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>2 hrs. ago</p>
+                            </div>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="notification-item">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            <div>
+                                <h4>Dicta reprehenderit</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>4 hrs. ago</p>
+                            </div>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="#">Show all notifications</a>
+                        </li>
+                    </ul>
+                
+                </li>
+        
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span class="badge bg-success badge-number">3</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            You have 3 new messages
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="{% static 'ecommerce/img/messages-1.jpg' %}" width="" height="" alt=""
+                                    class="rounded-circle">
+                                <div>
+                                    <h4>Maria Hudson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>4 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="{% static 'ecommerce/img/messages-2.jpg' %}" width="" height="" alt=""
+                                    class="rounded-circle">
+                                <div>
+                                    <h4>Anna Nelson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>6 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="{% static 'ecommerce/img/messages-3.jpg' %}" width="" height="" alt=""
+                                    class="rounded-circle">
+                                <div>
+                                    <h4>David Muldon</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>8 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="#">Show all messages</a>
+                        </li>
+                    </ul>
+                
+                </li>
+            
+                <li class="nav-item dropdown pe-3">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="{% static 'ecommerce/img/profile-img.jpg' %}" width="" height="" alt="Profile"
+                            class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Kevin Anderson</h6>
+                            <span>Web Designer</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="bi bi-gear"></i>
+                                <span>Account Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                                <i class="bi bi-question-circle"></i>
+                                <span>Need Help?</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                
+                </li>
+            
+            </ul>
+        </nav>
+   
+    </header>
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar d-flex flex-column z-2">
+
+        <!-- ======= page-profile =======-->
+        <div class="page-profile pb-1">
+            <div class="text-center">
+                <i class="bi bi-house-fill page-profile-logo d-inline-block text-primary"></i>
+                <h1 class="ms-2 d-inline-block fs-4">E-commerce</h1>
+            </div>
+            <hr />
+        </div>
+
+        <!-- ======= Sidebar-nav ======= -->
+        <ul class="sidebar-nav p-0 m-0 list-unstyled" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#home-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-house"></i><span>Solutions</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="home-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="">
+                            <i class="bi bi-circle"></i><span>Individual Solutions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://retail.minet.co.ke/biznasure/" target="_blank">
+                            <i class="bi bi-circle"></i><span>Business / SME solutions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="bi bi-circle"></i><span>Corporate Product</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://collaborationkenya.minet.com/MinetKe/tsc/" target="_blank">
+                            <i class="bi bi-circle"></i><span>Teachers' Medical Scheme</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.html">
+                    <i class="bi bi-cart4"></i>
+                    <span>Cart</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-heading text-uppercase fw-bold">Pages</li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="users-profile.html">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-faq.html">
+                    <i class="bi bi-question-circle"></i>
+                    <span>F.A.Q</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-contact.html">
+                    <i class="bi bi-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-register.html">
+                    <i class="bi bi-card-list"></i>
+                    <span>Register</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-login.html">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Login</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <!-- ======= Social links ======= -->
+        <div class="social-links mt-auto pb-4 pt-3 d-flex justify-content-center align-items-center">
+            <a href="https://twitter.com/Minet_Kenya/" class="d-inline-flex justify-content-center align-items-center"><i
+                    class="bi bi-twitter-x"></i></a>
+            <a href="https://www.facebook.com/MinetKenya/" class="d-inline-flex justify-content-center align-items-center"><i
+                    class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/minet_ke/" class="d-inline-flex justify-content-center align-items-center"><i
+                    class="bi bi-instagram"></i></a>
+            <!-- <a href="#" class="d-inline-flex justify-content-center align-items-center"><i
+                    class="bi bi-whatsapp"></i></a> -->
+            <a href="https://www.linkedin.com/company/minet-kenya-insurance-brokers-limited" class="d-inline-flex justify-content-center align-items-center"><i
+                    class="bi bi-linkedin"></i></a>
+        </div>
+
+    </aside>
+
+    <section class="vh-100 d-flex flex-column home">
+
+        <!-- ======= Main ======= -->
+        <main id="main" class="main flex-grow-1  z-0 d-flex flex-column">
+
+            <div class="pagetitle z-0">
+                <h1 class="text-white">Our Solutions</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">Solutions</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- End Page Title -->
+
+            <section id="retail-content" class="flex-grow-1 container-fluid text-center d-flex flex-column justify-content-center">
+                <div class="row g-4 h-100">
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <a class="solutions-img individual-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="">
+                            <img src="{% static 'ecommerce/img/solutions-1.png' %}" width="" height=""
+                                alt="individual-solutions icon" class="img-fluid">
+                            <h2 class="mt-2">Individual Solutions</h2>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center" data-aos="fade-up"
+                        data-aos-delay="400">
+                        <a class="solutions-img business-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://retail.minet.co.ke/biznasure/" target="_blank">
+                            <img src="{% static 'ecommerce/img/solutions-2.png' %}" width="" height=""
+                                alt="business-solutions icon" class="img-fluid">
+                            <h2 class="mt-2">Business Solutions</h2>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center" data-aos="fade-up"
+                        data-aos-delay="600">
+                        <a class="solutions-img corporate-product position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="">
+                            <img src="{% static 'ecommerce/img/solutions-3.png' %}" width="" height=""
+                                alt="corporate-product icon" class="img-fluid">
+                            <h2 class="mt-2">Corporate Product</h2>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center" data-aos="fade-up"
+                        data-aos-delay="800">
+                        <a class="solutions-img teachers-medical-scheme position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://collaborationkenya.minet.com/MinetKe/tsc" target="_blank">
+                            <img src="{% static 'ecommerce/img/solutions-4.png' %}" width="" height=""
+                                alt="teachers-medical-scheme icon" class="img-fluid">
+                            <h2 class="mt-2">Teacher's Medical Scheme Portal</h2>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer mt-auto py-2 z-1 text-center text-white">
+            <div class="copyright">
+                <span>All rights reserved</span> ©️ 2023<span class="current-year"></span> <strong class="px-1">Minet
+                    Group</strong>
+            </div>
+            <div class="credits pt-2">
+                <small>Designed by <a href="#" class="pe-none">Minet Kenya IT Department</a></small>
+            </div>
+        </footer>
+
+    </section>
+
+    <!-- Back-to-top -->
+    {% include "base/back_to_top.html" %}
+
+    <!-- Preloader -->
+    {% include "base/preloader.html" %}
+</body>
+
+</html>

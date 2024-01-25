@@ -37,6 +37,7 @@
     <script defer src="{% static 'base/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
     <script defer src="{% static 'base/vendor/swiper/swiper-bundle.min.js' %}"></script>
     <script defer src="{% static 'base/js/script.js' %}"></script>
+    <script defer src="{% static 'home/js/script.js' %}"></script>
 
 </head>
 
@@ -68,7 +69,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                        <a href="{% url 'landing' %}" class="logo">
+                        <a href="https://www.minet.com/kenya/" class="logo">
                             <img src="{% static 'home/img/logo-white_.png' %}" class="img-fluid" alt="logo">
                         </a>
                     </div>
@@ -86,15 +87,9 @@
                     </div>
 
                 </div>
-
-
-
-
             </div>
 
         </div>
-
-
     </header>
 
     <!-- ======= Main ======= -->
@@ -113,7 +108,7 @@
                     risk and human capital solutions today.
                 </p>
                 <a class="btn btn-dark" href="">Login</a>
-                <a class="btn btn-dark" href="{% url 'products' %}">Get Started</a>
+                <a class="btn btn-dark" href="{% url 'home' %}">Get Started</a>
             </div>
         </div>
         <div class="col col-md-8 d-flex align-items-center">
