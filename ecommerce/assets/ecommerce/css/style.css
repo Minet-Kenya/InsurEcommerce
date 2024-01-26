@@ -345,8 +345,6 @@ h6 {
 
 #sidebar .page-profile .page-profile-logo {
     font-size: 45px;
-    position: relative;
-    top: 4px;
 }
 
 #sidebar .page-profile hr {
@@ -471,15 +469,15 @@ h6 {
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
-section.home {
+body#home {
     background: url("../img/retail-bg.png") center top no-repeat fixed;
     background-size: cover;
     position: relative;
 }
 
-section.home::before {
+body#home::before {
     content: "";
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     top: 0;
