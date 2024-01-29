@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" ltr="dir" class="h-100">
+<html lang="en" ltr="dir">
 
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
 
 </head>
 
-<body id="home" class="h-100">
+<body id="home" class="position-fixed top-0 start-0 end-0 bottom-0">
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center z-3">
         <div class="d-flex align-items-center justify-content-between">
@@ -355,10 +355,10 @@
 
     </aside>
 
-    <section class="h-100 d-flex flex-column">
+    <section class="h-100 position-relative d-flex flex-column overflow-y-auto">
 
         <!-- ======= Main ======= -->
-        <main id="main" class="main flex-grow-1  z-0 d-flex flex-column">
+        <main id="main" class="main flex-grow-1 d-flex flex-column">
 
             <div class="pagetitle z-0">
                 <h1 class="text-white">Our Solutions</h1>
@@ -373,8 +373,7 @@
             <section id="retail-content"
                 class="flex-grow-1 container-fluid text-center d-flex flex-column justify-content-center">
                 <div class="row g-4 h-100">
-                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center"
-                        data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
                         <a class="solutions-img individual-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
                             href="">
                             <img src="{% static 'ecommerce/img/solutions-1.png' %}" width="" height=""
@@ -382,8 +381,7 @@
                             <h2 class="mt-2">Individual Solutions</h2>
                         </a>
                     </div>
-                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center"
-                        data-aos="fade-up" data-aos-delay="400">
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
                         <a class="solutions-img business-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
                             href="https://retail.minet.co.ke/biznasure/" target="_blank">
                             <img src="{% static 'ecommerce/img/solutions-2.png' %}" width="" height=""
@@ -391,8 +389,7 @@
                             <h2 class="mt-2">Business Solutions</h2>
                         </a>
                     </div>
-                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center"
-                        data-aos="fade-up" data-aos-delay="600">
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
                         <a class="solutions-img corporate-product position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
                             href="">
                             <img src="{% static 'ecommerce/img/solutions-3.png' %}" width="" height=""
@@ -400,8 +397,7 @@
                             <h2 class="mt-2">Corporate Product</h2>
                         </a>
                     </div>
-                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center"
-                        data-aos="fade-up" data-aos-delay="800">
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
                         <a class="solutions-img teachers-medical-scheme position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
                             href="https://collaborationkenya.minet.com/MinetKe/tsc" target="_blank">
                             <img src="{% static 'ecommerce/img/solutions-4.png' %}" width="" height=""
@@ -415,7 +411,7 @@
         </main>
 
         <!-- ======= Footer ======= -->
-        <footer id="footer" class="footer mt-auto py-2 z-1 text-center text-white">
+        <footer id="footer" class="footer mt-auto py-2 text-center text-white">
             <div class="copyright">
                 <span>All rights reserved</span> ©️ 2023<span class="current-year"></span> <strong class="px-1">Minet
                     Group</strong>
@@ -426,9 +422,6 @@
         </footer>
 
     </section>
-
-    <!-- Back-to-top -->
-    {% include "base/back_to_top.html" %}
 
     <!-- Preloader -->
     {% include "base/preloader.html" %}
