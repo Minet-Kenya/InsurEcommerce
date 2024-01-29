@@ -12,3 +12,8 @@ def individual_solutions(request):
 
 def corporate_product(request):
     return render(request, "ecommerce/corporate_product.html", {})
+
+
+def login(request):
+    context = {}
+    return render(request, "ecommerce/login.html", context)
