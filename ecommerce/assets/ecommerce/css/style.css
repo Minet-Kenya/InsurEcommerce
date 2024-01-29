@@ -475,7 +475,19 @@ body#home {
     position: relative;
 }
 
-body#home::before {
+body#corporate_product {
+    background: url("../img/corporate-product/corporate-product-bg.png") center top no-repeat fixed;
+    background-size: cover;
+    position: relative;
+}
+
+body#individual_solutions {
+    background: url("../img/individual-solutions/individual-solutions-bg.png") center top no-repeat fixed;
+    background-size: cover;
+    position: relative;
+}
+
+body::before {
     content: "";
     position: fixed;
     left: 0;
@@ -517,6 +529,14 @@ body#home::before {
     max-height: 100px;
 }
 
+#individual_solutions .solutions-img img {
+    max-height: 50px;
+}
+
+#individual_solutions .solutions-img h2 {
+    font-size: var(--font-size-sm);
+}
+
 .back-btn a {
     transition: all 0.3s ease-in-out;
     border: none;
@@ -531,10 +551,6 @@ body#home::before {
 /*--------------------------------------------------------------
 # Retail
 --------------------------------------------------------------*/
-#retail-content {
-    padding: 3rem;
-}
-
 @media (max-width: 600px) {
 
     #retail-content {
@@ -548,6 +564,8 @@ body#home::before {
         font-size: var(--font-size-xs);
     }
 }
+
+
 
 /*--------------------------------------------------------------
   # Footer

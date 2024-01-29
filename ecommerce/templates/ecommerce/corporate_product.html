@@ -39,7 +39,7 @@
 
 </head>
 
-<body id="home" class="position-fixed top-0 start-0 end-0 bottom-0">
+<body id="corporate_product" class="position-fixed top-0 start-0 end-0 bottom-0">
     {% include 'ecommerce/includes/header.html' %}
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar d-flex flex-column z-2">
@@ -62,10 +62,11 @@
         <main id="main" class="main flex-grow-1 d-flex flex-column">
 
             <div class="pagetitle z-0">
-                <h1 class="text-white">Our Solutions</h1>
+                <h1 class="text-white">Corporate Product Solutions</h1>
                 <nav>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">Solutions</li>
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Solutions</a></li>
+                        <li class="breadcrumb-item active">Corporate Product</li>
                     </ol>
                 </nav>
             </div>
@@ -73,37 +74,37 @@
             <section id="retail-content"
                 class="flex-grow-1 container-fluid text-center d-flex flex-column justify-content-center mb-3">
                 <div class="row g-4 h-100">
-                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
-                        <a class="solutions-img individual-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                            href="{% url 'individual_solutions' %}">
-                            <img src="{% static 'ecommerce/img/solutions-1.png' %}" width="" height=""
-                                alt="individual-solutions icon" class="img-fluid">
-                            <h2 class="mt-2">Individual Solutions</h2>
-                        </a>
-                    </div>
 
-                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
-                        <a class="solutions-img business-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                            href="https://retail.minet.co.ke/biznasure/" target="_blank">
-                            <img src="{% static 'ecommerce/img/solutions-2.png' %}" width="" height=""
-                                alt="business-solutions icon" class="img-fluid">
-                            <h2 class="mt-2">Business Solutions</h2>
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center" >
+                        <a class="solutions-img corporate-medical position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://play.google.com/store/apps/details?id=com.minet.minetretail" target="_blank">
+                            <img src="{% static 'ecommerce/img/corporate-product/corporate-1.png' %}" width="" height=""
+                                alt="corporate-medical icon" class="img-fluid">
+                            <h2 class="mt-2">Corporate Medical Cover</h2>
                         </a>
                     </div>
                     <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
-                        <a class="solutions-img corporate-product position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                            href="{% url 'corporate_product' %}">
-                            <img src="{% static 'ecommerce/img/solutions-3.png' %}" width="" height=""
-                                alt="corporate-product icon" class="img-fluid">
-                            <h2 class="mt-2">Corporate Product</h2>
+                        <a class="solutions-img pension-cover position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://mss.minet.co.ke/Login?ReturnUrl=%2Fdashboard" target="_blank">
+                            <img src="{% static 'ecommerce/img/corporate-product/corporate-2.png' %}" width="" height=""
+                                alt="pension-cover icon" class="img-fluid">
+                            <h2 class="mt-2">Corporate Pension Cover</h2>
                         </a>
                     </div>
                     <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
-                        <a class="solutions-img teachers-medical-scheme position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                            href="https://collaborationkenya.minet.com/MinetKe/tsc" target="_blank">
-                            <img src="{% static 'ecommerce/img/solutions-4.png' %}" width="" height=""
-                                alt="teachers-medical-scheme icon" class="img-fluid">
-                            <h2 class="mt-2">Teacher's Medical Scheme Portal</h2>
+                        <a class="solutions-img group-life-cover position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://play.google.com/store/apps/details?id=com.minet.minetretail" target="_blank">
+                            <img src="{% static 'ecommerce/img/corporate-product/corporate-3.png' %}" width="" height=""
+                                alt="group-life-cover icon" class="img-fluid">
+                            <h2 class="mt-2">Group Life Cover</h2>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
+                        <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/" target="_blank">
+                            <img src="{% static 'ecommerce/img/corporate-product/corporate-4.png' %}" width="" height=""
+                                alt="wellness icon" class="img-fluid">
+                            <h2 class="mt-2">Wellness</h2>
                         </a>
                     </div>
                 </div>
