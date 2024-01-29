@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" ltr="dir">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Minet Kenya Retail">
+    <meta property="og:url" content="https://retail.minet.co.ke/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Minet Kenya Retail">
+    <meta property="og:type" content="website">
+
+    <title>Minet Ecommerce</title>
+    <meta name="theme-color" content="#e32636">
+    <meta name="description" content="Minet's insurance solutions for individuals, SMEs, corporates, and teachers.">
+    <meta name="keywords"
+        content="Minet, insurance, brokers, solutions, individual, SME, corporate, teacher, medical, scheme">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="{% static 'base/manifest.webmanifest' %}">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="{% static 'base/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'base/img/apple-touch-icon.png' %}">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'base/vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'base/vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/vendor/bootstrap/bootstrap.custom.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
+
+    <!-- JS Files -->
+    <script defer src="{% static 'base/vendor/aos/aos.js' %}"></script>
+    <script defer src="{% static 'base/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script defer src="{% static 'base/js/script.js' %}"></script>
+    <script defer src="{% static 'ecommerce/js/script.js' %}"></script>
+
+</head>
+
+<body id="home" class="position-fixed top-0 start-0 end-0 bottom-0">
+    {% include 'ecommerce/includes/header.html' %}
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar d-flex flex-column z-2">
+
+        <!-- ======= page-profile =======-->
+        <a href="{% url 'landing' %}" class="page-profile pb-1 d-block">
+            <div class="text-center">
+                <i class="bi bi-house-fill page-profile-logo text-primary"></i>
+                <h1 class="d-inline-block fs-4 text-dark text-uppercase">Contact</h1>
+            </div>
+            <hr />
+        </a>
+
+        {% include 'ecommerce/includes/sidebar.html' %}
+    </aside>
+
+    <section class="h-100 position-relative d-flex flex-column overflow-y-auto">
+
+        <!-- ======= Main ======= -->
+        <main id="main" class="main flex-grow-1 d-flex flex-column">
+
+            <div class="pagetitle z-0">
+                <h1 class="text-white">Get in touch</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Contact</li>
+                   </ol>
+                </nav>
+            </div>
+
+            <section class="contact">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-6">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info-box card">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <h3>Address</h3>
+                                    <p>Minet House,<br>Processional Way,<br>off Nyerere Road<br>P.O. Box 48279-00100, GPO Nairobi</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-box card">
+                                    <i class="bi bi-telephone"></i>
+                                    <h3>Call Us</h3>
+                                    <p>+254 071 904 4000</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-box card">
+                                    <i class="bi bi-envelope"></i>
+                                    <h3>Email Us</h3>
+                                    <p>retailsales@minet.co.ke<br>info@minet.com</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-box card">
+                                    <i class="bi bi-clock"></i>
+                                    <h3>Open Hours</h3>
+                                    <p>Monday - Friday<br>8:15AM - 05:00PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card p-4">
+                            <form action="forms/contact.php" method="post" class="php-email-form">
+                                <div class="row gy-4">
+
+                                    <div class="col-md-6">
+                                        <input type="text" name="name" class="form-control" placeholder="Your Name"
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" name="message" rows="6" placeholder="Message"
+                                            required></textarea>
+                                    </div>
+
+                                    <div class="col-md-12 text-center">
+                                        <div class="loading">Loading</div>
+                                        <div class="error-message"></div>
+                                        <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                                        <button class="btn btn-primary" type="submit">Send Message</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        {% include 'ecommerce/includes/footer.html' %}
+    </section>
+
+    <!-- Preloader -->
+    {% include "base/preloader.html" %}
+</body>
+
+</html>

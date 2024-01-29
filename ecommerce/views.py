@@ -17,3 +17,13 @@ def corporate_product(request):
 def login(request):
     context = {}
     return render(request, "ecommerce/login.html", context)
+
+
+def register(request):
+    context = {}
+    return render(request, "ecommerce/register.html", context)
+
+
+def contact(request):
+    context = {}
+    return render(request, "ecommerce/contact.html", context)

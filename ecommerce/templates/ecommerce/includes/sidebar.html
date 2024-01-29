@@ -1,6 +1,6 @@
 <!-- ======= Sidebar-nav ======= -->
 <ul class="sidebar-nav p-0 m-0 list-unstyled" id="sidebar-nav">
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#home-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-house"></i><span>Solutions</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -26,14 +26,21 @@
                 </a>
             </li>
         </ul>
+    </li> -->
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'home' %}">
+            <i class="bi bi-house"></i>
+            <span>Home</span>
+        </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="#">
             <i class="bi bi-cart4"></i>
             <span>Cart</span>
         </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
 
     <li class="nav-heading text-uppercase fw-bold">Pages</li>
 
@@ -45,14 +52,14 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{% url 'contact' %}">
             <i class="bi bi-envelope"></i>
             <span>Contact</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{% url 'register' %}">
             <i class="bi bi-card-list"></i>
             <span>Register</span>
         </a>
