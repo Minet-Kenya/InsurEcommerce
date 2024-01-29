@@ -31,6 +31,10 @@
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
+#preloader {
+  z-index: 9999;
+}
+
 #preloader:before {
   content: "";
   position: fixed;
@@ -47,11 +51,11 @@
 
 @keyframes animate-preloader {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
