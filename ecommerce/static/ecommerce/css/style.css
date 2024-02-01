@@ -79,7 +79,7 @@ h6 {
     transition: all 0.5s;
     padding-left: 20px;
     height: var(--header-height);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .header .toggle-sidebar-btn {
