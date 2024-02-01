@@ -141,9 +141,9 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "base/assets",
-    BASE_DIR / "home/assets",
-    BASE_DIR / "ecommerce/assets",
+    BASE_DIR / "base/static",
+    BASE_DIR / "home/static",
+    BASE_DIR / "ecommerce/static",
 ]
 
 

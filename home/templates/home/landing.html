@@ -1,113 +1,25 @@
+{% extends "base/home.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr" class="h-100">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Minet Kenya Retail">
-    <meta property="og:url" content="https://retail.minet.co.ke/">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="Minet Kenya Retail">
-    <meta property="og:type" content="website">
-
-    <title>Minet Ecommerce - Home</title>
-    <meta name="theme-color" content="#e32636">
-    <meta name="description" content="Minet's insurance solutions for individuals, SMEs, corporates, and teachers.">
-    <meta name="keywords"
-        content="Minet, insurance, brokers, solutions, individual, SME, corporate, teacher, medical, scheme">
-
-    <!-- Manifest -->
-    <link rel="manifest" href="{% static 'base/manifest.webmanifest' %}">
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="{% static 'base/img/favicon.ico' %}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{% static 'base/img/apple-touch-icon.png' %}">
-
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="{% static 'base/vendor/aos/aos.css' %}">
-    <link rel="stylesheet" href="{% static 'base/vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'base/vendor/bootstrap/bootstrap.custom.min.css' %}">
-    <link rel="stylesheet" href="{% static 'base/vendor/swiper/swiper-bundle.min.css' %}">
-    <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
-
-    <!-- JS Files -->
-    <script defer src="{% static 'base/vendor/aos/aos.js' %}"></script>
-    <script defer src="{% static 'base/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
-    <script defer src="{% static 'base/vendor/swiper/swiper-bundle.min.js' %}"></script>
-    <script defer src="{% static 'base/js/script.js' %}"></script>
+{% block style %}
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+{% endblock style %}
+{% block script %}
     <script defer src="{% static 'home/js/script.js' %}"></script>
-
-</head>
-
-<body class="h-100 w-100 d-flex flex-column text-white bg-primary overflow-hidden">
-
-    <!-- ======= Header ======= -->
-    <header id="header" class="container-fluid py-2" data-aos="slide-right">
-
-        <!-- ======= Top Bar ======= -->
-        <div class="row topbar px-3">
-
-            <div class="col d-none d-sm-flex align-items-center">
-                <img src="{% static 'home/img/endorsement-logo-white.png' %}" alt="" class="img-fluid endorse">
-            </div>
-
-            <form class="col search-form d-flex justify-content-end align-items-center" action="">
-                <div class="input-group">
-                    <input type="text" class="form-control h-100 bg-white text-dark " placeholder="Search...">
-                    <button type="submit"
-                        class="input-group-text h-100 d-flex justify-content-center align-items-center">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </form>
-
-        </div>
-        <!-- ======= Nav Bar ======= -->
-        <div class="pt-3 d-flex align-items-center">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://www.minet.com/kenya/" class="logo">
-                            <img src="{% static 'home/img/logo-white_.png' %}" class="img-fluid" alt="logo">
-                        </a>
-                    </div>
-                    <div class="col d-flex justify-content-end align-items-center">
-                        <nav class="navbar navbar-expand-lg">
-                            <ul class="navbar-nav d-none d-lg-flex align-items-center justify-content-evenly">
-                                {% include "base/nav-list.html" %}
-                            </ul>
-
-                            <button class="navbar-toggler border-light" type="button" data-bs-toggle="modal"
-                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
-                                <i class="bi bi-list text-white fs-1"></i>
-                            </button>
-                        </nav>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </header>
-
-    <!-- ======= Main ======= -->
-    <main id="home-content" class="flex-grow-1 row ps-5">
+{% endblock script %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+    <section id="home-content" class="flex-grow-1 row ps-5">
         <div class="col col-md-4 d-flex flex-column justify-content-evenly">
-            <h1 class="m-0">
-                <span>Welcome to
-                    <br />
-                    Minet</span> Insurance
-                <br />
-                Brokers Solutions
+            <h1>
+                <span>Welcome to<br>Minet</span> Insurance<br>Brokers Solutions
             </h1>
             <div>
                 <p>
-                    Minet is a trusted pan-African advisor that meets the uncertainties of tomorrow by delivering
-                    risk and human capital solutions today.
+                    Minet is a trusted pan-African advisor that meets the uncertainties of tomorrow by delivering risk and human capital solutions today.
                 </p>
-                <a class="btn btn-dark" href="">Login</a>
+                <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
                 <a class="btn btn-dark" href="{% url 'home' %}">Get Started</a>
             </div>
         </div>
@@ -119,53 +31,22 @@
                     <div class="swiper-slide slide-3"></div>
                     <div class="swiper-slide slide-4"></div>
                 </div>
-                <div class="swiper-pagination position-fixed d-none d-md-block"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
-    </main>
-
-    <!-- ======= Footer ======= -->
-    <footer class="ps-md-5 pb-4 pt-2 d-flex justify-content-center justify-content-md-start">
-        <div class="social-links d-flex align-items-center ">
-            <a href="https://twitter.com/Minet_Kenya/" target="_blank"
-                class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
-                    class="bi bi-twitter-x"></i></a>
-            <a href="https://www.facebook.com/MinetKenya/" target="_blank"
-                class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
-                    class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/minet_ke/" target="_blank"
-                class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
-                    class="bi bi-instagram"></i></a>
-            <a href="https://wa.me/254719044000" target="_blank"
-                class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
-                    class="bi bi-whatsapp"></i></a>
-            <a href="https://www.linkedin.com/company/minet-kenya-insurance-brokers-limited" target="_blank"
-                class="d-inline-flex justify-content-center align-items-center p-1 me-2 link-light"><i
-                    class="bi bi-linkedin"></i></a>
-        </div>
-    </footer>
-
-    <!-- Mobile Navigation Modal -->
-    <div class="modal fade" id="navbarNav" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="navbarNavLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close fs-1" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul class="nav flex-column">
-                        {% include "base/nav-list.html" %}
-                    </ul>
-                </div>
-            </div>
+    </section>
+    <div class="ps-md-5 pb-4 pt-2 d-flex justify-content-center justify-content-md-start">
+        <div class="social-links d-flex align-items-center position-relative">
+            <a href="https://twitter.com/Minet_Kenya/"
+               class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.facebook.com/MinetKenya/"
+               class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/minet_ke/"
+               class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-instagram"></i></a>
+            <a href="https://wa.me/254719044000"
+               class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/company/minet-kenya-insurance-brokers-limited"
+               class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-linkedin"></i></a>
         </div>
     </div>
-
-    <!-- Preloader -->
-    {% include "base/preloader.html" %}
-
-</body>
-
-</html>
+{% endblock content %}

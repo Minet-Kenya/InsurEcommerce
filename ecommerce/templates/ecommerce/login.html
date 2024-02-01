@@ -1,153 +1,114 @@
+{% extends "base/ecommerce.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" ltr="dir">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Minet Kenya Retail">
-  <meta property="og:url" content="https://retail.minet.co.ke/">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:site_name" content="Minet Kenya Retail">
-  <meta property="og:type" content="website">
-
-  <title>Minet Ecommerce - Login</title>
-  <meta name="theme-color" content="#e32636">
-  <meta name="description" content="Minet's insurance solutions for individuals, SMEs, corporates, and teachers.">
-  <meta name="keywords"
-    content="Minet, insurance, brokers, solutions, individual, SME, corporate, teacher, medical, scheme">
-
-  <!-- Manifest -->
-  <link rel="manifest" href="{% static 'base/manifest.webmanifest' %}">
-
-  <!-- Icons -->
-  <link rel="shortcut icon" href="{% static 'base/img/favicon.ico' %}" type="image/x-icon">
-  <link rel="apple-touch-icon" href="{% static 'base/img/apple-touch-icon.png' %}">
-
-  <!-- CSS Files -->
-  <link rel="stylesheet" href="{% static 'base/vendor/aos/aos.css' %}">
-  <link rel="stylesheet" href="{% static 'base/vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
-  <link rel="stylesheet" href="{% static 'base/vendor/bootstrap/bootstrap.custom.min.css' %}">
-  <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
-
-  <!-- JS Files -->
-  <script defer src="{% static 'base/vendor/aos/aos.js' %}"></script>
-  <script defer src="{% static 'base/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
-  <script defer src="{% static 'base/js/script.js' %}"></script>
-  <script defer src="{% static 'ecommerce/js/script.js' %}"></script>
-
-</head>
-
-<body id="login" class="position-fixed top-0 start-0 end-0 bottom-0">
-  {% include 'ecommerce/includes/header.html' %}
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar d-flex flex-column z-2">
-
-    <!-- ======= page-profile =======-->
+{% block style %}
+    <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
+    <style>
+        body {
+            background: url("{% static 'ecommerce/img/accounts/login-bg.png' %}") center top no-repeat fixed;
+            background-size: cover;
+            position: relative;
+        }
+    </style>
+{% endblock style %}
+{% block script %}
+    <script defer src="{% static 'ecommerce/js/script.js' %}"></script>
+{% endblock script %}
+{% block page_profile %}
     <a href="{% url 'landing' %}" class="page-profile pb-1 d-block">
-      <div class="text-center">
-        <i class="bi bi-house-fill page-profile-logo text-primary"></i>
-        <h1 class="d-inline-block fs-4 text-dark text-uppercase">Accounts</h1>
-      </div>
-      <hr />
+        <div class="text-center">
+            <i class="bi bi-house-fill page-profile-logo text-primary"></i>
+            <h1 class="d-inline-block fs-4 text-dark text-uppercase">Accounts</h1>
+        </div>
+        <hr />
     </a>
-
-    {% include 'ecommerce/includes/sidebar.html' %}
-  </aside>
-
-  <section class="h-100 position-relative d-flex flex-column overflow-y-auto">
-
-    <!-- ======= Main ======= -->
-    <main id="main" class="main flex-grow-1 d-flex flex-column">
-
-      <div class="pagetitle z-0 d-flex">
-        <div class="">
-          <h1 class="text-white">Login</h1>
-          <nav>
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-              <li class="breadcrumb-item active">Login</li>
-         </ol>
-          </nav>
+{% endblock page_profile %}
+{% block main %}
+    <main id="main" class="accounts flex-grow-1 d-flex flex-column">
+        <div class="pagetitle z-0">
+            <h1 class="text-white">Login</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Login</li>
+                </ol>
+            </nav>
         </div>
-
         <div class="login-breadcrumbs d-flex justify-content-center align-items-center flex-grow-1 px-5 mx-5">
-          <img src="{% static 'ecommerce/img/accounts/ICONS-15.png' %}" alt="" class="img-fluid">
-          <div class="w-75 dashed"></div>
+            <img src="{% static 'ecommerce/img/accounts/ICONS-15.png' %}"
+                 width="70px"
+                 height=""
+                 alt=""
+                 class="img-fluid">
+            <div class="w-75 dashed"></div>
         </div>
-
-      </div>
-
-      <section id="retail-content"
-        class="flex-grow-1 container-fluid text-center d-flex flex-column justify-content-center mb-3">
-        <div class="row g-4 h-100 justify-content-center">
-
-          <div class="col-12 col-sm-10 col-md-8 d-flex flex-column align-items-center justify-content-center">
-
-
-            <div class="card mb-3">
-
-              <div class="card-body">
-
-                <div class="pb-2">
-                  <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                  <p class="text-center small">Enter your username & password to login</p>
+        <section id="retail-content"
+                 class="flex-grow-1 container-fluid text-center d-flex flex-column justify-content-center mb-3">
+            <div class="row g-4 h-100 justify-content-center">
+                <div class="col-12 col-sm-10 col-md-8 d-flex flex-column align-items-center justify-content-center">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="pb-2">
+                                <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                                <p class="text-center small">Enter your username & password to login</p>
+                            </div>
+                            <form class="row g-3 needs-validation login-form" novalidate>
+                                <div class="col-12">
+                                    <label for="yourUsername" class="form-label">Username / Cell Phone</label>
+                                    <input type="text"
+                                           name="username"
+                                           class="form-control"
+                                           id="yourUsername"
+                                           required>
+                                    <div class="invalid-feedback">Please enter your username.</div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="yourPassword" class="form-label">Password</label>
+                                    <input type="password"
+                                           name="password"
+                                           class="form-control"
+                                           id="yourPassword"
+                                           required>
+                                    <div class="invalid-feedback">Please enter your password!</div>
+                                </div>
+                                <div class="col-12 recaptcha px-5 py-1 d-flex justify-content-sm-between align-items-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               value=""
+                                               id="recaptcha"
+                                               required>
+                                        <label class="form-check-label ms-4" for="recaptcha">I'm not a robot</label>
+                                    </div>
+                                    <div class="d-none d-sm-block">
+                                        <img src="{% static 'ecommerce/img/accounts/recaptcha.png' %}"
+                                             class="img-fluid"
+                                             width=""
+                                             height=""
+                                             alt="recaptcha logo">
+                                    </div>
+                                </div>
+                                <div class="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
+                                    <button type="submit"
+                                            class="btn btn-primary w-100 text-uppercase mb-3 mb-sm-0">Login</button>
+                                    <a href="" class="btn btn-primary text-uppercase w-100 ms-sm-4">Purchase Insurance</a>
+                                </div>
+                                <div class="col-12 d-sm-table text-center">
+                                    <div class="d-sm-table-row">
+                                        <div class="d-sm-table-cell mb-2 mb-sm-0 border-end border-secondary">
+                                            <span class="form-text">Not a member? <a href="{% url 'register' %}">Sign up here</a></span>
+                                        </div>
+                                        <div class="d-sm-table-cell">
+                                            <span class="form-text">Request <a href="">Password Reset</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-
-                <form class="row g-3 needs-validation login-form" novalidate>
-
-                  <div class="col-12">
-                    <label for="yourUsername" class="form-label">Username / Cell Phone</label>
-                    <input type="text" name="username" class="form-control" id="yourUsername" required>
-                    <div class="invalid-feedback">Please enter your username.</div>
-                  </div>
-
-                  <div class="col-12">
-                    <label for="yourPassword" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="yourPassword" required>
-                    <div class="invalid-feedback">Please enter your password!</div>
-                  </div>
-
-                  <div class="col-12 recaptcha px-5 py-1 d-flex justify-content-sm-between align-items-center">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="recaptcha" required>
-                      <label class="form-check-label ms-4" for="recaptcha">I'm not a robot</label>
-                    </div>
-                    <div class="d-none d-sm-block">
-                      <img src="{% static 'ecommerce/img/accounts/recaptcha.png' %}" class="img-fluid" width=""
-                        height="" alt="recaptcha logo">
-                    </div>
-                  </div>
-                  <div class="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
-                    <button type="submit" class="btn btn-primary w-100 text-uppercase mb-3 mb-sm-0">Login</button>
-                    <a href="" class="btn btn-primary text-uppercase w-100 ms-sm-4">Purchase Insurance</a>
-                  </div>
-                  <div class="col-12 d-sm-table text-center">
-                    <div class="d-sm-table-row">
-                      <div class="d-sm-table-cell mb-2 mb-sm-0 border-end border-secondary">
-                        <span class="form-text">Not a member? <a href="{% url 'register' %}">Sign up here</a></span>
-                      </div>
-                      <div class="d-sm-table-cell">
-                        <span class="form-text">Request <a href="">Password Reset</a></span>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
-
+        </section>
     </main>
-
-    {% include 'ecommerce/includes/footer.html' %}
-  </section>
-
-  <!-- Preloader -->
-  {% include "base/preloader.html" %}
-</body>
-
-</html>
+{% endblock main %}

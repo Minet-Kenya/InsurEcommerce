@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Minet Kenya Retail">
+        <meta property="og:url" content="https://retail.minet.co.ke/">
+        <meta property="og:locale" content="en_US">
+        <meta property="og:site_name" content="Minet Kenya Retail">
+        <meta property="og:type" content="website">
+        <meta name="keywords"
+              content="Minet, insurance, brokers, solutions, individual, SME, corporate, teacher, medical, scheme">
+        <meta name="description"
+              content="Minet is a leading insurance broker in Kenya that offers solutions for individuals, SMEs, corporates, and teachers. Minet provides medical schemes, life insurance, general insurance, and risk management services.">
+        <meta name="theme-color" content="#e32636">
+        <!-- Favicons -->
+        <link href="{% static 'base/img/favicon.ico' %}" rel="icon" />
+        <link href="{% static 'base/img/apple-touch-icon.png' %}"
+              rel="apple-touch-icon" />
+        <!-- CSS -->
+        <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.min.css' %}"
+              rel="stylesheet" />
+        <link href="{% static 'vendor/bootstrap/bootstrap.custom.min.css' %}"
+              rel="stylesheet" />
+        <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet" />
+        <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}"
+              rel="stylesheet">
+        <link href="{% static 'vendor/glightbox/glightbox.min.css' %}"
+              rel="stylesheet">
+        <link href="{% static 'base/css/style.css' %}" rel="stylesheet" />
+        {% block style %}
+        {% endblock style %}
+        <!-- JS -->
+        <script defer src="{% static 'vendor/aos/aos.js' %}"></script>
+        <script defer src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+        <script defer src="{% static 'vendor/glightbox/glightbox.min.js' %}"></script>
+        <script defer src="{% static 'base/js/script.js' %}"></script>
+        {% block script %}
+        {% endblock script %}
+        <!-- Title -->
+        <title>
+            Minet Kenya Ecommerce |
+            {% block title %}
+            {% endblock title %}
+        </title>
+    </head>
+    <body>
+        <!-- ======= Main ======= -->
+        <main id="main"
+              class="position-fixed top-0 bottom-0 start-0 end-0 d-flex flex-column overflow-y-auto">
+            <!-- ======= Header ======= -->
+            <header id="header" class="container-fluid py-2" data-aos="slide-right">
+                <div class="row topbar px-3">
+                    <div class="col d-none d-sm-flex align-items-center">
+                        <img src="{% static 'base/img/endorsement-logo-white.png' %}"
+                             width=""
+                             height=""
+                             alt=""
+                             class="img-fluid endorse">
+                    </div>
+                    <form class="col search-form d-flex justify-content-end align-items-center"
+                          action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control h-100" placeholder="Search...">
+                            <button type="submit"
+                                    class="input-group-text h-100 d-flex justify-content-center align-items-center">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row header-bar mt-2 py-2 px-3">
+                    <div class="col">
+                        <a href="{% url 'home' %}" class="d-block mt-1">
+                            <img src="{% static 'base/img/logo-white_.png' %}"
+                                 width=""
+                                 height=""
+                                 alt=""
+                                 class="img-fluid header-bar-logo">
+                        </a>
+                    </div>
+                    <nav class="col navmenu d-flex justify-content-end align-items-center">
+                        <ul>
+                            <li>
+                                <a class="text-decoration-none" href="{% url 'home' %}">Our Solutions</a>
+                            </li>
+                            <li>
+                                <a class="text-decoration-none" href="">Cart</a>
+                            </li>
+                            <li>
+                                <a class="text-decoration-none" href="{% url 'privacy_policy' %}">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a class="text-decoration-none pe-0" href="{% url 'contact' %}">Contact Us</a>
+                            </li>
+                        </ul>
+                        <i class="mobile-nav-toggle bi bi-list ms-4 d-xl-none"></i>
+                    </nav>
+                </div>
+            </header>
+            <!-- ======= Content ======= -->
+            {% block content %}
+            {% endblock content %}
+        </main>
+        <!-- Scroll Top Button -->
+        {% include 'base/includes/back_to_top.html' %}
+        <!-- Preloader -->
+        {% include 'base/includes/preloader.html' %}
+    </body>
+</html>

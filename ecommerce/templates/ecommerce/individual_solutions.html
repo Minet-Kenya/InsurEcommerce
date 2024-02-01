@@ -1,199 +1,212 @@
+{% extends "base/ecommerce.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" ltr="dir">
-
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta property="og:title" content="Minet Kenya Retail">
-     <meta property="og:url" content="https://retail.minet.co.ke/">
-     <meta property="og:locale" content="en_US">
-     <meta property="og:site_name" content="Minet Kenya Retail">
-     <meta property="og:type" content="website">
-
-     <title>Minet Ecommerce</title>
-     <meta name="theme-color" content="#e32636">
-     <meta name="description" content="Minet's insurance solutions for individuals, SMEs, corporates, and teachers.">
-     <meta name="keywords"
-          content="Minet, insurance, brokers, solutions, individual, SME, corporate, teacher, medical, scheme">
-
-     <!-- Manifest -->
-     <link rel="manifest" href="{% static 'base/manifest.webmanifest' %}">
-
-     <!-- Icons -->
-     <link rel="shortcut icon" href="{% static 'base/img/favicon.ico' %}" type="image/x-icon">
-     <link rel="apple-touch-icon" href="{% static 'base/img/apple-touch-icon.png' %}">
-
-     <!-- CSS Files -->
-     <link rel="stylesheet" href="{% static 'base/vendor/aos/aos.css' %}">
-     <link rel="stylesheet" href="{% static 'base/vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
-     <link rel="stylesheet" href="{% static 'base/vendor/bootstrap/bootstrap.custom.min.css' %}">
-     <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+{% block style %}
      <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
-
-     <!-- JS Files -->
-     <script defer src="{% static 'base/vendor/aos/aos.js' %}"></script>
-     <script defer src="{% static 'base/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
-     <script defer src="{% static 'base/js/script.js' %}"></script>
+     <style>
+          body {
+          background: url("{% static 'ecommerce/img/individual-solutions/individual-solutions-bg.png' %}") center top no-repeat fixed;
+          background-size: cover;
+          position: relative;
+          }
+     </style>
+{% endblock style %}
+{% block script %}
      <script defer src="{% static 'ecommerce/js/script.js' %}"></script>
-
-</head>
-
-<body id="individual_solutions" class="position-fixed top-0 start-0 end-0 bottom-0">
-     {% include 'ecommerce/includes/header.html' %}
-     <!-- ======= Sidebar ======= -->
-     <aside id="sidebar" class="sidebar d-flex flex-column z-2">
-
-          <!-- ======= page-profile =======-->
-          <a href="{% url 'landing' %}" class="page-profile pb-1 d-block">
-               <div class="text-center">
-                    <i class="bi bi-house-fill page-profile-logo text-primary"></i>
-                    <h1 class="d-inline-block fs-4 text-dark text-uppercase">Solutions</h1>
-               </div>
-               <hr />
-          </a>
-
-          {% include 'ecommerce/includes/sidebar.html' %}
-     </aside>
-
-     <section class="h-100 position-relative d-flex flex-column overflow-y-auto">
-
-          <!-- ======= Main ======= -->
-          <main id="main" class="main flex-grow-1 d-flex flex-column">
-
-               <div class="pagetitle z-0">
-                    <h1 class="text-white">Individual Solutions</h1>
-                    <nav>
-                         <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                              <li class="breadcrumb-item active">Individual Solutions</li>
-                         </ol>
-                    </nav>
-               </div>
-
-               <section id="retail-content"
-                    class="flex-grow-1 container-fluid text-center d-flex flex-column justify-content-center mb-3">
-                    <div class="row g-4 h-100">
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img education-policy position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
-                                   target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-1.png' %}" width=""
-                                        height="" alt="education-policy icon" class="img-fluid">
-                                   <h2 class="mt-2">Education Policy</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img individual-life position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://mss.minet.co.ke/Login?ReturnUrl=%2Fdashboard" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-2.png' %}" width=""
-                                        height="" alt="individual-life icon" class="img-fluid">
-                                   <h2 class="mt-2">Individual Life Insurance</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img individual-pension position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
-                                   target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-3.png' %}" width=""
-                                        height="" alt="individual-pension icon" class="img-fluid">
-                                   <h2 class="mt-2">Individual Pension Plan</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img home-insurance position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://wellness.minet.co.ke/" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-4.png' %}" width=""
-                                        height="" alt="home-insurance icon" class="img-fluid">
-                                   <h2 class="mt-2">Home Insurance</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img medical-cover position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://wellness.minet.co.ke/" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-5.png' %}" width=""
-                                        height="" alt="medical-cover icon" class="img-fluid">
-                                   <h2 class="mt-2">Medical Cover</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img motor-insurance position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://wellness.minet.co.ke/" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-6.png' %}" width=""
-                                        height="" alt="motor-insurance icon" class="img-fluid">
-                                   <h2 class="mt-2">Motor Insurance</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://wellness.minet.co.ke/" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-7.png' %}" width=""
-                                        height="" alt="wellness icon" class="img-fluid">
-                                   <h2 class="mt-2">Rest Eazy</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://wellness.minet.co.ke/" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-8.png' %}" width=""
-                                        height="" alt="wellness icon" class="img-fluid">
-                                   <h2 class="mt-2">Travel Insurance</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://wellness.minet.co.ke/" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-9.png' %}" width=""
-                                        height="" alt="wellness icon" class="img-fluid">
-                                   <h2 class="mt-2">Golfer's Insurance</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://wellness.minet.co.ke/" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-10.png' %}" width=""
-                                        height="" alt="wellness icon" class="img-fluid">
-                                   <h2 class="mt-2">Personal Accident</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://wellness.minet.co.ke/" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-11.png' %}" width=""
-                                        height="" alt="wellness icon" class="img-fluid">
-                                   <h2 class="mt-2">Professional Indemntity Cover</h2>
-                              </a>
-                         </div>
-                         <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
-                              data-aos="fade-up" data-aos-delay="200">
-                              <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                   href="https://wellness.minet.co.ke/" target="_blank">
-                                   <img src="{% static 'ecommerce/img/individual-solutions/ind-12.png' %}" width=""
-                                        height="" alt="wellness icon" class="img-fluid">
-                                   <h2 class="mt-2">Motorcycle Insurance</h2>
-                              </a>
-                         </div>
+{% endblock script %}
+{% block page_profile %}
+     <a href="{% url 'landing' %}" class="page-profile pb-1 d-block">
+          <div class="text-center">
+               <i class="bi bi-house-fill page-profile-logo text-primary"></i>
+               <h1 class="d-inline-block fs-4 text-dark text-uppercase">Solutions</h1>
+          </div>
+          <hr />
+     </a>
+{% endblock page_profile %}
+{% block main %}
+     <main id="main" class="individual_solutions flex-grow-1 d-flex flex-column">
+          <div class="pagetitle z-0">
+               <h1 class="text-white">Individual Solutions</h1>
+               <nav>
+                    <ol class="breadcrumb">
+                         <li class="breadcrumb-item">
+                              <a href="{% url 'home' %}">Home</a>
+                         </li>
+                         <li class="breadcrumb-item active">Individual Solutions</li>
+                    </ol>
+               </nav>
+          </div>
+          <section id="retail-content"
+                   class="flex-grow-1 container-fluid text-center d-flex flex-column justify-content-center mb-3">
+               <div class="row g-4 h-100">
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img education-policy position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-1.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="education-policy icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Education Policy</h2>
+                         </a>
                     </div>
-               </section>
-
-          </main>
-
-          {% include 'ecommerce/includes/footer.html' %}
-     </section>
-
-     <!-- Preloader -->
-     {% include "base/preloader.html" %}
-</body>
-
-</html>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img individual-life position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://mss.minet.co.ke/Login?ReturnUrl=%2Fdashboard"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-2.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="individual-life icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Individual Life Insurance</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img individual-pension position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-3.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="individual-pension icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Individual Pension Plan</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img home-insurance position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-4.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="home-insurance icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Home Insurance</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img medical-cover position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-5.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="medical-cover icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Medical Cover</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img motor-insurance position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-6.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="motor-insurance icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Motor Insurance</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-7.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="wellness icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Rest Eazy</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-8.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="wellness icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Travel Insurance</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-9.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="wellness icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Golfer's Insurance</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-10.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="wellness icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Personal Accident</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-11.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="wellness icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Professional Indemntity Cover</h2>
+                         </a>
+                    </div>
+                    <div class="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center"
+                         data-aos="fade-up"
+                         data-aos-delay="200">
+                         <a class="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                            href="https://wellness.minet.co.ke/"
+                            target="_blank">
+                              <img src="{% static 'ecommerce/img/individual-solutions/ind-12.png' %}"
+                                   width=""
+                                   height=""
+                                   alt="wellness icon"
+                                   class="img-fluid">
+                              <h2 class="mt-2">Motorcycle Insurance</h2>
+                         </a>
+                    </div>
+               </div>
+          </section>
+     </main>
+{% endblock main %}

@@ -1,6 +1,9 @@
 .vscode
 __pycache__
 static
+!base/static
+!ecommerce/static
+!home/static
 media
 *env
 *sqlite*

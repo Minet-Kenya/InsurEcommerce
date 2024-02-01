@@ -470,30 +470,6 @@ h6 {
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
-body#home {
-    background: url("../img/retail-bg.png") center top no-repeat fixed;
-    background-size: cover;
-    position: relative;
-}
-
-body#corporate_product {
-    background: url("../img/corporate-product/corporate-product-bg.png") center top no-repeat fixed;
-    background-size: cover;
-    position: relative;
-}
-
-body#individual_solutions {
-    background: url("../img/individual-solutions/individual-solutions-bg.png") center top no-repeat fixed;
-    background-size: cover;
-    position: relative;
-}
-
-body#login {
-    background: url("../img/accounts/login-bg.png") center top no-repeat fixed;
-    background-size: cover;
-    position: relative;
-}
-
 body::before {
     content: "";
     position: fixed;
@@ -503,8 +479,6 @@ body::before {
     bottom: 0;
     background: rgba(var(--bs-dark-rgb), 0.4);
 }
-
-
 
 /*--------------------------------------------------------------
 # Retail General
@@ -572,48 +546,44 @@ body::before {
     }
 }
 
-#login .login-breadcrumbs {
+.accounts .login-breadcrumbs {
     position: relative;
-    right: 60px;
+    /* right: 60px; */
 }
 
-#login .login-breadcrumbs img {
-    width: 70px;
-}
-
-#login .login-breadcrumbs .dashed {
+.accounts .login-breadcrumbs .dashed {
     border-top: 3px dashed var(--bs-white);
     top: 10px;
 
 }
 
-#login .login-form .recaptcha {
+.accounts .login-form .recaptcha {
     color: var(--color-inverse);
 }
 
-#login .login-form .recaptcha .form-check-input {
+.accounts .login-form .recaptcha .form-check-input {
     transform: scale(1.5);
 }
 
-#login .login-form .recaptcha .form-check-input:focus {
+.accounts .login-form .recaptcha .form-check-input:focus {
     box-shadow: none;
     border-color: var(--bs-primary);
 }
 
-#login .login-form .recaptcha .form-check-input:checked {
+.accounts .login-form .recaptcha .form-check-input:checked {
     background-color: rgba(var(--bs-primary-rgb), 0.8);
     border-color: var(--bs-primary);
 }
 
-#login .login-form .recaptcha img {
+.accounts .login-form .recaptcha img {
     max-width: 30px;
 }
 
-#login .login-form .d-sm-table .form-text a:hover {
+.accounts .login-form .d-sm-table .form-text a:hover {
     color: var(--bs-secondary);
 }
 
-#login p a:hover {
+.accounts p a:hover {
     color: var(--bs-secondary);
 }
 
