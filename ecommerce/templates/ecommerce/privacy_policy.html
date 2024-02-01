@@ -1,0 +1,87 @@
+{% extends "base/ecommerce.html" %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
+    <style>
+        body {
+            background: url("{% static 'ecommerce/img/retail-bg.png' %}") center top no-repeat fixed;
+            background-size: cover;
+            position: relative;
+        }
+    </style>
+{% endblock style %}
+{% block script %}
+    <script defer src="{% static 'ecommerce/js/script.js' %}"></script>
+{% endblock script %}
+{% block page_profile %}
+    <a href="{% url 'landing' %}" class="page-profile pb-1 d-block">
+        <div class="text-center">
+            <i class="bi bi-house-fill page-profile-logo text-primary"></i>
+            <h1 class="d-inline-block fs-4 text-dark text-uppercase">Contact</h1>
+        </div>
+        <hr />
+    </a>
+{% endblock page_profile %}
+{% block main %}
+    <main id="main" class="privacy_policy flex-grow-1 d-flex flex-column">
+        <div class="pagetitle z-0">
+            <h1 class="text-white">Minet Privacy Statement</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Privacy Policy</li>
+                </ol>
+            </nav>
+        </div>
+        <section>
+            <div class="row">
+                <div class="col">
+                    <div class="card basic">
+                        <div class="card-body py-4">
+                            <h3>Privacy Statement highlights:</h3>
+                            <p class="mt-4">
+                                Minet is committed to integrity in our dealings with our clients, employees and service partners (“customers”). This commitment extends to personal information about our customers that we might possess or acquire. We strive to protect the personal information under our control and take certain precautions to help maintain the security and accuracy of that data.
+                            </p>
+                            <p class="mt-4">
+                                Minet is a multi-national organization, with legal entities, business processes, management structures, and technical systems that cross geographic borders. This Privacy Statement applies to all Minet affiliates and subsidiaries. If you have questions or concerns regarding this statement, you should contact Minet using the contact information included at the end of this statement.
+                            </p>
+                            <p class="mt-4">
+                                In addition to the information you provide, Minet collects information from commercially available sources that it deems credible. Such information may include your name, address, email address and demographic data. This information may be stored in internal systems, such as sales management applications. These systems permit Minet employees to access and process such data solely for the purposes of customer fulfillment, business administration, business reporting, statistical analysis and marketing of Minet products and services.
+                            </p>
+                            <p class="mt-4">
+                                Minet may also collect information during your visit to an Minet website through cookies. Minet uses cookies to help it compile aggregate statistics about usage of its websites. This information is used to improve content and personalize your user experience. However, by modifying your Internet browser preferences, you have the ability to accept all cookies, to be notified when a cookie is set or to reject all cookies. Please note that, if you choose to reject all cookies you will be unable to use those services or engage in activities that require the placement of cookies.
+                            </p>
+                            <p class="mt-4">
+                                Through Minet.com, you may link to web pages and websites operated by Minet and its subsidiaries and affiliates in various jurisdictions. If an Minet subsidiary or affiliate site has its own specific privacy policy, the provisions of that specific policy will prevail. Minet may also provide links to websites that are external to Minet. These websites are not operated or controlled by Minet, and Minet is not responsible for the privacy practices or the content of such external web sites.
+                            </p>
+                            <p class="mt-4">
+                                Minet may disclose the personal information among its affiliated businesses and with third-party service providers acting on Minet's behalf. However, Minet will not sell, rent, or lease your personal information. Due to the global nature of services provided by Minet, the personal information you provide may be transmitted, used, stored, and otherwise processed outside of the country where you submitted that information, including jurisdictions that may not have data privacy laws that provide equivalent protection to such laws in your home country.
+                            </p>
+                            <p class="mt-4">
+                                Individuals may have certain rights of access to personal information held by Minet and to have such data corrected where incorrect. Please contact the Minet Group Legal & Compliance Department by emailing <a href="mailto:complianceofficer@minet.co.ke">complianceofficer@minet.co.ke</a> or write to us at the following address:
+                            </p>
+                            <p class="mt-4">
+                                MINET KENYA INSURANCE BROKERS LIMITED
+                                <br>
+                                Minet House
+                                <br>
+                                Processional Way (off Nyerere Rd)
+                                <br>
+                                P O Box 48279-00100 GPO
+                                <br>
+                                Nairobi, Kenya
+                                <br>
+                                T: +254 071 904 4000
+                                <br>
+                                E: info@minet.co.ke
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End F.A.Q Group 1 -->
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock main %}

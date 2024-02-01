@@ -310,11 +310,10 @@
   background: var(--bs-white);
 }
 
-/*--------------------------------------------------------------
+/* --------------------------------------------------------------
 # Privacy-Policy-Content
 --------------------------------------------------------------*/
-#main {
-  color: var(--bs-dark);
+/* #main {
   width: 100%;
   position: relative;
   z-index: var(--z-1) !important;
@@ -342,5 +341,5 @@
   color: var(--bs-dark);
   margin-top: 30px;
   font-weight: bold;
-}
+} */
 

@@ -30,20 +30,16 @@
         <link href="{% static 'vendor/glightbox/glightbox.min.css' %}"
               rel="stylesheet">
         <link href="{% static 'base/css/style.css' %}" rel="stylesheet" />
-        {% block style %}
-        {% endblock style %}
+        <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
         <!-- JS -->
         <script defer src="{% static 'vendor/aos/aos.js' %}"></script>
         <script defer src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
         <script defer src="{% static 'vendor/glightbox/glightbox.min.js' %}"></script>
         <script defer src="{% static 'base/js/script.js' %}"></script>
-        {% block script %}
-        {% endblock script %}
+        <script defer src="{% static 'home/js/script.js' %}"></script>
         <!-- Title -->
         <title>
-            Minet Kenya Ecommerce |
-            {% block title %}
-            {% endblock title %}
+            Minet Kenya - Welcome
         </title>
     </head>
     <body>
@@ -87,7 +83,7 @@
                                 <a class="text-decoration-none" href="{% url 'home' %}">Our Solutions</a>
                             </li>
                             <li>
-                                <a class="text-decoration-none" href="">Cart</a>
+                                <a class="text-decoration-none" href="https://retail.minet.co.ke/Cart.php">Cart</a>
                             </li>
                             <li>
                                 <a class="text-decoration-none" href="{% url 'privacy_policy' %}">Privacy Policy</a>
@@ -101,8 +97,45 @@
                 </div>
             </header>
             <!-- ======= Content ======= -->
-            {% block content %}
-            {% endblock content %}
+            <section id="home-content" class="flex-grow-1 row ps-5">
+                <div class="col col-md-4 d-flex flex-column justify-content-evenly">
+                    <h1>
+                        <span>Welcome to<br>Minet</span> Insurance<br>Brokers Solutions
+                    </h1>
+                    <div>
+                        <p>
+                            Minet is a trusted pan-African advisor that meets the uncertainties of tomorrow by delivering risk and human capital solutions today.
+                        </p>
+                        <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+                        <a class="btn btn-dark" href="{% url 'home' %}">Get Started</a>
+                    </div>
+                </div>
+                <div class="col col-md-8 d-flex align-items-center">
+                    <div class="swiper w-100 h-100">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide slide-1"></div>
+                            <div class="swiper-slide slide-2"></div>
+                            <div class="swiper-slide slide-3"></div>
+                            <div class="swiper-slide slide-4"></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </section>
+            <div class="ps-md-5 pb-4 pt-2 d-flex justify-content-center justify-content-md-start">
+                <div class="social-links d-flex align-items-center position-relative">
+                    <a href="https://twitter.com/Minet_Kenya/"
+                       class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.facebook.com/MinetKenya/"
+                       class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/minet_ke/"
+                       class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-instagram"></i></a>
+                    <a href="https://wa.me/254719044000"
+                       class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-whatsapp"></i></a>
+                    <a href="https://www.linkedin.com/company/minet-kenya-insurance-brokers-limited"
+                       class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
         </main>
         <!-- Scroll Top Button -->
         {% include 'base/includes/back_to_top.html' %}
@@ -110,3 +143,4 @@
         {% include 'base/includes/preloader.html' %}
     </body>
 </html>
+

@@ -27,3 +27,8 @@ def register(request):
 def contact(request):
     context = {}
     return render(request, "ecommerce/contact.html", context)
+
+
+def privacy_policy(request):
+    context = {}
+    return render(request, "ecommerce/privacy_policy.html", context)
