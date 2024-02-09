@@ -1,9 +1,14 @@
 .vscode
+assets
+
 __pycache__
+*env
+*sqlite*
+
 static
 !base/static
 !ecommerce/static
 !home/static
+
 media
-*env
-*sqlite*
+
