@@ -240,9 +240,9 @@
   margin: 0;
 }
 
-#home-content h1 span {
+/* #home-content h1 span {
   font-family: var(--font-primary)
-}
+} */
 
 .social-links {
   z-index: 995;

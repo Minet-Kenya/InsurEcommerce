@@ -7,7 +7,7 @@ __pycache__
 
 static
 !base/static
-!ecommerce/static
+!retail/static
 !home/static
 
 media

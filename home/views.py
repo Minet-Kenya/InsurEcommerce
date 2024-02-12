@@ -1,9 +1,6 @@
-from django.shortcuts import render
+from django.views.generic.base import TemplateView
 
 
-def landing(request):
-    context = {}
-    return render(request, "home/index.html", context)
-
-
-
+class IndexView(TemplateView):
+    template_name = "home/index.html"
+    extra_context = {}

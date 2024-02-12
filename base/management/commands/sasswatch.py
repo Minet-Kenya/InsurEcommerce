@@ -7,7 +7,7 @@ class Command(BaseCommand):
     help = "Watch SCSS files and compile them using sass"
     def handle(self, *args, **options):
         scss_input_path = "./base/static/base/scss/custom.scss"
-        css_output_path = "./base/static/vendor/bootstrap/bootstrap.custom.min.css"
+        css_output_path = "./base/static/base/css/bootstrap.custom.min.css"
         # Run the sass command
         sass_process = subprocess.Popen(
             [

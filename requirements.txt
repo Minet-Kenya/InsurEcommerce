@@ -1,5 +1,6 @@
 django
+djlint
 mysqlclient
-Pillow
+pillow
 gunicorn
 python-decouple
