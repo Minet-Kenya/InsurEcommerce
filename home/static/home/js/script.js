@@ -1,34 +1,35 @@
 /**
- * Mobile nav toggle
+ * Easy selector helper function
  */
-const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-const slider = document.querySelector(".swiper");
-const article = document.querySelector("#privacy-policy-content .article");
-
-function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
-
-    // TODO: Find a neat / smoother way to deal with the glightbox rendering of mobile navigation
-    if (mobileNavToggleBtn.classList.contains('bi-x')) {
-        if (slider) {
-            slider.style.display = 'none'; // Hide the slider
-        }
-        else if (article) {
-            article.style.display = "none"
-        }
+const select = (el, all = false) => {
+    el = el.trim();
+    if (all) {
+        return [...document.querySelectorAll(el)];
     } else {
-        if (slider) {
-            slider.style.display = 'block'; // Show the slider
-        }
-        else if (article) {
-            article.style.display = "block"
+        return document.querySelector(el);
+    }
+};
+
+/**
+ * Easy event listener function
+ */
+const on = (type, el, listener, all = false) => {
+    let selectEl = select(el, all);
+    if (selectEl) {
+        if (all) {
+            selectEl.forEach((e) => e.addEventListener(type, listener));
+        } else {
+            selectEl.addEventListener(type, listener);
         }
     }
-}
+};
 
-mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+/**
+ * Easy on scroll event listener
+ */
+const onscroll = (el, listener) => {
+    el.addEventListener("scroll", listener);
+};
 
 /**
  * Initiate Index Page Swiper
@@ -52,4 +53,50 @@ const swiper = new Swiper('.swiper', {
  */
 const glightbox = GLightbox({
     selector: '.glightbox'
+});
+
+
+/**
+ * Mobile nav toggle
+ */
+on("click", ".mobile-nav-toggle", function (e) {
+    select("#navbar").classList.toggle("navbar-mobile");
+    this.classList.toggle("bi-list");
+    this.classList.toggle("bi-x");
+});
+
+/**
+ * Mobile nav dropdowns activate
+ */
+on(
+    "click",
+    ".navbar .dropdown > a",
+    function (e) {
+        if (select("#navbar").classList.contains("navbar-mobile")) {
+            e.preventDefault();
+            this.nextElementSibling.classList.toggle("dropdown-active");
+        }
+    },
+    true
+);
+
+/**
+ * Hide the swiper slides when the mobile nav modal is shown
+ */
+const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+
+mobileNavToggleBtn.addEventListener("click", function () {
+    const swiperslides = document.querySelectorAll(".swiper-slide");
+
+    if (this.classList.contains("bi-x")) {
+        swiperslides.forEach(function (slide) {
+            slide.classList.add("invisible");
+            slide.classList.remove("visible");
+        });
+    } else {
+        swiperslides.forEach(function (slide) {
+            slide.classList.remove("invisible");
+            slide.classList.add("visible");
+        });
+    }
 });

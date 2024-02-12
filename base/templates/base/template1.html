@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="h-100">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,66 +48,105 @@
         <!-- Title -->
         <title>Minet Kenya - Welcome</title>
     </head>
-    <body>
-        <!-- ======= Main ======= -->
-        <main id="main"
-              class="position-fixed top-0 bottom-0 start-0 end-0 d-flex flex-column overflow-y-auto">
-            <!-- ======= Header ======= -->
-            <header id="header" class="container-fluid py-2" data-aos="slide-right">
-                <div class="row topbar px-3">
-                    <div class="col d-none d-sm-flex align-items-center">
-                        <img src="{% static 'base/img/endorsement-logo-white.png' %}"
-                             width=""
+    <body id="{% if home_active %}index{% elif login_active or signup_active %}accounts{% elif contact_active %}contact{% endif %}" class="d-flex flex-column">
+        <!-- ======= Header ======= -->
+        <header id="header" class="fixed-top w-100 pt-2 px-4 {% if not home_active %}inner-pages{% endif %}">
+            <div class="container-fluid d-flex align-items-center justify-content-between py-2">
+                <a href="{% url 'index' %}" class="logo m-0 p-0 d-none d-lg-block">
+                    {% if not home_active %}
+                        <img src="{% static 'base/img/logo.png' %}"
+                             width="250px"
                              height=""
-                             alt=""
-                             class="img-fluid endorse">
-                    </div>
-                    <form class="col search-form d-flex justify-content-end align-items-center"
-                          action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control h-100" placeholder="Search...">
-                            <button type="submit"
-                                    class="input-group-text h-100 d-flex justify-content-center align-items-center">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="row header-bar mt-2 py-2 px-3">
-                    <div class="col">
-                        <a href="{% url 'home' %}" class="d-block mt-1">
-                            <img src="{% static 'base/img/logo-white_.png' %}"
-                                 width=""
-                                 height=""
-                                 alt=""
-                                 class="img-fluid header-bar-logo">
-                        </a>
-                    </div>
-                    <nav class="col navmenu d-flex justify-content-end align-items-center">
-                        <ul>
+                             alt="logo"
+                             class="img-fluid">
+                    {% else %}
+                        <img src="{% static 'base/img/logo-white.png' %}"
+                             width="250px"
+                             height=""
+                             alt="logo"
+                             class="img-fluid">
+                    {% endif %}
+                </a>
+                <a href="{% url 'index' %}" class="logo m-0 p-0 d-block d-lg-none">
+                    {% if not home_active %}
+                        <img src="{% static 'base/img/logo_sm.png' %}"
+                             width="70px"
+                             height=""
+                             alt="logo"
+                             class="img-fluid">
+                    {% else %}
+                        <img src="{% static 'base/img/logo_sm-white.png' %}"
+                             width="70px"
+                             height=""
+                             alt="logo"
+                             class="img-fluid">
+                    {% endif %}
+                </a>
+                <nav id="navbar" class="navbar p-0">
+                    <ul class="d-lg-flex m-0 p-0 list-unstyled align-items-center">
+                        <li>
+                            <a class="nav-link {{ home_active }}" href="{% url 'index' %}"><span class="bi bi-house-door-fill">&nbsp;&nbsp;Home</span></a>
+                        </li>
+                        <li>
+                            <a class="nav-link {{ about_active }}" href="{% url 'about' %}"><span class="bi bi-info-circle-fill">&nbsp;&nbsp;About</span></a>
+                        </li>
+                        <li>
+                            <a class="nav-link {{ contact_active }}" href="{% url 'contact' %}"><span class="bi bi-telephone-fill">&nbsp;&nbsp;Contact</span></a>
+                        </li>
+                        {% if not user.is_authenticated %}
                             <li>
-                                <a class="text-decoration-none" href="{% url 'home' %}">Our Solutions</a>
+                                <a class="nav-link {{ login_active }}" href="{% url 'login' %}">
+                                    <span class="bi bi-person-check-fill">&nbsp;&nbsp;Login</span>
+                                </a>
                             </li>
                             <li>
-                                <a class="text-decoration-none"
-                                   href="https://retail.minet.co.ke/Cart.php">Cart</a>
+                                <a class="nav-link {{ signup_active }}" href="{% url 'signup' %}">
+                                    <span class="bi bi-person-plus-fill">&nbsp;&nbsp;Sign Up</span>
+                                </a>
                             </li>
-                            <li>
-                                <a class="text-decoration-none" href="{% url 'privacy_policy' %}">Privacy Policy</a>
+                        {% else %}
+                            <li class="dropdown">
+                                <a href="#"><span>
+                                    {% if user.image %}
+                                        <img src="{{ user.image.url }}"
+                                             alt="{{ user.username }}'s Profile Image"
+                                             class="img-fluid rounded-circle"
+                                             width="35"
+                                             height="35">
+                                    {% else %}
+                                        <img src="{% static 'base/img/default-profile.jpg' %}"
+                                             alt="Default Profile Image"
+                                             class="img-fluid rounded-circle"
+                                             width="30"
+                                             height="30">
+                                    {% endif %}
+                                </span> <i class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li>
+                                        <a class="nav-link {{ profileupdate_active }}" href="">Update Profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link {{ logout_active }}" href="">Logout</a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li>
-                                <a class="text-decoration-none pe-0" href="{% url 'contact' %}">Contact Us</a>
-                            </li>
-                        </ul>
-                        <i class="mobile-nav-toggle bi bi-list ms-4 d-xl-none"></i>
-                    </nav>
-                </div>
-            </header>
-            <!-- ======= Content ======= -->
-            {% block content %}
-            {% endblock content %}
-            <div class="ps-md-5 pb-4 pt-2 d-flex justify-content-center justify-content-md-start">
-                <div class="social-links d-flex align-items-center position-relative">
+                        {% endif %}
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav>
+                <a class="btn-getstarted fw-bold text-decoration-none"
+                   href="{% url 'retail' %}">Ecommerce</a>
+            </div>
+        </header>
+        <!-- ======= Main ======= -->
+        <main class="container-fluid flex-grow">
+            {% block main %}
+            {% endblock main %}
+        </main>
+        <footer id="footer"
+                class="mt-auto position-relative {% if not home_active %}d-none d-md-block inner-pages{% endif %}">
+            <div class="ps-md-5 pb-4 pt-2 d-flex justify-content-center {% if home_active %}justify-content-md-start{% endif %}">
+                <div class="social-links d-flex align-items-center">
                     <a href="https://twitter.com/Minet_Kenya/"
                        class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-twitter-x"></i></a>
                     <a href="https://www.facebook.com/MinetKenya/"
@@ -120,7 +159,7 @@
                        class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>
-        </main>
+        </footer>
         <!-- Scroll Top Button -->
         {% include 'base/includes/back_to_top.html' %}
         <!-- Preloader -->

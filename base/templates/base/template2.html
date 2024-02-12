@@ -48,7 +48,7 @@
         <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center z-3">
             <div class="d-flex align-items-center justify-content-between">
-                <a href="https://www.minet.com/kenya/"
+                <a href="{% url 'index' %}"
                    class="logo lh-1 d-flex align-items-center me-4">
                     <img src="{% static 'base/img/logo-white_.png' %}"
                          width=""
@@ -145,7 +145,7 @@
             <!-- ======= Sidebar-nav ======= -->
             <ul class="sidebar-nav p-0 m-0 list-unstyled" id="sidebar-nav">
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="{% url 'home' %}">
+                    <a class="nav-link collapsed" href="{% url 'retail' %}">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
@@ -164,7 +164,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="{% url 'register' %}">
+                    <a class="nav-link collapsed" href="{% url 'signup' %}">
                         <i class="bi bi-card-list"></i>
                         <span>Register</span>
                     </a>

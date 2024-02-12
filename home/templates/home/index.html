@@ -1,35 +1,41 @@
 {% extends "base/template1.html" %}
 {% load static %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
 {% endblock style %}
 {% block script %}
-<script defer src="{% static 'home/js/script.js' %}"></script>  
+    <script defer src="{% static 'home/js/script.js' %}"></script>
 {% endblock script %}
-{% block content %}
-    <section id="home-content" class="flex-grow-1 row ps-5">
-        <div class="col col-md-4 d-flex flex-column justify-content-evenly">
+{% block main %}
+    <section class="h-100 row ps-5">
+        <div class="col-12 col-md-4 d-flex flex-column justify-content-evenly">
             <h1>
-                <span>Welcome to<br>Minet</span> Insurance<br>Brokers Solutions
+                <div class="d-block">
+                    <span>Welcome to</span>
+                </div>
+                <div class="d-block">
+                    <span>Minet</span> Insurance
+                </div>
+                <div class="d-block">Brokers Solutions</div>
             </h1>
             <div>
                 <p>
                     Minet is a trusted pan-African advisor that meets the uncertainties of tomorrow by delivering risk and human capital solutions today.
                 </p>
-                <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
-                <a class="btn btn-dark" href="">Sign Up</a>
+                <a class="btn mt-2 me-1" href="https://www.minet.com/kenya/" target="_blank">Visit Our Website</a>
+                <a class="btn mt-2" href="{% url 'retail' %}">Get Started</a>
             </div>
         </div>
-        <div class="col col-md-8 d-flex align-items-center">
-            <div class="swiper w-100 h-100">
+        <div class="col-12 col-md-8 d-flex align-items-center position-relative">
+            <div class="swiper w-100 h-100 position-absolute end-0">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide slide-1"></div>
-                    <div class="swiper-slide slide-2"></div>
-                    <div class="swiper-slide slide-3"></div>
-                    <div class="swiper-slide slide-4"></div>
+                    <div class="swiper-slide slide-1 visible"></div>
+                    <div class="swiper-slide slide-2 visible"></div>
+                    <div class="swiper-slide slide-3 visible"></div>
+                    <div class="swiper-slide slide-4 visible"></div>
                 </div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper-pagination d-none d-lg-flex justify-content-center position-fixed"></div>
             </div>
         </div>
     </section>
-{% endblock content %}
+{% endblock main %}

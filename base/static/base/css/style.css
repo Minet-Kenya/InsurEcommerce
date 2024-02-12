@@ -83,3 +83,34 @@
 #back-to-top:hover {
   opacity: 0.8 !important;
 }
+
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: var(--font-default);
+  color: #444444;
+  }
+  
+  a {
+  color: var(--bs-primary);
+  text-decoration: none;
+  }
+  
+  a:hover {
+  color: var(--bs-primary);
+  opacity: 0.8;
+  text-decoration: none;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+  font-family: var(--font-primary);
+
+  }

@@ -1,9 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.views.generic.base import TemplateView
 
 
-def home(request):
-    context = {}
-    return render(request, "retail/home.html", context)
+class RetailView(LoginRequiredMixin, TemplateView):
+    template_name = "retail/home.html"
+    extra_context = {}
 
 
 def individual_solutions(request):
@@ -14,21 +16,8 @@ def corporate_product(request):
     return render(request, "retail/corporate_product.html", {})
 
 
-def login(request):
-    context = {}
-    return render(request, "retail/login.html", context)
-
-
-def register(request):
-    context = {}
-    return render(request, "retail/register.html", context)
-
-
 def contact(request):
     context = {}
     return render(request, "retail/contact.html", context)
 
 
-def privacy_policy(request):
-    context = {}
-    return render(request, "retail/privacy_policy.html", context)

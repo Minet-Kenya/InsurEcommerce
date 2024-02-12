@@ -1,20 +1,20 @@
 {% extends "base/template2.html" %}
 {% load static %}
 {% block style %}
-    <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'retail/css/style.css' %}">
     <style>
         body {
-            background: url("{% static 'ecommerce/img/retail-bg.png' %}") center top no-repeat fixed;
+            background: url("{% static 'retail/img/retail-bg.png' %}") center top no-repeat fixed;
             background-size: cover;
             position: relative;
         }
     </style>
 {% endblock style %}
 {% block script %}
-    <script defer src="{% static 'ecommerce/js/script.js' %}"></script>
+    <script defer src="{% static 'retail/js/script.js' %}"></script>
 {% endblock script %}
 {% block page_profile %}
-    <a href="{% url 'home' %}" class="page-profile pb-1 d-block">
+    <a href="{% url 'retail' %}" class="page-profile pb-1 d-block">
         <div class="text-center">
             <i class="bi bi-house-fill page-profile-logo text-primary"></i>
             <h1 class="d-inline-block fs-4 text-dark text-uppercase">Home</h1>
@@ -39,7 +39,7 @@
                 <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
                     <a class="solutions-img individual-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
                        href="{% url 'individual_solutions' %}">
-                        <img src="{% static 'ecommerce/img/solutions-1-hover.png' %}"
+                        <img src="{% static 'retail/img/solutions-1-hover.png' %}"
                              width=""
                              height=""
                              alt="individual-solutions icon"
@@ -51,7 +51,7 @@
                     <a class="solutions-img business-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
                        href="https://retail.minet.co.ke/biznasure/"
                        target="_blank">
-                        <img src="{% static 'ecommerce/img/solutions-2-hover.png' %}"
+                        <img src="{% static 'retail/img/solutions-2-hover.png' %}"
                              width=""
                              height=""
                              alt="business-solutions icon"
@@ -62,7 +62,7 @@
                 <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
                     <a class="solutions-img corporate-product position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
                        href="{% url 'corporate_product' %}">
-                        <img src="{% static 'ecommerce/img/solutions-3-hover.png' %}"
+                        <img src="{% static 'retail/img/solutions-3-hover.png' %}"
                              width=""
                              height=""
                              alt="corporate-product icon"
@@ -74,7 +74,7 @@
                     <a class="solutions-img teachers-medical-scheme position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
                        href="https://collaborationkenya.minet.com/MinetKe/tsc"
                        target="_blank">
-                        <img src="{% static 'ecommerce/img/solutions-4-hover.png' %}"
+                        <img src="{% static 'retail/img/solutions-4-hover.png' %}"
                              width=""
                              height=""
                              alt="teachers-medical-scheme icon"
