@@ -50,37 +50,31 @@
     </head>
     <body id="{% if home_active %}index{% elif login_active or signup_active %}accounts{% elif contact_active %}contact{% endif %}" class="d-flex flex-column">
         <!-- ======= Header ======= -->
-        <header id="header" class="fixed-top w-100 pt-2 px-4 {% if not home_active %}inner-pages{% endif %}">
+        <header id="header" class="fixed-top w-100 pt-2 px-4">
             <div class="container-fluid d-flex align-items-center justify-content-between py-2">
                 <a href="{% url 'index' %}" class="logo m-0 p-0 d-none d-lg-block">
-                    {% if not home_active %}
                         <img src="{% static 'base/img/logo.png' %}"
                              width="250px"
                              height=""
                              alt="logo"
-                             class="img-fluid">
-                    {% else %}
+                             class="inner-pages img-fluid">
                         <img src="{% static 'base/img/logo-white.png' %}"
                              width="250px"
                              height=""
                              alt="logo"
-                             class="img-fluid">
-                    {% endif %}
+                             class="homepage img-fluid">
                 </a>
                 <a href="{% url 'index' %}" class="logo m-0 p-0 d-block d-lg-none">
-                    {% if not home_active %}
                         <img src="{% static 'base/img/logo_sm.png' %}"
                              width="70px"
                              height=""
                              alt="logo"
-                             class="img-fluid">
-                    {% else %}
+                             class="inner-pages img-fluid">
                         <img src="{% static 'base/img/logo_sm-white.png' %}"
                              width="70px"
                              height=""
                              alt="logo"
-                             class="img-fluid">
-                    {% endif %}
+                             class="homepage img-fluid">
                 </a>
                 <nav id="navbar" class="navbar p-0">
                     <ul class="d-lg-flex m-0 p-0 list-unstyled align-items-center">
@@ -144,8 +138,8 @@
             {% endblock main %}
         </main>
         <footer id="footer"
-                class="mt-auto position-relative {% if not home_active %}d-none d-md-block inner-pages{% endif %}">
-            <div class="ps-md-5 pb-4 pt-2 d-flex justify-content-center {% if home_active %}justify-content-md-start{% endif %}">
+                class="mt-auto position-relative">
+            <div class="ps-md-5 pb-4 pt-2 d-flex justify-content-center justify-content-md-start">
                 <div class="social-links d-flex align-items-center">
                     <a href="https://twitter.com/Minet_Kenya/"
                        class="d-inline-flex justify-content-center align-items-center"><i class="bi bi-twitter-x"></i></a>

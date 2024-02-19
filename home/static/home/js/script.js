@@ -100,3 +100,33 @@ mobileNavToggleBtn.addEventListener("click", function () {
         });
     }
 });
+
+/**
+ * Remove Social Links in inner pages and change header stying if not homepage
+ */
+const footer = document.getElementById("footer");
+const header = document.getElementById("header");
+
+if (window.location.pathname !== "/") {
+	header.classList.add("inner-pages");
+	footer.remove();
+}
+
+/**
+ * Change header images from normal to white and vice versa
+ */
+let headerImages = document.querySelectorAll("#header a img");
+
+if (header.classList.contains("inner-pages")) {
+    headerImages.forEach(image => {
+        if (image.classList.contains("homepage")) {
+            image.remove()
+        }
+    });
+} else {
+    headerImages.forEach(image => {
+        if (image.classList.contains("inner-pages")) {
+            image.remove();
+        }
+    });
+}
