@@ -13,11 +13,6 @@ class IndexView(TemplateView):
     extra_context = {"home_active": "active"}
 
 
-class AboutView(TemplateView):
-    template_name = "home/about.html"
-    extra_context = {"about_active": "active"}
-
-
 class ContactView(TemplateView):
     template_name = "home/contact.html"
     extra_context = {"contact_active": "active"}
@@ -29,16 +24,15 @@ class PrivacyPolicyView(TemplateView):
 
 
 class LoginView(View):
+    form = LoginForm
     template_name = "home/login.html"
+    extra_context = {"login_active": "active", "form": form}
 
     def get(self, request):
         if request.user.is_authenticated:
             return redirect("index")
-
-        form = LoginForm
-        return render(
-            request, self.template_name, {"login_active": "active", "form": form}
-        )
+        else:
+            return render(request, self.template_name, self.extra_context)
 
     def post(self, request):
         pass
@@ -47,9 +41,19 @@ class LoginView(View):
 class LogoutView(View):
     def get(self, request):
         logout(request)
+        messages.success(request, "You have been logged out. Thank you for spending time with us!")
         return redirect("index")
 
 
-class SignUpView(TemplateView):
+class SignUpView(View):
     template_name = "home/signup.html"
     extra_context = {"signup_active": "active"}
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect("index")
+        else:
+            return render(request, self.template_name, self.extra_context)
+
+    def post(self, request):
+        pass

@@ -1,38 +1,81 @@
 /**
- * Easy selector helper function
+ * Preloader
  */
-const select = (el, all = false) => {
-    el = el.trim();
-    if (all) {
-        return [...document.querySelectorAll(el)];
+const preloader = document.querySelector("#preloader");
+if (preloader) {
+    window.addEventListener("load", () => {
+        preloader.remove();
+    });
+}
+
+/**
+ * Back to top button
+ */
+const backtotop = document.querySelector("#back-to-top");
+
+const togglesideButtons = () => {
+    if (window.scrollY > 100) {
+        backtotop.classList.remove("invisible");
+        backtotop.classList.add("visible");
+        backtotop.classList.remove("opacity-0");
+        backtotop.classList.add("opacity-100");
     } else {
-        return document.querySelector(el);
+        backtotop.classList.remove("visible");
+        backtotop.classList.add("invisible");
+        backtotop.classList.remove("opacity-100");
+        backtotop.classList.add("opacity-0");
     }
 };
 
-/**
- * Easy event listener function
- */
-const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all);
-    if (selectEl) {
-        if (all) {
-            selectEl.forEach((e) => e.addEventListener(type, listener));
-        } else {
-            selectEl.addEventListener(type, listener);
-        }
-    }
-};
+window.addEventListener("load", togglesideButtons);
+window.addEventListener("scroll", togglesideButtons);
+
+backtotop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
 
 /**
- * Easy on scroll event listener
+ * Learn-More-Toast
  */
-const onscroll = (el, listener) => {
-    el.addEventListener("scroll", listener);
-};
+const path = window.location.pathname;
+const learnMoreToast = document.getElementById('learn_more_toast')
+
+if (path === "/") {
+    document.addEventListener('DOMContentLoaded', function () {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(learnMoreToast);
+        setTimeout(function () {
+            toastBootstrap.show(); // Trigger the toast after two seconds
+        }, 2000); d
+
+    });
+}
 
 /**
- * Initiate Index Page Swiper
+ * Animation on scroll function and init
+ */
+function aosInit() {
+    AOS.init({
+        duration: 600,
+        easing: "ease-in-out",
+        once: true,
+        mirror: false
+    });
+}
+window.addEventListener("load", aosInit);
+
+/**
+ * Initiate glightbox
+ */
+const glightbox = GLightbox({
+    selector: '.glightbox'
+});
+
+/**
+ * Initiate Swiper
  */
 const swiper = new Swiper('.swiper', {
     loop: true,
@@ -49,54 +92,65 @@ const swiper = new Swiper('.swiper', {
 });
 
 /**
- * Initiate glightbox
- */
-const glightbox = GLightbox({
-    selector: '.glightbox'
-});
-
-
-/**
  * Mobile nav toggle
  */
-on("click", ".mobile-nav-toggle", function (e) {
-    select("#navbar").classList.toggle("navbar-mobile");
-    this.classList.toggle("bi-list");
-    this.classList.toggle("bi-x");
+const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+mobileNavToggleBtn.addEventListener("click", () => {
+    const navbar = document.getElementById("navbar");
+    mobileNavToggleBtn.classList.toggle("bi-list");
+    mobileNavToggleBtn.classList.toggle("bi-x");
+    navbar.classList.toggle("navbar-mobile");
+
 });
 
 /**
- * Mobile nav dropdowns activate
+ * Appropriate body tag id
  */
-on(
-    "click",
-    ".navbar .dropdown > a",
-    function (e) {
-        if (select("#navbar").classList.contains("navbar-mobile")) {
-            e.preventDefault();
-            this.nextElementSibling.classList.toggle("dropdown-active");
-        }
-    },
-    true
-);
+const body = document.querySelector("body");
+
+if (path === "/") {
+    body.id = "index";
+} else if (path === "/login/" || path === "/signup/") {
+    body.id = "accounts";
+} else if (path === "/contact/") {
+    body.id = "contact";
+}
 
 /**
- * Hide the swiper slides when the mobile nav modal is shown
+ * Active Nav Link
  */
-const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+const navLinks = document.querySelectorAll("#navbar .nav-link");
 
+navLinks.forEach(link => {
+    link.classList.remove("active");
+});
+
+navLinks.forEach(link => {
+    const href = link.getAttribute("href");
+    if (href === path) {
+        link.classList.add("active");
+    }
+});
+
+/**
+ * Hide the swiper slides, toast, when the mobile nav modal is shown
+ */
 mobileNavToggleBtn.addEventListener("click", function () {
+
     const swiperslides = document.querySelectorAll(".swiper-slide");
 
     if (this.classList.contains("bi-x")) {
         swiperslides.forEach(function (slide) {
             slide.classList.add("invisible");
             slide.classList.remove("visible");
+            learnMoreToast.classList.add("d-none")
         });
     } else {
         swiperslides.forEach(function (slide) {
             slide.classList.remove("invisible");
             slide.classList.add("visible");
+            learnMoreToast.classList.remove("invisible");
+            learnMoreToast.classList.remove("d-none");
         });
     }
 });
@@ -108,8 +162,8 @@ const footer = document.getElementById("footer");
 const header = document.getElementById("header");
 
 if (window.location.pathname !== "/") {
-	header.classList.add("inner-pages");
-	footer.remove();
+    header.classList.add("inner-pages");
+    footer.remove();
 }
 
 /**

@@ -9,6 +9,11 @@
 {% block main %}
     <section class="h-100 row ps-5">
         <div class="col-12 col-md-4 d-flex flex-column justify-content-evenly">
+            {% if messages %}
+                <div class="bg-warning-subtle rounded p-3">
+                    {% for message in messages %}<span class="text-dark">{{ message }}</span>{% endfor %}
+                </div>
+            {% endif %}
             <h1>
                 <div class="d-block">
                     <span>Welcome to</span>
@@ -22,7 +27,9 @@
                 <p>
                     Minet is a trusted pan-African advisor that meets the uncertainties of tomorrow by delivering risk and human capital solutions today.
                 </p>
-                <a class="btn mt-2 me-1" href="https://www.minet.com/kenya/" target="_blank">Visit Our Website</a>
+                <a class="btn mt-2 me-1"
+                   href="https://www.minet.com/kenya/"
+                   target="_blank">Visit Our Website</a>
                 <a class="btn mt-2" href="{% url 'retail' %}">Get Started</a>
             </div>
         </div>

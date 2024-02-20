@@ -1,6 +1,76 @@
 /*--------------------------------------------------------------
-# General
+# Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
+@media screen and (max-width: 767.98px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  z-index: 9999;
+}
+
+/*--------------------------------------------------------------
+# Back to Top button
+--------------------------------------------------------------*/
+#back-to-top {
+  right: 15px;
+  bottom: 15px;
+  width: 40px;
+  height: 40px;
+  transition: all 0.4s;
+}
+
+#back-to-top:hover {
+  opacity: 0.8 !important;
+}
+
+/*--------------------------------------------------------------
+# Learn-More Toast
+--------------------------------------------------------------*/
+
+#learn_more .toast {
+  width: 400px;
+}
+
+#learn_more .toast .toast-body a:hover {
+  background: var(--bs-secondary) !important;
+  color: var(--bs-dark) !important;
+}
+
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+/* General */
+body {
+  font-family: var(--font-default);
+  color: #444444;
+}
+
+a {
+  color: var(--bs-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--bs-primary);
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+}
+
 :root {
   --header-height: 80px;
   --footer-height: 70px;
@@ -50,16 +120,8 @@
 /* Navigation menu */
 
 /**
-    * Desktop Navigation 
-    */
-
-/* .navbar ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  list-style: none;
-  align-items: center;
-} */
+  * Desktop Navigation 
+  */
 
 .navbar li {
   position: relative;
@@ -120,66 +182,6 @@
 .navbar li:hover>a {
   color: var(--bs-white);
   opacity: 1;
-}
-
-.navbar .dropdown ul {
-  display: block;
-  position: absolute;
-  left: 24px;
-  top: calc(100% + 30px);
-  margin: 0;
-  padding: 10px 0;
-  opacity: 0;
-  visibility: hidden;
-  background: var(--bs-white);
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  transition: 0.3s;
-}
-
-.navbar .dropdown ul li {
-  min-width: 200px;
-}
-
-.navbar .dropdown ul a {
-  padding: 10px 20px;
-  font-size: 14px;
-  text-transform: none;
-  color: #493c3e;
-}
-
-.navbar .dropdown ul a:hover,
-.navbar .dropdown ul .active:hover,
-.navbar .dropdown ul li:hover>a {
-  color: var(--bs-primary);
-}
-
-.navbar .dropdown:hover>ul {
-  opacity: 1;
-  top: 100%;
-  visibility: visible;
-}
-
-.navbar .dropdown .dropdown ul {
-  top: 0;
-  left: calc(100% - 30px);
-  visibility: hidden;
-}
-
-.navbar .dropdown .dropdown:hover>ul {
-  opacity: 1;
-  top: 0;
-  left: 100%;
-  visibility: visible;
-}
-
-@media (max-width: 1366px) {
-  .navbar .dropdown .dropdown ul {
-    left: -90%;
-  }
-
-  .navbar .dropdown .dropdown:hover>ul {
-    left: -100%;
-  }
 }
 
 /**
@@ -263,40 +265,6 @@
   margin: 15px;
 }
 
-.navbar-mobile .dropdown ul {
-  position: static;
-  display: none;
-  margin: 10px 20px;
-  padding: 10px 0;
-  opacity: 1;
-  visibility: visible;
-  background: var(--bs-white);
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-}
-
-.navbar-mobile .dropdown ul li {
-  min-width: 200px;
-}
-
-.navbar-mobile .dropdown ul a {
-  padding: 10px 20px;
-}
-
-.navbar-mobile .dropdown ul a i {
-  font-size: 12px;
-}
-
-.navbar-mobile .dropdown ul a:hover,
-.navbar-mobile .dropdown ul .active:hover,
-.navbar-mobile .dropdown ul li:hover>a {
-  color: var(--bs-primary);
-}
-
-.navbar-mobile .dropdown>.dropdown-active {
-  display: block;
-}
-
-
 /* main */
 main {
   height: calc(100vh - var(--header-height) - var(--footer-height));
@@ -328,9 +296,7 @@ main {
   opacity: 1;
 }
 
-/*--------------------------------------------------------------
-# Inner pages
---------------------------------------------------------------*/
+/* Inner Pages */
 
 #header.header-scrolled,
 #header.inner-pages {

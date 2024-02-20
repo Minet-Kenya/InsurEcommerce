@@ -1,12 +1,29 @@
 /*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 767.98px) {
+    [data-aos-delay] {
+        transition-delay: 0 !important;
+    }
+}
+
+/*--------------------------------------------------------------
+  # Preloader
+  --------------------------------------------------------------*/
+#preloader {
+    z-index: 9999;
+}
+
+/*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 :root {
     --header-height: 75px;
 }
 
+/* General */
 body {
-    /* background: var(--bs-light); */
+    font-family: var(--font-default);
     color: #444444;
 }
 
@@ -26,7 +43,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Nunito", sans-serif;
+    font-family: var(--font-primary);
 }
 
 /*--------------------------------------------------------------

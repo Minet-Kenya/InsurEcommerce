@@ -2,11 +2,11 @@ from django.core.management.base import BaseCommand
 import os
 
 class Command(BaseCommand):
-    help = "Watch SCSS files and compile them using sass"
+    help = "Watch SCSS files and compile them using sass. Ensure sass is installed globally through 'npm install -g sass'"
 
     def handle(self, *args, **options):
         scss_input_path = "./base/static/base/scss/custom.scss"
-        css_output_path = "./base/static/base/css/bootstrap.custom.min.css"
+        css_output_path = "./base/static/base/css/custom.css"
 
         # Define the command to compile SCSS using node-sass
         compile_command = f"sass --watch {scss_input_path} {css_output_path} --style compressed"
