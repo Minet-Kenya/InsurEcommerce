@@ -198,17 +198,38 @@ if (header.classList.contains("inner-pages")) {
 
 
 /**
+ * Disable form buttons until recapture is successful
+ */
+// const recaptchaCheckbox = document.querySelector(".g-recaptcha");
+const formButton = document.querySelector("#accounts .accounts-form button[type=submit]");
+
+// Initially disable the form button
+if (formButton) {
+    formButton.disabled = true;
+}
+
+// on data-callback
+var enableBtn = function(token) {
+    formButton.disabled = false;
+};
+
+// data-expired-callback
+var disableBtn = function() {
+    formButton.disabled = true;
+};
+
+/**
  * Form Vlidation
  */
 const forms = document.querySelectorAll('.needs-validation')
 
 Array.from(forms).forEach(form => {
-  form.addEventListener('submit', event => {
-    if (!form.checkValidity()) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+    form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
 
-    form.classList.add('was-validated')
-  }, false)
+        form.classList.add('was-validated')
+    }, false)
 })

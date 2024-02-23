@@ -25,10 +25,8 @@ ENVIRONMENT = config("ENVIRONMENT", default="production")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
-
-RECAPTCHA_PUBLIC_KEY = config("GOOGLE_RECAPTURE_SITE_KEY")
-
-RECAPTCHA_PRIVATE_KEY = config("GOOGLE_RECAPTURE_SECRET_KEY")
+RECAPTCHA_SITE_KEY = config("GOOGLE_RECAPTURE_SITE_KEY")
+RECAPTCHA_SECRET_KEY = config("GOOGLE_RECAPTURE_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if ENVIRONMENT == "production":
@@ -50,8 +48,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # pip installed
-    "django_recaptcha",
     # my apps
     "base",
     "home",
@@ -81,6 +77,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                # my context processors
+                "base.context_processors.base",
             ],
         },
     },

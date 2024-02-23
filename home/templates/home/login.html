@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="col-12 recaptcha px-5 py-1 d-flex justify-content-sm-between align-items-center">
-                            {{ form.captcha }}
+                            <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}" data-callback="enableBtn" data-expired-callback="disableBtn"></div>
                         </div>
                         <div class="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
                             <button type="submit" class="btn btn-primary w-100 mb-3 mb-sm-0">Login</button>
