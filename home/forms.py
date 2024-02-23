@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
+from django_recaptcha.fields import ReCaptchaField
 
 
 class ContactForm(forms.Form):
@@ -33,16 +34,17 @@ class ContactForm(forms.Form):
 
 class LoginForm(AuthenticationForm):
     username = UsernameField(
+        label="Your Email",
         widget=forms.EmailInput(
             attrs={
                 "autofocus": True,
                 "class": "form-control",
-                "placeholder": "Your email",
+                "placeholder": "name@example.com",
             }
-        )
+        ),
     )
     password = forms.CharField(
-        label="Password",
+        label="Your Password",
         strip=False,
         widget=forms.PasswordInput(
             attrs={
@@ -52,13 +54,4 @@ class LoginForm(AuthenticationForm):
             }
         ),
     )
-    user_type = forms.ChoiceField(
-        choices=[
-            ("users", "Users"),
-            ("students", "Students"),
-            ("instructors", "Instructors"),
-            ("administrators", "Administrators"),
-        ],
-        initial="user",
-        widget=forms.HiddenInput(),
-    )
+    captcha = ReCaptchaField()

@@ -14,6 +14,30 @@
   z-index: 9999;
 }
 
+#preloader:before {
+  content: '';
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid var(--bs-primary);
+  border-top-color: var(--bs-white);
+  border-bottom-color: var(--bs-white);
+  border-radius: var(--bs-border-radius-xxl);
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 1s linear infinite;
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /*--------------------------------------------------------------
 # Back to Top button
 --------------------------------------------------------------*/
@@ -449,6 +473,25 @@ main {
   background: rgba(var(--bs-dark-rgb), 0.7);
 }
 
+#accounts .accounts-form {
+  font-size: 14px;
+}
+
+#accounts .accounts-form .form-floating label {
+  margin-left: .25rem
+}
+
+#accounts .accounts-form .form-floating input {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+#accounts .accounts-form .form-floating input:focus {
+  border-color: var(--bs-primary);
+}
+
 #accounts .accounts-form .recaptcha {
   color: var(--color-inverse);
 }
@@ -469,6 +512,10 @@ main {
 
 #accounts .accounts-form .recaptcha img {
   max-width: 30px;
+}
+
+#accounts .accounts-form button[type=submit] {
+  transition: 0.4s;
 }
 
 #accounts .accounts-form .d-sm-table .form-text a:hover {

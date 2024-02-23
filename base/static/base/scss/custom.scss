@@ -53,6 +53,7 @@ $secondary-rgb: 252, 158, 79;
 @import "../vendor/bootstrap/scss/breadcrumb";
 @import "../vendor/bootstrap/scss/transitions";
 @import "../vendor/bootstrap/scss/toasts";
+@import "../vendor/bootstrap/scss/alert";
 
 /* Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 ------------------------------*/
@@ -63,38 +64,38 @@ $secondary-rgb: 252, 158, 79;
   # Additional Customization
   --------------------------------------------------------------*/
 
-  @font-face {
+@font-face {
     font-family: "preloslab-medium-regular";
     src: url("../font/preloslab-book1.otf");
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: "preloslab-medium-bold";
     src: url("../font/preloslab-bold2_1.otf");
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: "Titillium-Regular";
     src: url("../font/Titillium-Regular.otf");
-  }
-  
-  :root {
+}
+
+:root {
     --font-default: "Titillium-Regular", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-primary: "preloslab-medium-bold", sans-serif;
     --font-secondary: "preloslab-medium-regular", sans-serif;
-  }
-  
-  /* Font-Sizes */
-  :root {
+}
+
+/* Font-Sizes */
+:root {
     --font-size-xs: 12px;
     --font-size-sm: 14px;
     --font-size-md: 16px;
     --font-size-lg: 18px;
     --font-size-xl: 20px;
     --font-size-xxl: 24px;
-  }
+}
 
-  
+
 /* Dropdown menus */
 .dropdown-menu {
     border-radius: 4px;
@@ -251,6 +252,14 @@ $secondary-rgb: 252, 158, 79;
     font-weight: 500;
     font-family: "Poppins", sans-serif;
     font-size: 20px;
+}
+
+// Specifically for messages
+.alert-error {
+    --bs-alert-color: var(--bs-danger-text-emphasis);
+    --bs-alert-bg: var(--bs-danger-bg-subtle);
+    --bs-alert-border-color: var(--bs-danger-border-subtle);
+    --bs-alert-link-color: var(--bs-danger-text-emphasis)
 }
 
 /* Close Button */

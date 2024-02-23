@@ -1,12 +1,13 @@
 /**
- * Preloader
- */
-const preloader = document.querySelector("#preloader");
+* Preloader
+*/
+const preloader = document.querySelector('#preloader');
 if (preloader) {
-    window.addEventListener("load", () => {
+    window.addEventListener('load', () => {
         preloader.remove();
     });
 }
+
 
 /**
  * Back to top button
@@ -38,6 +39,7 @@ backtotop.addEventListener("click", (e) => {
     });
 });
 
+
 /**
  * Learn-More-Toast
  */
@@ -49,10 +51,11 @@ if (path === "/") {
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(learnMoreToast);
         setTimeout(function () {
             toastBootstrap.show(); // Trigger the toast after two seconds
-        }, 2000); d
+        }, 2000);
 
     });
 }
+
 
 /**
  * Animation on scroll function and init
@@ -67,12 +70,14 @@ function aosInit() {
 }
 window.addEventListener("load", aosInit);
 
+
 /**
  * Initiate glightbox
  */
 const glightbox = GLightbox({
     selector: '.glightbox'
 });
+
 
 /**
  * Initiate Swiper
@@ -91,6 +96,7 @@ const swiper = new Swiper('.swiper', {
     },
 });
 
+
 /**
  * Mobile nav toggle
  */
@@ -102,6 +108,7 @@ mobileNavToggleBtn.addEventListener("click", () => {
     navbar.classList.toggle("navbar-mobile");
 
 });
+
 
 /**
  * Appropriate body tag id
@@ -115,6 +122,7 @@ if (path === "/") {
 } else if (path === "/contact/") {
     body.id = "contact";
 }
+
 
 /**
  * Active Nav Link
@@ -131,6 +139,7 @@ navLinks.forEach(link => {
         link.classList.add("active");
     }
 });
+
 
 /**
  * Hide the swiper slides, toast, when the mobile nav modal is shown
@@ -155,6 +164,7 @@ mobileNavToggleBtn.addEventListener("click", function () {
     }
 });
 
+
 /**
  * Remove Social Links in inner pages and change header stying if not homepage
  */
@@ -165,6 +175,7 @@ if (window.location.pathname !== "/") {
     header.classList.add("inner-pages");
     footer.remove();
 }
+
 
 /**
  * Change header images from normal to white and vice versa
@@ -184,3 +195,20 @@ if (header.classList.contains("inner-pages")) {
         }
     });
 }
+
+
+/**
+ * Form Vlidation
+ */
+const forms = document.querySelectorAll('.needs-validation')
+
+Array.from(forms).forEach(form => {
+  form.addEventListener('submit', event => {
+    if (!form.checkValidity()) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    form.classList.add('was-validated')
+  }, false)
+})

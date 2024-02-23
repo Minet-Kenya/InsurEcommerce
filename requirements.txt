@@ -1,6 +1,9 @@
 django
+djangorestframework
 djlint
 mysqlclient
+psycopg2-binary
 pillow
 gunicorn
 python-decouple
+django-recaptcha

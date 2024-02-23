@@ -26,6 +26,10 @@ ENVIRONMENT = config("ENVIRONMENT", default="production")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
 
+RECAPTCHA_PUBLIC_KEY = config("GOOGLE_RECAPTURE_SITE_KEY")
+
+RECAPTCHA_PRIVATE_KEY = config("GOOGLE_RECAPTURE_SECRET_KEY")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 if ENVIRONMENT == "production":
     DEBUG = False
@@ -46,6 +50,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # pip installed
+    "django_recaptcha",
     # my apps
     "base",
     "home",
@@ -180,3 +186,5 @@ DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
 
 
 LOGIN_URL = "/login/"
+
+AUTH_USER_MODEL = "retail.User"

@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import Group
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic.base import TemplateView
@@ -13,36 +12,49 @@ class IndexView(TemplateView):
     extra_context = {"home_active": "active"}
 
 
-class ContactView(TemplateView):
-    template_name = "home/contact.html"
-    extra_context = {"contact_active": "active"}
-
-
 class PrivacyPolicyView(TemplateView):
     template_name = "home/privacy_policy.html"
     extra_context = {"policy_active": "active"}
 
 
+class ContactView(TemplateView):
+    template_name = "home/contact.html"
+    extra_context = {"contact_active": "active"}
+
+
 class LoginView(View):
-    form = LoginForm
     template_name = "home/login.html"
-    extra_context = {"login_active": "active", "form": form}
 
     def get(self, request):
         if request.user.is_authenticated:
             return redirect("index")
-        else:
-            return render(request, self.template_name, self.extra_context)
+
+        form = LoginForm
+        return render(request, self.template_name, {"form": form})
 
     def post(self, request):
-        pass
+        if request.user.is_authenticated:
+            messages.error(request, "You are already logged in!")
+            return redirect("index")
 
+        email = request.POST.get("username")
+        password = request.POST.get("password")
 
-class LogoutView(View):
-    def get(self, request):
-        logout(request)
-        messages.success(request, "You have been logged out. Thank you for spending time with us!")
-        return redirect("index")
+        user = authenticate(request, username=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            next_url = request.GET.get("next")
+            messages.success(request, "Login successful!")
+            return redirect(next_url if next_url else "index")
+        else:
+            form = LoginForm
+            messages.error(request, "Invalid username or password!")
+            return render(
+                request,
+                self.template_name,
+                {"error": form.error_messages, "form": form},
+            )
 
 
 class SignUpView(View):
@@ -57,3 +69,12 @@ class SignUpView(View):
 
     def post(self, request):
         pass
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        messages.success(
+            request, "You have been logged out. Thank you for spending time with us!"
+        )
+        return redirect("index")
