@@ -1,14 +1,21 @@
-.vscode
-~
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-__pycache__
-*env
-*sqlite*
+# other branches
+/backend
+/mobile
 
-static
-!base/static
-!retail/static
-!home/static
+# dependencies
+/web/node_modules
+/web/.env*
+/web/.DS_Store
 
-media
 
+# non-dependencies
+/web/build
+/web/coverage
+
+
+# misc
+/assets
+/~
+/.vscode
