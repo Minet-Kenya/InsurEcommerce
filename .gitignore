@@ -11,12 +11,8 @@
 !/backend/media/defaults
 /backend/static
 
-
 # non-dependencies
-/backend/__pycache__
-
-
-# misc
+__pycache__
 /assets
 /~
 /.vscode
