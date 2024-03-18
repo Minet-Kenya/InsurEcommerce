@@ -1,5 +1,5 @@
-# Minet Kenya Ecommerce Web app
-reactjs front end for web
+# Minet Kenya Ecommerce Backend
+django backend for web app
 
-# other branches:
-- [**backend**](https://github.com/Minet-Kenya/minet-ecommerce/tree/backend): django backend for the web app
+## other branches:
+- [**web**](https://github.com/Minet-Kenya/minet-ecommerce/tree/web): reactjs front end for ecommerce web app

@@ -1,18 +1,19 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # other branches
-/backend
+/web
 /mobile
 
 # dependencies
-/web/node_modules
-/web/.env*
-/web/.DS_Store
+/backend/.venv
+/backend/.env*
+/backend/media/*
+!/backend/media/defaults
+/backend/static
 
 
 # non-dependencies
-/web/build
-/web/coverage
+/backend/__pycache__
 
 
 # misc
