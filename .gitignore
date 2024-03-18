@@ -1,23 +1,12 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-*env
-static
-!base/static
-!retail/static
-!home/static
-media
+# other branches
+/backend
+/mobile
+/web
 
-
-# non-dependencies
 
 # misc
 /~
 /assets
 /.vscode
-__pycache__
-
-# other branches
-/backend
-/web
-/mobile
