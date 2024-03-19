@@ -1,6 +1,6 @@
 import './BackToTopButton.css'
 
-function BackToTop() {
+export function BackToTopButton() {
     return (
         <a href="/#"
             id="back-to-top"
@@ -9,4 +9,3 @@ function BackToTop() {
         </a>
     );
 }
-export default BackToTop;

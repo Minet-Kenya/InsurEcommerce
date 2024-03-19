@@ -1,6 +1,7 @@
 // Node Modules
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AOS from 'aos';
 import GLightbox from 'glightbox';
 import Swiper from 'swiper';
@@ -12,9 +13,12 @@ import 'glightbox/dist/css/glightbox.min.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import './index.scss'
 
-// Local Components
-import App from './App';
+// Local Views
+import {Landing} from './views/Landing/Landing';
+import {Contact} from './views/Contact/Contact';
+import {Auth} from './views/Auth/Auth';
 
 // Initialize AOS
 AOS.init({
@@ -46,7 +50,11 @@ const swiper = new Swiper('.swiper', {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Landing />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/auth" element={<Auth />} />
+    </Routes>
+  </BrowserRouter>
 );

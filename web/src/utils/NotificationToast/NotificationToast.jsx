@@ -1,7 +1,7 @@
 import './NotificationToast.css'
 import image from '../../assets/images/endorsement-logo-white.png'
 
-function NotificationToast() {
+export function NotificationToast() {
     return (
         <div id="learn_more"
             className="toast-container position-fixed bottom-0 end-0 p-3 rounded vw-100 d-flex justify-content-end">
@@ -46,5 +46,3 @@ function NotificationToast() {
         </div>
     );
 }
-
-export default NotificationToast;

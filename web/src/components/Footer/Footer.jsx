@@ -1,6 +1,6 @@
 import './Footer.css'
 
-function Footer() {
+export function Footer() {
     return (
         <footer id="footer" className="mt-auto position-relative">
             <div className="ps-md-5 pb-4 pt-2 d-flex justify-content-center justify-content-md-start">
@@ -20,5 +20,3 @@ function Footer() {
         </footer>
     );
 }
-
-export default Footer;
