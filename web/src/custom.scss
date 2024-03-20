@@ -58,8 +58,8 @@ $secondary-rgb: 252, 158, 79;
 
 
 /*--------------------------------------------------------------
-  # Additional Bootstrap Customization
-  --------------------------------------------------------------*/
+# Additional Bootstrap Customization
+--------------------------------------------------------------*/
 
 /* Dropdown menus
 ------------------------------*/
@@ -319,18 +319,8 @@ $secondary-rgb: 252, 158, 79;
     border-bottom: 2px solid $primary;
 }
 
-
 /*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
-@media screen and (max-width: 767.98px) {
-    [data-aos-delay] {
-        transition-delay: 0 !important;
-    }
-}
-
-/*--------------------------------------------------------------
-# General
+# Global
 --------------------------------------------------------------*/
 @font-face {
     font-family: "preloslab-medium-regular";

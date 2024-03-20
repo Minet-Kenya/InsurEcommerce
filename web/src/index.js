@@ -2,21 +2,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AOS from 'aos';
 
-// CSS/Styles
-import 'aos/dist/aos.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+// CSS
 import './custom.scss'
 
-// Local views
-import { Landing, Contact, Auth } from './views/Home/Home';
-
-// Initialize AOS
-AOS.init({
-  duration: 600,
-  easing: "ease-in-out"
-});
+// Views
+import { Landing, Contact, Login } from './views/Home/Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,7 +16,8 @@ root.render(
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/login" element={<Login />} />
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
