@@ -1,0 +1,71 @@
+/*--------------------------------------------------------------
+# Accounts
+--------------------------------------------------------------*/
+#auth {
+    height: 100vh;
+    background: url("../../assets/images/login-bg.png") center top no-repeat fixed;
+    background-size: cover;
+}
+
+#auth::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(var(--bs-dark-rgb), 0.7);
+}
+
+#auth .accounts-form {
+    font-size: 14px;
+}
+
+#auth .accounts-form .form-floating label {
+    margin-left: .25rem
+}
+
+#auth .accounts-form .form-floating input {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+#auth .accounts-form .form-floating input:focus {
+    border-color: var(--bs-primary);
+}
+
+#auth .accounts-form .recaptcha {
+    color: var(--color-inverse);
+}
+
+#auth .accounts-form .recaptcha .form-check-input {
+    transform: scale(1.5);
+}
+
+#auth .accounts-form .recaptcha .form-check-input:focus {
+    box-shadow: none;
+    border-color: var(--bs-primary);
+}
+
+#auth .accounts-form .recaptcha .form-check-input:checked {
+    background-color: rgba(var(--bs-primary-rgb), 0.8);
+    border-color: var(--bs-primary);
+}
+
+#auth .accounts-form .recaptcha img {
+    max-width: 30px;
+}
+
+#auth .accounts-form button[type=submit] {
+    transition: 0.4s;
+}
+
+#auth .accounts-form .d-sm-table .form-text a:hover {
+    color: var(--bs-secondary);
+}
+
+#auth p a:hover {
+    color: var(--bs-secondary);
+}

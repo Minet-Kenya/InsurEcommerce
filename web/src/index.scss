@@ -352,11 +352,6 @@ $secondary-rgb: 252, 158, 79;
     --font-size-xxl: 24px;
 }
 
-:root {
-    --header-height: 80px;
-    --footer-height: 70px;
-}
-
 body {
     font-family: var(--font-default);
     color: #444444;
@@ -380,4 +375,13 @@ h4,
 h5,
 h6 {
     font-family: var(--font-primary);
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 767.98px) {
+    [data-aos-delay] {
+        transition-delay: 0 !important;
+    }
 }
