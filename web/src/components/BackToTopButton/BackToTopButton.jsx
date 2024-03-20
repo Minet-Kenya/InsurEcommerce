@@ -1,43 +1,36 @@
-import './BackToTopButton.css'
+import { useState, useEffect } from 'react';
+import './BackToTopButton.css';
 
 function BackToTopButton() {
-    
-/**
- * Back to top button
- */
-const backtotop = document.querySelector("#back-to-top");
+    const [isVisible, setIsVisible] = useState(false);
 
-const togglesideButtons = () => {
-    if (window.scrollY > 100) {
-        backtotop.classList.remove("invisible");
-        backtotop.classList.add("visible");
-        backtotop.classList.remove("opacity-0");
-        backtotop.classList.add("opacity-100");
-    } else {
-        backtotop.classList.remove("visible");
-        backtotop.classList.add("invisible");
-        backtotop.classList.remove("opacity-100");
-        backtotop.classList.add("opacity-0");
-    }
-};
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 100) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
 
-window.addEventListener("load", togglesideButtons);
-window.addEventListener("scroll", togglesideButtons);
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
-backtotop.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
-
-
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
 
     return (
-        <a href="/#"
+        <a href="#/"
             id="back-to-top"
-            className="position-fixed bg-primary rounded-circle d-flex align-items-center justify-content-center">
+            className={`position-fixed bg-primary rounded-circle d-flex align-items-center justify-content-center ${isVisible ? 'visible' : 'invisible'}`}
+            onClick={scrollToTop}>
             <i className="bi bi-arrow-up-short text-white lh-0 fs-3"></i>
         </a>
     );
