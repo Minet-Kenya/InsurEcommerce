@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------
 # Accounts
 --------------------------------------------------------------*/
-#auth {
+/* #auth {
     height: 100vh;
     background: url("../../assets/images/login-bg.png") center top no-repeat fixed;
     background-size: cover;
@@ -67,5 +67,116 @@
 }
 
 #auth p a:hover {
+    color: var(--bs-secondary);
+}
+
+ */
+
+#auth {
+    height: 100vh;
+    background: url("../../assets/images/login-bg.png") center top no-repeat fixed;
+    background-size: cover;
+}
+
+#auth::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(var(--bs-dark-rgb), 0.7);
+}
+
+.logo {
+    line-height: 1;
+}
+
+@media (min-width: 1200px) {
+    .logo {
+        width: 280px;
+    }
+}
+
+.logo img {
+    max-height: 90px;
+    margin-right: 6px;
+}
+
+.nav-pills li+li {
+    margin-left: 40px;
+}
+
+.nav-link {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: var(--font-secondary);
+}
+
+@media (max-width: 575px) {
+    .nav-link {
+        font-size: 16px;
+    }
+}
+
+.card {
+    display: none;
+}
+
+.card.active {
+    display: block;
+}
+
+.loginform,
+.signupform {
+    font-size: 14px;
+}
+
+.form-floating label {
+    margin-left: .25rem
+}
+
+.form-floating input {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+.form-floating input:focus {
+    border-color: var(--bs-primary);
+}
+
+.recaptcha {
+    color: var(--color-inverse);
+}
+
+.recaptcha .form-check-input {
+    transform: scale(1.5);
+}
+
+.recaptcha .form-check-input:focus {
+    box-shadow: none;
+    border-color: var(--bs-primary);
+}
+
+.recaptcha .form-check-input:checked {
+    background-color: rgba(var(--bs-primary-rgb), 0.8);
+    border-color: var(--bs-primary);
+}
+
+.recaptcha img {
+    max-width: 30px;
+}
+
+button[type=submit] {
+    transition: 0.4s;
+}
+
+.d-sm-table .form-text a:hover {
+    color: var(--bs-secondary);
+}
+
+p a:hover {
     color: var(--bs-secondary);
 }

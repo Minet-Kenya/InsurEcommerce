@@ -73,15 +73,15 @@ export function Landing() {
                 </section>
                 <section className="social-links ps-md-5 pb-4 pt-2 mt-auto d-flex justify-content-center justify-content-md-start">
                     <div className="d-flex align-items-center">
-                        <a href="https://twitter.com/Minet_Kenya/"
+                        <a href="https://twitter.com/Minet_Kenya/" target='_blank' rel='noreferrer'
                             className="d-inline-flex justify-content-center align-items-center"><i className="bi bi-twitter-x"></i></a>
-                        <a href="https://www.facebook.com/MinetKenya/"
+                        <a href="https://www.facebook.com/MinetKenya/" target='_blank' rel='noreferrer'
                             className="d-inline-flex justify-content-center align-items-center"><i className="bi bi-facebook"></i></a>
-                        <a href="https://www.instagram.com/minet_ke/"
+                        <a href="https://www.instagram.com/minet_ke/" target='_blank' rel='noreferrer'
                             className="d-inline-flex justify-content-center align-items-center"><i className="bi bi-instagram"></i></a>
-                        <a href="https://wa.me/254719044000"
+                        <a href="https://wa.me/254719044000" target='_blank' rel='noreferrer'
                             className="d-inline-flex justify-content-center align-items-center"><i className="bi bi-whatsapp"></i></a>
-                        <a href="https://www.linkedin.com/company/minet-kenya-insurance-brokers-limited"
+                        <a href="https://www.linkedin.com/company/minet-kenya-insurance-brokers-limited" target='_blank' rel='noreferrer'
                             className="d-inline-flex justify-content-center align-items-center"><i className="bi bi-linkedin"></i></a>
                     </div>
                 </section>
@@ -117,7 +117,7 @@ export function Contact() {
                                 <div className="info-box card">
                                     <i className="bi bi-telephone"></i>
                                     <h3>Call Us</h3>
-                                    <p>+254 071 904 4000</p>
+                                    <p><a href='tel:+254719044000' className='link-dark'>+254 071 904 4000</a></p>
                                 </div>
                             </div>
                             <div className="col-6">
@@ -136,13 +136,12 @@ export function Contact() {
                                     <i className="bi bi-envelope"></i>
                                     <h3>Email Us</h3>
                                     <p>
-                                        retailsales@minet.co.ke
+                                        <a href='mailto:retailsales@minet.co.ke' className='link-dark'>retailsales@minet.co.ke</a>
                                         <br />
-                                        info@minet.com
+                                        <a href='mailto:info@minet.com' className='link-dark'>info@minet.com</a>
                                     </p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div className="col-lg-6">

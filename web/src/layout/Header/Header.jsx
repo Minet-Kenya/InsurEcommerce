@@ -57,12 +57,12 @@ export function HomeHeader(props) {
                             </Link>
                         </li>
                         <li>
-                            <Link className={`nav-link ${pathname === '/auth/login' ? 'active' : ''}`} to="/auth/login">
+                            <Link className={`nav-link ${pathname === '/auth/#login' ? 'active' : ''}`} to="/auth/#login">
                                 <span className="bi bi-person-check-fill">&nbsp;&nbsp;Login</span>
                             </Link>
                         </li>
                         <li>
-                            <Link className={`nav-link ${pathname === '/auth/register' ? 'active' : ''}`} to="/auth/register">
+                            <Link className={`nav-link ${pathname === '/auth/#signup' ? 'active' : ''}`} to="/auth/#signup">
                                 <span className="bi bi-person-plus-fill">&nbsp;&nbsp;Sign Up</span>
                             </Link>
                         </li>
