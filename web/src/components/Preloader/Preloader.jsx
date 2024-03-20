@@ -10,7 +10,12 @@ function Preloader() {
             setIsLoading(false);
         };
 
-        window.addEventListener("load", handleLoad);
+        // Check if the document is already loaded
+        if (document.readyState === 'complete') {
+            setIsLoading(false);
+        } else {
+            window.addEventListener("load", handleLoad);
+        }
 
         return () => {
             window.removeEventListener("load", handleLoad);

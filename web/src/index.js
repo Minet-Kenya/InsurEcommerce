@@ -18,7 +18,6 @@ root.render(
         <Route path='/landing' element={<Landing />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
-
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
