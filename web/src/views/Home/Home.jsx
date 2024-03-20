@@ -30,7 +30,7 @@ export function Landing() {
         <>
             <HomeHeader landing={true} />
             <main id="landing" className="container-fluid flex-grow-1 d-flex flex-column">
-                <section className="flex-grow-1 row ps-5" data-aos="fade-in">
+                <section className="flex-grow-1 row ps-5" data-aos="zoom-in">
                     <div className="col-12 col-md-4 d-flex flex-column justify-content-evenly">
                         <h1>
                             <div className="d-block">
