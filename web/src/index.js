@@ -4,18 +4,13 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AOS from 'aos';
 
-
-
 // CSS/Styles
 import 'aos/dist/aos.css';
-
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './index.scss'
+import './custom.scss'
 
 // Local views
 import { Landing, Contact, Auth } from './views/Home/Home';
-
-
 
 // Initialize AOS
 AOS.init({

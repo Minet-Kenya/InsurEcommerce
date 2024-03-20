@@ -1,8 +1,11 @@
 import './Footer.css'
 
-export function Footer() {
+function Footer(props) {
+
+    const is_inner_pages = props.landing !== true ? "inner-pages" : "";
+    
     return (
-        <footer id="footer" className="mt-auto position-relative">
+        <footer id="footer" className={`${is_inner_pages} mt-auto position-relative`}>
             <div className="ps-md-5 pb-4 pt-2 d-flex justify-content-center justify-content-md-start">
                 <div className="social-links d-flex align-items-center">
                     <a href="https://twitter.com/Minet_Kenya/"
@@ -20,3 +23,5 @@ export function Footer() {
         </footer>
     );
 }
+
+export default Footer;

@@ -8,9 +8,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './Home.css';
 
-import { Header } from '../../components/Header/Header';
-import { Footer } from '../../components/Footer/Footer';
-import { BackToTopButton } from '../../components/BackToTopButton/BackToTopButton';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import BackToTopButton from '../../components/BackToTopButton/BackToTopButton';
 
 
 SwiperCore.use([Pagination, Autoplay]);
@@ -19,8 +19,8 @@ SwiperCore.use([Pagination, Autoplay]);
 export function Landing() {
     return (
         <>
-            <Header />
-            <main id="index" className="container-fluid flex-grow">
+            <Header landing={true} />
+            <main id="landing" className="container-fluid flex-grow">
                 <section className="h-100 row ps-5">
                     <div className="col-12 col-md-4 d-flex flex-column justify-content-evenly">
                         <h1>
@@ -63,7 +63,7 @@ export function Landing() {
                     </div>
                 </section>
             </main>
-            <Footer />
+            <Footer landing={true} />
             <BackToTopButton />
         </>
     );
@@ -75,7 +75,6 @@ export function Auth() {
             <Header />
             <main id="accounts" className="container-fluid flex-grow">
             </main>
-            <Footer />
             <BackToTopButton />
         </>
     );
@@ -180,7 +179,6 @@ export function Contact() {
                     </div>
                 </section>
             </main>
-            <Footer />
             <BackToTopButton />
         </>
     );
