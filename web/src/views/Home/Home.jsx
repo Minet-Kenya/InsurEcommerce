@@ -1,5 +1,6 @@
 // Node Modules
 import AOS from 'aos';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SwiperCore from 'swiper/core';
 import { Pagination, Autoplay } from 'swiper/modules'
@@ -211,10 +212,15 @@ function Header(props) {
 
     const logo = props.landing !== true ? logoFull : logoFullWhite;
     const logo_small = props.landing !== true ? logoSmall : logoSmallWhite;
-    const is_inner_pages = props.landing !== true ? "inner-pages" : "";
+    const isInnerPage = props.landing !== true ? "inner-pages" : "";
+    const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+    const toggleMobileNav = () => {
+        setIsMobileNavOpen(!isMobileNavOpen);
+    };
 
     return (
-        <header id="header" className={`${is_inner_pages} fixed-top w-100 pt-2 px-4`}>
+        <header id="header" className={`${isInnerPage} fixed-top w-100 pt-2 px-4`}>
             <div className="container-fluid d-flex align-items-center justify-content-between py-2">
 
                 <Link to="/landing" className="logo m-0 p-0 d-none d-lg-block">
@@ -231,7 +237,7 @@ function Header(props) {
                         alt="logo"
                         className="inner-pages img-fluid" />
                 </Link>
-                <nav id="navbar" className="navbar p-0">
+                <nav id="navbar" className={`navbar p-0 ${isMobileNavOpen ? 'navbar-mobile' : ''}`}>
                     <ul className="d-lg-flex m-0 p-0 list-unstyled align-items-center">
                         <li>
                             <Link className="nav-link" to="/landing"><span className="bi bi-house-door-fill">&nbsp;&nbsp;Home</span></Link>
@@ -260,7 +266,7 @@ function Header(props) {
                             </Link>
                         </li>
                     </ul>
-                    <i className="bi bi-list mobile-nav-toggle"></i>
+                    <i className={`bi ${isMobileNavOpen ? 'bi-x' : 'bi-list'} mobile-nav-toggle`} onClick={toggleMobileNav}></i>
                 </nav>
                 <Link className="btn-getstarted text-decoration-none" to="/retail">
                     <h2 className="fs-6 m-0">Ecommerce</h2>
