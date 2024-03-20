@@ -7,14 +7,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './custom.scss'
 
 // Views
-import { Landing, Contact, Login } from './views/Home/Home';
+import { Home, Landing, Contact, Login } from './views/Home/Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Landing />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/landing' element={<Landing />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
 

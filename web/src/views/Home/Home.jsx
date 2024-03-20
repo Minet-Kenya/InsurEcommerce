@@ -21,6 +21,7 @@ import logoSmallWhite from '../../assets/images/logo-small-white.png'
 
 // Components
 import BackToTopButton from '../../components/BackToTopButton/BackToTopButton';
+import Preloader from '../../components/Preloader/Preloader';
 
 // Initialize AOS
 AOS.init({
@@ -31,6 +32,13 @@ AOS.init({
 // Configure Swiper modules
 SwiperCore.use([Pagination, Autoplay]);
 
+export function Home() {
+    return (
+        <>
+            <Landing />
+            <Preloader />
+        </>);
+}
 
 export function Landing() {
     return (
@@ -80,7 +88,6 @@ export function Landing() {
                 </section>
             </main>
             <Footer landing={true} />
-            <BackToTopButton />
         </>
     );
 }
@@ -210,14 +217,14 @@ function Header(props) {
         <header id="header" className={`${is_inner_pages} fixed-top w-100 pt-2 px-4`}>
             <div className="container-fluid d-flex align-items-center justify-content-between py-2">
 
-                <Link to="/" className="logo m-0 p-0 d-none d-lg-block">
+                <Link to="/landing" className="logo m-0 p-0 d-none d-lg-block">
                     <img src={logo}
                         width="250px"
                         height=""
                         alt="logo"
                         className="inner-pages img-fluid" />
                 </Link>
-                <Link to="/" className="logo m-0 p-0 d-block d-lg-none">
+                <Link to="/landing" className="logo m-0 p-0 d-block d-lg-none">
                     <img src={logo_small}
                         width="70px"
                         height=""
@@ -227,7 +234,7 @@ function Header(props) {
                 <nav id="navbar" className="navbar p-0">
                     <ul className="d-lg-flex m-0 p-0 list-unstyled align-items-center">
                         <li>
-                            <Link className="nav-link" to="/"><span className="bi bi-house-door-fill">&nbsp;&nbsp;Home</span></Link>
+                            <Link className="nav-link" to="/landing"><span className="bi bi-house-door-fill">&nbsp;&nbsp;Home</span></Link>
                         </li>
                         <li>
                             <Link className="nav-link" to="/contact"><span className="bi bi-telephone-fill">&nbsp;&nbsp;Contact</span></Link>

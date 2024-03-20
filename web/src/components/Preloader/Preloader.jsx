@@ -1,23 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import './Preloader.css'
 
-function Preloader() {
-    // Your preloader setup function
-    const setupPreloader = () => {
-        const preloader = document.querySelector("#preloader");
-        if (preloader) {
-            window.addEventListener("load", () => {
-                preloader.remove();
-            });
-        }
-    };
 
-    // Execute the preloader setup when the component mounts
+function Preloader() {
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
-        setupPreloader();
+        const handleLoad = () => {
+            setIsLoading(false);
+        };
+
+        window.addEventListener("load", handleLoad);
+
+        return () => {
+            window.removeEventListener("load", handleLoad);
+        };
     }, []);
 
-    return <div id="preloader" className="position-fixed bg-white top-0 bottom-0 start-0 end-0 overflow-hidden"></div>;
+    return isLoading ? <div id="preloader" className="position-fixed bg-white top-0 bottom-0 start-0 end-0 overflow-hidden"></div> : null;
 }
 
 export default Preloader;
