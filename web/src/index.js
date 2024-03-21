@@ -10,12 +10,15 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './index.scss';
 
 // Views
-import { Landing, Contact, Auth } from './views/Home/Home';
+import Home, { Landing, Contact } from './views/Home/Home';
+import Auth from './views/Auth/Auth';
+
 
 AOS.init({
   duration: 600,
   easing: "ease-in-out"
 });
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,12 +26,13 @@ root.render(
     <HashRouter>
       <Routes>
         {/* Home */}
-        <Route path='/' element={<Landing />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/landing' element={<Landing />} />
         <Route path="/contact" element={<Contact />} />
         {/* Auth */}
         <Route path='/auth' element={<Auth />} />
         {/* Retail */}
-        <Route path='/retail' element={<Landing />} />
+        <Route path='/retail' element={<Home />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>
