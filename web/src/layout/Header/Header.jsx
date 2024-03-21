@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-// CSS
-import './Header.css';
+import './Header.css'
 
-// Assets
 import logoFull from '../../assets/images/logo-full.png';
 import logoFullWhite from '../../assets/images/logo-full-white.png';
 import logoSmall from '../../assets/images/logo-small.png';
 import logoSmallWhite from '../../assets/images/logo-small-white.png';
 
-export function HomeHeader(props) {
+export function Header(props) {
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
     const location = useLocation();
     const { pathname } = location;
@@ -47,7 +45,7 @@ export function HomeHeader(props) {
                 <nav id="navbar" className={`navbar p-0 ${isMobileNavOpen ? 'navbar-mobile' : ''}`}>
                     <ul className="d-lg-flex m-0 p-0 list-unstyled align-items-center">
                         <li>
-                            <Link className={`nav-link ${pathname === '/' || pathname === '/landing' ? 'active' : ''}`} to="/landing">
+                            <Link className={`nav-link ${pathname === '/' ? 'active' : ''}`} to="/">
                                 <span className="bi bi-house-door-fill">&nbsp;&nbsp;Home</span>
                             </Link>
                         </li>
@@ -57,20 +55,15 @@ export function HomeHeader(props) {
                             </Link>
                         </li>
                         <li>
-                            <Link className={`nav-link ${pathname === '/auth/#login' ? 'active' : ''}`} to="/auth/#login">
-                                <span className="bi bi-person-check-fill">&nbsp;&nbsp;Login</span>
+                            <Link className="nav-link" to="/auth">
+                                <span className="bi bi-person-check-fill">&nbsp;&nbsp;Login / Sign up</span>
                             </Link>
                         </li>
-                        <li>
-                            <Link className={`nav-link ${pathname === '/auth/#signup' ? 'active' : ''}`} to="/auth/#signup">
-                                <span className="bi bi-person-plus-fill">&nbsp;&nbsp;Sign Up</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className={`nav-link ${pathname === '/auth/logout' ? 'active' : ''}`} to="/auth/logout">
+                        {/* <li>
+                            <Link className="nav-link" to="/logout">
                                 <span className="bi bi-box-arrow-right">&nbsp;&nbsp;Logout</span>
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                     <i className={`bi ${isMobileNavOpen ? 'bi-x' : 'bi-list'} mobile-nav-toggle`} onClick={toggleMobileNav}></i>
                 </nav>

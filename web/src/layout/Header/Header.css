@@ -22,13 +22,6 @@
     transition: 0.3s;
 }
 
-#header .btn-getstarted:hover,
-#header .btn-getstarted:focus:hover {
-    color: var(--bs-dark);
-    background: rgba(var(--bs-white-rgb), 0.8);
-    opacity: 1;
-}
-
 @media (max-width: 991.98px) {
     #header .logo {
         order: 1;

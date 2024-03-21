@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './BackToTopButton.css';
 
-export function BackToTopButton() {
+function BackToTopButton() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -35,3 +35,5 @@ export function BackToTopButton() {
         </a>
     );
 }
+
+export default BackToTopButton;

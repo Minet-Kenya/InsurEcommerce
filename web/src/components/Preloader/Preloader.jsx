@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+
 import './Preloader.css'
 
 
-export function Preloader() {
+function Preloader() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -24,3 +25,5 @@ export function Preloader() {
 
     return isLoading ? <div id="preloader" className="position-fixed bg-white top-0 bottom-0 start-0 end-0 overflow-hidden"></div> : null;
 }
+
+export default Preloader;

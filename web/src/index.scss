@@ -40,17 +40,10 @@ $secondary-rgb: 252, 158, 79;
 @import "../node_modules/bootstrap/scss/forms";
 @import "../node_modules/bootstrap/scss/helpers";
 @import "../node_modules/bootstrap/scss/spinners";
-@import "../node_modules/bootstrap/scss/navbar";
 @import "../node_modules/bootstrap/scss/nav";
-@import "../node_modules/bootstrap/scss/modal";
-@import "../node_modules/bootstrap/scss/close";
-@import "../node_modules/bootstrap/scss/badge";
 @import "../node_modules/bootstrap/scss/card";
-@import "../node_modules/bootstrap/scss/dropdown";
-@import "../node_modules/bootstrap/scss/breadcrumb";
 @import "../node_modules/bootstrap/scss/transitions";
 @import "../node_modules/bootstrap/scss/toasts";
-@import "../node_modules/bootstrap/scss/alert";
 
 /* Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 ------------------------------*/
@@ -61,119 +54,10 @@ $secondary-rgb: 252, 158, 79;
 # Additional Bootstrap Customization
 --------------------------------------------------------------*/
 
-/* Dropdown menus
+/* Nav Pills tabs
 ------------------------------*/
-.dropdown-menu {
-    border-radius: 4px;
-    padding: 10px 0;
-    animation-name: dropdown-animate;
-    animation-duration: 0.2s;
-    animation-fill-mode: both;
-    border: 0;
-    box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
-}
-
-.dropdown-menu .dropdown-header,
-.dropdown-menu .dropdown-footer {
-    text-align: center;
-    font-size: 15px;
-    padding: 10px 25px;
-}
-
-.dropdown-menu .dropdown-footer a {
-    color: #444444;
-    text-decoration: underline;
-}
-
-.dropdown-menu .dropdown-footer a:hover {
-    text-decoration: none;
-}
-
-.dropdown-menu .dropdown-divider {
-    color: rgba(var(--bs-primary-rgb), 0.7);
-    margin: 0;
-}
-
-.dropdown-menu .dropdown-item {
-    font-size: 14px;
-    padding: 10px 15px;
-    transition: 0.3s;
-}
-
-.dropdown-menu .dropdown-item i {
-    margin-right: 10px;
-    font-size: 18px;
-    line-height: 0;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: #f6f9ff;
-}
-
-@media (min-width: 768px) {
-    .dropdown-menu-arrow::before {
-        content: "";
-        width: 13px;
-        height: 13px;
-        background: var(--bs-white);
-        position: absolute;
-        top: -7px;
-        right: 20px;
-        transform: rotate(45deg);
-        border-top: 1px solid #eaedf1;
-        border-left: 1px solid #eaedf1;
-    }
-}
-
-@keyframes dropdown-animate {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-
-    0% {
-        opacity: 0;
-    }
-}
-
-/* Light Backgrounds
-------------------------------*/
-.bg-primary-light {
-    background-color: #cfe2ff;
-    border-color: #cfe2ff;
-}
-
-.bg-secondary-light {
-    background-color: #e2e3e5;
-    border-color: #e2e3e5;
-}
-
-.bg-success-light {
-    background-color: #d1e7dd;
-    border-color: #d1e7dd;
-}
-
-.bg-danger-light {
-    background-color: #f8d7da;
-    border-color: #f8d7da;
-}
-
-.bg-warning-light {
-    background-color: var(--bs-white)3cd;
-    border-color: var(--bs-white)3cd;
-}
-
-.bg-info-light {
-    background-color: #cff4fc;
-    border-color: #cff4fc;
-}
-
-.bg-dark-light {
-    background-color: #d3d3d4;
-    border-color: #d3d3d4;
+.tab-content>.tab-pane {
+    transition: opacity .5s ease-in-out;
 }
 
 /* Card
@@ -185,138 +69,12 @@ $secondary-rgb: 252, 158, 79;
     box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
 }
 
-.card-header,
-.card-footer {
-    border-color: #ebeef4;
-    background-color: var(--bs-white);
-    color: #798eb3;
-    padding: 15px;
-}
-
 .card-title {
     padding: 20px 0 15px 0;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--bs-dark);
-    font-family: "Poppins", sans-serif;
-}
-
-.card-title span {
-    color: rgba(var(--bs-primary-rgb), 0.8);
-    font-size: 14px;
-    font-weight: 400;
 }
 
 .card-body {
     padding: 0 20px 20px 20px;
-}
-
-.card-img-overlay {
-    background-color: rgba(255, 255, 255, 0.6);
-}
-
-/* Alerts
-------------------------------*/
-.alert-heading {
-    font-weight: 500;
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-}
-
-/* Close Button
-------------------------------*/
-.btn-close {
-    background-size: 25%;
-}
-
-.btn-close:focus {
-    outline: 0;
-    box-shadow: none;
-}
-
-/* Accordion
-------------------------------*/
-.accordion-item {
-    border: 1px solid #ebeef4;
-}
-
-.accordion-button:focus {
-    outline: 0;
-    box-shadow: none;
-}
-
-.accordion-button:not(.collapsed) {
-    color: var(--bs-dark);
-    background-color: #f6f9ff;
-}
-
-.accordion-flush .accordion-button {
-    padding: 15px 0;
-    background: none;
-    border: 0;
-}
-
-.accordion-flush .accordion-button:not(.collapsed) {
-    box-shadow: none;
-    color: $primary;
-}
-
-.accordion-flush .accordion-body {
-    padding: 0 0 15px 0;
-    color: #3e4f6f;
-    font-size: 15px;
-}
-
-/* Breadcrumbs
-------------------------------*/
-.breadcrumb {
-    font-size: 14px;
-    font-family: "Nunito", sans-serif;
-    color: var(--bs-secondary);
-    font-weight: 600;
-}
-
-.breadcrumb a {
-    color: var(--bs-secondary);
-    transition: 0.3s;
-    text-decoration: underline;
-}
-
-.breadcrumb a:hover {
-    color: rgba(var(--bs-secondary-rgb), 0.7);
-    text-decoration: underline;
-}
-
-.breadcrumb .breadcrumb-item::before {
-    color: var(--bs-secondary);
-}
-
-.breadcrumb .active {
-    color: var(--bs-secondary);
-    font-weight: 600;
-}
-
-/* Bordered Tabs
-------------------------------*/
-.nav-tabs-bordered {
-    border-bottom: 2px solid #ebeef4;
-}
-
-.nav-tabs-bordered .nav-link {
-    margin-bottom: -2px;
-    border: none;
-    color: #2c384e;
-}
-
-.nav-tabs-bordered .nav-link:hover,
-.nav-tabs-bordered .nav-link:focus {
-    color: $primary;
-}
-
-.nav-tabs-bordered .nav-link.active {
-    background-color: var(--bs-white);
-    color: $primary;
-    border-bottom: 2px solid $primary;
 }
 
 /*--------------------------------------------------------------
