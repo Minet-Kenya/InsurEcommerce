@@ -1,8 +1,8 @@
 # Minet Ecommerce
 
-![Minet Logo](logo.png)
+![Minet Logo](./web/public/favicon.png)
 
 
-## Branches:
-- [**web**](https://github.com/Minet-Kenya/minet-ecommerce/tree/web): reactjs front end
-- [**backend**](https://github.com/Minet-Kenya/minet-ecommerce/tree/backend): django backend
+## Folders:
+- [**web**](https://github.com/Minet-Kenya/minet-ecommerce/tree/main/web): reactjs front end
+- [**backend**](https://github.com/Minet-Kenya/minet-ecommerce/tree/main/backend): django backend
