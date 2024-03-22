@@ -194,8 +194,6 @@ export function Contact() {
     );
 }
 
-
-
 function Header(props) {
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
     const location = useLocation();
@@ -206,7 +204,7 @@ function Header(props) {
     };
 
     return (
-        <header id="header" className={`${props.landing !== true ? 'inner-pages' : ''} fixed-top w-100 pt-2 px-4`}>
+        <header id="homeheader" className={`${props.landing !== true ? 'inner-pages' : ''} fixed-top w-100 pt-2 px-4`}>
             <div className="container-fluid d-flex align-items-center justify-content-between py-2">
                 <a href="https://www.minet.com/kenya/" target="_blank" rel="noreferrer" className="logo m-0 p-0 d-none d-lg-block">
                     <img
@@ -258,5 +256,6 @@ function Header(props) {
         </header>
     );
 }
+
 
 export default Home;

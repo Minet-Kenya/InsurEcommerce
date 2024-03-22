@@ -81,7 +81,7 @@ function Auth() {
 function Header(props) {
     return (
         <>
-            <div id="header" className="pb-2 w-100">
+            <div id="authheader" className="pb-2 w-100">
                 <div className="d-flex align-items-center justify-content-between">
                     <a href="https://www.minet.com/kenya/" target='_blank' rel='noreferrer' className="d-none d-sm-block d-md-none logo d-flex align-items-center ms-2 w-auto">
                         <img src={logoSmall} alt="" width="" height="" />

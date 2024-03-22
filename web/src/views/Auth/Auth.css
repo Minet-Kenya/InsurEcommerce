@@ -1,29 +1,29 @@
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-#header .logo {
+#authheader .logo {
     line-height: 1;
 }
 
 @media (min-width: 1200px) {
-    #header .logo {
+    #authheader .logo {
         width: 280px;
     }
 }
 
-#header .logo img {
+#authheader .logo img {
     max-height: 50px;
     margin-right: 6px;
 }
 
 @media (max-width: 768px) {
-    #header .logo img {
+    #authheader .logo img {
         max-height: 45px;
     }
 }
 
-#header .btn-homepage,
-#header .btn-homepage:focus {
+#authheader .btn-homepage,
+#authheader .btn-homepage:focus {
     color: var(--bs-white);
     background: var(--bs-primary);
     font-size: 14px;
