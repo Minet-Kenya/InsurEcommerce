@@ -25,13 +25,10 @@
     font-size: 16px;
     font-weight: 500;
     font-family: var(--font-secondary);
-}
-
-#auth .nav-link:hover {
     color: var(--bs-secondary);
 }
 
-#auth .active.nav-link:hover {
+#auth .active.nav-link {
     color: var(--bs-white);
 }
 
