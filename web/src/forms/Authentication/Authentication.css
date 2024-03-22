@@ -1,45 +1,44 @@
-#loginform,
-#signupform {
+.authform {
     font-size: 14px;
 }
 
-.form-floating label {
+.authform .form-floating label {
     margin-left: .25rem
 }
 
-.form-floating input {
+.authform .form-floating input {
     border-radius: 0;
     box-shadow: none;
     font-size: 14px;
     border-radius: 0;
 }
 
-.form-floating input:focus {
+.authform .form-floating input:focus {
     border-color: var(--bs-primary);
 }
 
-.recaptcha {
-    color: var(--color-inverse);
-}
-
-.recaptcha .form-check-input {
+.authform .form-check-input {
     transform: scale(1.5);
 }
 
-.recaptcha .form-check-input:focus {
+.authform .form-check-input:focus {
     box-shadow: none;
     border-color: var(--bs-primary);
 }
 
-.recaptcha .form-check-input:checked {
-    background-color: rgba(var(--bs-primary-rgb), 0.8);
+.authform .form-check-input:checked {
+    background-color: rgba(var(--bs-primary-rgb), 0.9);
     border-color: var(--bs-primary);
 }
 
-.recaptcha img {
+.authform .recaptcha {
+    color: var(--color-inverse);
+}
+
+.authform .recaptcha img {
     max-width: 30px;
 }
 
-button[type=submit] {
+.authform button[type=submit] {
     transition: 0.4s;
 }
