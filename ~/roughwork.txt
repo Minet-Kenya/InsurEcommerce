@@ -1,0 +1,6 @@
+ <div className="col-12 recaptcha px-5 py-1 d-flex justify-content-sm-between align-items-center">
+                    <div className="g-recaptcha"
+                        data-sitekey=""
+                        data-callback="enableBtn"
+                        data-expired-callback="disableBtn"></div>
+                </div>

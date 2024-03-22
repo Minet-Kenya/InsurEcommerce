@@ -1,24 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # misc
-/~
-/assets
-/.vscode
+/web
+/backend
+README
+
 __pycache__
-
-# dependencies
-/web/node_modules
-/web/.env*
-/web/.DS_Store
-
-/backend/.venv
-/backend/.env*
-/backend/media/*
-!/backend/media/defaults
-/backend/static
-
-
-# non-dependencies
-/web/build
-/web/coverage
+*env
 
