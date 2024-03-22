@@ -26,6 +26,36 @@ function Home() {
     );
 }
 
+function Header(props) {
+
+    return (
+        <header id="header" className={`${props.landing !== true ? 'inner-pages' : ''} fixed-top pt-2 px-4`}>
+            <div className="container-fluid d-flex align-items-center justify-content-between py-2">
+                <a href="https://www.minet.com/kenya/" target="_blank" rel="noreferrer" className="logo m-0 p-0 d-none d-lg-block">
+                    <img
+                        src={props.landing !== true ? logoFull : logoFullWhite}
+                        width="250px"
+                        height=""
+                        alt="logo"
+                        className="inner-pages img-fluid"
+                    />
+                </a>
+                <a href="https://www.minet.com/kenya/" target="_blank" rel="noreferrer" className="logo m-0 p-0 d-block d-lg-none">
+                    <img
+                        src={props.landing !== true ? logoSmall : logoSmallWhite}
+                        width="70px"
+                        height=""
+                        alt="logo"
+                        className="inner-pages img-fluid"
+                    />
+                </a>
+                <Navigation />
+                <RedirectBtn to="/retail" text="Ecommerce" />
+            </div>
+        </header>
+    );
+}
+
 export function Landing() {
     return (
         <>
@@ -191,36 +221,6 @@ export function Contact() {
             </main>
             <BackToTopBtn />
         </>
-    );
-}
-
-function Header(props) {
-
-    return (
-        <header id="header" className={`${props.landing !== true ? 'inner-pages' : ''} fixed-top w-100 pt-2 px-4`}>
-            <div className="container-fluid d-flex align-items-center justify-content-between py-2">
-                <a href="https://www.minet.com/kenya/" target="_blank" rel="noreferrer" className="logo m-0 p-0 d-none d-lg-block">
-                    <img
-                        src={props.landing !== true ? logoFull : logoFullWhite}
-                        width="250px"
-                        height=""
-                        alt="logo"
-                        className="inner-pages img-fluid"
-                    />
-                </a>
-                <a href="https://www.minet.com/kenya/" target="_blank" rel="noreferrer" className="logo m-0 p-0 d-block d-lg-none">
-                    <img
-                        src={props.landing !== true ? logoSmall : logoSmallWhite}
-                        width="70px"
-                        height=""
-                        alt="logo"
-                        className="inner-pages img-fluid"
-                    />
-                </a>
-                <Navigation />
-                <RedirectBtn to="/retail" text="Ecommerce" />
-            </div>
-        </header>
     );
 }
 
