@@ -6,8 +6,9 @@ import './Auth.css'
 
 import logo from '../../assets/images/logo-small.png';
 
+import RedirectBtn from '../../components/RedirectBtn/RedirectBtn';
 import { LoginForm, SignupForm } from '../../forms/Authentication/Authentication';
-import BackToTopButton from '../../components/BackToTopButton/BackToTopButton';
+import BackToTopBtn from '../../components/BackToTopBtn/BackToTopBtn';
 import Preloader from '../../components/Preloader/Preloader';
 
 
@@ -71,7 +72,7 @@ function Auth() {
                 </section>
             </main>
 
-            <BackToTopButton />
+            <BackToTopBtn />
             <Preloader />
         </>
     );
@@ -80,15 +81,13 @@ function Auth() {
 function Header(props) {
     return (
         <>
-            <div id="authheader" className="pb-2 w-100">
+            <div id="authheader" className="inner-pages pb-2 w-100">
                 <div className="d-flex align-items-center justify-content-between">
                     <a href="https://www.minet.com/kenya/" target='_blank' rel='noreferrer' className="d-none d-sm-block logo d-flex align-items-center ms-2 w-auto">
                         <img src={logo} alt="" width="" height="" />
                     </a>
                     <h5 className="d-block flex-grow-1 card-title fw-bold text-center fs-4">{props.authview === 'Sign Up' ? "Create an account" : "Login to Your Account"}</h5>
-                    <Link className="d-none d-sm-block btn-homepage text-decoration-none me-2" to="/">
-                        <h2 className="fs-6 m-0 text-nowrap">Go Back</h2>
-                    </Link>
+                    <RedirectBtn to="/" text="Go Back" />
                 </div>
                 <p className="text-center small">{props.authview === 'Sign Up' ? "Enter your personal details to create account" : "Enter your email & password to login"}</p>
             </div>

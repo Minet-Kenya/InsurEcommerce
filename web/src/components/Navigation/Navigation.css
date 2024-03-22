@@ -1,0 +1,174 @@
+/* Desktop Navigation
+------------------------------*/
+.navbar {
+    margin-left: -70px;
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar>ul>li {
+    white-space: nowrap;
+    padding: 10px 0 10px 30px;
+}
+
+.navbar a,
+.navbar a:focus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--bs-white);
+    font-size: 15px;
+    padding: 0 4px;
+    white-space: nowrap;
+    transition: 0.3s;
+    letter-spacing: 0.4px;
+    position: relative;
+}
+
+.navbar a i,
+.navbar a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+}
+
+.navbar>ul>li>a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: var(--bs-white);
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.navbar a:hover,
+.navbar .active,
+.navbar .active:focus,
+.navbar li:hover>a {
+    color: var(--bs-white);
+    opacity: 1;
+}
+
+/* Mobile Navigation
+------------------------------*/
+.mobile-nav-toggle {
+    color: var(--bs-white);
+    font-size: 28px;
+    cursor: pointer;
+    display: none;
+    line-height: 0;
+    transition: 0.5s;
+}
+
+@media (max-width: 991.98px) {
+    .mobile-nav-toggle {
+        display: block;
+    }
+
+    .navbar ul {
+        display: none;
+    }
+}
+
+.navbar-mobile {
+    margin-left: 0;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(45, 37, 38, 0.9);
+    transition: 0.3s;
+    z-index: 999;
+}
+
+.navbar-mobile .mobile-nav-toggle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.navbar-mobile ul {
+    display: block;
+    position: absolute;
+    top: 55px;
+    right: 15px;
+    bottom: 15px;
+    left: 15px;
+    padding: 10px 0;
+    background-color: var(--bs-white);
+    overflow-y: auto;
+    transition: 0.3s;
+}
+
+.navbar-mobile>ul>li {
+    padding: 0;
+}
+
+.navbar-mobile a:hover:before,
+.navbar-mobile li:hover>a:before,
+.navbar-mobile .active:before {
+    visibility: hidden;
+}
+
+.navbar-mobile a,
+.navbar-mobile a:focus {
+    padding: 10px 20px;
+    font-size: 15px;
+    color: #493c3e;
+}
+
+.navbar-mobile a:hover,
+.navbar-mobile .active,
+.navbar-mobile li:hover>a {
+    color: var(--bs-primary);
+}
+
+.navbar-mobile .getstarted,
+.navbar-mobile .getstarted:focus {
+    margin: 15px;
+}
+
+.navbar.navbar-scrolled a,
+.navbar.navbar-scrolled a:focus,
+.navbar.navbar-scrolled a:hover,
+.navbar.navbar-scrolled .active,
+.navbar.navbar-scrolled .active:focus,
+.navbar.navbar-scrolled li:hover>a {
+    color: var(--bs-primary);
+}
+
+/* Inner Pages
+------------------------------*/
+.inner-pages .navbar a:hover {
+    color: var(--bs-primary);
+}
+
+.inner-pages .navbar>ul>li>a:before {
+    background-color: var(--bs-primary);
+}
+
+.inner-pages .navbar a {
+    color: #493c3e;
+}
+
+.inner-pages .mobile-nav-toggle.bi-list {
+    color: var(--bs-dark);
+}
+
+.inner-pages .mobile-nav-toggle.bi-x {
+    color: var(--bs-white);
+}
+
+/* Header-Scrolled
+------------------------------*/
+.header-scrolled .mobile-nav-toggle.bi-list {
+    color: var(--bs-dark);
+}

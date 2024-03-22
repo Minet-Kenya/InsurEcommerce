@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import './BackToTopButton.css';
+import './BackToTopBtn.css';
 
-function BackToTopButton() {
+function BackToTopBtn() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -37,4 +37,4 @@ function BackToTopButton() {
     );
 }
 
-export default BackToTopButton;
+export default BackToTopBtn;

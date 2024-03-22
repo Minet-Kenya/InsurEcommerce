@@ -1,0 +1,15 @@
+.redirectbtn,
+.redirectbtn:focus {
+    color: var(--bs-dark);
+    background: var(--bs-white);
+    font-size: 14px;
+    padding: 8px 26px;
+    margin: 0;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.inner-pages .redirectbtn {
+    color: var(--bs-white);
+    background: var(--bs-primary);
+}
