@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 import './Auth.css'
 
-import { AuthHeader } from '../../layout/Header/Header';
+import logoFull from '../../assets/images/logo-full.png';
+import logoSmall from '../../assets/images/logo-small.png';
+
 import { LoginForm, SignupForm } from '../../forms/Authentication/Authentication';
 import BackToTopButton from '../../components/BackToTopButton/BackToTopButton';
 import Preloader from '../../components/Preloader/Preloader';
@@ -38,7 +40,7 @@ function Auth() {
                             <Tab.Content>
                                 <Tab.Pane eventKey="login" className='card'>
                                     <div className="card-body d-flex flex-column align-items-center justify-content-center py-4">
-                                        <AuthHeader authview="Login" />
+                                        <Header authview="Login" />
                                         <LoginForm />
                                         <div className="mt-4 col-12 d-sm-table text-center">
                                             <div className="d-sm-table-cell mb-2 mb-sm-0 border-end border-secondary">
@@ -52,7 +54,7 @@ function Auth() {
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="signup" className='card'>
                                     <div className="card-body d-flex flex-column align-items-center justify-content-center py-4">
-                                        <AuthHeader authview="Sign Up" />
+                                        <Header authview="Sign Up" />
                                         <SignupForm />
                                         <div className="mt-4 col-12 d-sm-table text-center">
                                             <div className="d-sm-table-cell mb-2 mb-sm-0 border-end border-secondary">
@@ -72,6 +74,28 @@ function Auth() {
 
             <BackToTopButton />
             <Preloader />
+        </>
+    );
+}
+
+function Header(props) {
+    return (
+        <>
+            <div id="header" className="pb-2 w-100">
+                <div className="d-flex align-items-center justify-content-between">
+                    <a href="https://www.minet.com/kenya/" target='_blank' rel='noreferrer' className="d-none d-sm-block d-md-none logo d-flex align-items-center ms-2 w-auto">
+                        <img src={logoSmall} alt="" width="" height="" />
+                    </a>
+                    <a href="https://www.minet.com/kenya/" target='_blank' rel='noreferrer' className="d-none d-md-block logo d-flex align-items-center ms-2 w-auto">
+                        <img src={logoFull} alt="" width="" height="" />
+                    </a>
+                    <h5 className="d-block flex-grow-1 card-title fw-bold text-center fs-4">{props.authview}</h5>
+                    <Link className="d-none d-sm-block btn-homepage text-decoration-none me-2" to="/">
+                        <h2 className="fs-6 m-0">Back to Home</h2>
+                    </Link>
+                </div>
+                <p className="text-center small">{props.authview} using your email & password.</p>
+            </div>
         </>
     );
 }

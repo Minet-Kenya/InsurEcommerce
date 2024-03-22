@@ -1,4 +1,41 @@
 /*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header .logo {
+    line-height: 1;
+}
+
+@media (min-width: 1200px) {
+    #header .logo {
+        width: 280px;
+    }
+}
+
+#header .logo img {
+    max-height: 50px;
+    margin-right: 6px;
+}
+
+@media (max-width: 768px) {
+    #header .logo img {
+        max-height: 45px;
+    }
+}
+
+#header .btn-homepage,
+#header .btn-homepage:focus {
+    color: var(--bs-white);
+    background: var(--bs-primary);
+    font-size: 14px;
+    padding: 8px 26px;
+    margin: 0;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    /* Add a transparent border */
+    transition: 0.3s;
+}
+
+/*--------------------------------------------------------------
 # Auth
 --------------------------------------------------------------*/
 #auth {
