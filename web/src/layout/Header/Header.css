@@ -1,0 +1,37 @@
+:root {
+    --header-height: 80px;
+}
+
+.mheader {
+    margin-top: var(--header-height);
+}
+
+.header.version1 {
+    height: var(--header-height);
+    background: rgba(var(--bs-white-rgb), 1.0);
+    transition: all 0.5s;
+}
+
+.header.version2 {
+    background: rgba(var(--bs-primary-rgb), 1.0);
+}
+
+.header.header-scrolled {
+    box-shadow: 0 0 30px 10px rgba(var(--bs-dark-rgb), 0.5);
+}
+
+@media (max-width: 991.98px) {
+    .header .logo {
+        order: 1;
+    }
+
+    .header .redirectbtn {
+        order: 2;
+        margin: 0 80px 0 0;
+        padding: 6px 20px;
+    }
+
+    .header .navbar {
+        order: 3;
+    }
+}

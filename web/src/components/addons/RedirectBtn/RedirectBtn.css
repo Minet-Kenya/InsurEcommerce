@@ -1,7 +1,7 @@
 .redirectbtn,
 .redirectbtn:focus {
-    color: var(--bs-dark);
-    background: var(--bs-white);
+    color: var(--bs-white);
+    background: var(--bs-primary);
     font-size: 14px;
     padding: 8px 26px;
     margin: 0;
@@ -9,7 +9,11 @@
     transition: 0.3s;
 }
 
-.inner-pages .redirectbtn {
+.redirectbtn:hover {
     color: var(--bs-white);
-    background: var(--bs-primary);
+}
+
+.version2 .redirectbtn {
+    color: var(--bs-dark);
+    background: var(--bs-white);
 }

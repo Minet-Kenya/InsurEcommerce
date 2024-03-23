@@ -1,5 +1,5 @@
+// import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from 'react-router-dom'
-
 import './Authentication.css'
 
 
@@ -35,7 +35,7 @@ export function LoginForm() {
                 </div>
                 <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
                     <button type="submit" className="btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0">Login</button>
-                    <Link to="/" className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4">Go Back</Link>
+                    <Link to="/landing" className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4">Go Back</Link>
                 </div>
             </form>
         </>
@@ -116,20 +116,26 @@ export function SignupForm() {
                 </>
                 <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
                     <button type="submit" className="btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0">Create Account</button>
-                    <Link to="/" className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4">Go Back</Link>
+                    <Link to="/landing" className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4">Go Back</Link>
                 </div>
             </form>
         </>
     );
 }
 
-
 export function Logout() {
     return (
         <>
-            <main id="auth" className="container-fluid flex-grow-1">
-                <h1>Logout</h1>
-            </main>
         </>
     );
 }
+
+// function Recaptcha() {
+//     const onChange = (value) => {
+//         console.log("Captcha value:", value);
+//     }
+
+//     return (<>
+//         <ReCAPTCHA sitekey="Your client site key" onChange={onChange} />
+//     </>);
+// }

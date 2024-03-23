@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
 import './Navigation.css'
 
 
@@ -34,16 +33,12 @@ function Navigation() {
                             <span className="bi bi-person-check-fill">&nbsp;&nbsp;Login / Sign up</span>
                         </Link>
                     </li>
-                    {/* <li>
-                            <Link className="nav-link" to="/logout">
-                                <span className="bi bi-box-arrow-right">&nbsp;&nbsp;Logout</span>
-                            </Link>
-                        </li> */}
                 </ul>
                 <i className={`bi ${isMobileNavOpen ? 'bi-x' : 'bi-list'} mobile-nav-toggle`} onClick={toggleMobileNav}></i>
             </nav>
         </>
     );
 }
+
 
 export default Navigation;

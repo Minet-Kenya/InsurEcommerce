@@ -1,15 +1,11 @@
-// Node Modules
 import AOS from 'aos';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Routes, Route } from "react-router-dom";
-
-// CSS
 import 'aos/dist/aos.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './index.scss';
 
-// Views
 import Home, { Landing, Contact } from './views/Home/Home';
 import Auth from './views/Auth/Auth';
 import Retail from './views/Retail/Retail'

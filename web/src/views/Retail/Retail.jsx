@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
 import './Retail.css'
 
-import logoFullWhite from '../../assets/images/logo-full-white.png';
-import logoSmallWhite from '../../assets/images/logo-small-white.png';
+import logoFull from '../../assets/images/logo-full.png';
+import logoSmall from '../../assets/images/logo-small.png';
 import solutions1 from '../../assets/images/solutions-1-main.png';
 import solutions2 from '../../assets/images/solutions-2-main.png';
 import solutions3 from '../../assets/images/solutions-3-main.png';
 import solutions4 from '../../assets/images/solutions-4-main.png';
 
-import RedirectBtn from '../../components/RedirectBtn/RedirectBtn';
-import Preloader from '../../components/Preloader/Preloader';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import SearchBar from '../../components/forms/SearchBar/SearchBar';
+import RedirectBtn from '../../components/addons/RedirectBtn/RedirectBtn';
+import Preloader from '../../components/addons/Preloader/Preloader';
+
 
 function Retail() {
     return (
@@ -95,12 +96,12 @@ function Header() {
                 <div className="d-flex align-items-center justify-content-between">
                     <a href="https://www.minet.com/kenya/" target="_blank" rel="noreferrer"
                         className="logo lh-1 d-flex align-items-center me-4">
-                        <img src={logoFullWhite}
+                        <img src={logoFull}
                             width=""
                             height=""
                             alt=""
                             className="logo-lg d-none d-sm-inline" />
-                        <img src={logoSmallWhite}
+                        <img src={logoSmall}
                             width=""
                             height=""
                             alt=""
@@ -108,9 +109,11 @@ function Header() {
                     </a>
                     <i className="bi bi-list toggle-sidebar-btn text-white"></i>
                 </div>
-
+                
+                <div className="search-bar ms-auto">
                 <SearchBar />
-                <RedirectBtn to="/" text="Landing" />
+                </div>
+                <RedirectBtn to="/landing" text="Landing" />
 
             </header>
         </>
@@ -200,5 +203,6 @@ function Footer() {
         </>
     );
 }
+
 
 export default Retail;

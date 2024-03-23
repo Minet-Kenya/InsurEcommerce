@@ -1,39 +1,14 @@
 /*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
-#authheader .logo {
-    line-height: 1;
-}
-
-@media (min-width: 1200px) {
-    #authheader .logo {
-        width: 280px;
-    }
-}
-
-#authheader .logo img {
-    max-height: 50px;
-    margin-right: 6px;
-}
-
-@media (max-width: 768px) {
-    #authheader .logo img {
-        max-height: 45px;
-    }
-}
-
-/*--------------------------------------------------------------
 # Auth
 --------------------------------------------------------------*/
-#auth {
-    height: 100vh;
+.auth {
     background: url("../../assets/images/auth-bg.png") center top no-repeat fixed;
     background-size: cover;
 }
 
-#auth::before {
+.auth::before {
     content: "";
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
@@ -41,35 +16,65 @@
     background: rgba(var(--bs-dark-rgb), 0.7);
 }
 
-#auth .nav-pills .nav-item+.nav-item {
+.auth .nav-pills .nav-item+.nav-item {
     margin-left: 40px;
 }
 
-#auth .nav-link {
+.auth .nav-link {
     font-size: 16px;
     font-weight: 500;
     font-family: var(--font-secondary);
     color: var(--bs-secondary);
 }
 
-#auth .active.nav-link {
+.auth .active.nav-link {
     color: var(--bs-white);
 }
 
 @media (max-width: 575px) {
-    #auth .nav-link {
+    .auth .nav-link {
         font-size: 16px;
     }
 }
 
-#auth .card {
+.auth .card {
     display: none;
 }
 
-#auth .card.active {
+.auth .card.active {
     display: block;
 }
 
-#auth .d-sm-table .form-text a:hover {
+.auth .d-sm-table .form-text a:hover {
     color: var(--bs-grey);
+}
+
+/* Override Bootstrap Nav Pills
+------------------------------*/
+.tab-content>.tab-pane {
+    transition: opacity .5s ease-in-out;
+}
+
+/*--------------------------------------------------------------
+# Title
+--------------------------------------------------------------*/
+.titleheader .logo {
+    line-height: 1;
+}
+
+@media (min-width: 1200px) {
+    .titleheader .logo {
+        width: 280px;
+    }
+}
+
+.titleheader .logo img {
+    max-height: 50px;
+    margin-right: 6px;
+}
+
+@media (max-width: 768px) {
+    .titleheader .logo img {
+        max-height: 45px;
+    }
 }

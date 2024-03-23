@@ -1,149 +1,84 @@
 /*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
-:root {
-    --header-height: 80px;
-}
-
-#header {
-    height: var(--header-height);
-    background: rgba(var(--bs-primary-rgb), 1.0);
-    transition: all 0.5s;
-}
-
-@media (min-width: 991.98px) {
-
-    #header .navbar a:hover:before,
-    #header .navbar li:hover>a:before,
-    #header .navbar .active:before {
-        visibility: visible;
-        transform: scaleX(1);
-    }
-}
-
-#header.header-scrolled,
-#header.inner-pages {
-    background: rgba(var(--bs-white-rgb), 1.0);
-    box-shadow: 0 0 30px 10px rgba(var(--bs-dark-rgb), 0.5);
-}
-
-@media (max-width: 991.98px) {
-    #header .logo {
-        order: 1;
-    }
-
-    #header .redirectbtn {
-        order: 2;
-        margin: 0 15px 0 0;
-        padding: 6px 20px;
-    }
-
-    #header .navbar {
-        order: 3;
-    }
-}
-
-/*--------------------------------------------------------------
 # Landing
 --------------------------------------------------------------*/
-#landing {
-    height: calc(100vh - var(--header-height));
-    margin-top: calc(var(--header-height));
+.landing {
     background: var(--bs-primary);
     color: var(--bs-white);
 }
 
-#landing h1 {
+.landing h1 {
     font-family: var(--font-secondary);
     margin: 0;
 }
 
-#landing h1 span {
+.landing h1 span {
     font-family: var(--font-primary)
 }
 
-#landing .swiper {
+.landing .swiper {
+    height: 100%;
     border-top-left-radius: 250px;
     border-bottom-left-radius: 250px;
 }
 
-#landing .swiper .slide-1 {
+.landing .swiper .slide-1 {
     background: url("../../assets/images/slide-1.jpeg");
     background-size: cover;
 }
 
-#landing .swiper .slide-2 {
+.landing .swiper .slide-2 {
     background: url("../../assets/images/slide-2.png");
     background-size: cover;
 }
 
-#landing .swiper .slide-3 {
+.landing .swiper .slide-3 {
     background: url("../../assets/images/slide-3.png");
     background-size: cover;
 }
 
-#landing .swiper .slide-4 {
+.landing .swiper .slide-4 {
     background: url("../../assets/images/slide-4.png");
     background-size: cover;
 }
 
-#landing .swiper .swiper-pagination {
+.landing .swiper .swiper-pagination {
     position: fixed;
     bottom: -40px;
 }
 
-#landing .swiper .swiper-pagination .swiper-pagination-bullet {
+.landing .swiper .swiper-pagination .swiper-pagination-bullet {
     margin-right: 20px;
 }
 
-#landing .swiper .swiper-pagination-bullet-active {
+.landing .swiper .swiper-pagination-bullet-active {
     background: var(--bs-white);
 }
 
-#landing a.btn {
+.landing a.btn {
     background: var(--bs-dark);
     color: var(--bs-white);
     transition: 0.3s;
     width: 150px;
 }
 
-#landing a.btn:hover {
+.landing a.btn:hover {
     background: var(--bs-white);
     border: none;
     opacity: 1;
     color: var(--bs-dark);
 }
 
-#landing .social-links a {
-    font-size: var(--font-size-md);
-    color: var(--bs-white);
-    padding: 8px;
-    margin-right: 7px;
-    border-radius: 50%;
-    width: 34px;
-    height: 34px;
-    transition: 0.3s;
-}
-
-#landing .social-links a:hover {
-    color: rgba(var(--bs-white-rgb), 0.7);
-    text-decoration: none;
-    opacity: 1;
-}
-
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
-#contact {
-    height: calc(100vh - var(--header-height));
-    margin-top: calc(var(--header-height));
+.contact {
     background: url("../../assets/images/contact-bg.jpg") center top no-repeat fixed;
     background-size: cover;
 }
 
-#contact::before {
+.contact::before {
     content: "";
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
@@ -151,91 +86,51 @@
     background: rgba(var(--bs-dark-rgb), 0.7);
 }
 
-#contact .info-box {
+.contact .info-box {
     padding: 28px 30px;
 }
 
-#contact .info-box i {
+.contact .info-box i {
     font-size: 38px;
     line-height: 0;
     color: var(--bs-primary);
 }
 
-#contact .info-box h3 {
+.contact .info-box h3 {
     font-size: 20px;
     font-weight: 700;
     margin: 20px 0 10px 0;
 }
 
-#contact .info-box p {
+.contact .info-box p {
     padding: 0;
     line-height: 24px;
     font-size: 14px;
     margin-bottom: 0;
 }
 
-#contact .php-email-form .error-message {
-    display: none;
-    color: #fff;
-    background: #ed3c0d;
-    text-align: left;
-    padding: 15px;
-    margin-bottom: 24px;
-    font-weight: 600;
-}
-
-#contact .php-email-form .sent-message {
-    display: none;
-    color: #fff;
-    background: #18d26e;
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 24px;
-    font-weight: 600;
-}
-
-#contact .php-email-form .loading {
-    display: none;
-    background: #fff;
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 24px;
-}
-
-#contact .php-email-form .loading:before {
-    content: "";
-    display: inline-block;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    margin: 0 10px -6px 0;
-    border: 3px solid #18d26e;
-    border-top-color: #eee;
-    animation: animate-loading 1s linear infinite;
-}
-
-#contact .php-email-form input,
-#contact .php-email-form textarea {
+.contact .php-email-form input,
+.contact .php-email-form textarea {
     border-radius: 0;
     box-shadow: none;
     font-size: 14px;
     border-radius: 0;
 }
 
-#contact .php-email-form input:focus,
-#contact .php-email-form textarea:focus {
+.contact .php-email-form input:focus,
+.contact .php-email-form textarea:focus {
     border-color: var(--bs-primary);
 }
 
-#contact .php-email-form input {
+.contact .php-email-form input {
     padding: 10px 15px;
 }
 
-#contact .php-email-form textarea {
+.contact .php-email-form textarea {
     padding: 12px 15px;
 }
 
-#contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type=submit] {
     border: 0;
     padding: 10px 30px;
     color: #fff;

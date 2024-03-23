@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: var(--bs-white);
+    color: #493c3e;
     font-size: 15px;
     padding: 0 4px;
     white-space: nowrap;
@@ -41,7 +41,7 @@
     height: 2px;
     bottom: -6px;
     left: 0;
-    background-color: var(--bs-white);
+    background-color: var(--bs-primary);
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.3s ease-in-out 0s;
@@ -51,19 +51,35 @@
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-    color: var(--bs-white);
+    color: var(--bs-primary);   
     opacity: 1;
+}
+
+@media (min-width: 991.98px) {
+    .navbar a:hover:before,
+    .navbar li:hover>a:before,
+    .navbar .active:before {
+        visibility: visible;
+        transform: scaleX(1);
+    }
 }
 
 /* Mobile Navigation
 ------------------------------*/
 .mobile-nav-toggle {
-    color: var(--bs-white);
     font-size: 28px;
     cursor: pointer;
     display: none;
     line-height: 0;
     transition: 0.5s;
+}
+
+.mobile-nav-toggle.bi-list {
+    color: var(--bs-dark);
+}
+
+.mobile-nav-toggle.bi-x {
+    color: var(--bs-white);
 }
 
 @media (max-width: 991.98px) {
@@ -126,14 +142,9 @@
 }
 
 .navbar-mobile a:hover,
-.navbar-mobile .active,
+.navbar-mobile a.active,
 .navbar-mobile li:hover>a {
     color: var(--bs-primary);
-}
-
-.navbar-mobile .getstarted,
-.navbar-mobile .getstarted:focus {
-    margin: 15px;
 }
 
 .navbar.navbar-scrolled a,
@@ -145,26 +156,29 @@
     color: var(--bs-primary);
 }
 
-/* Inner Pages
+/* Version 2
 ------------------------------*/
-.inner-pages .navbar a:hover {
-    color: var(--bs-primary);
+.version2 .navbar>ul>li>a:before {
+    background-color: var(--bs-white);
 }
 
-.inner-pages .navbar>ul>li>a:before {
-    background-color: var(--bs-primary);
+.version2 .navbar a,
+.version2 .navbar a:focus,
+.version2 .navbar a.active,
+.version2 .navbar a.active:focus,
+.version2 .navbar a:hover,
+.version2 .mobile-nav-toggle.bi-list
+ {
+    color: var(--bs-white);
 }
-
-.inner-pages .navbar a {
+.version2 .navbar-mobile a,
+.version2 .navbar-mobile a:focus {
     color: #493c3e;
 }
-
-.inner-pages .mobile-nav-toggle.bi-list {
-    color: var(--bs-dark);
-}
-
-.inner-pages .mobile-nav-toggle.bi-x {
-    color: var(--bs-white);
+.version2 .navbar-mobile a:hover,
+.version2 .navbar-mobile a.active,
+.version2 .navbar-mobile li:hover>a {
+    color: var(--bs-primary);
 }
 
 /* Header-Scrolled

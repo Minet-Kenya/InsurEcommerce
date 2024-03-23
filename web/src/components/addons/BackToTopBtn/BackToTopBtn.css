@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------
 # Back to Top button
 --------------------------------------------------------------*/
-#back-to-top {
+.back-to-top {
     right: 15px;
     bottom: 15px;
     width: 40px;
@@ -9,6 +9,6 @@
     transition: all 0.4s;
 }
 
-#back-to-top:hover {
+.back-to-top:hover {
     opacity: 0.8 !important;
 }

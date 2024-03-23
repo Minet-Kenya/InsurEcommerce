@@ -1,11 +1,11 @@
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
-#preloader {
+.preloader {
     z-index: 9999;
 }
 
-#preloader:before {
+.preloader:before {
     content: '';
     position: fixed;
     top: calc(50% - 30px);

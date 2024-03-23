@@ -1,11 +1,11 @@
 /*--------------------------------------------------------------
 # Notification Toast
 --------------------------------------------------------------*/
-#learn_more .toast {
+.notificationtoast .toast {
     width: 400px;
 }
 
-#learn_more .toast .toast-body a:hover {
+.notificationtoast .toast .toast-body a:hover {
     background: var(--bs-secondary) !important;
     color: var(--bs-dark) !important;
 }

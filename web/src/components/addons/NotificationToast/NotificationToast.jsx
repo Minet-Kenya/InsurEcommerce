@@ -1,12 +1,13 @@
 import './NotificationToast.css'
-import image from '../../assets/images/endorsement-logo-white.png'
+
+import image from '../../../assets/images/endorsement-logo-white.png'
+
 
 function NotificationToast() {
     return (
-        <div id="learn_more"
-            className="toast-container position-fixed bottom-0 end-0 p-3 rounded vw-100 d-flex justify-content-end">
-            <div id="learn_more_toast"
-                className="toast"
+        <div id="notificationtoast"
+            className="notificationtoast position-fixed bottom-0 end-0 p-3 rounded vw-100 d-flex justify-content-end">
+            <div className="toast"
                 role="alert"
                 aria-live="assertive"
                 aria-atomic="true"
@@ -46,5 +47,6 @@ function NotificationToast() {
         </div>
     );
 }
+
 
 export default NotificationToast;

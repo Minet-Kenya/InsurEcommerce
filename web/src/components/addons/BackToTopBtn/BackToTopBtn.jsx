@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import './BackToTopBtn.css';
 
+
 function BackToTopBtn() {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -30,11 +31,12 @@ function BackToTopBtn() {
     return (
         <Link to="#"
             id="back-to-top"
-            className={`position-fixed bg-primary rounded-circle d-flex align-items-center justify-content-center ${isVisible ? 'visible' : 'invisible'}`}
+            className={`back-to-top position-fixed bg-primary rounded-circle d-flex align-items-center justify-content-center ${isVisible ? 'visible' : 'invisible'}`}
             onClick={scrollToTop}>
             <i className="bi bi-arrow-up-short text-white lh-0 fs-3"></i>
         </Link>
     );
 }
+
 
 export default BackToTopBtn;
