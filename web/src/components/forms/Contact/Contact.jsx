@@ -19,7 +19,7 @@ export default function ContactForm() {
 
         try {
             // Fetch company info
-            const response = await fetch('http://minetkenya.duckdns.org/base/company-info/');
+            const response = await fetch('https://minetkenya.duckdns.org/base/company-info/');
             if (!response.ok) {
                 throw new Error('Failed to fetch company info');
             }
@@ -42,7 +42,7 @@ export default function ContactForm() {
                 formData.append('recipient_email', companyEmail);
 
                 // Send form data to backend
-                const sendMailResponse = await fetch('http://minetkenya.duckdns.org/contact/send-mail/', {
+                const sendMailResponse = await fetch('https://minetkenya.duckdns.org/contact/send-mail/', {
                     method: 'POST',
                     body: formData
                 });
