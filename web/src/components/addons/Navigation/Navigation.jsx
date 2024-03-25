@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css'
 
 
-function Navigation() {
+export default function Navigation() {
 
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
     const location = useLocation();
@@ -39,6 +39,3 @@ function Navigation() {
         </>
     );
 }
-
-
-export default Navigation;

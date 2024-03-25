@@ -9,11 +9,12 @@ import './Home.css';
 import Header from '../../layout/Header/Header';
 import Footer from '../../layout/Footer/Footer';
 
+import ContactForm from '../../components/forms/Contact/Contact'
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
 import Preloader from '../../components/addons/Preloader/Preloader';
 
 
-function Home() {
+export default function Home() {
     return (
         <>
             <Landing />
@@ -127,41 +128,7 @@ export function Contact() {
                     </div>
                     <div className="col-lg-6">
                         <div className="card p-4">
-                            <form action="" method="post" className="php-email-form">
-                                <div className="row gy-4">
-                                    <div className="col-6">
-                                        <input type="text"
-                                            name="name"
-                                            className="form-control"
-                                            placeholder="Your Name"
-                                            required />
-                                    </div>
-                                    <div className="col-md-6 ">
-                                        <input type="email"
-                                            className="form-control"
-                                            name="email"
-                                            placeholder="Your Email"
-                                            required />
-                                    </div>
-                                    <div className="col-md-12">
-                                        <input type="text"
-                                            className="form-control"
-                                            name="subject"
-                                            placeholder="Subject"
-                                            required />
-                                    </div>
-                                    <div className="col-md-12">
-                                        <textarea className="form-control"
-                                            name="message"
-                                            rows="6"
-                                            placeholder="Message"
-                                            required></textarea>
-                                    </div>
-                                    <div className="col-md-12 text-center">
-                                        <button className="btn btn-primary" type="submit">Send Message</button>
-                                    </div>
-                                </div>
-                            </form>
+                            <ContactForm />
                         </div>
                     </div>
                 </section>
@@ -170,6 +137,3 @@ export function Contact() {
         </div>
     );
 }
-
-
-export default Home;

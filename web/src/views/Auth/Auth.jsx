@@ -10,7 +10,7 @@ import RedirectBtn from '../../components/addons/RedirectBtn/RedirectBtn';
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
 
 
-function Auth() {
+export default function Auth() {
     const [activeTab, setActiveTab] = useState('login');
 
     const handleSignupLinkClick = () => {
@@ -92,5 +92,3 @@ function TitleHeader(props) {
         </>
     );
 }
-
-export default Auth;

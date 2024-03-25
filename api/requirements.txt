@@ -3,6 +3,7 @@ djangorestframework
 djangorestframework-simplejwt
 django-filter
 django-cors-headers
+djlint
 mysqlclient
 pillow
 python-decouple

@@ -1,7 +1,7 @@
 import './SocialLinks.css'
 
 
-function SocialLinks() {
+export default function SocialLinks() {
     return (
         <>
             <div className="social-links d-flex align-items-center justify-content-center justify-content-md-start">
@@ -19,6 +19,3 @@ function SocialLinks() {
         </>
     );
 }
-
-
-export default SocialLinks;

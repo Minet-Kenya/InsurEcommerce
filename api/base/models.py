@@ -22,7 +22,10 @@ class Company(models.Model):
         help_text="Enter the company motto.",
     )
     # ======= Contact =======
-    email = models.EmailField(help_text="Enter the contact email.")
+    primary_email = models.EmailField(help_text="Enter the primary contact email.")
+    secondary_email = models.EmailField(
+        help_text="Enter the secondary contact email.", blank=True
+    )
     primary_phone = models.CharField(
         max_length=255,
         help_text="Enter the primary contact phone number.",
@@ -30,6 +33,7 @@ class Company(models.Model):
     secondary_phone = models.CharField(
         max_length=255,
         help_text="Enter the secondary contact phone number.",
+        blank=True,
     )
 
     # ======= Addressing =======
@@ -58,16 +62,26 @@ class Company(models.Model):
         help_text="Enter the zip code",
         blank=True,
     )
-
-    # ======= Social =======
-    facebook = models.URLField(
+    open_days = models.CharField(
         max_length=255,
-        help_text="Enter the facebook account url",
+        help_text="e.g Monday - Friday",
         blank=True,
     )
+    open_hours = models.CharField(
+        max_length=255,
+        help_text="e.g 8:15AM - 05:00PM",
+        blank=True,
+    )
+
+    # ======= Social =======
     twitter_x = models.URLField(
         max_length=255,
         help_text="Enter the X account url",
+        blank=True,
+    )
+    facebook = models.URLField(
+        max_length=255,
+        help_text="Enter the facebook account url",
         blank=True,
     )
     instagram = models.URLField(

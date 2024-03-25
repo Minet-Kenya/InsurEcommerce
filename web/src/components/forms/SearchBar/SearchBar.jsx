@@ -1,7 +1,7 @@
 import './SearchBar.css'
 
 
-function SearchBar() {
+export default function SearchBar() {
     return (
         <>
             <form id="search-form" className="search-form w-100 d-flex align-items-center"
@@ -18,6 +18,3 @@ function SearchBar() {
         </>
     );
 }
-
-
-export default SearchBar;

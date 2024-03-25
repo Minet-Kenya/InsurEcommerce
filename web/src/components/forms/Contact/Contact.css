@@ -1,0 +1,38 @@
+.contactform input,
+.contactform textarea {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+.contactform input:focus,
+.contactform textarea:focus {
+    border-color: var(--bs-primary);
+}
+
+.contactform input {
+    padding: 10px 15px;
+}
+
+.contactform textarea {
+    padding: 12px 15px;
+}
+
+.contactform button[type=submit] {
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 4px;
+}
+
+@keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -13,7 +13,7 @@ import RedirectBtn from '../../components/addons/RedirectBtn/RedirectBtn';
 import Preloader from '../../components/addons/Preloader/Preloader';
 
 
-function Retail() {
+export default function Retail() {
     return (
         <>
             <Header />
@@ -203,6 +203,3 @@ function Footer() {
         </>
     );
 }
-
-
-export default Retail;

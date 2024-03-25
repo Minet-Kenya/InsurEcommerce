@@ -6,7 +6,7 @@ import RedirectBtn from '../../components/addons/RedirectBtn/RedirectBtn';
 import Navigation from '../../components/addons/Navigation/Navigation';
 
 
-function Header(props) {
+export default function Header(props) {
     return (
         <header id="header" className={`header ${props.version === "v1" ? 'version1' : 'version2'} fixed-top pt-2 px-4`}>
             <div className="container-fluid d-flex align-items-center justify-content-between py-2">
@@ -21,6 +21,3 @@ function Header(props) {
         </header>
     );
 }
-
-
-export default Header

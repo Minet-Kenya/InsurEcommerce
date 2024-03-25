@@ -91,11 +91,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
+
 CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:7000",
     "http://127.0.0.1:3000",
-    "https://lox-informatics.github.io",
-    "https://loxinformatics.com",
-    "https://www.loxinformatics.com",
+    "https://minet-kenya.github.io",
 ]
 
 

@@ -5,6 +5,7 @@
 /assets
 /.vscode
 __pycache__
+api.http
 
 # dependencies
 /web/node_modules

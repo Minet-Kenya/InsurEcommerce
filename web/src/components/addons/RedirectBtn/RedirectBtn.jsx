@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import './RedirectBtn.css'
 
 
-function RedirectBtn(props) {
+export default function RedirectBtn(props) {
     return (
         <>
             <Link id="redirectbtn" className={`redirectbtn text-decoration-none ${props.view === 'Auth' ? 'd-none d-sm-block' : ''}`} to={props.to}>
@@ -11,6 +11,3 @@ function RedirectBtn(props) {
         </>
     );
 }
-
-
-export default RedirectBtn;
