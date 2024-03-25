@@ -11,11 +11,11 @@ __pycache__
 /web/.env*
 /web/.DS_Store
 
-/backend/.venv
-/backend/.env*
-/backend/media/*
-!/backend/media/defaults
-/backend/static
+/api/.venv
+/api/.env*
+/api/media/*
+!/api/media/defaults
+/api/static
 
 
 # non-dependencies
