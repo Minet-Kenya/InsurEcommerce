@@ -9,7 +9,7 @@
 `cd web` <br />
 `npm start` <br />
 
-- [**api**](https://github.com/Minet-Kenya/minet-ecommerce/tree/main/backend): django backend
+- [**api**](https://github.com/Minet-Kenya/minet-ecommerce/tree/main/api): django backend
 
 `cd api` <br />
 Create .venv (virtual environment) <br />
