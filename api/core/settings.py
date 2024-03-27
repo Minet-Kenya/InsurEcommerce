@@ -96,7 +96,9 @@ WSGI_APPLICATION = "core.wsgi.application"
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:7000",
     "http://127.0.0.1:3000",
-    # "https://minet-kenya.github.io/minet-ecommerce",
+    "http://localhost:7000",
+    "http://localhost:3000",
+    "https://minet-kenya.github.io",
 ]
 
 
