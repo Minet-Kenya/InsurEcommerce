@@ -17,21 +17,21 @@ export default function ContactForm() {
         setError(null); // clear previous 
         setSuccess(null); // clear previous 
 
-        try {
-            // Fetch company info
-            const response = await fetch('https://minetkenya.duckdns.org/base/company-info/');
-            if (!response.ok) {
-                throw new Error('Failed to fetch company info');
-            }
-            const data = await response.json();
-            const companyEmail = data[0].primary_email;
+        if (!form.checkValidity()) {
+            e.stopPropagation();
+            form.classList.add('was-validated');
+        } else {
 
-            if (!form.checkValidity()) {
-                e.stopPropagation();
-                form.classList.add('was-validated');
-            } else {
-
+            try {
                 setLoading(true);
+
+                // Fetch company info
+                const response = await fetch('http://127.0.0.1:8000/base/company-info/');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch company info');
+                }
+                const data = await response.json();
+                const companyEmail = data[0].primary_email;
 
                 // Prepare form data
                 const formData = new FormData();
@@ -42,7 +42,7 @@ export default function ContactForm() {
                 formData.append('recipient_email', companyEmail);
 
                 // Send form data to backend
-                const sendMailResponse = await fetch('https://minetkenya.duckdns.org/contact/send-mail/', {
+                const sendMailResponse = await fetch('http://127.0.0.1:8000/contact/send-mail/', {
                     method: 'POST',
                     body: formData
                 });
@@ -66,10 +66,12 @@ export default function ContactForm() {
                 }
 
                 setLoading(false);
+
+            } catch (error) {
+                setError("Failed to send email");
+                console.error('Error sending email:', error);
             }
-        } catch (error) {
-            setError("Failed to send email");
-            console.error('Error sending email:', error);
+
         }
     };
 
