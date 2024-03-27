@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -17,16 +17,20 @@ import Preloader from '../../components/addons/Preloader/Preloader';
 export default function Home() {
     return (
         <>
-            <Landing />
+            <div className="vh-100 d-flex flex-column">
+                <Header view="Home" version="v2" />
+                <Outlet />
+                <Footer view="Home" version="v2" />
+            </div>
             <Preloader />
+            <BackToTopBtn />
         </>
     );
 }
 
 export function Landing() {
     return (
-        <div className="vh-100 d-flex flex-column">
-            <Header view="Home" version="v2" />
+        <>
             <main id="landing" className="landing flex-grow-1 mheader container-fluid">
                 <section className="h-100 row d-flex align-items-center justify-content-center ps-5" data-aos="zoom-in">
                     <div className="col-12 col-md-4 d-grid gap-4">
@@ -47,7 +51,7 @@ export function Landing() {
                                 href="https://www.minet.com/kenya/"
                                 target="_blank"
                                 rel="noreferrer">Visit Our Website</a>
-                            <Link className="btn mt-2" to="/retail">Get Started</Link>
+                            <Link className="btn mt-2" to="/">Get Started</Link>
                         </div>
                     </div>
                     <Swiper className="col-md-8 swiper d-none d-md-block position-relative"
@@ -67,15 +71,13 @@ export function Landing() {
                     </Swiper>
                 </section>
             </main>
-            <Footer view="Home" version="v2" />
-        </div>
+        </>
     );
 }
 
 export function Contact() {
     return (
-        <div className="vh-100 d-flex flex-column">
-            <Header view="Home" version="v1" />
+        <>
             <main id="contact" className="contact flex-grow-1 mheader position-relative container-fluid">
                 <section className="h-100 row gy-2 d-flex align-items-center justify-content-center py-4" data-aos="fade-in">
                     <div className="col-lg-6">
@@ -133,7 +135,6 @@ export function Contact() {
                     </div>
                 </section>
             </main>
-            <BackToTopBtn />
-        </div>
+        </>
     );
 }

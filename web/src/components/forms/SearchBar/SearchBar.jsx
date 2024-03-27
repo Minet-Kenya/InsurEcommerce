@@ -1,20 +1,31 @@
-import './SearchBar.css'
-
+import './SearchBar.css';
+import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 export default function SearchBar() {
+
+    const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
+
+    const toggleSearchBar = () => {
+        setIsSearchBarVisible(prevState => !prevState);
+    };
+
     return (
-        <>
-            <form id="searchbar" className="searchbar d-flex align-items-center"
+        <div className={`search-bar ${isSearchBarVisible ? 'search-bar-show' : ''}`}>
+            <Link class="search-bar-toggle d-block d-lg-none" onClick={toggleSearchBar} to="#">
+                <i class="bi bi-search"></i>
+            </Link>
+            <form className="search-form d-flex align-items-center "
                 method="post"
                 action="#">
-                <input className="d-none d-sm-block" type="text"
+                <input type="text"
                     name="query"
                     placeholder="Search"
                     title="Enter search keyword" />
-                <button type="submit" title="Search" className="p-0">
+                <button type="submit" title="Search">
                     <i className="bi bi-search"></i>
                 </button>
             </form>
-        </>
+        </div>
     );
 }

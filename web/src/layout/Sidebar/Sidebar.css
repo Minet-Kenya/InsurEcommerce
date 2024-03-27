@@ -1,3 +1,9 @@
+.toggle-sidebar-btn {
+    font-size: 32px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
 .sidebar {
     position: fixed;
     top: var(--header-height);

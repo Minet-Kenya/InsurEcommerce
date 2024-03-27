@@ -23,13 +23,14 @@ root.render(
     <HashRouter>
       <Routes>
         {/* Home */}
-        <Route path='/' element={<Home />} />
-        <Route path='/landing' element={<Landing />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/landing" element={<Home />}>
+          <Route path="" element={<Landing />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
         {/* Auth */}
-        <Route path='/auth' element={<Auth />} />
+        <Route path="/auth" element={<Auth />} />
         {/* Retail */}
-        <Route path='/retail' element={<Retail />} />
+        <Route path="/" element={<Retail />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>

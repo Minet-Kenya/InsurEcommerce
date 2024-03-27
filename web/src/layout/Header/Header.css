@@ -1,5 +1,5 @@
 :root {
-    --header-height: 80px;
+    --header-height: 70px;
 }
 
 .mheader {
@@ -28,22 +28,17 @@
 }
 
 @media (max-width: 991.98px) {
-    .header .redirectbtn {
+    .header .redirectbtn-wrapper {
         order: 2;
         margin: 0 80px 0 0;
         padding: 6px 20px;
     }
 
-    .header .navbar {
+    .header .navbar-wrapper {
         order: 3;
     }
 }
 
-.header .toggle-sidebar-btn {
-    font-size: 32px;
-    padding-left: 10px;
-    cursor: pointer;
-}
 /*--------------------------------------------------------------
   # Header Nav
   --------------------------------------------------------------*/

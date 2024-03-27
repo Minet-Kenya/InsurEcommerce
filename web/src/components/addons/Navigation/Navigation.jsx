@@ -16,7 +16,7 @@ export default function Navigation() {
 
     return (
         <>
-            <nav id="navbar" className={`navbar ms-auto me-0 p-0 ${isMobileNavOpen ? 'navbar-mobile' : ''}`}>
+            <nav id="navbar" className={`navbar p-0 ${isMobileNavOpen ? 'navbar-mobile' : ''}`}>
                 <ul className="d-lg-flex m-0 p-0 list-unstyled align-items-center">
                     <li>
                         <Link className={`nav-link ${pathname === '/' || pathname === '/landing' ? 'active' : ''}`} to="/landing">
@@ -24,7 +24,7 @@ export default function Navigation() {
                         </Link>
                     </li>
                     <li>
-                        <Link className={`nav-link ${pathname === '/contact' ? 'active' : ''}`} to="/contact">
+                        <Link className={`nav-link ${pathname === '/contact' ? 'active' : ''}`} to="/landing/contact">
                             <span className="bi bi-telephone-fill">&nbsp;&nbsp;Contact Us</span>
                         </Link>
                     </li>

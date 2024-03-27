@@ -29,7 +29,7 @@ export default function Retail() {
                         <div className="row g-4 h-100">
                             <div className="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
                                 <Link className="solutions-img individual-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                                    to="/retail">
+                                    to="/">
                                     <img src={solutions1}
                                         width=""
                                         height=""

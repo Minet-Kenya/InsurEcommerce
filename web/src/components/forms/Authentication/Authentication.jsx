@@ -88,15 +88,15 @@ export function SignupForm() {
                     </div>
                 </>
                 <>
-                <div className="col-12 col-md-6">
-                    <label htmlFor="yourPassword" className="form-label">Password</label>
-                    <input type="password"
-                        name="password"
-                        className="form-control"
-                        id="yourPassword"
-                        required />
-                    <div className="invalid-feedback">Please enter your password!</div>
-                </div>
+                    <div className="col-12 col-md-6">
+                        <label htmlFor="yourPassword" className="form-label">Password</label>
+                        <input type="password"
+                            name="password"
+                            className="form-control"
+                            id="yourPassword"
+                            required />
+                        <div className="invalid-feedback">Please enter your password!</div>
+                    </div>
                 </>
                 <>
                     <div className="col-12">
