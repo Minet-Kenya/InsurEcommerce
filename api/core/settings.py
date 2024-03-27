@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from decouple import config
 from pathlib import Path
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,7 +34,7 @@ else:
     DEBUG = False
 
 ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(",")]
+    "ALLOWED_HOSTS",cast=lambda v: [s.strip() for s in v.split(",")]
 )
 
 
@@ -95,7 +96,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:7000",
     "http://127.0.0.1:3000",
-    "https://minet-kenya.github.io/minet-ecommerce",
+    # "https://minet-kenya.github.io/minet-ecommerce",
 ]
 
 
@@ -150,10 +151,12 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
-STATIC_ROOT = BASE_DIR / "static"
-
+# STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media files
 # https://docs.djangoproject.com/en/4.2/ref/settings/#media-files
