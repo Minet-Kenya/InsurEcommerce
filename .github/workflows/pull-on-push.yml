@@ -43,6 +43,6 @@ jobs:
               echo "EMAIL_HOST_USER=\${{ env.EMAIL_HOST_USER }}"
               echo "EMAIL_HOST_PASSWORD=\${{ env.EMAIL_HOST_PASSWORD }}"
             } > .env
-            sudo service gunicorn_minetecommerce restart
+            echo ${{ secrets.SERVER_PASSWORD }} | sudo -S service gunicorn_minetecommerce restart
 
             # Commands relating to web folder
