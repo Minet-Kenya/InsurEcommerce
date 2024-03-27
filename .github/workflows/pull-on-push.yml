@@ -26,24 +26,22 @@ jobs:
             pip install -r requirements.txt
             rm .env
             touch .env
-            echo "ENVIRONMENT=${{ env.ENVIRONMENT }}" >> .env
-            echo "SECRET_KEY=${{ env.SECRET_KEY }}" >> .env
-            echo "API_KEY=${{ env.API_KEY }}" >> .env
-            echo "ALLOWED_HOSTS=${{ env.ALLOWED_HOSTS }}" >> .env
-            echo "DB_ENGINE=${{ env.DB_ENGINE }}" >> .env
-            echo "DB_NAME=${{ env.DB_NAME }}" >> .env
-            echo "DB_USER=${{ env.DB_USER }}" >> .env
-            echo "DB_PASSWORD=${{ env.DB_PASSWORD }}" >> .env
-            echo "DB_HOST=${{ env.DB_HOST }}" >> .env
-            echo "DB_PORT=${{ env.DB_PORT }}" >> .env
-            echo "EMAIL_HOST=${{ env.EMAIL_HOST }}" >> .env
-            echo "EMAIL_PORT=${{ env.EMAIL_PORT }}" >> .env
-            echo "EMAIL_USE_TLS=${{ env.EMAIL_USE_TLS }}" >> .env
-            echo "EMAIL_USE_SSL=${{ env.EMAIL_USE_SSL }}" >> .env
-            echo "EMAIL_HOST_USER=${{ env.EMAIL_HOST_USER }}" >> .env
-            echo "EMAIL_HOST_PASSWORD=${{ env.EMAIL_HOST_PASSWORD }}" >> .env
-
-
+            echo "ENVIRONMENT=${{ vars.ENVIRONMENT }}" >> .env
+            echo "SECRET_KEY=${{ vars.SECRET_KEY }}" >> .env
+            echo "API_KEY=${{ vars.API_KEY }}" >> .env
+            echo "ALLOWED_HOSTS=${{ vars.ALLOWED_HOSTS }}" >> .env
+            echo "DB_ENGINE=${{ vars.DB_ENGINE }}" >> .env
+            echo "DB_NAME=${{ vars.DB_NAME }}" >> .env
+            echo "DB_USER=${{ vars.DB_USER }}" >> .env
+            echo "DB_PASSWORD=${{ vars.DB_PASSWORD }}" >> .env
+            echo "DB_HOST=${{ vars.DB_HOST }}" >> .env
+            echo "DB_PORT=${{ vars.DB_PORT }}" >> .env
+            echo "EMAIL_HOST=${{ vars.EMAIL_HOST }}" >> .env
+            echo "EMAIL_PORT=${{ vars.EMAIL_PORT }}" >> .env
+            echo "EMAIL_USE_TLS=${{ vars.EMAIL_USE_TLS }}" >> .env
+            echo "EMAIL_USE_SSL=${{ vars.EMAIL_USE_SSL }}" >> .env
+            echo "EMAIL_HOST_USER=${{ vars.EMAIL_HOST_USER }}" >> .env
+            echo "EMAIL_HOST_PASSWORD=${{ vars.EMAIL_HOST_PASSWORD }}" >> .env
             echo ${{ secrets.SERVER_PASSWORD }} | sudo -S service gunicorn_minetecommerce restart
 
             # Commands relating to web folder
