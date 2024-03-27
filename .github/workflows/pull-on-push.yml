@@ -1,0 +1,48 @@
+name: Auto Pull on Push
+on:
+  push:
+    branches:
+      - main  # Change this to your branch name
+
+jobs:
+  build:
+    name: Pull changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute remote SSH commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}  # Your server's IP address
+          username: ${{ secrets.SERVER_USERNAME }}  # Your SSH username
+          password: ${{ secrets.SERVER_PASSWORD }}  # Your SSH password
+          port: ${{ secrets.SERVER_PORT }}  # SSH port (default is 22)
+          script: |
+            cd /minet/Repositories/minet-ecommerce
+            git pull origin main  # Change 'main' to your branch name
+
+            # Commands relating to api folder
+            cd api && source .venv/bin/activate
+            python manage.py collectstatic --no-input
+            pip install -r requirements.txt
+            rm .env
+            {
+              echo "ENVIRONMENT=\${{ env.ENVIRONMENT }}"
+              echo "SECRET_KEY=\${{ env.SECRET_KEY }}"
+              echo "API_KEY=\${{ env.API_KEY }}"
+              echo "ALLOWED_HOSTS=\${{ env.ALLOWED_HOSTS }}"
+              echo "DB_ENGINE=\${{ env.DB_ENGINE }}"
+              echo "DB_NAME=\${{ env.DB_NAME }}"
+              echo "DB_USER=\${{ env.DB_USER }}"
+              echo "DB_PASSWORD=\${{ env.DB_PASSWORD }}"
+              echo "DB_HOST=\${{ env.DB_HOST }}"
+              echo "DB_PORT=\${{ env.DB_PORT }}"
+              echo "EMAIL_HOST=\${{ env.EMAIL_HOST }}"
+              echo "EMAIL_PORT=\${{ env.EMAIL_PORT }}"
+              echo "EMAIL_USE_TLS=\${{ env.EMAIL_USE_TLS }}"
+              echo "EMAIL_USE_SSL=\${{ env.EMAIL_USE_SSL }}"
+              echo "EMAIL_HOST_USER=\${{ env.EMAIL_HOST_USER }}"
+              echo "EMAIL_HOST_PASSWORD=\${{ env.EMAIL_HOST_PASSWORD }}"
+            } > .env
+            sudo service gunicorn_minetecommerce restart
+
+            # Commands relating to web folder
