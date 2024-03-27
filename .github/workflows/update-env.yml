@@ -1,0 +1,13 @@
+name: Update Repository Variables
+on: push
+jobs:
+  update-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Update repository variables
+        run: |
+          while IFS='=' read -r key value; do
+            echo "$key=$value" >> $GITHUB_ENV
+          done < ./api/.env
