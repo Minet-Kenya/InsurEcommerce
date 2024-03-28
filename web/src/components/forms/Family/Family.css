@@ -1,0 +1,102 @@
+#cover-form {
+    background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)), url('../../../assets/images/family_hero_1.jpeg');
+    background-size: cover;
+    /* height: 100vh; */
+    /* width: max-content; */
+    color: white
+}
+
+.icon {
+    width: 33px;
+    /* Adjust as needed */
+    margin-right: 10px;
+}
+
+label {
+    color: #434344;
+    font-weight: 600;
+    padding: 3px 0;
+
+}
+
+form {
+    max-width: 768px;
+    padding: 28px 45px;
+    /* color: #434344; */
+}
+
+.h-icon {
+    width: 45px;
+}
+
+.cover-header {
+    display: flex;
+    gap: 11px;
+}
+
+.cover-header h2 {
+    color: #E3261E;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+
+}
+
+input:focus {
+    border: none;
+    outline: none;
+}
+
+.fam-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #434344;
+    padding: 11px;
+    width: 100%;
+}
+
+.fam-input input {
+    /* height: 30px; */
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.sbtn {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+label span {
+    font-size: 13px;
+}
+
+.dob-section,
+.eml-section {
+    width: 100%;
+    display: flex;
+    gap: 11px;
+}
+
+
+
+.container {
+    background: #fff;
+    border-radius: 55px;
+    padding: 22px 15px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+        /* Adjust as needed for tablet size */
+        margin: 0 auto;
+        /* background-color: transparent; */
+    }
+}
