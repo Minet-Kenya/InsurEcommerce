@@ -1,8 +1,7 @@
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import './Messages.css'
-
 import defaultprofileimg from '../../../assets/images/default-profile.jpg'
+import './Messages.css'
 
 export default function MessagesNav() {
 

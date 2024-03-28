@@ -4,23 +4,19 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import './Home.css';
-
-import Header from '../../layout/Header/Header';
-import Footer from '../../layout/Footer/Footer';
-
 import ContactForm from '../../components/forms/Contact/Contact'
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
 import Preloader from '../../components/addons/Preloader/Preloader';
-
+import Header from '../../layout/Header/Header';
+import Footer from '../../layout/Footer/Footer';
+import './Home.css';
 
 export default function Home() {
     return (
         <>
-            <div className="vh-100 d-flex flex-column">
+            <div id="home" className="home vh-100 d-flex flex-column">
                 <Header view="Home" version="v2" />
                 <Outlet />
-                <Footer view="Home" version="v2" />
             </div>
             <Preloader />
             <BackToTopBtn />
@@ -71,6 +67,7 @@ export function Landing() {
                     </Swiper>
                 </section>
             </main>
+            <Footer view="Home" version="v2" />
         </>
     );
 }

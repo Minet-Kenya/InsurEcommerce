@@ -2,7 +2,6 @@
 import { Link } from 'react-router-dom'
 import './Authentication.css'
 
-
 export function LoginForm() {
     return (
         <>

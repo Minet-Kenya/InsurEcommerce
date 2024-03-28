@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import './BackToTopBtn.css';
 
-
 export default function BackToTopBtn() {
     const [isVisible, setIsVisible] = useState(false);
 

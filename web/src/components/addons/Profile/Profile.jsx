@@ -1,7 +1,7 @@
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import './Profile.css'
 import defaultprofileimg from '../../../assets/images/default-profile.jpg'
+import './Profile.css'
 
 export default function ProfileNav() {
     return (

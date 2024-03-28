@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css'
 
-
 export default function Navigation() {
 
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
