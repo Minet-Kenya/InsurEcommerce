@@ -14,9 +14,7 @@
 }
 
 .header.version1 {
-    height: var(--header-height);
     background: rgba(var(--bs-white-rgb), 1.0);
-    transition: all 0.5s;
 }
 
 .header.version2 {

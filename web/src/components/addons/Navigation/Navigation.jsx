@@ -18,12 +18,12 @@ export default function Navigation() {
             <nav id="navbar" className={`navbar p-0 ${isMobileNavOpen ? 'navbar-mobile' : ''}`}>
                 <ul className="d-lg-flex m-0 p-0 list-unstyled align-items-center">
                     <li>
-                        <Link className={`nav-link ${pathname === '/' || pathname === '/landing' ? 'active' : ''}`} to="/landing">
+                        <Link className={`nav-link ${pathname === '/landing' ? 'active' : ''}`} to="/">
                             <span className="bi bi-house-door-fill">&nbsp;&nbsp;Home</span>
                         </Link>
                     </li>
                     <li>
-                        <Link className={`nav-link ${pathname === '/contact' ? 'active' : ''}`} to="/landing/contact">
+                        <Link className={`nav-link ${pathname === '/contact' ? 'active' : ''}`} to="/contact">
                             <span className="bi bi-telephone-fill">&nbsp;&nbsp;Contact Us</span>
                         </Link>
                     </li>
@@ -34,7 +34,7 @@ export default function Navigation() {
                     </li>
                 </ul>
                 <i className={`bi ${isMobileNavOpen ? 'bi-x' : 'bi-list'} mobile-nav-toggle`} onClick={toggleMobileNav}></i>
-            </nav>
+            </nav >
         </>
     );
 }

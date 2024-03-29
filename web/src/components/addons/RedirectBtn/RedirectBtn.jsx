@@ -13,7 +13,7 @@ export default function RedirectBtn({ view, to, text, context }) {
     return (
         <Link
             id="redirectbtn"
-            className={`redirectbtn btn ${context} ${view === 'Auth' ? 'd-none d-sm-block' : ''} text-decoration-none`}
+            className={`redirectbtn btn ${context} ${view === 'Auth' ? 'd-none d-sm-block btn-primary text-white' : ''} text-decoration-none`}
             to={to}
         >
             <h2 className="fs-6 m-0">{text}</h2>

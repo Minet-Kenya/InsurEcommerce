@@ -59,6 +59,18 @@
     }
 }
 
+#sidebar .page-profile .page-profile-logo {
+    font-size: 45px;
+}
+
+#sidebar .page-profile hr {
+    border: none;
+    border-top: 3px solid var(--bs-primary);
+    width: 80%;
+    opacity: 1;
+    margin: 12px auto;
+}
+
 .sidebar-nav {
     padding: 0;
     margin: 0;

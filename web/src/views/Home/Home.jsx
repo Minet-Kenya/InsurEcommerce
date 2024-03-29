@@ -1,4 +1,5 @@
-import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, Outlet, useOutletContext } from 'react-router-dom';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -12,11 +13,17 @@ import Footer from '../../layout/Footer/Footer';
 import './Home.css';
 
 export default function Home() {
+    const [headerVersion, setHeaderVersion] = useState();
+
+    const handleSetHeaderVersion = (version) => {
+        setHeaderVersion(version);
+    };
+
     return (
         <>
             <div id="home" className="home vh-100 d-flex flex-column">
-                <Header view="Home" version="v2" />
-                <Outlet />
+                <Header view="Home" version={headerVersion} />
+                <Outlet context={{ handleSetHeaderVersion }} />
             </div>
             <Preloader />
             <BackToTopBtn />
@@ -25,6 +32,9 @@ export default function Home() {
 }
 
 export function Landing() {
+    const { handleSetHeaderVersion } = useOutletContext();
+    handleSetHeaderVersion("v2");
+
     return (
         <>
             <main id="landing" className="landing flex-grow-1 mheader container-fluid">
@@ -47,7 +57,7 @@ export function Landing() {
                                 href="https://www.minet.com/kenya/"
                                 target="_blank"
                                 rel="noreferrer">Visit Our Website</a>
-                            <Link className="btn mt-2" to="/">Get Started</Link>
+                            <Link className="btn mt-2" to="/ecommerce">Get Started</Link>
                         </div>
                     </div>
                     <Swiper className="col-md-8 swiper d-none d-md-block position-relative"
@@ -73,6 +83,9 @@ export function Landing() {
 }
 
 export function Contact() {
+    const { handleSetHeaderVersion } = useOutletContext();
+    handleSetHeaderVersion("v1");
+
     return (
         <>
             <main id="contact" className="contact flex-grow-1 mheader position-relative container-fluid">

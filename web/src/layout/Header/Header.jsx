@@ -18,7 +18,7 @@ export default function Header({ version, view }) {
                     <Navigation />
                 </div>
                 <div className='redirectbtn-wrapper ms-auto me-0'>
-                    <RedirectBtn to="/" text="Ecommerce" context={`${view === "Home" ? 'btn-light text-dark' : 'btn-primary text-white'}`} />
+                    <RedirectBtn to="/ecommerce" text="Ecommerce" context={`${version === "v2" ? 'btn-light text-dark' : 'btn-primary text-white'}`} />
                 </div>
             </>
         );

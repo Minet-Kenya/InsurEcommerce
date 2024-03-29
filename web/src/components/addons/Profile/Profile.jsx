@@ -42,12 +42,12 @@ export default function ProfileNav() {
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item className="dropdown-item d-flex align-items-center">
-                    <Link className='link-dark' to="/landing">
+                    <Link className='link-dark' to="/">
                         <i className="bi bi-box-arrow-right"></i>
                         <span>Sign Out</span>
                     </Link>
                 </Dropdown.Item>
             </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown >
     );
 }

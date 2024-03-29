@@ -23,7 +23,7 @@ root.render(
     <HashRouter>
       <Routes>
         {/* Home View */}
-        <Route path="/landing" element={<Home />}>
+        <Route path="/" element={<Home />}>
           <Route path="" element={<Landing />} />
           <Route path="contact" element={<Contact />} />
         </Route>
@@ -32,7 +32,7 @@ root.render(
         <Route path="/auth" element={<Auth />} />
 
         {/* Retail View */}
-        <Route path="/" element={<Retail />}>
+        <Route path="/ecommerce" element={<Retail />}>
           <Route path="" element={<Solutions />} />
         </Route>
       </Routes>

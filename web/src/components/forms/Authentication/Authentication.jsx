@@ -34,9 +34,9 @@ export function LoginForm() {
                 </div>
                 <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
                     <button type="submit" className="btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0">Login</button>
-                    <Link to="/landing" className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4">Go Back</Link>
+                    <Link to="/" className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4">Go Back</Link>
                 </div>
-            </form>
+            </form >
         </>
     );
 }
@@ -115,9 +115,9 @@ export function SignupForm() {
                 </>
                 <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
                     <button type="submit" className="btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0">Create Account</button>
-                    <Link to="/landing" className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4">Go Back</Link>
+                    <Link to="/" className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4">Go Back</Link>
                 </div>
-            </form>
+            </form >
         </>
     );
 }
