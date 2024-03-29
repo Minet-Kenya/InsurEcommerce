@@ -8,7 +8,7 @@ import './index.scss';
 
 import Home, { Landing, Contact } from './views/Home/Home';
 import Auth from './views/Auth/Auth';
-import Retail, { Solutions } from './views/Retail/Retail'
+import Ecommerce, { Solutions } from './views/Ecommerce/Ecommerce'
 
 
 AOS.init({
@@ -22,19 +22,21 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
+        
         {/* Home View */}
         <Route path="/" element={<Home />}>
           <Route path="" element={<Landing />} />
           <Route path="contact" element={<Contact />} />
         </Route>
 
+        {/* Ecommerce View */}
+        <Route path="/ecommerce" element={<Ecommerce />}>
+          <Route path="" element={<Solutions />} />
+        </Route>
+
         {/* Auth View */}
         <Route path="/auth" element={<Auth />} />
 
-        {/* Retail View */}
-        <Route path="/ecommerce" element={<Retail />}>
-          <Route path="" element={<Solutions />} />
-        </Route>
       </Routes>
     </HashRouter>
   </React.StrictMode>

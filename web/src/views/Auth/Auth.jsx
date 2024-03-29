@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import logoSmall from '../../assets/images/logo-small.png';
 import RedirectBtn from '../../components/addons/RedirectBtn/RedirectBtn';
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
-import { LoginForm, SignupForm } from '../../components/forms/Authentication/Authentication';
+import LoginForm from '../../components/forms/LoginForm/LoginForm';
+import SignupForm from '../../components/forms/SignupForm/SignupForm';
 import './Auth.css'
 
 export default function Auth() {

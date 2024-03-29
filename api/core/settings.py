@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "home",
     "base",
     "contact",
+    "user",
 ]
 
 MIDDLEWARE = [
@@ -192,4 +193,17 @@ EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 
 
+# Authentication
+
+# LOGIN_URL = "/user/login/"
+
 LOGIN_URL = "/admin/login/"
+
+AUTH_USER_MODEL = "user.User"
+
+AUTHENTICATION_BACKENDS = [
+    # custom
+    "user.backends.AuthBackend",
+    # default
+    # "django.contrib.auth.backends.ModelBackend",
+]

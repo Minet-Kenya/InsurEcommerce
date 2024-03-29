@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
-import './SearchBar.css';
+import './SearchbarForm.css';
 
-export default function SearchBar() {
+export default function SearchbarForm() {
 
     const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
 

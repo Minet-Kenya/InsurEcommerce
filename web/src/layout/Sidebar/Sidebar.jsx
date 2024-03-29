@@ -82,7 +82,7 @@ export function SidebarToggle() {
 function PageProfile() {
     return (
         <>
-            <Link to="/retail" className="page-profile pb-1 d-block">
+            <Link to="/ecommerce" className="page-profile pb-1 d-block">
                 <div className="text-center">
                     <i className="bi bi-house-fill page-profile-logo text-primary"></i>
                     <h1 className="d-inline-block fs-4 text-light text-uppercase ps-1">Ecommerce</h1>

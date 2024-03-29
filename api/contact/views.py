@@ -15,7 +15,7 @@ class SendMail(APIView):
             errors = filled_contact_form.errors.get_json_data()
             print(errors)
             return JsonResponse({"errors": errors}, status=400)
-        
+
 
 
         # TODO: Differentiate the messages based on the errors

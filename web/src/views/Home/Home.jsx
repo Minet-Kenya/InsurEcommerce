@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import ContactForm from '../../components/forms/Contact/Contact'
+import ContactForm from '../../components/forms/ContactForm/ContactForm'
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
 import Preloader from '../../components/addons/Preloader/Preloader';
 import Header from '../../layout/Header/Header';

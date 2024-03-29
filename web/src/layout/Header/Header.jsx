@@ -4,7 +4,7 @@ import Navigation from '../../components/addons/Navigation/Navigation';
 import Notifications from '../../components/addons/Notifications/Notifications';
 import Messages from '../../components/addons/Messages/Messages';
 import Profile from '../../components/addons/Profile/Profile';
-import SearchBar from '../../components/forms/SearchBar/SearchBar';
+import SearchbarForm from '../../components/forms/SearchbarForm/SearchbarForm';
 import { SidebarToggle } from '../Sidebar/Sidebar';
 import './Header.css';
 
@@ -27,7 +27,7 @@ export default function Header({ version, view }) {
             <>
                 <SidebarToggle />
                 <div className="d-flex h-100 align-items-center ms-auto me-0">
-                    <SearchBar />
+                    <SearchbarForm />
                     <Notifications />
                     <Messages />
                     <Profile />

@@ -8,9 +8,9 @@ import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
 import Header from '../../layout/Header/Header';
 import Sidebar from '../../layout/Sidebar/Sidebar';
 import Footer from '../../layout/Footer/Footer';
-import './Retail.css'
+import './Ecommerce.css'
 
-export default function Retail() {
+export default function Ecommerce() {
     return (
         <>
             <div id="retail" className='retail vh-100 d-flex flex-column'>
@@ -90,6 +90,82 @@ export function Solutions() {
                             </a>
                         </div>
                     </div>
+                </section>
+            </main>
+        </>
+    );
+}
+
+export function CorporateProduct() {
+    return (
+        <>
+            <main id="corporate_product" className="corporate_product h-100 d-flex flex-column">
+                <div className="pagetitle z-0">
+                    <h1 className="text-white">Our Solutions</h1>
+                    <nav>
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item">
+                                <Link to="/ecommerce">Solutions</Link>
+                            </li>
+                            <li className="breadcrumb-item active">Corporate Solutions</li>
+                        </ol>
+                    </nav>
+                </div>
+                <section className="flex-grow-1 container-fluid text-center d-flex flex-column justify-content-center mb-3">
+                <div className="row g-4 h-100">
+                <div className="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
+                    <a className="solutions-img corporate-medical position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                       href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
+                       target="_blank"
+                       rel='noreferrer'>
+                        <img src="{% static 'retail/img/corporate-product/corporate-1.png' %}"
+                             width=""
+                             height=""
+                             alt="corporate-medical icon"
+                             className="img-fluid" />
+                        <h2 className="mt-3">Corporate Medical Cover</h2>
+                    </a>
+                </div>
+                <div className="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
+                    <a className="solutions-img pension-cover position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                       href="https://mss.minet.co.ke/Login?ReturnUrl=%2Fdashboard"
+                       target="_blank"
+                       rel='noreferrer'>
+                        <img src="{% static 'retail/img/corporate-product/corporate-2.png' %}"
+                             width=""
+                             height=""
+                             alt="pension-cover icon"
+                             className="img-fluid" />
+                        <h2 className="mt-3">Corporate Pension Cover</h2>
+                    </a>
+                </div>
+                <div className="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
+                    <a className="solutions-img group-life-cover position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                       href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
+                       target="_blank"
+                       rel='noreferrer'>
+                        <img src="{% static 'retail/img/corporate-product/corporate-3.png' %}"
+                             width=""
+                             height=""
+                             alt="group-life-cover icon"
+                             className="img-fluid" />
+                        <h2 className="mt-3">Group Life Cover</h2>
+                    </a>
+                </div>
+                <div className="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
+                    <a className="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                       href="https://wellness.minet.co.ke/"
+                       target="_blank"
+                       rel='noreferrer'>
+                        <img src="{% static 'retail/img/corporate-product/corporate-4.png' %}"
+                             width=""
+                             height=""
+                             alt="wellness icon"
+                             className="img-fluid" />
+                        <h2 className="mt-3">Wellness</h2>
+                    </a>
+                </div>
+            </div>
                 </section>
             </main>
         </>
