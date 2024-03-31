@@ -1,6 +1,6 @@
 [
   {
-    "model": "base.Company",
+    "model": "home.Company",
     "pk": 1,
     "fields": {
       "name": "Minet Insurance Brokers Solutions",
