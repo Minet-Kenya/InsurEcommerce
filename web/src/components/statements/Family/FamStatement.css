@@ -1,0 +1,120 @@
+#statement {
+    background: #f5f5f5d9;
+    color: #434344;
+    border-radius: 55px;
+    padding: 53px 50px;
+
+
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.top-header button {
+    background-color: white;
+    border: none;
+    padding: 5px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+
+}
+
+.top-header .left-part,
+.top-header .right-part {
+    display: flex;
+    align-items: end;
+    gap: 18px;
+
+}
+
+@media (min-width: 768px) {
+    #statement {
+        /* max-width: 988px; */
+        /* Adjust as needed for tablet size */
+        margin: 0 auto;
+        /* background-color: transparent; */
+    }
+}
+
+.analysis-icon {
+    display: flex;
+    gap: 18px;
+    align-items: end;
+    margin: 18px 0;
+
+}
+
+.analysis-icon h4,
+.top-header h4 {
+    color: #E3261E;
+}
+
+.st-icon {
+    width: 52px;
+}
+
+.receipt-container {
+    /* max-width: 400px; */
+    /* Adjust as needed */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.receipt-header {
+    background-color: #E3261E;
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    border: 1px solid #434344;
+}
+
+.table tfoot {
+    background-color: #E3261E;
+    color: white;
+}
+
+.table tfoot td {
+    font-weight: bold;
+}
+
+.header-section {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    margin: 18px 0;
+}
+
+.header-section span {
+    font-weight: bold;
+}
+
+.left-part {
+    width: 50%;
+}
+
+.right-part {
+    width: 50%;
+}
+
+.right-part img {
+    width: 100%
+}

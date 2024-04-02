@@ -10,6 +10,7 @@ import Home, { Landing, Contact } from "./views/Home/Home";
 import Auth from "./views/Auth/Auth";
 import Retail from "./views/Retail/Retail";
 import Family from "./views/Family/Family";
+import FamilyStatement from "./views/FamilyStatement/FamilyStatement";
 
 AOS.init({
   duration: 600,
@@ -30,6 +31,10 @@ root.render(
         {/* Retail */}
         <Route path="/retail" element={<Retail />} />
         <Route path="/retail/family-cover" element={<Family />} />
+        <Route
+          path="/retail/family-cover/statement"
+          element={<FamilyStatement />}
+        />
       </Routes>
     </HashRouter>
   </React.StrictMode>

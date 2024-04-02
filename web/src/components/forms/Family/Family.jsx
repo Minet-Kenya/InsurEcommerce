@@ -30,7 +30,7 @@ export function CoverForm() {
   };
 
   return (
-    <div className="container">
+    <div id="cover-form" className="container">
       <form>
         <div className="cover-header">
           <img src={familycover} alt="Family cover" className="h-icon" />
