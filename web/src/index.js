@@ -8,7 +8,7 @@ import './index.scss';
 
 import Home, { Landing, Contact } from './views/Home/Home';
 import Auth from './views/Auth/Auth';
-import Ecommerce, { Solutions } from './views/Ecommerce/Ecommerce'
+import Ecommerce, { CorporateProduct, IndividualSolutions, Solutions } from './views/Ecommerce/Ecommerce'
 
 
 AOS.init({
@@ -32,6 +32,8 @@ root.render(
         {/* Ecommerce View */}
         <Route path="/ecommerce" element={<Ecommerce />}>
           <Route path="" element={<Solutions />} />
+          <Route path="corporate-product" element={<CorporateProduct />} />
+          <Route path="individual-solutions" element={<IndividualSolutions />} />
         </Route>
 
         {/* Auth View */}

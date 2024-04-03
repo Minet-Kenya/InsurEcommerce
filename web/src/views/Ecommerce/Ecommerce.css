@@ -30,26 +30,6 @@
 }
 
 /*--------------------------------------------------------------
-# Dashboard
---------------------------------------------------------------*/
-.dashboard {
-    background: url("../../assets/images/retail-bg.png") center top no-repeat fixed;
-    background-size: cover;
-    padding: 20px 30px;
-    transition: all 0.3s;
-}
-
-.dashboard::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: rgba(var(--bs-dark-rgb), 0.4);
-}
-
-/*--------------------------------------------------------------
 # Retail General
 --------------------------------------------------------------*/
 .solutions-img {
@@ -94,5 +74,64 @@
 
 .back-btn a:hover {
     background: rgba(var(--bs-dark-rgb), 0.9);
+}
 
+/*--------------------------------------------------------------
+# Dashboard
+--------------------------------------------------------------*/
+.dashboard {
+    background: url("../../assets/images/retail-bg.png") center top no-repeat fixed;
+    background-size: cover;
+    padding: 20px 30px;
+    transition: all 0.3s;
+}
+
+.dashboard::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(var(--bs-dark-rgb), 0.4);
+}
+
+/*--------------------------------------------------------------
+# Corporate Product
+--------------------------------------------------------------*/
+.corporate_product {
+    background: url("../../assets/images/corporate-product-bg.png") center top no-repeat fixed;
+    background-size: cover;
+    padding: 20px 30px;
+    transition: all 0.3s;
+}
+
+.corporate_product::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(var(--bs-dark-rgb), 0.4);
+}
+
+/*--------------------------------------------------------------
+# Individual Solutions
+--------------------------------------------------------------*/
+.individual_solutions {
+    background: url("../../assets/images/individual-solutions-bg.png") center top no-repeat fixed;
+    background-size: cover;
+    padding: 20px 30px;
+    transition: all 0.3s;
+}
+
+.individual_solutions::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(var(--bs-dark-rgb), 0.4);
 }

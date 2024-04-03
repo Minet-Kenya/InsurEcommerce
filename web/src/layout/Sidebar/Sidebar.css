@@ -36,6 +36,8 @@
 @media (min-width: 1200px) {
 
     .dashboard,
+    .corporate_product,
+    .individual_solutions,
     .retail .footer {
         margin-left: 300px;
     }
@@ -50,6 +52,8 @@
 @media (min-width: 1200px) {
 
     .toggle-sidebar .dashboard,
+    .toggle-sidebar .corporate_product,
+    .toggle-sidebar .individual_solutions,
     .toggle-sidebar .footer {
         margin-left: 0;
     }
