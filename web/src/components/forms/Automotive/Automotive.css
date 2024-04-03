@@ -1,0 +1,26 @@
+.automotive-header {
+    color: #E3261E;
+}
+
+.auto-mobile {
+    display: flex;
+    color: #434343;
+    gap: 11px;
+    margin: 18px 0;
+    width: 100%;
+}
+
+.sub-icon-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.input-container {
+    display: flex;
+    gap: 33px;
+}
+
+.input-automobile {
+    width: 100%;
+}

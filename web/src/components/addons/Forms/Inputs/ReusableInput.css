@@ -1,0 +1,56 @@
+.icon {
+    width: 33px;
+    /* Adjust as needed */
+    margin-right: 10px;
+    height: 28px;
+}
+
+label {
+    color: #434344;
+    font-weight: 600;
+    padding: 3px 0;
+
+}
+
+.input-container {
+    width: 100%;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+
+}
+
+input {
+    background-color: inherit;
+}
+
+.icon-container {
+    border-right: 2px solid #434344;
+    margin-right: 8px;
+
+}
+
+input:focus {
+    border: none;
+    outline: none;
+}
+
+.fam-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #434344;
+    padding: 11px;
+    width: 100%;
+}
+
+.fam-input input {
+    /* height: 30px; */
+    border: none;
+    width: 100%;
+    height: 100%;
+}

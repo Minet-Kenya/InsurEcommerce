@@ -1,0 +1,38 @@
+.h-icon {
+    width: 45px;
+}
+
+form {
+    max-width: 768px;
+    padding: 18px 28px;
+    /* color: #434344; */
+}
+
+.cover-header {
+    display: flex;
+    gap: 11px;
+}
+
+.cover-header h2 {
+    color: #E3261E;
+}
+
+.container {
+    background: #ffffffda;
+    border-radius: 55px;
+    padding: 22px 15px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 858px;
+        /* Adjust as needed for tablet size */
+        margin: 0 auto;
+        /* background-color: transparent; */
+    }
+}
+
+.sbtn {
+    display: flex;
+    justify-content: center;
+}

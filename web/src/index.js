@@ -11,6 +11,8 @@ import Auth from "./views/Auth/Auth";
 import Retail from "./views/Retail/Retail";
 import Family from "./views/Family/Family";
 import FamilyStatement from "./views/FamilyStatement/FamilyStatement";
+import Motors from "./views/Motors/Motors";
+import AutomotivePage from "./views/Automotive/AutomotivePage";
 
 AOS.init({
   duration: 600,
@@ -35,6 +37,8 @@ root.render(
           path="/retail/family-cover/statement"
           element={<FamilyStatement />}
         />
+        <Route path="/retail/motors" element={<Motors />} />
+        <Route path="/retail/motors/automotive" element={<AutomotivePage />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>
