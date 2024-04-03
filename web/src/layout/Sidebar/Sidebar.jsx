@@ -1,94 +1,160 @@
-import { Link } from 'react-router-dom';
-import SocialLinks from '../../components/addons/SocialLinks/SocialLinks';
-import './Sidebar.css'
+import React, { useState } from "react";
+import { Collapse } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
+import SocialLinks from "../../components/addons/SocialLinks/SocialLinks";
+import "./Sidebar.css";
 
-export default function Sidebar() {
-    return (
-        <aside id="sidebar" class="sidebar d-flex flex-column">
-            <PageProfile />
-            <ul class="sidebar-nav" id="sidebar-nav">
-                <li class="nav-item">
-                    <Link className="nav-link collapsed" to="/ecommerce">
-                        <i class="bi bi-grid"></i>
-                        <span>Solutions</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link className="nav-link collapsed" to="">
-                        <i class="bi bi-cart4"></i>
-                        <span>Cart</span>
-                    </Link>
-                </li>
+export default function Sidebar({ view }) {
+  let pagetitle = null;
+  const location = useLocation();
+  const { pathname } = location;
+  const [open, setOpen] = useState(
+    pathname === "/ecommerce/individual-solutions" ||
+      pathname === "/ecommerce/corporate-product"
+  );
 
-                {/* Shared Pages */}
-                <li class="nav-heading">Pages</li>
-                {/* <li class="nav-item">
-                    <Link className="nav-link collapsed" to="">
-                        <i class="bi bi-person"></i>
-                        <span>Profile</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link className="nav-link collapsed" to="">
-                        <i class="bi bi-bell"></i>
-                        <span>Notifications</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link className="nav-link collapsed" to="">
-                        <i class="bi bi-chat-left-text"></i>
-                        <span>Messages</span>
-                    </Link>
-                </li> */}
-                <li class="nav-item">
-                    <Link className="nav-link collapsed" to="">
-                        <i class="bi bi-question-circle"></i>
-                        <span>F.A.Q</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link className="nav-link collapsed" to="/contact">
-                        <i class="bi bi-envelope"></i>
-                        <span>Contact</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link className="nav-link collapsed" to="/">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Logout</span>
-                    </Link>
-                </li>
+  switch (view) {
+    case "Solutions":
+      pagetitle = "Ecommerce";
+      break;
+    case "IndividualSolutions":
+      pagetitle = "Individual Solutions";
+      break;
+    case "CorporateProduct":
+      pagetitle = "Corporate Product";
+      break;
+    default:
+      pagetitle = "Ecommerce";
+  }
+
+  return (
+    <aside id="sidebar" className="sidebar d-flex flex-column">
+      <>
+        <Link to="/ecommerce" className="page-profile pb-1 d-block">
+          <div className="text-center">
+            <i className="bi bi-house-fill page-profile-logo text-primary"></i>
+            <h1 className="d-inline-block fs-4 text-light text-uppercase ps-1">
+              {pagetitle}
+            </h1>
+          </div>
+          <hr />
+        </Link>
+      </>
+      <ul className="sidebar-nav" id="sidebar-nav">
+        <li className="nav-item">
+          <Link
+            onClick={() => setOpen(!open)}
+            aria-controls="solutions-nav"
+            aria-expanded={open}
+            className={`nav-link collapsed ${
+              pathname === "/ecommerce" ? "active" : ""
+            }`}
+            to="#"
+          >
+            <i className="bi bi-grid"></i>
+            <span>Solutions</span>
+            <i className="bi bi-chevron-down ms-auto"></i>
+          </Link>
+          <Collapse in={open}>
+            <ul
+              id="solutions-nav"
+              className="solutions-nav nav-content collapse"
+              data-bs-parent="#sidebar-nav"
+            >
+              <li>
+                <Link
+                  to="/ecommerce/individual-solutions"
+                  className={`nav-link ${
+                    pathname === "/ecommerce/individual-solutions"
+                      ? "active"
+                      : ""
+                  }`}
+                >
+                  <i className="bi bi-circle"></i>
+                  <span>Individual Solutions</span>
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://retail.minet.co.ke/biznasure/"
+                  className="nav-link"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i className="bi bi-circle"></i>
+                  <span>Business Solutions</span>
+                </a>
+              </li>
+              <li>
+                <Link
+                  to="/ecommerce/corporate-product"
+                  className={`nav-link ${
+                    pathname === "/ecommerce/corporate-product" ? "active" : ""
+                  }`}
+                >
+                  <i className="bi bi-circle"></i>
+                  <span>Corporate Solutions</span>
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://collaborationkenya.minet.com/MinetKe/tsc"
+                  className="nav-link"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i className="bi bi-circle"></i>
+                  <span>Teachers' Medical Scheme Portal</span>
+                </a>
+              </li>
             </ul>
+          </Collapse>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link collapsed" to="">
+            <i className="bi bi-cart4"></i>
+            <span>Cart</span>
+          </Link>
+        </li>
 
-            <div className='mt-auto pb-4'>
-                <SocialLinks />
-            </div>
-        </aside >
-    );
+        {/* Shared Pages */}
+        <li className="nav-heading">Pages</li>
+
+        <li className="nav-item">
+          <Link className="nav-link collapsed" to="">
+            <i className="bi bi-question-circle"></i>
+            <span>F.A.Q</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link collapsed" to="/contact">
+            <i className="bi bi-envelope"></i>
+            <span>Contact</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link collapsed" to="/">
+            <i className="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </Link>
+        </li>
+      </ul>
+
+      <div className="mt-auto pb-4">
+        <SocialLinks />
+      </div>
+    </aside>
+  );
 }
 
 export function SidebarToggle() {
-    const toggleSidebar = () => {
-        document.body.classList.toggle('toggle-sidebar');
-    };
+  const toggleSidebar = () => {
+    document.body.classList.toggle("toggle-sidebar");
+  };
 
-    return (
-        <div>
-            <i className="bi bi-list toggle-sidebar-btn" onClick={toggleSidebar}></i>
-        </div>
-    );
-}
-
-function PageProfile() {
-    return (
-        <>
-            <Link to="/ecommerce" className="page-profile pb-1 d-block">
-                <div className="text-center">
-                    <i className="bi bi-house-fill page-profile-logo text-primary"></i>
-                    <h1 className="d-inline-block fs-4 text-light text-uppercase ps-1">Ecommerce</h1>
-                </div>
-                <hr />
-            </Link>
-        </>
-    );
+  return (
+    <div>
+      <i className="bi bi-list toggle-sidebar-btn" onClick={toggleSidebar}></i>
+    </div>
+  );
 }

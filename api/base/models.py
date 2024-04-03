@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Company(models.Model):
@@ -117,40 +118,11 @@ class Company(models.Model):
         return self.name
 
 
-class User(AbstractUser):
+@receiver(post_save, sender=Company)
+def ensure_single_company(sender, instance, created, **kwargs):
     """
-    Take note of the other fields within the AbstractUser class
+    Signal receiver to ensure only one record exists
     """
 
-    class Role(models.TextChoices):
-        ADMIN = "ADMIN", "Admin"
-        CLIENT = "CLIENT", "Client"
-
-    base_role = "SUPERUSER"
-
-    role = models.CharField(max_length=50, choices=Role.choices, blank=True)
-    image = models.ImageField(
-        upload_to="students/",
-        help_text="Upload an image that is 600x600",
-        blank=True,
-        default="defaults/default_profile.jpg",
-    )
-    # other fiedls as required
-
-    def save(self, *args, **kwargs):
-        self.role = self.base_role
-        return super().save(*args, **kwargs)
-
-
-class ClientManager(BaseUserManager):
-    def get_queryset(self, *args, **kwargs):
-        queryset = super().get_queryset(*args, **kwargs)
-        return queryset.filter(role=User.Role.CLIENT)
-
-
-class Client(User):
-    class Meta:
-        proxy = True
-
-    base_role = User.Role.CLIENT
-    clients = ClientManager()
+    if created and Company.objects.count() > 1:
+        instance.delete()

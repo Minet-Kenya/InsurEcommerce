@@ -1,16 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Group
-from .models import Company, User, Client
-
-
-@admin.register(Company)
-class CompanyAdmin(admin.ModelAdmin):
-    def has_add_permission(self, request, obj=None):
-        if Company.objects.count() > 0:
-            return False
-        else:
-            return True
+from .models import User, Client
 
 
 class BaseUserAdmin(admin.ModelAdmin):
@@ -54,7 +45,7 @@ class BaseUserAdmin(admin.ModelAdmin):
             "Important dates",
             {
                 "fields": (
-                    # "last_login",
+                    "last_login",
                     "date_joined",
                 )
             },

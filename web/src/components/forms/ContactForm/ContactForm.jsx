@@ -26,7 +26,7 @@ export default function ContactForm() {
 
         // Fetch company info
         const response = await fetch(
-          "https://minetkenya.duckdns.org/api/company/"
+          "https://minetkenya.duckdns.org/api/base/company/"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch company info");
@@ -44,7 +44,7 @@ export default function ContactForm() {
 
         // Send form data to backend
         const sendMailResponse = await fetch(
-          "https://minetkenya.duckdns.org/api/mail/",
+          "https://minetkenya.duckdns.org/api/mail/contact/",
           {
             method: "POST",
             body: formData,

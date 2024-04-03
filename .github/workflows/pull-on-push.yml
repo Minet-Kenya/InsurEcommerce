@@ -31,7 +31,6 @@ jobs:
             touch .env
             echo "ENVIRONMENT=${{ vars.ENVIRONMENT }}" >> .env
             echo "SECRET_KEY=${{ vars.SECRET_KEY }}" >> .env
-            echo "API_KEY=${{ vars.API_KEY }}" >> .env
             echo "ALLOWED_HOSTS=${{ vars.ALLOWED_HOSTS }}" >> .env
             echo "DB_ENGINE=${{ vars.DB_ENGINE }}" >> .env
             echo "DB_NAME=${{ vars.DB_NAME }}" >> .env
