@@ -7,6 +7,8 @@ import {
   calender,
   formtype,
   caricon2,
+  globeIcon,
+  cc,
 } from "../../../utils/export-images";
 import "./Automotive.css";
 import ReusableInput from "../../addons/Forms/Inputs/ReusableInput";
@@ -33,14 +35,14 @@ function Automotive() {
       <div className="input-container">
         <div className="input-automobile">
           <ReusableInput icon={personicon} label="Registration Number *" />
-          <ReusableInput icon={personicon} label="Make" />
-          <ReusableInput icon={personicon} label="Engine No" />
-          <ReusableInput icon={personicon} label="Manufacture Year *" />
-          <ReusableInput icon={personicon} label="Engine CC" />
+          <ReusableInput icon={caricon2} label="Make" />
+          <ReusableInput icon={cc} label="Engine No" />
+          <ReusableInput icon={globeIcon} label="Manufacture Year *" />
+          <ReusableInput icon={cc} label="Engine CC" />
           <ReusableInput icon={personicon} label="Passangers *" />
         </div>
         <div className="input-automobile">
-          <ReusableInput label="Value of Motor *" icon={caricon1} />
+          <ReusableInput label="Value of Motor *" icon={caricon2} />
           <ReusableInput label="Log Book No" icon={coverform} />
           <ReusableInput label="Policy Type *" icon={coverform} />
           <ReusableInput label="Motor Type *" icon={caricon2} />

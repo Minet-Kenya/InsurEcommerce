@@ -13,6 +13,7 @@ import Family from "./views/Family/Family";
 import FamilyStatement from "./views/FamilyStatement/FamilyStatement";
 import Motors from "./views/Motors/Motors";
 import AutomotivePage from "./views/Automotive/AutomotivePage";
+import BodaValidationPage from "./views/BodaValidationPage/BodaValidationPage";
 
 AOS.init({
   duration: 600,
@@ -39,6 +40,10 @@ root.render(
         />
         <Route path="/retail/motors" element={<Motors />} />
         <Route path="/retail/motors/automotive" element={<AutomotivePage />} />
+        <Route
+          path="/retail/boda/validation"
+          element={<BodaValidationPage />}
+        />
       </Routes>
     </HashRouter>
   </React.StrictMode>
