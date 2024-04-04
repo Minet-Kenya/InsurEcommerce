@@ -111,6 +111,9 @@ function Automotive() {
     //     </p>
     //   </div>
     // </FormContainer>
+
+    // ------
+
     //     <FormContainer headerIcon={coverform} formTitle="Motorcycle Cover Details">
     //       <div className="sub-icon-header">
     //         <div className="input-container">

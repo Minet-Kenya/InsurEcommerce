@@ -1,0 +1,48 @@
+.package-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+    overflow-x: auto;
+}
+
+.package-table th,
+.package-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.package-table .empty-cell {
+    background-color: #E3261E;
+}
+
+.package-table .package-title {
+    background-color: #E3261E;
+    color: white;
+}
+
+.package-table .feature-name {
+    background-color: #E3261E;
+    color: white;
+    width: 155px;
+    text-align: left;
+}
+
+.package-table .feature-description {
+    background-color: white;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .package-table th,
+    .package-table td {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .package-table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}

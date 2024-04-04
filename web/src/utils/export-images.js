@@ -16,3 +16,4 @@ export { default as money2 } from "../assets/images/boda/money2.png";
 export { default as map } from "../assets/images/boda/map.png";
 export { default as pinLocation } from "../assets/images/boda/pin-location.png";
 export { default as profile } from "../assets/images/boda/profile.png";
+export { default as bodasterling } from "../assets/images/boda/bodasterling.png";
