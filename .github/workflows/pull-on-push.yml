@@ -19,9 +19,9 @@ jobs:
           script: |
             cd /minet/Repositories/minet-ecommerce
             git pull origin main  # Change 'main' to your branch name
-
-            # Commands relating to api folder
-            cd api && source .venv/bin/activate
+            cd /web && npm install
+            npm run build
+            cd ../api && source .venv/bin/activate
             pip install -r requirements.txt
             python manage.py makemigrations
             python manage.py migrate
@@ -44,11 +44,5 @@ jobs:
             echo "EMAIL_USE_SSL=${{ vars.EMAIL_USE_SSL }}" >> .env
             echo "EMAIL_HOST_USER=${{ vars.EMAIL_HOST_USER }}" >> .env
             echo "EMAIL_HOST_PASSWORD=${{ vars.EMAIL_HOST_PASSWORD }}" >> .env
-
-            # Commands relating to web folder
-            cd ../web
-            npm install
-            npm run build
-
             echo ${{ secrets.SERVER_PASSWORD }} | sudo -S service gunicorn_minetecommerce restart
-            sudo service nginx restart
+            echo ${{ secrets.SERVER_PASSWORD }} | sudo -S service nginx restart
