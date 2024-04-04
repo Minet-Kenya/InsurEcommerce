@@ -44,7 +44,9 @@ jobs:
             echo "EMAIL_USE_SSL=${{ vars.EMAIL_USE_SSL }}" >> .env
             echo "EMAIL_HOST_USER=${{ vars.EMAIL_HOST_USER }}" >> .env
             echo "EMAIL_HOST_PASSWORD=${{ vars.EMAIL_HOST_PASSWORD }}" >> .env
-            echo ${{ secrets.SERVER_PASSWORD }} | sudo -S service gunicorn_minetecommerce restart
-            sudo service nginx restart
 
             # Commands relating to web folder
+            cd ../web && npm run build
+
+            echo ${{ secrets.SERVER_PASSWORD }} | sudo -S service gunicorn_minetecommerce restart
+            sudo service nginx restart
