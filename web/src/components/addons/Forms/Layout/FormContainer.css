@@ -3,8 +3,9 @@
 }
 
 form {
-    max-width: 768px;
-    padding: 18px 28px;
+    /* max-width: 768px; */
+    padding: 18px 13px;
+    min-width: 100%;
     /* color: #434344; */
 }
 

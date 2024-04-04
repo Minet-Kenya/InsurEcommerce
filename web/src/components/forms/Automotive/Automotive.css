@@ -6,7 +6,7 @@
     display: flex;
     color: #434343;
     gap: 11px;
-    margin: 18px 0;
+    margin: 16px 0;
     width: 100%;
 }
 
@@ -14,14 +14,34 @@
     display: flex;
     width: 100%;
     gap: 33px;
+    flex-wrap: wrap;
     justify-content: space-between;
+
+}
+
+@media (min-width: 768px) {
+    .sub-icon-header {
+        flex-wrap: nowrap;
+    }
 }
 
 .input-container {
-    display: flex;
-    gap: 33px;
+    /* display: flex;
+    gap: 33px; */
+    width: 100%;
 }
 
 .input-automobile {
     width: 100%;
+}
+
+/* --- */
+
+.terms {
+    color: #434343;
+}
+
+.terms p {
+    font-size: x-small;
+    font-weight: 600;
 }

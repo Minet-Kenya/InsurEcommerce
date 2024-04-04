@@ -11,3 +11,8 @@ export { default as familycover } from "../assets/images/family-cover.png";
 export { default as messageIcon } from "../assets/images/children.png";
 export { default as phoneIcon } from "../assets/images/boda/phone.png";
 export { default as emailIcon } from "../assets/images/email.png";
+export { default as shareForm } from "../assets/images/boda/share-form.png";
+export { default as money2 } from "../assets/images/boda/money2.png";
+export { default as map } from "../assets/images/boda/map.png";
+export { default as pinLocation } from "../assets/images/boda/pin-location.png";
+export { default as profile } from "../assets/images/boda/profile.png";

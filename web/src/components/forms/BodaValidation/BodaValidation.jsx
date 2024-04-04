@@ -10,6 +10,9 @@ import {
   emailIcon,
   caricon1,
   calender,
+  shareForm,
+  money2,
+  cc,
 } from "../../../utils/export-images";
 import ReusableInput from "../../addons/Forms/Inputs/ReusableInput";
 
@@ -33,11 +36,21 @@ function BodaValidation() {
         </div>
         <div className="boda-validation">
           <ReusableInput label="Registration Number *" icon={coverform} />
-
           <ReusableInput label="Log Book No" icon={messageIcon} />
           <ReusableInput label="Make" icon={caricon2} />
           <ReusableInput label="Manufacture Year *" icon={calender} />
           <ReusableInput label="Engine CC" icon={caricon1} />
+        </div>
+        <div>
+          <div className="cover-header">
+            <img src={shareForm} alt="Policy Details" className="h-icon" />
+            <h2>Policy Details</h2>
+          </div>
+          <ReusableInput
+            label="Sum Insured (Value of the Motor Cycle) *"
+            icon={money2}
+          />
+          <ReusableInput label="Cover Type *" icon={cc} />
         </div>
       </FormContainer>
     </div>
