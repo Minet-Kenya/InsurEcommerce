@@ -1,6 +1,8 @@
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
 import './Notifications.css';
+
 
 export default function NotificationsNav() {
     // Function to truncate the text and add ellipsis if it exceeds a certain length

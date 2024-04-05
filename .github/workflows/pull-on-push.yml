@@ -19,19 +19,18 @@ jobs:
           script: |
             cd /minet/Repositories/minet-ecommerce
             git pull origin main  # Change 'main' to your branch name
-
-            # Commands relating to api folder
-            cd api && source .venv/bin/activate
+            cd /web && npm install
+            npm run build
+            cd ../api && source .venv/bin/activate
             pip install -r requirements.txt
             python manage.py makemigrations
             python manage.py migrate
             python manage.py collectstatic --no-input
-            python manage.py loaddata home/data
+            python manage.py loaddata base/data
             rm .env
             touch .env
             echo "ENVIRONMENT=${{ vars.ENVIRONMENT }}" >> .env
             echo "SECRET_KEY=${{ vars.SECRET_KEY }}" >> .env
-            echo "API_KEY=${{ vars.API_KEY }}" >> .env
             echo "ALLOWED_HOSTS=${{ vars.ALLOWED_HOSTS }}" >> .env
             echo "DB_ENGINE=${{ vars.DB_ENGINE }}" >> .env
             echo "DB_NAME=${{ vars.DB_NAME }}" >> .env
@@ -46,6 +45,4 @@ jobs:
             echo "EMAIL_HOST_USER=${{ vars.EMAIL_HOST_USER }}" >> .env
             echo "EMAIL_HOST_PASSWORD=${{ vars.EMAIL_HOST_PASSWORD }}" >> .env
             echo ${{ secrets.SERVER_PASSWORD }} | sudo -S service gunicorn_minetecommerce restart
-            sudo service nginx restart
-
-            # Commands relating to web folder
+            echo ${{ secrets.SERVER_PASSWORD }} | sudo -S service nginx restart

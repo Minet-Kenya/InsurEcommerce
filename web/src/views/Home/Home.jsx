@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, Outlet, useOutletContext } from 'react-router-dom';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import ContactForm from '../../components/forms/ContactForm/ContactForm'
+import './Home.css';
+
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
 import Preloader from '../../components/addons/Preloader/Preloader';
-import Header from '../../layout/Header/Header';
-import Footer from '../../layout/Footer/Footer';
-import './Home.css';
+import ContactForm from '../../components/forms/ContactForm/ContactForm'
+import Header from '../../components/layout/Header/Header';
+import Footer from '../../components/layout/Footer/Footer';
+
 
 export default function Home() {
     const [headerVersion, setHeaderVersion] = useState();
@@ -33,7 +36,10 @@ export default function Home() {
 
 export function Landing() {
     const { handleSetHeaderVersion } = useOutletContext();
-    handleSetHeaderVersion("v2");
+
+    useEffect(() => {
+        handleSetHeaderVersion("v2");
+    }, [handleSetHeaderVersion]);
 
     return (
         <>
@@ -84,7 +90,10 @@ export function Landing() {
 
 export function Contact() {
     const { handleSetHeaderVersion } = useOutletContext();
-    handleSetHeaderVersion("v1");
+
+    useEffect(() => {
+        handleSetHeaderVersion("v1");
+    }, [handleSetHeaderVersion]);
 
     return (
         <>

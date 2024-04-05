@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+
 import "./ContactForm.css";
+
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -26,7 +28,7 @@ export default function ContactForm() {
 
         // Fetch company info
         const response = await fetch(
-          "https://minetkenya.duckdns.org/api/company/"
+          "https://minetkenya.duckdns.org/base/company/"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch company info");
@@ -44,7 +46,7 @@ export default function ContactForm() {
 
         // Send form data to backend
         const sendMailResponse = await fetch(
-          "https://minetkenya.duckdns.org/api/mail/",
+          "https://minetkenya.duckdns.org/mail/contact/",
           {
             method: "POST",
             body: formData,

@@ -1,5 +1,6 @@
 import './SocialLinks.css'
 
+
 export default function SocialLinks({ view }) {
     return (
         <div className={`social-links d-flex align-items-center justify-content-center ${view === "Home" ? 'justify-content-md-start' : ''}`}>

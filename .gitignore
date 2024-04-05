@@ -15,9 +15,9 @@ api.http
 
 /api/.venv
 /api/.env*
-/api/media/*
-!/api/media/defaults
-/api/static
+/api/core/media/*
+!/api/core/media/defaults
+/api/core/static
 
 
 # non-dependencies

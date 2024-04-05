@@ -1,6 +1,4 @@
 import AOS from "aos";
-import React from "react";
-import ReactDOM from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import "aos/dist/aos.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -30,6 +28,10 @@ AOS.init({
   duration: 600,
   easing: "ease-in-out",
 });
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -75,5 +77,6 @@ root.render(
         <Route path="/auth" element={<Auth />} />
       </Routes>
     </HashRouter>
+    <App />
   </React.StrictMode>
 );

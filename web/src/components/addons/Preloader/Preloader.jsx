@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+
 import './Preloader.css'
+
 
 export default function Preloader() {
     const [isLoading, setIsLoading] = useState(true);
