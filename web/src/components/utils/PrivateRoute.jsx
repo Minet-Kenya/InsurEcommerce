@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import {Navigate } from "react-router-dom";
-// import AuthContext from "../context/AuthContext";
+import AuthContext from "../forms/Authentication/Authentication";
 
 
-
-const PrivateRoute = ({ children }) => {
-    let user = true
-    // let { user } = useContext(AuthContext);
+function PrivateRoute({ children }) {
+    let { user } = useContext(AuthContext);
 
     if (!user) {
         // Redirect to the login page if the user is not authenticated
@@ -16,9 +14,3 @@ const PrivateRoute = ({ children }) => {
 };
 
 export default PrivateRoute;
-
-
-
-
-
-
