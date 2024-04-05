@@ -4,6 +4,7 @@
     min-height: 100vh;
     width: 100%;
     /* max-width: 768px; */
-    color: white;
-    padding: 81px 8px;
+    padding: 81px 15px;
+    /* padding: 20px 30px; */
+    transition: all 0.3s;
 }

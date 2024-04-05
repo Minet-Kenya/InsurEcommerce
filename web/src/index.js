@@ -5,10 +5,19 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import "aos/dist/aos.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./index.scss";
+import "aos/dist/aos.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./index.scss";
+
+import Ecommerce, {
+  CorporateProduct,
+  IndividualSolutions,
+  Solutions,
+} from "./views/Ecommerce/Ecommerce";
 
 import Home, { Landing, Contact } from "./views/Home/Home";
 import Auth from "./views/Auth/Auth";
-import Retail from "./views/Retail/Retail";
+// import Retail from "./views/Retail/Retail";
 import Family from "./views/Family/Family";
 import FamilyStatement from "./views/FamilyStatement/FamilyStatement";
 import Motors from "./views/Motors/Motors";
@@ -28,13 +37,13 @@ root.render(
     <HashRouter>
       <Routes>
         {/* Home */}
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} />
         <Route path="/landing" element={<Landing />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} /> */}
         {/* Auth */}
         <Route path="/auth" element={<Auth />} />
         {/* Retail */}
-        <Route path="/retail" element={<Retail />} />
+        {/* <Route path="/retail" element={<Retail />} /> */}
         <Route path="/retail/family-cover" element={<Family />} />
         <Route
           path="/retail/family-cover/statement"
@@ -48,6 +57,22 @@ root.render(
           element={<BodaValidationPage />}
         />
         <Route path="/retail/boda/packages" element={<BodaPackages />} />
+        {/* Home View */}
+        <Route path="/" element={<Home />}>
+          <Route path="" element={<Landing />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+        {/* Ecommerce View */}
+        <Route path="/ecommerce" element={<Ecommerce />}>
+          <Route path="" element={<Solutions />} />
+          <Route path="corporate-product" element={<CorporateProduct />} />
+          <Route
+            path="individual-solutions"
+            element={<IndividualSolutions />}
+          />
+        </Route>
+        {/* Auth View */}
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>

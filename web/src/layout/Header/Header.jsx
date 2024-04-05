@@ -1,22 +1,46 @@
-import './Header.css'
-
-
 import { LogoDefault, LogoWhite } from '../../components/addons/Logo/Logo';
 import RedirectBtn from '../../components/addons/RedirectBtn/RedirectBtn';
 import Navigation from '../../components/addons/Navigation/Navigation';
+import Notifications from '../../components/addons/Notifications/Notifications';
+import Messages from '../../components/addons/Messages/Messages';
+import Profile from '../../components/addons/Profile/Profile';
+import SearchbarForm from '../../components/forms/SearchbarForm/SearchbarForm';
+import { SidebarToggle } from '../Sidebar/Sidebar';
+import './Header.css';
 
+export default function Header({ version, view }) {
+    let headerContent = null;
 
-export default function Header(props) {
+    if (view === "Home") {
+        headerContent = (
+            <>
+                <div className='navbar-wrapper ms-auto me-0'>
+                    <Navigation />
+                </div>
+                <div className='redirectbtn-wrapper ms-auto me-0'>
+                    <RedirectBtn to="/ecommerce" text="Ecommerce" context={`${version === "v2" ? 'btn-light text-dark' : 'btn-primary text-white'}`} />
+                </div>
+            </>
+        );
+    } else if (view === "Retail") {
+        headerContent = (
+            <>
+                <SidebarToggle />
+                <div className="d-flex h-100 align-items-center ms-auto me-0">
+                    <SearchbarForm />
+                    <Notifications />
+                    <Messages />
+                    <Profile />
+                </div>
+            </>
+        );
+    }
+
     return (
-        <header id="header" className={`header ${props.version === "v1" ? 'version1' : 'version2'} fixed-top pt-2 px-4`}>
-            <div className="container-fluid d-flex align-items-center justify-content-between py-2">
-
-                {props.version === "v1" ? <LogoDefault /> : <LogoWhite />}
-
-                {props.view === "Home" ? <Navigation /> : null}
-
-                <RedirectBtn to="/retail" text="Ecommerce" />
-
+        <header id="header" className={`header ${version === "v1" ? 'version1' : 'version2'} fixed-top pt-2 px-4`}>
+            <div className="container-fluid d-flex h-100 align-items-center py-2">
+                {version === "v1" ? <LogoDefault /> : <LogoWhite />}
+                {headerContent}
             </div>
         </header>
     );
