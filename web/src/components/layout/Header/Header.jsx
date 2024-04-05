@@ -1,3 +1,4 @@
+import React from "react";
 import './Header.css';
 
 import { LogoDefault, LogoWhite } from '../../addons/Logo/Logo';
@@ -6,13 +7,14 @@ import Navigation from '../../addons/Navigation/Navigation';
 import Notifications from '../../addons/Notifications/Notifications';
 import Messages from '../../addons/Messages/Messages';
 import Profile from '../../addons/Profile/Profile';
-import SearchbarForm from '../../forms/SearchbarForm/SearchbarForm';
+import SearchbarForm from '../../forms/Searchbar/Searchbar';
 
 import { SidebarToggle } from '../Sidebar/Sidebar';
 
 
 export default function Header({ version, view }) {
     let headerContent = null;
+
 
     if (view === "Home") {
         headerContent = (

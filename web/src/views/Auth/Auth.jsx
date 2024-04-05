@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Tab, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
+import './Auth.css'
+
 import logoSmall from '../../assets/images/logo-small.png';
+
 import RedirectBtn from '../../components/addons/RedirectBtn/RedirectBtn';
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
-import LoginForm from '../../components/forms/LoginForm/LoginForm';
-import SignupForm from '../../components/forms/SignupForm/SignupForm';
-import './Auth.css'
+import { LoginForm, SignupForm } from '../../components/forms/Authentication/Authentication';
+
 
 export default function Auth() {
     const [activeTab, setActiveTab] = useState('login');

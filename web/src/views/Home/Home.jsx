@@ -10,7 +10,7 @@ import './Home.css';
 
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
 import Preloader from '../../components/addons/Preloader/Preloader';
-import ContactForm from '../../components/forms/ContactForm/ContactForm'
+import ContactForm from '../../components/forms/Contact/Contact'
 import Header from '../../components/layout/Header/Header';
 import Footer from '../../components/layout/Footer/Footer';
 

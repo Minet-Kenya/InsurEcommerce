@@ -1,44 +1,44 @@
-.loginform {
+.authform {
     font-size: 14px;
 }
 
-.loginform .form-floating label {
+.authform .form-floating label {
     margin-left: .25rem
 }
 
-.loginform .form-floating input {
+.authform .form-floating input {
     border-radius: 0;
     box-shadow: none;
     font-size: 14px;
     border-radius: 0;
 }
 
-.loginform .form-floating input:focus {
+.authform .form-floating input:focus {
     border-color: var(--bs-primary);
 }
 
-.loginform .form-check-input {
+.authform .form-check-input {
     transform: scale(1.5);
 }
 
-.loginform .form-check-input:focus {
+.authform .form-check-input:focus {
     box-shadow: none;
     border-color: var(--bs-primary);
 }
 
-.loginform .form-check-input:checked {
+.authform .form-check-input:checked {
     background-color: rgba(var(--bs-primary-rgb), 0.9);
     border-color: var(--bs-primary);
 }
 
-.loginform .recaptcha {
+.authform .recaptcha {
     color: var(--color-inverse);
 }
 
-.loginform .recaptcha img {
+.authform .recaptcha img {
     max-width: 30px;
 }
 
-.loginform button[type=submit] {
+.authform button[type=submit] {
     transition: 0.4s;
 }
