@@ -1,12 +1,15 @@
-import { LogoDefault, LogoWhite } from '../../components/addons/Logo/Logo';
-import RedirectBtn from '../../components/addons/RedirectBtn/RedirectBtn';
-import Navigation from '../../components/addons/Navigation/Navigation';
-import Notifications from '../../components/addons/Notifications/Notifications';
-import Messages from '../../components/addons/Messages/Messages';
-import Profile from '../../components/addons/Profile/Profile';
-import SearchbarForm from '../../components/forms/SearchbarForm/SearchbarForm';
-import { SidebarToggle } from '../Sidebar/Sidebar';
 import './Header.css';
+
+import { LogoDefault, LogoWhite } from '../../addons/Logo/Logo';
+import RedirectBtn from '../../addons/RedirectBtn/RedirectBtn';
+import Navigation from '../../addons/Navigation/Navigation';
+import Notifications from '../../addons/Notifications/Notifications';
+import Messages from '../../addons/Messages/Messages';
+import Profile from '../../addons/Profile/Profile';
+import SearchbarForm from '../../forms/SearchbarForm/SearchbarForm';
+
+import { SidebarToggle } from '../Sidebar/Sidebar';
+
 
 export default function Header({ version, view }) {
     let headerContent = null;

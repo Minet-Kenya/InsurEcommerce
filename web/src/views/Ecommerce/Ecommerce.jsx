@@ -25,9 +25,9 @@ import ind12 from "../../assets/images/ind-12.png";
 
 import Preloader from "../../components/addons/Preloader/Preloader";
 import BackToTopBtn from "../../components/addons/BackToTopBtn/BackToTopBtn";
-import Header from "../../layout/Header/Header";
-import Sidebar from "../../layout/Sidebar/Sidebar";
-import Footer from "../../layout/Footer/Footer";
+import Header from "../../components/layout/Header/Header";
+import Sidebar from "../../components/layout/Sidebar/Sidebar";
+import Footer from "../../components/layout/Footer/Footer";
 import "./Ecommerce.css";
 
 export default function Ecommerce() {

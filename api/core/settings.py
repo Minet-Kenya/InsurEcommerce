@@ -18,6 +18,11 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Build Directory of the React JS front end
+BUILD_DIR = BASE_DIR / "../web/build"
+
+
 ENVIRONMENT = config("ENVIRONMENT", default="production")
 
 
@@ -45,12 +50,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # pip installed 
+    # pip installed
     "rest_framework",
     "django_filters",
     "corsheaders",
     "rest_framework_simplejwt.token_blacklist",
     # my apps
+    "home",
     "base",
     "mail",
     "users",
@@ -77,7 +83,7 @@ SIMPLE_JWT = {
 AUTH_USER_MODEL = "users.User"
 
 AUTHENTICATION_BACKENDS = [
-    'users.backends.AuthBackend',  # Add the path to your custom authentication backend
+    "users.backends.AuthBackend",  # Add the path to your custom authentication backend
     # 'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -105,9 +111,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BASE_DIR / "../web/build",
-        ],
+        "DIRS": [BUILD_DIR],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -175,7 +179,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "../web/build/static",
+    BUILD_DIR / "static",
 ]
 
 STATIC_ROOT = BASE_DIR / "core/static"
@@ -187,13 +191,6 @@ STATIC_ROOT = BASE_DIR / "core/static"
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR / "core/media"
-
-
-# Public files
-
-PUBLIC_URL = "/"
-
-PUBLIC_ROOT = BASE_DIR / "../web/build"
 
 
 # Default primary key field type

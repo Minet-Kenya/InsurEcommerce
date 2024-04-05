@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Collapse } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import SocialLinks from "../../components/addons/SocialLinks/SocialLinks";
+
 import "./Sidebar.css";
+
+import SocialLinks from "../../addons/SocialLinks/SocialLinks";
+
 
 export default function Sidebar({ view }) {
   let pagetitle = null;

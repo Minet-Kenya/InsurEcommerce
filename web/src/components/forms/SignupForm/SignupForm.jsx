@@ -1,6 +1,7 @@
 // import ReCAPTCHA from "react-google-recaptcha";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+
 import './SignupForm.css'
 
 
@@ -10,7 +11,7 @@ export default function SignupForm() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [has_agreed, setHasAgreed] = useState(null);
+    const [has_agreed, setHasAgreed] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
@@ -51,7 +52,7 @@ export default function SignupForm() {
                     setEmail("");
                     setUsername("");
                     setPassword("");
-                    setHasAgreed(null)
+                    setHasAgreed("");
 
                     form.classList.remove('was-validated');
 

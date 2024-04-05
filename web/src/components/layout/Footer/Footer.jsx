@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
-import SocialLinks from '../../components/addons/SocialLinks/SocialLinks';
+
 import "./Footer.css";
+
+import SocialLinks from '../../addons/SocialLinks/SocialLinks';
+
 
 export default function Footer({ version, view }) {
     let footerContent = null;
