@@ -37,47 +37,47 @@ AOS.init({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <HashRouter>
-      <Routes>
-        {/* Home */}
-        {/* <Route path="/" element={<Home />} />
+    {/* <HashRouter>
+      <Routes> */}
+    {/* Home */}
+    {/* <Route path="/" element={<Home />} />
         <Route path="/landing" element={<Landing />} />
         <Route path="/contact" element={<Contact />} /> */}
-        {/* Auth */}
-        <Route path="/auth" element={<Auth />} />
-        {/* Retail */}
-        {/* <Route path="/retail" element={<Retail />} /> */}
-        <Route path="/retail/family-cover" element={<Family />} />
-        <Route
+    {/* Auth */}
+    {/* <Route path="/auth" element={<Auth />} /> */}
+    {/* Retail */}
+    {/* <Route path="/retail" element={<Retail />} /> */}
+    {/* <Route path="/retail/family-cover" element={<Family />} /> */}
+    {/* <Route
           path="/retail/family-cover/statement"
           element={<FamilyStatement />}
-        />
-        <Route path="/retail/motors" element={<Motors />} />
+        /> */}
+    {/* <Route path="/retail/motors" element={<Motors />} />
         <Route path="/retail/motors/automotive" element={<AutomotivePage />} />
         <Route path="/retail/motors/packages" element={<MotorPackages />} />
         <Route
           path="/retail/boda/validation"
           element={<BodaValidationPage />}
         />
-        <Route path="/retail/boda/packages" element={<BodaPackages />} />
-        {/* Home View */}
-        <Route path="/" element={<Home />}>
+        <Route path="/retail/boda/packages" element={<BodaPackages />} /> */}
+    {/* Home View */}
+    {/* <Route path="/" element={<Home />}>
           <Route path="" element={<Landing />} />
           <Route path="contact" element={<Contact />} />
-        </Route>
-        {/* Ecommerce View */}
-        <Route path="/ecommerce" element={<Ecommerce />}>
+        </Route> */}
+    {/* Ecommerce View */}
+    {/* <Route path="/ecommerce" element={<Ecommerce />}>
           <Route path="" element={<Solutions />} />
           <Route path="corporate-product" element={<CorporateProduct />} />
           <Route
             path="individual-solutions"
             element={<IndividualSolutions />}
           />
-        </Route>
-        {/* Auth View */}
-        <Route path="/auth" element={<Auth />} />
-      </Routes>
-    </HashRouter>
+        </Route> */}
+    {/* Auth View */}
+    {/* <Route path="/auth" element={<Auth />} /> */}
+    {/* </Routes>
+    </HashRouter> */}
     <App />
   </React.StrictMode>
 );

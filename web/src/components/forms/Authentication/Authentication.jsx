@@ -98,7 +98,7 @@ export function AuthProvider({ children }) {
       setUser(jwtDecode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
     } else {
-      logoutUser();
+      // logoutUser();
     }
     if (loading) {
       setLoading(false); // Set loading to false after calling updateToken
