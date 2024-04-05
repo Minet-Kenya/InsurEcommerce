@@ -15,7 +15,7 @@ import {
   map,
   pinLocation,
   profile,
-} from "../../../utils/export-images";
+} from "../../utils/export-images";
 import "./Automotive.css";
 import ReusableInput from "../../addons/Forms/Inputs/ReusableInput";
 

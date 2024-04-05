@@ -13,7 +13,7 @@ import {
   shareForm,
   money2,
   cc,
-} from "../../../utils/export-images";
+} from "../../utils/export-images";
 import ReusableInput from "../../addons/Forms/Inputs/ReusableInput";
 
 function BodaValidation() {

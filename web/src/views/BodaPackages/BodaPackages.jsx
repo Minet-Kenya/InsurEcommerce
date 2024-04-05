@@ -1,7 +1,7 @@
 import React from "react";
 import ReusablePackageTable from "../../components/addons/PackagesTable/ReusablePackageTable";
 import "./BodaPackages.css";
-import { bodasterling } from "../../utils/export-images";
+import { bodasterling } from "../../components/utils/export-images";
 
 const BodaPackages = () => {
   const packages = [

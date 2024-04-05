@@ -7,7 +7,7 @@ import calender from "../../../assets/images/calender.png";
 import insuranceIcon from "../../../assets/images/insurance.png";
 
 import "./MotorsForm.css";
-import { caricon1, moneyIcon } from "../../../utils/export-images";
+import { caricon1, moneyIcon } from "../../utils/export-images";
 
 function MotorsForm() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import ReusablePackageTable from "../../components/addons/PackagesTable/ReusablePackageTable";
 import "./MotorPackages.css";
-import { bodasterling, coverform } from "../../utils/export-images";
+import { bodasterling, coverform } from "../../components/utils/export-images";
 
 const MotorPackages = () => {
   const packages = [

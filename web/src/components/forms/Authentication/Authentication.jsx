@@ -1,386 +1,446 @@
-import React, { createContext, useEffect, useState, useContext, useCallback } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+  useContext,
+  useCallback,
+} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 import "./Authentication.css";
 
-
 const AuthContext = createContext();
-
 
 export default AuthContext;
 
-
 export function AuthProvider({ children }) {
-	// State to store authentication tokens retrieved from localStorage
-	let [authTokens, setAuthTokens] = useState(() =>
-		localStorage.getItem("authTokens")
-			? JSON.parse(localStorage.getItem("authTokens"))
-			: null
-	);
+  // State to store authentication tokens retrieved from localStorage
+  let [authTokens, setAuthTokens] = useState(() =>
+    localStorage.getItem("authTokens")
+      ? JSON.parse(localStorage.getItem("authTokens"))
+      : null
+  );
 
-	// State to store user information decoded from authentication tokens
-	let [user, setUser] = useState(() =>
-		localStorage.getItem("authTokens")
-			? jwtDecode(localStorage.getItem("authTokens"))
-			: null
-	);
+  // State to store user information decoded from authentication tokens
+  let [user, setUser] = useState(() =>
+    localStorage.getItem("authTokens")
+      ? jwtDecode(localStorage.getItem("authTokens"))
+      : null
+  );
 
-	// State to manage loading state
-	let [loading, setLoading] = useState(true);
+  // State to manage loading state
+  let [loading, setLoading] = useState(true);
 
-	// Hook to enable navigation within the application
-	let navigate = useNavigate();
+  // Hook to enable navigation within the application
+  let navigate = useNavigate();
 
-	// Function to handle user login
-	let loginUser = async (e) => {
-		e.preventDefault();
-		try {
-			// Make a POST request to authenticate user
-			let response = await fetch("http://127.0.0.1:8000/users/auth/token/", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					username: e.target.username.value,
-					password: e.target.password.value,
-					role: e.target.role.value,
-				}),
-			});
+  // Function to handle user login
+  let loginUser = async (e) => {
+    e.preventDefault();
+    try {
+      // Make a POST request to authenticate user
+      let response = await fetch("http://127.0.0.1:8000/users/auth/token/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: e.target.username.value,
+          password: e.target.password.value,
+          role: e.target.role.value,
+        }),
+      });
 
-			let data = await response.json();
+      let data = await response.json();
 
-			if (response.status === 200) {
-				// Set authentication tokens and user information upon successful login
-				setAuthTokens(data);
-				setUser(jwtDecode(data.access));
-				localStorage.setItem("authTokens", JSON.stringify(data));
-				navigate("/");
-			} else {
-				alert("Something went wrong");
-			}
-		} catch (error) {
-			console.error("Error:", error);
-			alert("Something went wrong");
-		}
-	};
+      if (response.status === 200) {
+        // Set authentication tokens and user information upon successful login
+        setAuthTokens(data);
+        setUser(jwtDecode(data.access));
+        localStorage.setItem("authTokens", JSON.stringify(data));
+        navigate("/");
+      } else {
+        alert("Something went wrong");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong");
+    }
+  };
 
-	// Function to handle user logout
-	let logoutUser = useCallback(() => {
-		setAuthTokens(null);
-		setUser(null);
-		localStorage.removeItem("authTokens");
-		navigate("/");
-	}, [setAuthTokens, setUser, navigate]);
+  // Function to handle user logout
+  let logoutUser = useCallback(() => {
+    setAuthTokens(null);
+    setUser(null);
+    localStorage.removeItem("authTokens");
+    navigate("/");
+  }, [setAuthTokens, setUser, navigate]);
 
-	// Function to update authentication tokens
-	let updateToken = useCallback(async () => {
-		console.log("Update token called");
-		let response = await fetch("http://127.0.0.1:8000/users/auth/token/refresh/", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				refresh: authTokens?.refresh,
-			}),
-		});
-		let data = await response.json();
-		if (response.status === 200) {
-			setAuthTokens(data);
-			setUser(jwtDecode(data.access));
-			localStorage.setItem("authTokens", JSON.stringify(data));
-		} else {
-			logoutUser();
-		}
-		if (loading) {
-			setLoading(false); // Set loading to false after calling updateToken
-		}
-	}, [authTokens, logoutUser, loading]);
+  // Function to update authentication tokens
+  let updateToken = useCallback(async () => {
+    console.log("Update token called");
+    let response = await fetch(
+      "http://127.0.0.1:8000/users/auth/token/refresh/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          refresh: authTokens?.refresh,
+        }),
+      }
+    );
+    let data = await response.json();
+    if (response.status === 200) {
+      setAuthTokens(data);
+      setUser(jwtDecode(data.access));
+      localStorage.setItem("authTokens", JSON.stringify(data));
+    } else {
+      logoutUser();
+    }
+    if (loading) {
+      setLoading(false); // Set loading to false after calling updateToken
+    }
+  }, [authTokens, logoutUser, loading]);
 
-	// Effect hook to update tokens and manage loading state
-	useEffect(() => {
-		if (loading) {
-			updateToken();
-		}
-		let fourMinutes = 1000 * 60 * 4;
-		let interval = setInterval(() => {
-			if (authTokens) {
-				updateToken();
-			}
-		}, fourMinutes);
-		return () => clearInterval(interval);
-	}, [authTokens, updateToken, loading]); // Include loading in the dependency array
+  // Effect hook to update tokens and manage loading state
+  useEffect(() => {
+    if (loading) {
+      updateToken();
+    }
+    let fourMinutes = 1000 * 60 * 4;
+    let interval = setInterval(() => {
+      if (authTokens) {
+        updateToken();
+      }
+    }, fourMinutes);
+    return () => clearInterval(interval);
+  }, [authTokens, updateToken, loading]); // Include loading in the dependency array
 
-	// Context data to be passed down to child components
-	let contextData = {
-		user: user,
-		authTokens: authTokens,
-		loginUser: loginUser,
-		logoutUser: logoutUser,
-	};
+  // Context data to be passed down to child components
+  let contextData = {
+    user: user,
+    authTokens: authTokens,
+    loginUser: loginUser,
+    logoutUser: logoutUser,
+  };
 
-
-	// Return the AuthContext provider with context data
-	return (
-		<AuthContext.Provider value={contextData}>
-			{loading ? null : children}
-		</AuthContext.Provider>
-	);
+  // Return the AuthContext provider with context data
+  return (
+    <AuthContext.Provider value={contextData}>
+      {loading ? null : children}
+    </AuthContext.Provider>
+  );
 }
 
 export function LoginForm() {
-	let { loginUser } = useContext(AuthContext);
+  let { loginUser } = useContext(AuthContext);
 
-	return (
-		<>
-			<form id="loginform" className="authform row g-3" method="post" onSubmit={loginUser} noValidate>
-				<>
-					<div className="mt-2 loading text-center d-none">
-						<div className="spinner-border text-primary" role="status">
-							<span className="visually-hidden">Loading...</span>
-						</div>
-					</div>
-					<div className="mt-2 alert alert-danger text-center d-none"></div>
-					<div className="mt-2 alert alert-success text-center d-none"></div>
-				</>
-				<>
-					<div className="col-12 form-floating mt-3">
-						<input
-							type="text"
-							name="username"
-							id="login_username"
-							className="form-control"
-							placeholder="name@example.com"
-							required
-							autoFocus
-						/>
-						<label htmlFor="login_username">Your Username</label>
-						<div className="invalid-feedback">Please enter a valid username</div>
-					</div>
-				</>
-				<>
-					<div className="col-12 form-floating mt-3">
-						<input
-							type="password"
-							name="password"
-							id="login_password"
-							className="form-control"
-							placeholder="Your password"
-							autoComplete="current-password"
-							required
-						/>
-						<label htmlFor="login_password">Your password</label>
-						<div className="invalid-feedback">Please enter our password</div>
-					</div>
-				</>
-				<>
-					<div className="col-12 form-floating mt-3">
-						<input
-							type="text"
-							name="role"
-							id="login_role"
-							defaultValue="CLIENT"
-							hidden
-						/>
-					</div>
-				</>
-				<>
-					<div className="col-12 recaptcha px-5 py-1 d-flex justify-content-sm-between align-items-center">
-						<div
-							className="g-recaptcha"
-							data-sitekey=""
-							data-callback="enableBtn"
-							data-expired-callback="disableBtn"
-						></div>
-					</div>
-				</>
-				<>
-					<div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
-						<button
-							type="submit"
-							className="btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0"
-						>
-							Login
-						</button>
-						<Link
-							to="/"
-							className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4"
-						>
-							Go Back
-						</Link>
-					</div>
-				</>
-			</form>
-		</>
-	);
+  return (
+    <>
+      <form
+        id="loginform"
+        className="authform row g-3"
+        method="post"
+        onSubmit={loginUser}
+        noValidate
+      >
+        <>
+          <div className="mt-2 loading text-center d-none">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div className="mt-2 alert alert-danger text-center d-none"></div>
+          <div className="mt-2 alert alert-success text-center d-none"></div>
+        </>
+        <>
+          <div className="col-12 form-floating mt-3">
+            <input
+              type="text"
+              name="username"
+              id="login_username"
+              className="form-control"
+              placeholder="name@example.com"
+              required
+              autoFocus
+            />
+            <label htmlFor="login_username">Your Username</label>
+            <div className="invalid-feedback">
+              Please enter a valid username
+            </div>
+          </div>
+        </>
+        <>
+          <div className="col-12 form-floating mt-3">
+            <input
+              type="password"
+              name="password"
+              id="login_password"
+              className="form-control"
+              placeholder="Your password"
+              autoComplete="current-password"
+              required
+            />
+            <label htmlFor="login_password">Your password</label>
+            <div className="invalid-feedback">Please enter our password</div>
+          </div>
+        </>
+        <>
+          <div className="col-12 form-floating mt-3">
+            <input
+              type="text"
+              name="role"
+              id="login_role"
+              defaultValue="CLIENT"
+              hidden
+            />
+          </div>
+        </>
+        <>
+          <div className="col-12 recaptcha px-5 py-1 d-flex justify-content-sm-between align-items-center">
+            <div
+              className="g-recaptcha"
+              data-sitekey=""
+              data-callback="enableBtn"
+              data-expired-callback="disableBtn"
+            ></div>
+          </div>
+        </>
+        <>
+          <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
+            <button
+              type="submit"
+              className="btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0"
+            >
+              Login
+            </button>
+            <Link
+              to="/"
+              className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4"
+            >
+              Go Back
+            </Link>
+          </div>
+        </>
+      </form>
+    </>
+  );
 }
 
 export function SignupForm() {
+  const [full_name, setFullName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [has_agreed, setHasAgreed] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
-	const [full_name, setFullName] = useState("");
-	const [username, setUsername] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [has_agreed, setHasAgreed] = useState("");
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(null);
-	const [success, setSuccess] = useState(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const form = e.target;
+    setError(null); // clear previous
+    setSuccess(null); // clear previous
 
-		setError(null); // clear previous 
-		setSuccess(null); // clear previous 
+    if (!form.checkValidity()) {
+      e.stopPropagation();
+      form.classList.add("was-validated");
+    } else {
+      try {
+        setLoading(true);
 
-		if (!form.checkValidity()) {
-			e.stopPropagation();
-			form.classList.add('was-validated');
-		} else {
+        // Prepare form data
+        const formData = new FormData();
+        formData.append("full_name", full_name);
+        formData.append("email", email);
+        formData.append("username", username);
+        formData.append("password", password);
 
-			try {
-				setLoading(true);
+        // Send form data to backend
+        const signupResponse = await fetch(
+          "http:127.0.0.1:8000/api/register/",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        const responseData = await signupResponse.json();
+        if (responseData.message) {
+          setSuccess(responseData.message); // Handle success
 
-				// Prepare form data
-				const formData = new FormData();
-				formData.append('full_name', full_name);
-				formData.append('email', email);
-				formData.append('username', username);
-				formData.append('password', password);
+          // Reset form fields
+          setFullName("");
+          setEmail("");
+          setUsername("");
+          setPassword("");
+          setHasAgreed("");
 
-				// Send form data to backend
-				const signupResponse = await fetch('http:127.0.0.1:8000/api/register/', {
-					method: 'POST',
-					body: formData
-				});
-				const responseData = await signupResponse.json();
-				if (responseData.message) {
-					setSuccess(responseData.message); // Handle success
+          form.classList.remove("was-validated");
+        } else if (responseData.errors) {
+          setError(responseData.errors.email[0].message); // Handle error
+          form.classList.add("was-validated");
+        } else {
+          throw new Error("Failed to read 'message' or 'errors' field");
+        }
 
-					// Reset form fields
-					setFullName("");
-					setEmail("");
-					setUsername("");
-					setPassword("");
-					setHasAgreed("");
+        setLoading(false);
+      } catch (error) {
+        setError("Failed to send email");
+        console.error("Error sending email:", error);
+      }
+    }
+  };
 
-					form.classList.remove('was-validated');
+  return (
+    <>
+      <form
+        id="signupform"
+        className="authform row g-3"
+        onSubmit={handleSubmit}
+        method="post"
+        action=""
+        noValidate
+      >
+        <div className="my-2">
+          {success && (
+            <div className="alert alert-success text-center">{success}</div>
+          )}
+          {error && (
+            <div className="alert alert-danger text-center">{error}</div>
+          )}
+          {loading && (
+            <div className="loading text-center">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          )}
+        </div>
 
-				} else if (responseData.errors) {
-					setError(responseData.errors.email[0].message); // Handle error
-					form.classList.add('was-validated');
-				} else {
-					throw new Error("Failed to read 'message' or 'errors' field");
-				}
+        {/* Full Name */}
 
-				setLoading(false);
+        <div className="col-12 col-md-6">
+          <label htmlFor="signup_full_name" className="form-label">
+            Your Name
+          </label>
 
-			} catch (error) {
-				setError("Failed to send email");
-				console.error('Error sending email:', error);
-			}
+          <input
+            type="text"
+            id="signup_full_name"
+            value={full_name}
+            onChange={(e) => setFullName(e.target.value)}
+            className="form-control"
+            required
+          />
 
-		}
-	};
+          <div className="invalid-feedback">Please enter your full name!</div>
+        </div>
 
-	return (
-		<>
-			<form id="signupform" className="authform row g-3" onSubmit={handleSubmit}
-				method="post"
-				action=""
-				noValidate>
-				<div className="my-2">
-					{success && <div className="alert alert-success text-center">{success}</div>}
-					{error && <div className="alert alert-danger text-center">{error}</div>}
-					{loading && <div className="loading text-center"><div className="spinner-border text-primary" role="status"><span className="visually-hidden">Loading...</span></div></div>}
-				</div>
+        {/* Email */}
 
-				{/* Full Name */}
+        <div className="col-12 col-md-6">
+          <label htmlFor="signup_Email" className="form-label">
+            Your Email
+          </label>
 
-				<div className="col-12 col-md-6">
-					<label htmlFor="signup_full_name" className="form-label">Your Name</label>
+          <input
+            type="email"
+            id="signup_email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="form-control"
+            required
+          />
 
-					<input type="text" id="signup_full_name"
-						value={full_name}
-						onChange={(e) => setFullName(e.target.value)}
-						className="form-control"
-						required />
+          <div className="invalid-feedback">
+            Please enter a valid Email adddress!
+          </div>
+        </div>
 
-					<div className="invalid-feedback">Please enter your full name!</div>
-				</div>
+        {/* Username */}
 
-				{/* Email */}
+        <div className="col-12 col-md-6">
+          <label htmlFor="signup_username" className="form-label">
+            Username
+          </label>
 
-				<div className="col-12 col-md-6">
-					<label htmlFor="signup_Email" className="form-label">Your Email</label>
+          <input
+            type="text"
+            id="signup_username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="form-control"
+            required
+          />
 
-					<input type="email" id="signup_email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						className="form-control"
-						required />
+          <div className="invalid-feedback">Please choose a username.</div>
+        </div>
 
-					<div className="invalid-feedback">Please enter a valid Email adddress!</div>
-				</div>
+        {/* Password */}
 
-				{/* Username */}
+        <div className="col-12 col-md-6">
+          <label htmlFor="yourPassword" className="form-label">
+            Password
+          </label>
 
-				<div className="col-12 col-md-6">
-					<label htmlFor="signup_username" className="form-label">Username</label>
+          <input
+            type="password"
+            id="signup_password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="form-control"
+            required
+          />
 
-					<input type="text" id="signup_username"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						className="form-control"
-						required />
+          <div className="invalid-feedback">Please enter your password!</div>
+        </div>
 
-					<div className="invalid-feedback">Please choose a username.</div>
-				</div>
+        {/* Has Agreed */}
 
-				{/* Password */}
+        <div className="col-12">
+          <div className="form-check">
+            <input
+              type="checkbox"
+              id="signup_agreeterms"
+              value={has_agreed}
+              onChange={(e) => setHasAgreed(e.target.value)}
+              className="form-check-input"
+              required
+            />
 
-				<div className="col-12 col-md-6">
-					<label htmlFor="yourPassword" className="form-label">Password</label>
+            <label className="form-check-label ms-3" htmlFor="acceptTerms">
+              I agree and accept the <Link to="#">terms and conditions</Link>
+            </label>
 
-					<input type="password" id="signup_password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						className="form-control"
-						required />
+            <div className="invalid-feedback">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
 
-					<div className="invalid-feedback">Please enter your password!</div>
-				</div>
+        {/* Submit */}
 
-				{/* Has Agreed */}
+        <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
+          <button
+            className="btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0"
+            disabled={loading}
+          >
+            Create Account
+          </button>
 
-				<div className="col-12">
-					<div className="form-check">
-						<input type="checkbox" id="signup_agreeterms"
-							value={has_agreed}
-							onChange={(e) => setHasAgreed(e.target.value)}
-							className="form-check-input"
-							required />
-
-						<label className="form-check-label ms-3" htmlFor="acceptTerms">
-							I agree and accept the <Link to="#">terms and conditions</Link>
-						</label>
-
-						<div className="invalid-feedback">You must agree before submitting.</div>
-					</div>
-				</div>
-
-				{/* Submit */}
-
-				<div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center">
-
-					<button className="btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0" disabled={loading}>Create Account</button>
-
-					<Link to="/" className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4">Go Back</Link>
-
-				</div>
-			</form >
-		</>
-	);
+          <Link
+            to="/"
+            className="d-block d-sm-none btn btn-primary text-white text-uppercase w-100 ms-sm-4"
+          >
+            Go Back
+          </Link>
+        </div>
+      </form>
+    </>
+  );
 }
