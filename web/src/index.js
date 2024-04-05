@@ -1,11 +1,16 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import App from "./App";
+
 import AOS from "aos";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import "aos/dist/aos.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "./index.scss";
+// import "./index.scss";
 import "aos/dist/aos.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "./index.scss";
+// import "./index.scss";
 
 import Ecommerce, {
   CorporateProduct,
@@ -28,10 +33,6 @@ AOS.init({
   duration: 600,
   easing: "ease-in-out",
 });
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
