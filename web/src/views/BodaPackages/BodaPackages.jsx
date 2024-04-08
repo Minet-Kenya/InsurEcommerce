@@ -3,7 +3,7 @@ import ReusablePackageTable from "../../components/addons/PackagesTable/Reusable
 import "./BodaPackages.css";
 import { bodasterling } from "../../components/utils/export-images";
 
-const BodaPackages = () => {
+export function BodaPackages() {
   const packages = [
     {
       title: "PACKAGE  1",
@@ -77,6 +77,4 @@ const BodaPackages = () => {
       </div>
     </div>
   );
-};
-
-export default BodaPackages;
+}

@@ -17,7 +17,12 @@ import Ecommerce, {
   Solutions,
 } from "./views/Ecommerce/Ecommerce";
 import {
+  BodaPackages,
+  BodaPersonalInfo,
+  BodaPremiumPackages,
+  MotorcycleDetails,
   MotorcycleInsurance,
+  MotorcycleRiderCoverDetails,
   MotorcycleSolutions,
 } from "./views/MotorcycleInsurance/MotorcycleInsurance";
 
@@ -55,6 +60,24 @@ function App() {
             <Route
               path="motorcycle-insurance"
               element={<MotorcycleSolutions />}
+            />
+
+            <Route
+              path="motorcycle-personal-information"
+              element={<BodaPersonalInfo />}
+            />
+            <Route
+              path="motorcycle-cover-details"
+              element={<MotorcycleDetails />}
+            />
+            <Route
+              path="motorcycle-rider-details"
+              element={<MotorcycleRiderCoverDetails />}
+            />
+            <Route path="boda-boda-solution" element={<BodaPackages />} />
+            <Route
+              path="motorcycle-premium-insurance"
+              element={<BodaPremiumPackages />}
             />
           </Route>
 

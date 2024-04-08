@@ -358,11 +358,9 @@ export function IndividualSolutions() {
               </a>
             </div>
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
-              <a
+              <Link
                 className="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://wellness.minet.co.ke/"
-                target="_blank"
-                rel="noreferrer"
+                to="/ecommerce/motorcycle-insurance"
               >
                 <img
                   src={ind12}
@@ -372,7 +370,7 @@ export function IndividualSolutions() {
                   className="img-fluid"
                 />
                 <h2 className="mt-2">Motorcycle Insurance</h2>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

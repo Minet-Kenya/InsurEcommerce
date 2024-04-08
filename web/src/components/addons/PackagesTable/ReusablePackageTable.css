@@ -19,12 +19,13 @@
 .package-table .package-title {
     background-color: #E3261E;
     color: white;
+    max-width: 50%;
 }
 
 .package-table .feature-name {
     background-color: #E3261E;
     color: white;
-    width: 155px;
+    min-width: 155px;
     text-align: left;
 }
 

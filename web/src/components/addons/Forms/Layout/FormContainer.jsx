@@ -1,7 +1,13 @@
 import React from "react";
 import "./FormContainer.css";
 
-function FormContainer({ children, headerIcon, action = "SUBMIT", formTitle }) {
+function FormContainer({
+  children,
+  headerIcon,
+  action = "SUBMIT",
+  formTitle,
+  onClick,
+}) {
   return (
     <div id="cover-form" className="container">
       <form>
@@ -15,7 +21,7 @@ function FormContainer({ children, headerIcon, action = "SUBMIT", formTitle }) {
         </div>
         {children}
         <div className="sbtn">
-          <button type="submit" className="btn btn-primary">
+          <button onClick={onClick} type="submit" className="btn btn-primary">
             {action}
           </button>
         </div>
