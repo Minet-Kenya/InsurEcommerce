@@ -19,3 +19,4 @@ export { default as profile } from "../../assets/images/boda/profile.png";
 export { default as bodasterling } from "../../assets/images/boda/bodasterling.png";
 export { default as iconBoda } from "../../assets/images/boda/icon_Boda.png";
 export { default as iconBodaPremium } from "../../assets/images/boda/icon-Boda-premium.png";
+export { default as insuranceIcon } from "../../assets/images/family-cover.png";

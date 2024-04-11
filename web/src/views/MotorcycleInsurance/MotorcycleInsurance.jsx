@@ -19,10 +19,13 @@ import {
   globeIcon,
   iconBoda,
   iconBodaPremium,
+  map,
   messageIcon,
   money2,
   personicon,
   phoneIcon,
+  pinLocation,
+  profile,
   shareForm,
 } from "../../components/utils/export-images";
 import ReusablePackageTable from "../../components/addons/PackagesTable/ReusablePackageTable";
@@ -414,6 +417,11 @@ export function MotorcycleDetails() {
 }
 
 export function MotorcycleRiderCoverDetails() {
+  const navigate = useNavigate();
+
+  function saveMotocycleRiderDetails() {
+    navigate("/ecommerce/motorcycle-more-personal-details");
+  }
   return (
     <>
       <Sidebar view="MotorcycleInsurance" />
@@ -436,6 +444,7 @@ export function MotorcycleRiderCoverDetails() {
             <FormContainer
               headerIcon={coverform}
               formTitle="Motorcycle Cover Details"
+              onClick={saveMotocycleRiderDetails}
             >
               <div className="sub-icon-header">
                 <div className="input-container">
@@ -495,6 +504,89 @@ export function MotorcycleRiderCoverDetails() {
                     />
                   </div>
                 </div>
+              </div>
+            </FormContainer>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}
+
+export function MorePersonalDetails() {
+  return (
+    <>
+      <Sidebar view="MotorcycleInsurance" />
+      <main id="dashboard" className="dashboard h-100 d-flex flex-column">
+        <div className="pagetitle z-0">
+          <h1 className="text-white">Our Solutions</h1>
+          <nav>
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item active text-secondary">
+                Motorcycle & Rider Details
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <section
+          className="flex-grow-1 container-fluid text-center d-flex flex-column  mb-3"
+          data-aos="fade-in"
+        >
+          <div>
+            <FormContainer
+              action="Accept Terms and submit your request as at 2023 | 07 | 06 | 10:34: 52"
+              headerIcon={coverform}
+              formTitle="Personal Information"
+            >
+              <div className="sub-icon-header">
+                <div className="input-container">
+                  <ReusableInput icon={personicon} label="First Name *" />
+                  <ReusableInput icon={personicon} label="Second Name" />
+                  <ReusableInput icon={personicon} label="Last Name" />
+                  <ReusableInput icon={messageIcon} label="ID Number *" />
+                  <ReusableInput icon={personicon} label="KRA PIN *" />
+                  <ReusableInput icon={emailIcon} label="Email Address" />
+                  <ReusableInput
+                    icon={phoneIcon}
+                    label="Owner Cell Phone No *"
+                  />
+                </div>
+                <div className="input-container">
+                  <ReusableInput label="Cell Phone Number *" icon={phoneIcon} />
+                  <ReusableInput label="Date of Birth *" icon={personicon} />
+                  <ReusableInput label="Gender" icon={personicon} />
+                  <ReusableInput label="County Of Residence *" icon={map} />
+                  <ReusableInput
+                    label="Postal Address Code *"
+                    icon={pinLocation}
+                  />
+                  <ReusableInput
+                    label="National ID (PDF or Image Only) *"
+                    type="file"
+                    icon={profile}
+                  />
+                  <ReusableInput
+                    label="Driving Licence (PDF or Image only)"
+                    type="file"
+                    icon={profile}
+                  />
+                </div>
+              </div>
+              <div className="terms">
+                <h6>Acceptance Terms</h6>
+                <p>
+                  I/We the undersigned do hereby warrant the truth and
+                  correctness of all the above statements and particulars and I
+                  /We declare that I/We have not withheld any material
+                  information. I/We undertake that the motor cycle(s) to be
+                  insured shall not be driven by any person who to my / our
+                  knowledge has been refused any motor vehicle insurance or
+                  continuance thereat. And I/We agree that the above proposal
+                  and this warranty and declaration shall be the basis of the
+                  contract between me / us and the Monarch Insurance Company
+                  Limited and I/We agree to abide by the terms and conditions of
+                  the policy issued in answer to this proposal
+                </p>
               </div>
             </FormContainer>
           </div>

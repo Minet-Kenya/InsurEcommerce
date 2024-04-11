@@ -1,0 +1,19 @@
+.car-empty-state img {
+    width: 138px;
+    margin: 11px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.car-empty-state {
+    width: 100%
+}
+
+.complete-purchase {
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}

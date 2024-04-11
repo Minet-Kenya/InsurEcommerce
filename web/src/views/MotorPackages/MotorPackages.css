@@ -24,7 +24,7 @@
 
 @media (min-width: 768px) {
     .boda-packages {
-        max-width: 1058px;
+        /* max-width: 1058px; */
         /* Adjust as needed for tablet size */
         margin: 0 auto;
         /* background-color: transparent; */

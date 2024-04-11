@@ -20,11 +20,17 @@ import {
   BodaPackages,
   BodaPersonalInfo,
   BodaPremiumPackages,
+  MorePersonalDetails,
   MotorcycleDetails,
   MotorcycleInsurance,
   MotorcycleRiderCoverDetails,
   MotorcycleSolutions,
 } from "./views/MotorcycleInsurance/MotorcycleInsurance";
+import {
+  MotorCoverForm,
+  MotorInsuranceQuote,
+  MotorPackages,
+} from "./views/MotorInsurance/MotorInsurance";
 
 AOS.init({
   duration: 600,
@@ -74,10 +80,26 @@ function App() {
               path="motorcycle-rider-details"
               element={<MotorcycleRiderCoverDetails />}
             />
+            <Route
+              path="motorcycle-more-personal-details"
+              element={<MorePersonalDetails />}
+            />
             <Route path="boda-boda-solution" element={<BodaPackages />} />
             <Route
               path="motorcycle-premium-insurance"
               element={<BodaPremiumPackages />}
+            />
+            <Route
+              path="motor-insurance-quote"
+              element={<MotorInsuranceQuote />}
+            />
+            <Route
+              path="motor-insurance-packages"
+              element={<MotorPackages />}
+            />
+            <Route
+              path="motor-insurance-coverform"
+              element={<MotorCoverForm />}
             />
           </Route>
 

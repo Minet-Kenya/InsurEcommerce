@@ -2,6 +2,10 @@
     color: #E3261E;
 }
 
+.automotive-header h6 {
+    text-align: left;
+}
+
 .auto-mobile {
     display: flex;
     color: #434343;
