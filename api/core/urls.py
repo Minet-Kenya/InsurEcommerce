@@ -27,6 +27,7 @@ urlpatterns = [
     path("base/", include("base.urls")),
     path("mail/", include("mail.urls")),
     path("users/", include("users.urls")),
+    path('', include('insurance_packages.urls')),
 ]
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/layout/Header/Header";
 import Preloader from "../../components/addons/Preloader/Preloader";
 import BackToTopBtn from "../../components/addons/BackToTopBtn/BackToTopBtn";
@@ -32,6 +32,7 @@ import ReusablePackageTable from "../../components/addons/PackagesTable/Reusable
 import FormContainer from "../../components/addons/Forms/Layout/FormContainer";
 import ReusableInput from "../../components/addons/Forms/Inputs/ReusableInput";
 import { useNavigate } from "react-router-dom";
+import BaseURL from "../../components/utils/constants";
 
 export function MotorcycleInsurance() {
   return (
@@ -107,55 +108,80 @@ export function MotorcycleSolutions() {
 }
 
 export function BodaPackages() {
-  const packages = [
-    {
-      title: "Fully Comprehensive insurance + Personal Accident",
-      Premiums: "Kshs 7,576",
-      features: {
-        Premiums: "",
-        "": "",
-        "Own Damages and Partial Theft": "Description 3 for Package A",
-      },
-    },
-    {
-      title: "Fully Comprehensive insurance",
-      Premiums: "Kshs 6,576",
+  const [packages1, setPackages] = useState([]);
 
-      features: {
-        "Feature 3": "Description 3 for Package B",
-      },
-    },
-    // {
-    //   title: "PACKAGE 3",
-    //   Premiums: "Kshs 4,556 ",
+  useEffect(() => {
+    fetch(`${BaseURL}/packages/boda-boda`)
+      .then((response) => response.json())
+      .then((data) => {
+        const updatedPackages = data.map((packages) => ({
+          ...packages,
+          features: {
+            Premiums: "",
+            "": "",
+            ...packages.features,
+          },
+        }));
+        // console.log(updatedPackages);
+        setPackages(updatedPackages);
+        // setPackages((prevPackages) => [
+        //   {
+        //     features: {
+        //       Premiums: "",
+        //       "": "",
+        //     },
+        //   },
+        //   ,
+        //   ...data,
+        // ]);
+      })
+      .catch((error) => console.error("Error:", error));
+  }, []);
 
-    //   features: {
-    //     "Feature 3": "Description 3 for Package B",
-    //   },
-    // },
-    // {
-    //   title: "PACKAGE 4",
-    //   Premiums: "Kshs 3,556",
-    //   features: {
-    //     "Feature 3": "Description 3 for Package B",
-    //   },
-    // },
-    // {
-    //   title: "PACKAGE 5",
-    //   Premiums: "Kshs 1,500",
-    //   features: {
-    //     "Feature 3": "Description 3 for Package B",
-    //   },
-    // },
-  ];
+  // const packages1 = [
+
+  //   {
+  //     title: "Fully Comprehensive insurance",
+  //     Premiums: "Kshs 6,576",
+  //     features: {
+  //       "Feature 3": "Description 3 for Package B",
+  //     },
+  //   },
+  // {
+  //   title: "PACKAGE 3",
+  //   Premiums: "Kshs 4,556 ",
+
+  //   features: {
+  //     "Feature 3": "Description 3 for Package B",
+  //   },
+  // },
+  // {
+  //   title: "PACKAGE 4",
+  //   Premiums: "Kshs 3,556",
+  //   features: {
+  //     "Feature 3": "Description 3 for Package B",
+  //   },
+  // },
+  // {
+  //   title: "PACKAGE 5",
+  //   Premiums: "Kshs 1,500",
+  //   features: {
+  //     "Feature 3": "Description 3 for Package B",
+  //   },
+  // },
+  // ];
 
   const PackageContent = ({ children }) => {
     return children;
   };
 
   const features = Array.from(
-    new Set(packages.flatMap((pkg) => Object.keys(pkg.features)))
+    new Set(packages1.flatMap((pkg) => Object.keys(pkg.features)))
   );
+
+  const choosePackage = (id) => {
+    console.log(id);
+  };
 
   return (
     <>
@@ -182,16 +208,23 @@ export function BodaPackages() {
                 <img src={bodasterling} alt="" className="mr-3" srcset="" />
                 <h4>MINET BODA BODA FINANCE PACKAGES</h4>
               </div>
-              <ReusablePackageTable packages={packages}>
-                {packages.map((pr, i) => (
+              <ReusablePackageTable packages={packages1}>
+                {packages1.map((pr, i) => (
                   <PackageContent key={i} package={pr.title} feature="Premiums">
-                    <div className="content price">{pr.Premiums}</div>
+                    <div className="content price">{pr.premiums}</div>
                   </PackageContent>
                 ))}
 
-                {packages.map((p, i) => (
+                {packages1.map((p, i) => (
                   <PackageContent key={i} package={p.title} feature="">
-                    <button className="content choose-btn">My Choice</button>
+                    <button
+                      onClick={() => {
+                        choosePackage(p.id);
+                      }}
+                      className="content choose-btn"
+                    >
+                      My Choice
+                    </button>
                   </PackageContent>
                 ))}
               </ReusablePackageTable>
