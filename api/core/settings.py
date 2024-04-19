@@ -61,7 +61,8 @@ INSTALLED_APPS = [
     "base",
     "mail",
     "users",
-    "insurance_packages"
+    "insurance_packages",
+    "motocycle_insurance"
 ]
 
 REST_FRAMEWORK = {
@@ -72,7 +73,7 @@ REST_FRAMEWORK = {
 
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html#
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,

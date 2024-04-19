@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import uuid
 
 
 class Company(models.Model):
@@ -126,3 +127,22 @@ def ensure_single_company(sender, instance, created, **kwargs):
 
     if created and Company.objects.count() > 1:
         instance.delete()
+
+
+
+
+class Document(models.Model):
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    document = models.FileField(upload_to='documents/')
+    name = models.CharField(max_length=255, blank=True)
+    type = models.CharField(max_length=255, blank=True)
+    client = models.ForeignKey("users.Client",on_delete=models.SET_NULL,null=True)
+
+    def save(self, *args, **kwargs):
+        # Extract the name and type from the uploaded file
+        self.name = self.document.name
+        self.type = self.document.name.split('.')[-1]
+        super().save(*args, **kwargs)
+
+    def  __str__(self):
+        return self.client.email

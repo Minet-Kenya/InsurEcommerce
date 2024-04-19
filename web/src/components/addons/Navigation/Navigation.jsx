@@ -6,7 +6,7 @@ import "./Navigation.css";
 import AuthContext from "../../forms/Authentication/Authentication";
 
 export default function Navigation() {
-  // let { user, logoutUser } = useContext(AuthContext);
+  let { user, logoutUser } = useContext(AuthContext);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const location = useLocation();
   const { pathname } = location;
@@ -41,7 +41,7 @@ export default function Navigation() {
             </Link>
           </li>
           <li>
-            {/* {!user ? (
+            {!user ? (
               <Link className="nav-link" to="/auth">
                 <span className="bi bi-person-check-fill">
                   &nbsp;&nbsp;Login / Sign up
@@ -49,7 +49,7 @@ export default function Navigation() {
               </Link>
             ) : (
               <Link onClick={logoutUser}>Logout</Link>
-            )} */}
+            )}
           </li>
         </ul>
         <i

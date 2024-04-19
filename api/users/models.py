@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils import timezone
+import uuid
 
 
 class UserManager(BaseUserManager):
@@ -34,6 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     username_validator = UnicodeUsernameValidator()
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     role = models.CharField(max_length=50, choices=Role.choices, blank=True)
     image = models.ImageField(
         upload_to="students/",
@@ -55,12 +57,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30,default=False)
     last_name = models.CharField(max_length=30)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
     last_login = models.DateTimeField(blank=True, null=True)
+    personal_info = models.JSONField(blank=True, null=True)
+    created_at = models.DateField(auto_now_add=True)  # Automatically set to current date when object is created
+    last_modified = models.DateField(auto_now=True)
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email", "first_name", "last_name"]
@@ -72,7 +78,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        # return f"{self.first_name} {self.last_name}"
+        return self.email
+
+    class Meta:
+        ordering = ['-created_at']
+
 
 
 class ClientManager(BaseUserManager):
@@ -87,6 +98,3 @@ class Client(User):
 
     base_role = User.Role.CLIENT
     clients = ClientManager()
-
-
-

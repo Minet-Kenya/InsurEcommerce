@@ -83,5 +83,7 @@ class ClientAdmin(BaseUserAdmin):
     def get_group_filter(self):
         return Group.objects.filter(name=User.Role.CLIENT)
 
-    # list_display = ("name", "school", "is_head_instructor")
+    list_display = ("name", "email", "role")
     # list_editable = ()
+    search_fields = ('email', 'name')
+    list_filter = ['role']

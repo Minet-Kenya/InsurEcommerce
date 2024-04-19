@@ -48,7 +48,7 @@ export function AuthProvider({ children }) {
         body: JSON.stringify({
           username: e.target.username.value,
           password: e.target.password.value,
-          role: e.target.role.value,
+          role: "CLIENT",
         }),
       });
 
@@ -59,7 +59,7 @@ export function AuthProvider({ children }) {
         setAuthTokens(data);
         setUser(jwtDecode(data.access));
         localStorage.setItem("authTokens", JSON.stringify(data));
-        navigate("/");
+        navigate("/ecommerce");
       } else {
         alert("Something went wrong");
       }
@@ -240,6 +240,8 @@ export function SignupForm() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
+  let navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -256,14 +258,14 @@ export function SignupForm() {
 
         // Prepare form data
         const formData = new FormData();
-        formData.append("full_name", full_name);
+        formData.append("name", full_name);
         formData.append("email", email);
         formData.append("username", username);
         formData.append("password", password);
 
         // Send form data to backend
         const signupResponse = await fetch(
-          "http:127.0.0.1:8000/api/register/",
+          "http://127.0.0.1:8000/api/register/",
           {
             method: "POST",
             body: formData,
@@ -281,6 +283,7 @@ export function SignupForm() {
           setHasAgreed("");
 
           form.classList.remove("was-validated");
+          navigate("/auth");
         } else if (responseData.errors) {
           setError(responseData.errors.email[0].message); // Handle error
           form.classList.add("was-validated");

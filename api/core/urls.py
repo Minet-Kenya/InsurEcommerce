@@ -28,6 +28,9 @@ urlpatterns = [
     path("mail/", include("mail.urls")),
     path("users/", include("users.urls")),
     path('', include('insurance_packages.urls')),
+    path("",include("users.urls")),
+    path('api/', include('motocycle_insurance.urls')),
+
 ]
 
 

@@ -109,33 +109,37 @@ export function MotorcycleSolutions() {
 
 export function BodaPackages() {
   const [packages1, setPackages] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${BaseURL}/packages/boda-boda`)
-      .then((response) => response.json())
-      .then((data) => {
-        const updatedPackages = data.map((packages) => ({
-          ...packages,
-          features: {
-            Premiums: "",
-            "": "",
-            ...packages.features,
-          },
-        }));
-        // console.log(updatedPackages);
-        setPackages(updatedPackages);
-        // setPackages((prevPackages) => [
-        //   {
-        //     features: {
-        //       Premiums: "",
-        //       "": "",
-        //     },
-        //   },
-        //   ,
-        //   ...data,
-        // ]);
-      })
-      .catch((error) => console.error("Error:", error));
+    const getBodaPackages = async () => {
+      await fetch(`${BaseURL}/packages/boda-boda`)
+        .then((response) => response.json())
+        .then((data) => {
+          const updatedPackages = data.map((packages) => ({
+            ...packages,
+            features: {
+              Premiums: "",
+              "": "",
+              ...packages.features,
+            },
+          }));
+          // console.log(updatedPackages);
+          setPackages(updatedPackages);
+          // setPackages((prevPackages) => [
+          //   {
+          //     features: {
+          //       Premiums: "",
+          //       "": "",
+          //     },
+          //   },
+          //   ,
+          //   ...data,
+          // ]);
+        })
+        .catch((error) => console.error("Error:", error));
+    };
+    getBodaPackages();
   }, []);
 
   // const packages1 = [
@@ -181,6 +185,7 @@ export function BodaPackages() {
 
   const choosePackage = (id) => {
     console.log(id);
+    navigate("/ecommerce/motorcycle-cover-details");
   };
 
   return (
@@ -476,13 +481,14 @@ export function MotorcycleRiderCoverDetails() {
           <div>
             <FormContainer
               headerIcon={coverform}
-              formTitle="Motorcycle Cover Details"
+              formTitle="Motorcycle & Rider Details
+              "
               onClick={saveMotocycleRiderDetails}
             >
               <div className="sub-icon-header">
                 <div className="input-container">
                   <div className="auto-mobile">
-                    <h6>Motorcycle & Rider Details</h6>
+                    <h6>Motorcycle Details</h6>
                   </div>
                   <div>
                     <div className="input-automobile">
@@ -511,7 +517,7 @@ export function MotorcycleRiderCoverDetails() {
                 </div>
                 <div className="input-container">
                   <div className="auto-mobile">
-                    <h6>Motorcycle Details</h6>
+                    <h6>Rider Details</h6>
                   </div>
                   <div className="input-automobile">
                     <ReusableInput
