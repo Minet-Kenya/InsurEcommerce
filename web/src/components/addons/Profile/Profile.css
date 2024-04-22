@@ -35,3 +35,9 @@
 .profile .dropdown-item:hover {
     background-color: var(--bs-light);
 }
+
+.sign-out-btn button {
+    border: none;
+    outline: none;
+
+}

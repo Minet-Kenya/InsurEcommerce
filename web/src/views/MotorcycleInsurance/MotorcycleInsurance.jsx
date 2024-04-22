@@ -142,39 +142,6 @@ export function BodaPackages() {
     getBodaPackages();
   }, []);
 
-  // const packages1 = [
-
-  //   {
-  //     title: "Fully Comprehensive insurance",
-  //     Premiums: "Kshs 6,576",
-  //     features: {
-  //       "Feature 3": "Description 3 for Package B",
-  //     },
-  //   },
-  // {
-  //   title: "PACKAGE 3",
-  //   Premiums: "Kshs 4,556 ",
-
-  //   features: {
-  //     "Feature 3": "Description 3 for Package B",
-  //   },
-  // },
-  // {
-  //   title: "PACKAGE 4",
-  //   Premiums: "Kshs 3,556",
-  //   features: {
-  //     "Feature 3": "Description 3 for Package B",
-  //   },
-  // },
-  // {
-  //   title: "PACKAGE 5",
-  //   Premiums: "Kshs 1,500",
-  //   features: {
-  //     "Feature 3": "Description 3 for Package B",
-  //   },
-  // },
-  // ];
-
   const PackageContent = ({ children }) => {
     return children;
   };
@@ -184,7 +151,13 @@ export function BodaPackages() {
   );
 
   const choosePackage = (id) => {
-    console.log(id);
+    // console.log(id);
+    localStorage.setItem(
+      "package-id",
+      JSON.stringify({
+        package_id: id,
+      })
+    );
     navigate("/ecommerce/motorcycle-cover-details");
   };
 
@@ -393,10 +366,45 @@ export function BodaPersonalInfo() {
 
 export function MotorcycleDetails() {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState(() => {
+    const savedData = JSON.parse(localStorage.getItem("cover-details"));
+    return savedData || { registration_no: "" };
+  });
+  const [formError, setFormError] = useState("");
 
-  function saveMotocycleDetails() {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("cover-details", JSON.stringify(formData));
+  }, [formData]);
+
+  function saveMotocycleDetails(e) {
+    e.preventDefault();
+    const requiredFields = [
+      "registration_no",
+      "log_book_no",
+      "make",
+      "manufacture_year",
+      "manufacture_year",
+      "engine_cc",
+      "values_sum",
+      "cover_type",
+    ];
+
+    const hasEmptyFields = requiredFields.some((field) => !formData[field]);
+
+    console.log(formData);
+
+    if (hasEmptyFields) {
+      console.log("hahahdhd");
+      setFormError("Please fill in all required fields.");
+      return;
+    }
     navigate("/ecommerce/motorcycle-rider-details");
   }
+
   return (
     <>
       <Sidebar view="MotorcycleInsurance" />
@@ -424,12 +432,45 @@ export function MotorcycleDetails() {
               <div className="helper-text">
                 <p>Motorcycle Details</p>
               </div>
+              <div className="error-text">
+                {formError ?? <p>{formError}</p>}
+              </div>
               <div className="boda-validation">
-                <ReusableInput label="Registration Number *" icon={coverform} />
-                <ReusableInput label="Log Book No" icon={messageIcon} />
-                <ReusableInput label="Make" icon={caricon2} />
-                <ReusableInput label="Manufacture Year *" icon={calender} />
-                <ReusableInput label="Engine CC" icon={caricon1} />
+                <ReusableInput
+                  label="Registration Number *"
+                  icon={coverform}
+                  value={formData.registration_no}
+                  name="registration_no"
+                  onChange={handleChange}
+                />
+                <ReusableInput
+                  label="Log Book No"
+                  icon={messageIcon}
+                  value={formData.log_book_no}
+                  name="log_book_no"
+                  onChange={handleChange}
+                />
+                <ReusableInput
+                  label="Make"
+                  icon={caricon2}
+                  value={formData.make}
+                  name="make"
+                  onChange={handleChange}
+                />
+                <ReusableInput
+                  label="Manufacture Year *"
+                  icon={calender}
+                  value={formData.manufacture_year}
+                  name="manufacture_year"
+                  onChange={handleChange}
+                />
+                <ReusableInput
+                  label="Engine CC"
+                  icon={caricon1}
+                  value={formData.engine_cc}
+                  name="engine_cc"
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <div className="cover-header">
@@ -443,8 +484,18 @@ export function MotorcycleDetails() {
                 <ReusableInput
                   label="Sum Insured (Value of the Motor Cycle) *"
                   icon={money2}
+                  value={formData.values_sum}
+                  name="values_sum"
+                  onChange={handleChange}
                 />
-                <ReusableInput label="Cover Type *" icon={cc} />
+                <ReusableInput
+                  label="Cover Type *"
+                  icon={cc}
+                  value={formData.cover_type}
+                  name="cover_type"
+                  onChange={handleChange}
+                  required={true}
+                />
               </div>
             </FormContainer>
           </div>

@@ -1,3 +1,12 @@
 .helper-text p {
     text-align: left;
 }
+
+.error-text {
+    background-color: #fff3f3b0;
+    padding: 8px;
+    border-radius: 11px;
+    font-weight: 800;
+    font-size: large;
+    color: rgb(237, 47, 47);
+}

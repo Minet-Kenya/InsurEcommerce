@@ -1,7 +1,16 @@
 import React from "react";
 import "./ReusableInput.css";
 
-function ReusableInput({ icon, label, description, type = "text" }) {
+function ReusableInput({
+  icon,
+  label,
+  description,
+  type = "text",
+  onChange,
+  value,
+  name,
+  required = false,
+}) {
   return (
     <div className="input-container">
       <div className="form-group">
@@ -13,7 +22,15 @@ function ReusableInput({ icon, label, description, type = "text" }) {
           <div className="icon-container">
             <img src={icon} alt={label} className="icon" />
           </div>
-          <input type={type} id={label} className="" />
+          <input
+            type={type}
+            required={required}
+            id={name}
+            name={name}
+            className=""
+            value={value}
+            onChange={onChange}
+          />
         </div>
       </div>
     </div>

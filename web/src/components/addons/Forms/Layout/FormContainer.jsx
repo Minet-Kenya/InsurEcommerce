@@ -10,7 +10,7 @@ function FormContainer({
 }) {
   return (
     <div id="cover-form" className="container">
-      <form>
+      <form onSubmit={onClick}>
         <div className="cover-header">
           {headerIcon ? (
             <img src={headerIcon} alt={formTitle} className="h-icon" />
@@ -21,7 +21,7 @@ function FormContainer({
         </div>
         {children}
         <div className="sbtn">
-          <button onClick={onClick} type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             {action}
           </button>
         </div>
