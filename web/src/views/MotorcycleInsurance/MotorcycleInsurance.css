@@ -10,3 +10,36 @@
     font-size: large;
     color: rgb(237, 47, 47);
 }
+
+.buyButton {
+    background-color: #E3261E !important;
+    color: white !important;
+    padding: 5px 28px !important;
+}
+
+.left-part h6 {
+    color: #E3261E;
+}
+
+.policy-checkout {
+    margin: 18px auto;
+
+}
+
+.policy-information {
+    display: grid;
+    margin: 18px auto;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 10px;
+}
+
+.policy-information p {
+    max-width: 288px;
+    overflow: hidden;
+}
+
+@media (min-width: 600px) {
+    .policy-information {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Company,Document
+from .models import Company,Document,Transactions
 from django.conf import settings
 
 
@@ -21,3 +21,11 @@ class DocumentSerializer(serializers.ModelSerializer):
         # Assuming the file is stored in a 'media' directory
         # and the MEDIA_URL is set to '/media/' in settings.py
         return f"{settings.MEDIA_URL}{obj.document.name}"
+
+
+
+
+class TransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transactions
+        fields = ['client', 'amount', 'payment_number', 'payment_status']

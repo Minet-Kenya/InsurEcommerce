@@ -61,7 +61,7 @@
 .receipt-container {
     /* max-width: 400px; */
     /* Adjust as needed */
-    margin: 0 auto;
+    margin: 18px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -108,11 +108,18 @@
 }
 
 .left-part {
-    width: 50%;
+    /* width: 50%; */
+    text-align: left;
+}
+
+.left-part p span {
+    font-weight: 600;
 }
 
 .right-part {
     width: 50%;
+    display: flex;
+    justify-content: end;
 }
 
 .right-part img {

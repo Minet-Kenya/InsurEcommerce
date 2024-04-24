@@ -20,6 +20,7 @@ import {
   BodaPackages,
   BodaPersonalInfo,
   BodaPremiumPackages,
+  CheckoutPage,
   MorePersonalDetails,
   MotorcycleDetails,
   MotorcycleInsurance,
@@ -89,6 +90,7 @@ function App() {
               path="motorcycle-premium-insurance"
               element={<BodaPremiumPackages />}
             />
+            <Route path="policy-check-out" element={<CheckoutPage />} />
             <Route
               path="motor-insurance-quote"
               element={<MotorInsuranceQuote />}

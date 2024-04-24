@@ -4,6 +4,12 @@ from django.dispatch import receiver
 import uuid
 
 
+class BaseModel(models.Model):
+    id= models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = models.DateField(auto_now_add=True)  # Automatically set to current date when object is created
+    last_modified = models.DateField(auto_now=True)
+
+
 class Company(models.Model):
 
     class Meta:
@@ -145,4 +151,26 @@ class Document(models.Model):
         super().save(*args, **kwargs)
 
     def  __str__(self):
+        return self.client.email
+
+
+class Transactions(BaseModel):
+    PAYMENT_STATUS_CHOICES = [
+        ('INCOMPLETE', 'Incomplete'),
+        ('FAILED', 'Failed'),
+        ('PENDING', 'Pending'),
+    ]
+
+    client = models.ForeignKey("users.Client",on_delete=models.SET_NULL,null=True)
+    # policy = models.ForeignKey()
+    amount = models.CharField(max_length=255, blank=True)
+    payment_number = models.CharField(max_length=255, blank=True)
+    payment_status = models.CharField( max_length=10,
+        choices=PAYMENT_STATUS_CHOICES,
+        default='PENDING',)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
         return self.client.email

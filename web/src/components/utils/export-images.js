@@ -20,3 +20,7 @@ export { default as bodasterling } from "../../assets/images/boda/bodasterling.p
 export { default as iconBoda } from "../../assets/images/boda/icon_Boda.png";
 export { default as iconBodaPremium } from "../../assets/images/boda/icon-Boda-premium.png";
 export { default as insuranceIcon } from "../../assets/images/family-cover.png";
+export { default as anylisisIcon } from "../../assets/images/aalysiss.png";
+export { default as webIcon } from "../../assets/images/web.png";
+export { default as sideImage } from "../../assets/images/side-mage.png";
+export { default as metrics } from "../../assets/images/metrics.png";

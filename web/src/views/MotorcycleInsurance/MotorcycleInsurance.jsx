@@ -26,13 +26,20 @@ import {
   phoneIcon,
   pinLocation,
   profile,
+  sideImage,
+  webIcon,
+  metrics,
+  anylisisIcon,
   shareForm,
 } from "../../components/utils/export-images";
 import ReusablePackageTable from "../../components/addons/PackagesTable/ReusablePackageTable";
 import FormContainer from "../../components/addons/Forms/Layout/FormContainer";
 import ReusableInput from "../../components/addons/Forms/Inputs/ReusableInput";
 import { useNavigate } from "react-router-dom";
-import BaseURL from "../../components/utils/constants";
+import BaseURL, {
+  BASE_URL,
+  BASE_URL_HOME,
+} from "../../components/utils/constants";
 
 export function MotorcycleInsurance() {
   return (
@@ -113,7 +120,7 @@ export function BodaPackages() {
 
   useEffect(() => {
     const getBodaPackages = async () => {
-      await fetch(`${BaseURL}/packages/boda-boda`)
+      await fetch(`${BASE_URL}/packages/boda-boda`)
         .then((response) => response.json())
         .then((data) => {
           const updatedPackages = data.map((packages) => ({
@@ -150,12 +157,14 @@ export function BodaPackages() {
     new Set(packages1.flatMap((pkg) => Object.keys(pkg.features)))
   );
 
-  const choosePackage = (id) => {
+  const choosePackage = (pkg) => {
     // console.log(id);
     localStorage.setItem(
-      "package-id",
+      "policy",
       JSON.stringify({
-        package_id: id,
+        package_id: pkg.id,
+        policy_name: pkg.title,
+        price: pkg.premiums,
       })
     );
     navigate("/ecommerce/motorcycle-cover-details");
@@ -197,7 +206,7 @@ export function BodaPackages() {
                   <PackageContent key={i} package={p.title} feature="">
                     <button
                       onClick={() => {
-                        choosePackage(p.id);
+                        choosePackage(p);
                       }}
                       className="content choose-btn"
                     >
@@ -398,7 +407,7 @@ export function MotorcycleDetails() {
     console.log(formData);
 
     if (hasEmptyFields) {
-      console.log("hahahdhd");
+      // console.log("hahahdhd");
       setFormError("Please fill in all required fields.");
       return;
     }
@@ -432,9 +441,11 @@ export function MotorcycleDetails() {
               <div className="helper-text">
                 <p>Motorcycle Details</p>
               </div>
-              <div className="error-text">
-                {formError ?? <p>{formError}</p>}
-              </div>
+              {formError ?? (
+                <div className="error-text">
+                  <p>{formError}</p>
+                </div>
+              )}
               <div className="boda-validation">
                 <ReusableInput
                   label="Registration Number *"
@@ -458,6 +469,7 @@ export function MotorcycleDetails() {
                   onChange={handleChange}
                 />
                 <ReusableInput
+                  type="date"
                   label="Manufacture Year *"
                   icon={calender}
                   value={formData.manufacture_year}
@@ -507,6 +519,18 @@ export function MotorcycleDetails() {
 
 export function MotorcycleRiderCoverDetails() {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState(() => {
+    const savedData = JSON.parse(localStorage.getItem("motor-rider-details"));
+    return savedData || { antitheft_details: "" };
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("motor-rider-details", JSON.stringify(formData));
+  }, [formData]);
 
   function saveMotocycleRiderDetails() {
     navigate("/ecommerce/motorcycle-more-personal-details");
@@ -545,23 +569,39 @@ export function MotorcycleRiderCoverDetails() {
                     <div className="input-automobile">
                       <ReusableInput
                         icon={personicon}
-                        label="Is the motor cycle(s) fitted with ANTI-THEFT device(s)? Give Details *"
+                        label="Is the motor cycle(s) fitted with ANTI-THEFT device(s)? Give Details *
+                        "
+                        value={formData.antitheft_details}
+                        name="antitheft_details"
+                        onChange={handleChange}
                       />
                       <ReusableInput
                         icon={caricon2}
                         label="Is the motor cycle normally packed within your premises overnight? *"
+                        value={formData.areaof_packing}
+                        name="areaof_packing"
+                        onChange={handleChange}
                       />
                       <ReusableInput
                         icon={cc}
                         label="State name and address of Owner of motor cycle: *"
+                        value={formData.name_address}
+                        name="name_address"
+                        onChange={handleChange}
                       />
                       <ReusableInput
                         icon={globeIcon}
                         label="Person in whose name motor cycle is registered: *"
+                        value={formData.registration_name}
+                        name="registration_name"
+                        onChange={handleChange}
                       />
                       <ReusableInput
                         icon={cc}
                         label="Any finance company or other person financially interested? *"
+                        value={formData.finacial_intrest}
+                        name="finacial_intrest"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -574,23 +614,38 @@ export function MotorcycleRiderCoverDetails() {
                     <ReusableInput
                       label="Are you a licensed rider? *"
                       icon={caricon2}
+                      value={formData.licensed_rider}
+                      name="licensed_rider"
+                      onChange={handleChange}
                     />
                     <ReusableInput
                       label="How long have you been riding motor cycles continuously? *"
                       icon={coverform}
+                      value={formData.timeof_riding}
+                      name="timeof_riding"
+                      onChange={handleChange}
                     />
                     <ReusableInput
                       label="Will the motor cycle be solely ridden by you? *"
                       icon={coverform}
+                      value={formData.only_rider}
+                      name="only_rider"
+                      onChange={handleChange}
                     />
                     <ReusableInput
                       label="If not, then by whom? *"
                       icon={caricon2}
+                      value={formData.other_rider}
+                      name="other_rider"
+                      onChange={handleChange}
                     />
                     <ReusableInput
                       label="Do you or does any other person who to your knowledge will ride,
     suffer from defective vision or hearing or from any physical infirmity? *"
                       icon={formtype}
+                      value={formData.defective_issues}
+                      name="defective_issues"
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -604,6 +659,60 @@ export function MotorcycleRiderCoverDetails() {
 }
 
 export function MorePersonalDetails() {
+  const navigate = useNavigate();
+
+  const savedData = JSON.parse(localStorage.getItem("personal-details"));
+  const [formData, setFormData] = useState(() => {
+    return savedData || { first_name: "" };
+  });
+
+  const [selectedIdFile, setselectedIdFile] = useState(null);
+  const [selectedDlFile, setselectedDlFile] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("personal-details", JSON.stringify(formData));
+  }, [formData]);
+
+  const handleIdFileInputChange = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    if (file) {
+      setselectedIdFile(file.name);
+
+      // Convert the image to a Base64 string
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result;
+        localStorage.setItem("selectedIdImage", base64String);
+        // alert("Image saved to local storage");
+      };
+      reader.readAsDataURL(file); // Directly read the selected file as a data URL
+    }
+  };
+
+  const handleDlFileInputChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setselectedDlFile(file.name);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result;
+        localStorage.setItem("selectedDlImage", base64String);
+        // alert("Image saved to local storage");
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  let authToken = JSON.parse(localStorage.getItem("authTokens"));
+
+  const saveDetails = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <Sidebar view="MotorcycleInsurance" />
@@ -613,7 +722,7 @@ export function MorePersonalDetails() {
           <nav>
             <ol className="breadcrumb">
               <li className="breadcrumb-item active text-secondary">
-                Motorcycle & Rider Details
+                Personal Information
               </li>
             </ol>
           </nav>
@@ -627,38 +736,114 @@ export function MorePersonalDetails() {
               action="Accept Terms and submit your request as at 2023 | 07 | 06 | 10:34: 52"
               headerIcon={coverform}
               formTitle="Personal Information"
+              onClick={saveDetails}
             >
               <div className="sub-icon-header">
                 <div className="input-container">
-                  <ReusableInput icon={personicon} label="First Name *" />
-                  <ReusableInput icon={personicon} label="Second Name" />
-                  <ReusableInput icon={personicon} label="Last Name" />
-                  <ReusableInput icon={messageIcon} label="ID Number *" />
-                  <ReusableInput icon={personicon} label="KRA PIN *" />
-                  <ReusableInput icon={emailIcon} label="Email Address" />
+                  <ReusableInput
+                    icon={personicon}
+                    label="First Name *"
+                    value={formData.first_name}
+                    name="first_name"
+                    onChange={handleChange}
+                  />
+                  <ReusableInput
+                    icon={personicon}
+                    label="Second Name"
+                    value={formData.second_name}
+                    name="second_name"
+                    onChange={handleChange}
+                  />
+                  <ReusableInput
+                    icon={personicon}
+                    label="Last Name"
+                    value={formData.last_name}
+                    name="last_name"
+                    onChange={handleChange}
+                  />
+                  <ReusableInput
+                    icon={messageIcon}
+                    label="ID Number *"
+                    value={formData.id_number}
+                    name="id_number"
+                    onChange={handleChange}
+                  />
+                  <ReusableInput
+                    icon={personicon}
+                    label="KRA PIN *"
+                    value={formData.kra_pin}
+                    name="kra_pin"
+                    onChange={handleChange}
+                  />
+                  <ReusableInput
+                    icon={emailIcon}
+                    label="Email Address"
+                    value={formData.email_address}
+                    name="email_address"
+                    onChange={handleChange}
+                  />
                   <ReusableInput
                     icon={phoneIcon}
                     label="Owner Cell Phone No *"
+                    value={formData.phone_number}
+                    name="phone_number"
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="input-container">
-                  <ReusableInput label="Cell Phone Number *" icon={phoneIcon} />
-                  <ReusableInput label="Date of Birth *" icon={personicon} />
-                  <ReusableInput label="Gender" icon={personicon} />
-                  <ReusableInput label="County Of Residence *" icon={map} />
+                  <ReusableInput
+                    label="Cell Phone Number *"
+                    icon={phoneIcon}
+                    value={formData.second_phonenumber}
+                    name="second_phonenumber"
+                    onChange={handleChange}
+                  />
+                  <ReusableInput
+                    type="date"
+                    label="Date of Birth *"
+                    icon={personicon}
+                    value={formData.date_of_birth}
+                    name="dob"
+                    onChange={handleChange}
+                  />
+                  <ReusableInput
+                    label="Gender"
+                    icon={personicon}
+                    value={formData.gender}
+                    name="gender"
+                    onChange={handleChange}
+                  />
+                  <ReusableInput
+                    label="County Of Residence *"
+                    icon={map}
+                    value={formData.residence}
+                    name="residence"
+                    onChange={handleChange}
+                  />
                   <ReusableInput
                     label="Postal Address Code *"
                     icon={pinLocation}
+                    value={formData.postal_adresss}
+                    name="postal_adresss"
+                    onChange={handleChange}
                   />
                   <ReusableInput
                     label="National ID (PDF or Image Only) *"
                     type="file"
                     icon={profile}
+                    name="file_id"
+                    // value={selectedIdFile}
+                    onChange={handleIdFileInputChange}
                   />
+                  {selectedIdFile ?? <span>ID Photo: {selectedIdFile}</span>}
+
                   <ReusableInput
                     label="Driving Licence (PDF or Image only)"
                     type="file"
                     icon={profile}
+                    name="file_dl"
+                    onChange={handleDlFileInputChange}
+                    // value={selectedDlFile}
                   />
                 </div>
               </div>
@@ -679,6 +864,112 @@ export function MorePersonalDetails() {
                 </p>
               </div>
             </FormContainer>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}
+
+export function CheckoutPage() {
+  const navigate = useNavigate();
+
+  const savedPersonalDetails = JSON.parse(
+    localStorage.getItem("personal-details")
+  );
+  const savedPolicyDetails = JSON.parse(localStorage.getItem("policy"));
+  // console.log(savedPersonalDetails);
+
+  function transformKeys(obj) {
+    const newObj = {};
+
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        // Replace underscores with spaces and capitalize the first letter of each word
+        const newKey = key
+          .replace(/_/g, " ")
+          .replace(/\b\w/g, (l) => l.toUpperCase());
+        newObj[newKey] = obj[key];
+      }
+    }
+
+    return newObj;
+  }
+
+  const transformedData = transformKeys(savedPersonalDetails);
+
+  const editData = () => {
+    navigate("/ecommerce/motorcycle-cover-details");
+  };
+
+  return (
+    <>
+      <Sidebar view="MotorcycleInsurance" />
+      <main id="dashboard" className="dashboard h-100 d-flex flex-column">
+        <div className="pagetitle z-0">
+          <h1 className="text-white">Policy Check Out</h1>
+          <nav>
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item active text-secondary">
+                Policy Checkout details.
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <section
+          className="flex-grow-1 container-fluid text-center d-flex flex-column  mb-3"
+          data-aos="fade-in"
+        >
+          <div>
+            <div id="statement">
+              <div className="top-header">
+                <div className="left-part ">
+                  <img
+                    className="st-icon"
+                    src={familycover}
+                    alt="analysis-icon"
+                  />
+                  <h4>Requested Summary</h4>
+                </div>
+                <div className="right-part">
+                  <button onClick={editData}>Edit Quote</button>
+                  <button>Send this quote to email</button>
+                  <button className="buyButton">Buy Policy</button>
+                </div>
+              </div>
+              <div className="policy-checkout">
+                <div className="left-part">
+                  <div className="">
+                    <h6>Policy Details</h6>
+                  </div>
+                  <div className="policy-information">
+                    <p>
+                      <span> Policy Name : </span>{" "}
+                      {savedPolicyDetails.policy_name}
+                    </p>
+                    <p>
+                      <span> Policy Price : </span> {savedPolicyDetails.price}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="policy-checkout">
+                <div className="left-part">
+                  <div className="">
+                    <h6>Personal Information</h6>
+                  </div>
+                  <div className="policy-information">
+                    {Object.entries(transformedData ?? {}).map(
+                      ([key, value], index) => (
+                        <p key={index}>
+                          <span>{key ?? ""} : </span> {value ?? ""}
+                        </p>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>

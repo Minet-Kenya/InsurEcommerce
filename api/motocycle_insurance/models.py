@@ -17,6 +17,8 @@ class MotorCycleCoverDetails(BaseModel):
     engine_cc = models.CharField(max_length=100)
     policy_details = models.JSONField(blank=True, null=True)
     motorcycle_and_rider_details = models.JSONField(blank=True, null=True)
+    payment_details = models.ForeignKey("base.Transactions",on_delete=models.SET_NULL,null=True)
+    package_details = models.ForeignKey('insurance_packages.Package',on_delete=models.SET_NULL,null=True)
 
     class Meta:
         ordering = ['-created_at']
