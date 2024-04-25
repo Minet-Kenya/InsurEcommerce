@@ -24,3 +24,4 @@ export { default as anylisisIcon } from "../../assets/images/aalysiss.png";
 export { default as webIcon } from "../../assets/images/web.png";
 export { default as sideImage } from "../../assets/images/side-mage.png";
 export { default as metrics } from "../../assets/images/metrics.png";
+export { default as spinner } from "../../assets/images/svgs/spinner-solid.svg";

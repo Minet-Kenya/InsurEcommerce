@@ -43,3 +43,54 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+.payment-modal h5 {
+    text-align: left !important;
+    color: #E3261E;
+}
+
+.payment-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 11px auto;
+}
+
+.cancel-payment,
+.initiate-payment {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 3px;
+}
+
+.cancel-payment {
+    background-color: #d8d8d89d;
+    color: #1D4954;
+    font-weight: 800;
+}
+
+.initiate-payment {
+
+    color: white;
+    background-color: #34BD8F;
+
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-payment {
+    width: 23px;
+    color: white;
+    animation: spin 2s linear infinite;
+}

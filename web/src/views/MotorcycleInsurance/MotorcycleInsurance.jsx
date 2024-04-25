@@ -31,6 +31,7 @@ import {
   metrics,
   anylisisIcon,
   shareForm,
+  spinner,
 } from "../../components/utils/export-images";
 import ReusablePackageTable from "../../components/addons/PackagesTable/ReusablePackageTable";
 import FormContainer from "../../components/addons/Forms/Layout/FormContainer";
@@ -39,7 +40,9 @@ import { useNavigate } from "react-router-dom";
 import BaseURL, {
   BASE_URL,
   BASE_URL_HOME,
+  fetchData,
 } from "../../components/utils/constants";
+import { PopUp } from "../../components/addons/PopUp/PopUp";
 
 export function MotorcycleInsurance() {
   return (
@@ -707,10 +710,30 @@ export function MorePersonalDetails() {
       reader.readAsDataURL(file);
     }
   };
-  let authToken = JSON.parse(localStorage.getItem("authTokens"));
 
   const saveDetails = (e) => {
     e.preventDefault();
+    const personal_info = JSON.parse(localStorage.getItem("personal-details"));
+    const cover_details = JSON.parse(localStorage.getItem("cover-details"));
+    const policy = JSON.parse(localStorage.getItem("policy"));
+    const motor_rider_details = JSON.parse(
+      localStorage.getItem("motor-rider-details")
+    );
+    const motorcycle_policy = {
+      policy,
+      personal_info,
+      cover_details,
+      motor_rider_details,
+    };
+
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    if (cart) {
+      console.log(cart);
+      cart.push(motorcycle_policy);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } else {
+      localStorage.setItem("cart", JSON.stringify([motorcycle_policy]));
+    }
   };
 
   return (
@@ -835,7 +858,7 @@ export function MorePersonalDetails() {
                     // value={selectedIdFile}
                     onChange={handleIdFileInputChange}
                   />
-                  {selectedIdFile ?? <span>ID Photo: {selectedIdFile}</span>}
+                  {/* {selectedIdFile ?? <span>ID Photo: {selectedIdFile}</span>} */}
 
                   <ReusableInput
                     label="Driving Licence (PDF or Image only)"
@@ -873,12 +896,36 @@ export function MorePersonalDetails() {
 
 export function CheckoutPage() {
   const navigate = useNavigate();
+  const [initiatePayment, setInitiatePayment] = useState(false);
+  const [paymentPhone, setPaymentPhone] = useState("");
 
-  const savedPersonalDetails = JSON.parse(
-    localStorage.getItem("personal-details")
+  const handlePhoneInput = (e) => {
+    setPaymentPhone(e.target.value);
+  };
+
+  const cancelPayment = () => {
+    setInitiatePayment(false);
+  };
+
+  const initiatePolicyPayment = () => {
+    setInitiatePayment(true);
+  };
+
+  const personal_info = JSON.parse(localStorage.getItem("personal-details"));
+  const cover_details = JSON.parse(localStorage.getItem("cover-details"));
+  const policy_details = JSON.parse(localStorage.getItem("policy"));
+  const motorcycle_and_rider_details = JSON.parse(
+    localStorage.getItem("motor-rider-details")
   );
-  const savedPolicyDetails = JSON.parse(localStorage.getItem("policy"));
-  // console.log(savedPersonalDetails);
+
+  let authToken = JSON.parse(localStorage.getItem("authTokens"));
+
+  const motorcycle_policy_details = {
+    ...cover_details,
+    motorcycle_and_rider_details,
+    policy_details,
+    package_details: policy_details.package_id,
+  };
 
   function transformKeys(obj) {
     const newObj = {};
@@ -896,14 +943,63 @@ export function CheckoutPage() {
     return newObj;
   }
 
-  const transformedData = transformKeys(savedPersonalDetails);
+  const transformedData = transformKeys(personal_info);
 
   const editData = () => {
     navigate("/ecommerce/motorcycle-cover-details");
   };
 
+  const savePolicyDetails = async () => {
+    console.log(motorcycle_policy_details);
+    // 1. save policy details
+
+    await fetchData(
+      `${BASE_URL}/motorcycle-cover-details/`,
+      "POST",
+      motorcycle_policy_details,
+      authToken.access
+    )
+      .then((data) => console.log("Data:", data))
+      .catch((error) => console.error("Error:", error));
+
+    // 2. save transaction details
+    await fetchData(
+      `${BASE_URL_HOME}base/transactions/`,
+      "POST",
+      {
+        amount: policy_details.price,
+        payment_number: paymentPhone,
+        payment_status: "PENDING",
+      },
+      authToken.access
+    )
+      .then((data) => console.log("Data:", data))
+      .catch((error) => console.error("Error:", error));
+  };
+
   return (
     <>
+      <PopUp isOpen={initiatePayment}>
+        <div className="payment-modal">
+          <h5>Complete Policy Payment</h5>
+          <ReusableInput
+            value={paymentPhone}
+            onChange={handlePhoneInput}
+            type="tel"
+            icon={money2}
+            label="Enter phone number to pay from"
+          />
+          <div className="payment-actions">
+            <button onClick={cancelPayment} className="cancel-payment">
+              Cancel
+            </button>
+            <button onClick={savePolicyDetails} className="initiate-payment">
+              Initiate Payment
+              <img src={spinner} alt="spinner" className="spinner-payment" />
+            </button>
+          </div>
+        </div>
+      </PopUp>
       <Sidebar view="MotorcycleInsurance" />
       <main id="dashboard" className="dashboard h-100 d-flex flex-column">
         <div className="pagetitle z-0">
@@ -934,7 +1030,9 @@ export function CheckoutPage() {
                 <div className="right-part">
                   <button onClick={editData}>Edit Quote</button>
                   <button>Send this quote to email</button>
-                  <button className="buyButton">Buy Policy</button>
+                  <button onClick={initiatePolicyPayment} className="buyButton">
+                    Buy Policy
+                  </button>
                 </div>
               </div>
               <div className="policy-checkout">
@@ -944,11 +1042,10 @@ export function CheckoutPage() {
                   </div>
                   <div className="policy-information">
                     <p>
-                      <span> Policy Name : </span>{" "}
-                      {savedPolicyDetails.policy_name}
+                      <span> Policy Name : </span> {policy_details.policy_name}
                     </p>
                     <p>
-                      <span> Policy Price : </span> {savedPolicyDetails.price}
+                      <span> Policy Price : </span> {policy_details.price}
                     </p>
                   </div>
                 </div>
