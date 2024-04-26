@@ -111,8 +111,7 @@
 }
 
 .sidebar-nav .nav-link.active,
-.sidebar-nav .nav-link.active span
- {
+.sidebar-nav .nav-link.active span {
     background: var(--bs-primary);
     color: var(--bs-white);
 }
@@ -178,4 +177,15 @@
 
 .sidebar-nav .nav-content a.active i {
     background-color: var(--bs-primary);
+}
+
+.cart-qty {
+    color: white;
+    padding: 3px;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    margin-left: 15px;
 }

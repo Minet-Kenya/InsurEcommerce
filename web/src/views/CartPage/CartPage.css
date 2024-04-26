@@ -1,0 +1,43 @@
+.empty-state img {
+    margin: 11px auto;
+}
+
+.policy-cart {
+    border: 1px solid #a1a1a1;
+    border-radius: 11px;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px auto;
+    padding: 8px 15px;
+    text-align: left;
+
+}
+
+.policy-cart span {
+    font-weight: 600;
+}
+
+.cartbuyButton {
+    background-color: #E3261E !important;
+    color: white !important;
+    padding: 5px 28px !important;
+    border: none;
+    border-radius: 5px;
+}
+
+.cart-action {
+    border: none;
+    background-color: inherit;
+    text-align: left;
+    color: #E3261E;
+    padding: 0 !important;
+    margin: 0;
+    font-weight: 600;
+}
+
+
+.cart-right {
+    display: flex;
+    align-items: start;
+    gap: 18px;
+}

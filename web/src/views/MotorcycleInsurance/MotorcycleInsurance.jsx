@@ -734,6 +734,8 @@ export function MorePersonalDetails() {
     } else {
       localStorage.setItem("cart", JSON.stringify([motorcycle_policy]));
     }
+
+    navigate('/ecommerce/policy-check-out')
   };
 
   return (

@@ -32,6 +32,7 @@ import {
   MotorInsuranceQuote,
   MotorPackages,
 } from "./views/MotorInsurance/MotorInsurance";
+import { CartPage } from "./views/CartPage/CartPage";
 
 AOS.init({
   duration: 600,
@@ -64,6 +65,7 @@ function App() {
               path="individual-solutions"
               element={<IndividualSolutions />}
             />
+            <Route path="cart" element={<CartPage />} />
             <Route
               path="motorcycle-insurance"
               element={<MotorcycleSolutions />}

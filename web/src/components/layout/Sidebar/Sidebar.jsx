@@ -6,7 +6,6 @@ import "./Sidebar.css";
 
 import SocialLinks from "../../addons/SocialLinks/SocialLinks";
 
-
 export default function Sidebar({ view }) {
   let pagetitle = null;
   const location = useLocation();
@@ -29,6 +28,11 @@ export default function Sidebar({ view }) {
     default:
       pagetitle = "Ecommerce";
   }
+
+  const [cart, setCart] = useState(() => {
+    let savedCartItems = JSON.parse(localStorage.getItem("cart"));
+    return savedCartItems || [{}, {}];
+  });
 
   return (
     <aside id="sidebar" className="sidebar d-flex flex-column">
@@ -114,9 +118,11 @@ export default function Sidebar({ view }) {
           </Collapse>
         </li>
         <li className="nav-item">
-          <Link className="nav-link collapsed" to="">
+          <Link to="/ecommerce/cart" className="nav-link collapsed">
             <i className="bi bi-cart4"></i>
             <span>Cart</span>
+
+            <span className="cart-qty">{cart?.length}</span>
           </Link>
         </li>
 
