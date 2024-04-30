@@ -1,0 +1,40 @@
+.styled-checkbox {
+    /* appearance: none; */
+    /* Remove default checkbox styles */
+    /* -webkit-appearance: none; */
+    /* For older versions of Safari */
+    /* -moz-appearance: none; */
+    /* For older versions of Firefox */
+    width: 20px;
+    /* Adjust checkbox size as needed */
+    height: 20px;
+    border: 2px solid #ccc;
+    /* Border color */
+    border-radius: 3px;
+    /* Rounded corners */
+    outline: none;
+    /* Remove focus outline */
+    cursor: pointer;
+    /* Show pointer cursor on hover */
+}
+
+.styled-checkbox:checked {
+    background-color: #007bff;
+    /* Background color when checked */
+    border-color: #007bff;
+    /* Border color when checked */
+}
+
+.checkbox-label {
+    margin-left: 5px;
+    /* Add space between checkbox and label */
+    cursor: pointer;
+    /* Show pointer cursor on hover */
+}
+
+.medical-addons div {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-align: left;
+}

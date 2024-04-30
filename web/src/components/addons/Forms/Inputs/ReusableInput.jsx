@@ -10,6 +10,7 @@ function ReusableInput({
   value,
   name,
   required = false,
+  selectOptions = [],
 }) {
   return (
     <div className="input-container">
@@ -22,15 +23,26 @@ function ReusableInput({
           <div className="icon-container">
             <img src={icon} alt={label} className="icon" />
           </div>
-          <input
-            type={type}
-            required={required}
-            id={name}
-            name={name}
-            className=""
-            value={value}
-            onChange={onChange}
-          />
+          {selectOptions.length > 0 ? (
+            <select>
+              <option value="">Select option</option>
+              {selectOptions.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type={type}
+              required={required}
+              id={name}
+              name={name}
+              className=""
+              value={value}
+              onChange={onChange}
+            />
+          )}
         </div>
       </div>
     </div>

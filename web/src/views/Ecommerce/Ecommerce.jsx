@@ -173,8 +173,7 @@ export function IndividualSolutions() {
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img education-policy position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
-                target="_blank"
+                href="/ecommerce/education-policy"
                 rel="noreferrer"
               >
                 <img
@@ -190,8 +189,7 @@ export function IndividualSolutions() {
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img individual-life position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://mss.minet.co.ke/Login?ReturnUrl=%2Fdashboard"
-                target="_blank"
+                href="/ecommerce/individual-life-insurance"
                 rel="noreferrer"
               >
                 <img
@@ -207,7 +205,7 @@ export function IndividualSolutions() {
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img individual-pension position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
+                href="https://mss.minet.co.ke/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -224,8 +222,7 @@ export function IndividualSolutions() {
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img home-insurance position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://wellness.minet.co.ke/"
-                target="_blank"
+                href="/ecommerce/home-insurance"
                 rel="noreferrer"
               >
                 <img
@@ -241,8 +238,7 @@ export function IndividualSolutions() {
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img medical-cover position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://wellness.minet.co.ke/"
-                target="_blank"
+                href="/ecommerce/medical-cover"
                 rel="noreferrer"
               >
                 <img

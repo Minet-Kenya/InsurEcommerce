@@ -33,6 +33,15 @@ import {
   MotorPackages,
 } from "./views/MotorInsurance/MotorInsurance";
 import { CartPage } from "./views/CartPage/CartPage";
+import EducationPolicy, {
+  EducationPolicyForm,
+} from "./views/EducationPolicy/EducationPolicy";
+import { IndividualLifeForm } from "./views/IndividualLifeInsurance/IndividualLifeInsurance";
+import {
+  HomeInsuranceForm,
+  HomeInsurancePackages,
+} from "./views/HomeInsurance/HomeIsurance";
+import { MedicalCoverForm } from "./views/MedicalCover/MedicalCover";
 
 AOS.init({
   duration: 600,
@@ -101,6 +110,17 @@ function App() {
               path="motor-insurance-packages"
               element={<MotorPackages />}
             />
+            <Route path="education-policy" element={<EducationPolicyForm />} />
+            <Route
+              path="individual-life-insurance"
+              element={<IndividualLifeForm />}
+            />
+            <Route path="home-insurance" element={<HomeInsuranceForm />} />
+            <Route
+              path="home-insurance-packages"
+              element={<HomeInsurancePackages />}
+            />
+            <Route path="medical-cover" element={<MedicalCoverForm />} />
             <Route
               path="motor-insurance-coverform"
               element={<MotorCoverForm />}

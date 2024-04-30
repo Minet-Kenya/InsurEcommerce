@@ -21,10 +21,11 @@ import ReusableInput from "../../components/addons/Forms/Inputs/ReusableInput";
 import FormContainer from "../../components/addons/Forms/Layout/FormContainer";
 import ReusablePackageTable from "../../components/addons/PackagesTable/ReusablePackageTable";
 import { PopUp } from "../../components/addons/PopUp/PopUp";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./MotorInsurance.css";
 import car from "../../assets/images/svgs/online-payment.png";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../components/utils/constants";
 
 export function MotorInsurance() {
   return (
@@ -75,8 +76,20 @@ export function MotorInsuranceQuote() {
             <div className="helper-text">
               <p>Fill in the details required</p>
             </div>
-            <ReusableInput label="VEHICLE USE" icon={caricon1} />
-            <ReusableInput label="POLICY COVER" icon={insuranceIcon} />
+            <ReusableInput
+              selectOptions={["Motor Commercial", "Motor Private"]}
+              label="VEHICLE USE"
+              icon={caricon1}
+            />
+            <ReusableInput
+              selectOptions={[
+                "Comprehensive",
+                "TPO",
+                "Third Party Fire and Theft",
+              ]}
+              label="POLICY COVER"
+              icon={insuranceIcon}
+            />
             <ReusableInput label="MAKE" icon={caricon2} />
             <ReusableInput label="CAR VALUE IN SHILLINGS" icon={moneyIcon} />
             <ReusableInput label="MAKE YEAR" icon={calender} />
@@ -88,6 +101,36 @@ export function MotorInsuranceQuote() {
 }
 
 export function MotorPackages() {
+  const [packages1, setPackages] = useState([]);
+
+  useEffect(() => {
+    const getMotorPackages = async () => {
+      await fetch(`${BASE_URL}/packages/motor/`)
+        .then((response) => response.json())
+        .then((data) => {
+          const updatedPackages = data.map((packages) => ({
+            ...packages,
+            features: {
+              ...packages.features,
+            },
+          }));
+          console.log(updatedPackages);
+          setPackages(updatedPackages);
+          // setPackages((prevPackages) => [
+          //   {
+          //     features: {
+          //       Premiums: "",
+          //       "": "",
+          //     },
+          //   },
+          //   ,
+          //   ...data,
+          // ]);
+        })
+        .catch((error) => console.error("Error:", error));
+    };
+    getMotorPackages();
+  }, []);
   const packages = [
     {
       title: "Basic Premium ",

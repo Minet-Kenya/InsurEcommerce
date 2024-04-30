@@ -123,7 +123,7 @@ export function BodaPackages() {
 
   useEffect(() => {
     const getBodaPackages = async () => {
-      await fetch(`${BASE_URL}/packages/boda-boda`)
+      await fetch(`${BASE_URL}/packages/boda-boda/`)
         .then((response) => response.json())
         .then((data) => {
           const updatedPackages = data.map((packages) => ({
@@ -735,7 +735,7 @@ export function MorePersonalDetails() {
       localStorage.setItem("cart", JSON.stringify([motorcycle_policy]));
     }
 
-    navigate('/ecommerce/policy-check-out')
+    navigate("/ecommerce/policy-check-out");
   };
 
   return (
