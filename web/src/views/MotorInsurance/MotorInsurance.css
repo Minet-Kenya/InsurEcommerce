@@ -17,3 +17,8 @@
     padding: 20px;
     text-align: center;
 }
+
+.larger-spinner {
+    width: 58px;
+    margin: 11px auto;
+}

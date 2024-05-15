@@ -25,3 +25,24 @@ class MotorCycleCoverDetails(BaseModel):
 
     def __str__(self):
         return self.client.email
+
+
+
+class MotorVehicleDetails(BaseModel):
+    client= models.ForeignKey("users.Client",on_delete=models.SET_NULL,null=True)
+    registration_no = models.CharField(max_length=100,unique=True)
+    make = models.CharField(max_length=100)
+    manufacture_year = models.DateField()
+    policy_type = models.CharField(max_length=100)
+    policy_period= models.DateField()
+    car_value = models.CharField(max_length=100)
+    engine_cc = models.CharField(max_length=100)
+    engine_no = models.CharField(max_length=100)
+    payment_details = models.ForeignKey("base.Transactions",on_delete=models.SET_NULL,null=True)
+    package_details = models.ForeignKey('insurance_packages.Package',on_delete=models.SET_NULL,null=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.client.email

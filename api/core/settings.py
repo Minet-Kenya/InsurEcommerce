@@ -16,6 +16,7 @@ from pathlib import Path
 import os
 
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -116,7 +117,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BUILD_DIR],
+        "DIRS": [os.path.join(BASE_DIR, 'mail/templates/mail')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -137,10 +138,18 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 if ENVIRONMENT == "development":
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
+        # "default": {
+        #     "ENGINE": "django.db.backends.sqlite3",
+        #     "NAME": BASE_DIR / "db.sqlite3",
+        # }
+        'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'minet',  # Name of your database
+        'USER': 'root',  # Username for your database
+        'PASSWORD': 'samueli97',  # Password for your database
+        'HOST': 'localhost',  # Hostname of your database server
+        'PORT': '3306',  # Port your database server is listening on
+    }
     }
 else:
     DATABASES = {
@@ -217,10 +226,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Email
 # https://docs.djangoproject.com/en/4.2/topics/email/
 
-if ENVIRONMENT == "development":
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-else:
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# if ENVIRONMENT == "development":
+#     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# else:
+#     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_BACKEND=config("EMAIL_BACKEND")
 
 EMAIL_HOST = config("EMAIL_HOST")
 
@@ -228,7 +239,7 @@ EMAIL_PORT = config("EMAIL_PORT", cast=int)
 
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool)
 
-EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
+# EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
 
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 

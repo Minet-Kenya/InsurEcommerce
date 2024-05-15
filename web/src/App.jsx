@@ -28,6 +28,7 @@ import {
   MotorcycleSolutions,
 } from "./views/MotorcycleInsurance/MotorcycleInsurance";
 import {
+  MotorCheckoutPage,
   MotorCoverForm,
   MotorInsuranceQuote,
   MotorPackages,
@@ -42,6 +43,8 @@ import {
   HomeInsurancePackages,
 } from "./views/HomeInsurance/HomeIsurance";
 import { MedicalCoverForm } from "./views/MedicalCover/MedicalCover";
+import { TravelInsuranceForm } from "./views/TravelInsurance/TravelInsurance";
+import { GolfCoverForm } from "./views/GolfCover/GolfCover";
 
 AOS.init({
   duration: 600,
@@ -121,10 +124,13 @@ function App() {
               element={<HomeInsurancePackages />}
             />
             <Route path="medical-cover" element={<MedicalCoverForm />} />
+            <Route path="travel-insurance" element={<TravelInsuranceForm />} />
+            <Route path="golfers-insurance" element={<GolfCoverForm />} />
             <Route
               path="motor-insurance-coverform"
               element={<MotorCoverForm />}
             />
+            <Route path="motor-checkout" element={<MotorCheckoutPage />} />
           </Route>
 
           {/* Auth View */}

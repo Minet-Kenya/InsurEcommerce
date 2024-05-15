@@ -14,8 +14,11 @@ import {
   formtype,
   globeIcon,
   insuranceIcon,
+  money2,
   moneyIcon,
   personicon,
+  spinner,
+  spinner2,
 } from "../../components/utils/export-images";
 import ReusableInput from "../../components/addons/Forms/Inputs/ReusableInput";
 import FormContainer from "../../components/addons/Forms/Layout/FormContainer";
@@ -25,7 +28,11 @@ import { useEffect, useState } from "react";
 import "./MotorInsurance.css";
 import car from "../../assets/images/svgs/online-payment.png";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../../components/utils/constants";
+import {
+  BASE_URL,
+  BASE_URL_HOME,
+  fetchData,
+} from "../../components/utils/constants";
 
 export function MotorInsurance() {
   return (
@@ -45,12 +52,42 @@ export function MotorInsurance() {
 
 export function MotorInsuranceQuote() {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const saveQouteDetails = () => {
-    navigate("/ecommerce/motor-insurance-packages");
+  const saveQouteDetails = (e) => {
+    e.preventDefault();
+    setIsOpen(true);
+
+    setTimeout(() => {
+      setIsOpen(false);
+      navigate("/ecommerce/motor-insurance-packages");
+    }, 3000);
+  };
+  const proceedMotorCheckout = (event) => {
+    event.preventDefault();
+    navigate("/ecommerce/motor-checkout");
+    // setIsOpen(!isOpen);
   };
   return (
     <>
+      <div>
+        <PopUp isOpen={isOpen}>
+          <div className="complete-purchase">
+            <div>
+              <h4 className="text-center">Calculating the Cover Price</h4>
+              {/* <div className="car-empty-state">
+                <img src={car} />
+              </div>
+              <h6>Motor Details Added</h6> */}
+              <img
+                src={spinner2}
+                alt="spinner"
+                className="spinner-payment larger-spinner"
+              />
+            </div>
+          </div>
+        </PopUp>
+      </div>
       <Sidebar view="MotorInsurance" />
       <main id="dashboard" className="dashboard h-100 d-flex flex-column">
         <div className="pagetitle z-0">
@@ -83,16 +120,25 @@ export function MotorInsuranceQuote() {
             />
             <ReusableInput
               selectOptions={[
-                "Comprehensive",
-                "TPO",
-                "Third Party Fire and Theft",
+                "Comprehensive Cover",
+                "Third Party Only Cover",
+                "Third Party Fire and Theft Cover",
               ]}
               label="POLICY COVER"
               icon={insuranceIcon}
             />
-            <ReusableInput label="MAKE" icon={caricon2} />
-            <ReusableInput label="CAR VALUE IN SHILLINGS" icon={moneyIcon} />
-            <ReusableInput label="MAKE YEAR" icon={calender} />
+            <ReusableInput
+              selectOptions={["S Class Mercedez", "Toyota TX", "VW Golf"]}
+              label="MAKE"
+              icon={caricon2}
+            />
+            <ReusableInput
+              // selectOptions={["500k-1.5M", "1.6M- 2M", "2.1M-3.5M"]}
+              type="number"
+              label="CAR VALUE IN SHILLINGS"
+              icon={moneyIcon}
+            />
+            <ReusableInput type="year" label="MAKE YEAR" icon={calender} />
           </FormContainer>
         </section>
       </main>
@@ -111,11 +157,27 @@ export function MotorPackages() {
           const updatedPackages = data.map((packages) => ({
             ...packages,
             features: {
+              Premiums: "",
+              "": "",
               ...packages.features,
             },
           }));
-          console.log(updatedPackages);
-          setPackages(updatedPackages);
+          // console.log(updatedPackages);
+          setPackages(
+            updatedPackages
+            // {
+            //   title: "Total Premiums",
+            //   features: {
+            //     "DIRECTLINE ASSURANCE": "",
+            //   },
+            // },
+            // {
+            //   title: "",
+            //   features: {
+            //     "DIRECTLINE ASSURANCE": "",
+            //   },
+            // },
+          );
           // setPackages((prevPackages) => [
           //   {
           //     features: {
@@ -178,13 +240,21 @@ export function MotorPackages() {
   };
 
   const features = Array.from(
-    new Set(packages.flatMap((pkg) => Object.keys(pkg.features)))
+    new Set(packages1.flatMap((pkg) => Object.keys(pkg.features)))
   );
 
   const navigate = useNavigate();
 
-  const choosePackage = (event) => {
-    event.preventDefault();
+  const choosePackage = (pkg) => {
+    // console.log(pkg);
+    localStorage.setItem(
+      "motor-policy",
+      JSON.stringify({
+        package_id: pkg.id,
+        policy_name: pkg.title,
+        price: pkg.premiums,
+      })
+    );
     navigate("/ecommerce/motor-insurance-coverform");
   };
 
@@ -218,20 +288,23 @@ export function MotorPackages() {
                 />
                 <h4>REQUESTED ANALYSIS</h4>
               </div>
-              <ReusablePackageTable packages={packages}>
-                {/* {packages.map((pr, i) => (
-            <PackageContent key={i} package={pr.title} feature="Premiums">
-              <div className="content price">{pr.Premiums}</div>
-            </PackageContent>
-          ))} */}
+              <ReusablePackageTable packages={packages1}>
+                {packages1.map((pr, i) => (
+                  <PackageContent key={i} package={pr.title} feature="Premiums">
+                    <div className="content price">{pr.premiums}</div>
+                  </PackageContent>
+                ))}
 
-                {features.map((p, i) => (
-                  <PackageContent key={i} package="" feature={p}>
+                {packages1.map((p, i) => (
+                  <PackageContent key={i} package={p.title} feature="">
                     <button
-                      onClick={choosePackage}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        choosePackage(p);
+                      }}
                       className="content choose-btn"
                     >
-                      My Choice
+                      Select
                     </button>
                   </PackageContent>
                 ))}
@@ -245,17 +318,62 @@ export function MotorPackages() {
 }
 
 export function MotorCoverForm() {
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
 
-  const togglePopup = (event) => {
-    event.preventDefault();
+  const [formData, setFormData] = useState(() => {
+    const savedData = JSON.parse(localStorage.getItem("motor-cover-details"));
+    return savedData || { registration_no: "" };
+  });
+  const [formError, setFormError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("motor-cover-details", JSON.stringify(formData));
+  }, [formData]);
+
+  function saveMotocycleDetails(e) {
+    e.preventDefault();
+    const requiredFields = [
+      "registration_no",
+      "make",
+      "engine_no",
+      "manufacture_year",
+      "engine_cc",
+      "car_value",
+      "policy_type",
+      // "motor_type",
+      "policy_period",
+    ];
+
+    // const hasEmptyFields = requiredFields.some((field) => !formData[field]);
+
+    // console.log(formData);
+
+    // if (hasEmptyFields) {
+    //   // console.log("hahahdhd");
+    //   setFormError("Please fill in all required fields.");
+    //   return;
+    // }else{
+
+    // }
     setIsOpen(!isOpen);
+  }
+
+  const proceedMotorCheckout = (event) => {
+    event.preventDefault();
+    // setIsOpen(!isOpen);
+    navigate("/ecommerce/motor-checkout");
   };
 
   return (
     <>
       <div>
-        <PopUp isOpen={isOpen} onClose={togglePopup}>
+        <PopUp isOpen={isOpen} onClose={proceedMotorCheckout}>
           <div className="complete-purchase">
             <div>
               <h4 className="text-center">Complete Payment</h4>
@@ -285,7 +403,7 @@ export function MotorCoverForm() {
           className="flex-grow-1 container-fluid text-center d-flex flex-column  mb-3"
           data-aos="fade-in"
         >
-          <FormContainer onClick={togglePopup}>
+          <FormContainer onClick={proceedMotorCheckout}>
             <div className="automotive-header">
               <h4>
                 Automobile || Cover - Automobile || Underwriter - Old Mutual
@@ -302,16 +420,40 @@ export function MotorCoverForm() {
                   <div className="input-automobile">
                     <ReusableInput
                       icon={personicon}
+                      value={formData.registration_no}
+                      name="registration_no"
+                      onChange={handleChange}
                       label="Registration Number *"
                     />
-                    <ReusableInput icon={caricon2} label="Make" />
-                    <ReusableInput icon={cc} label="Engine No" />
+                    <ReusableInput
+                      value={formData.make}
+                      name="make"
+                      onChange={handleChange}
+                      icon={caricon2}
+                      label="Make"
+                      selectOptions={[
+                        "S Class Mercedez",
+                        "Toyota TX",
+                        "VW Golf",
+                      ]}
+                    />
+                    <ReusableInput
+                      value={formData.engine_no}
+                      name="engine_no"
+                      onChange={handleChange}
+                      icon={cc}
+                      label="Engine No"
+                    />
                     <ReusableInput
                       icon={globeIcon}
+                      value={formData.manufacture_year}
+                      name="manufacture_year"
+                      type="year"
+                      onChange={handleChange}
                       label="Manufacture Year *"
                     />
-                    <ReusableInput icon={cc} label="Engine CC" />
-                    <ReusableInput icon={personicon} label="Passangers *" />
+
+                    {/* <ReusableInput icon={personicon} label="Passangers *" /> */}
                   </div>
                 </div>
               </div>
@@ -321,16 +463,227 @@ export function MotorCoverForm() {
                   <h6>Policy Details</h6>
                 </div>
                 <div className="input-automobile">
-                  <ReusableInput label="Value of Motor *" icon={caricon2} />
-                  <ReusableInput label="Log Book No" icon={coverform} />
-                  <ReusableInput label="Policy Type *" icon={coverform} />
-                  <ReusableInput label="Motor Type *" icon={caricon2} />
-                  <ReusableInput label="Cover Type *" icon={formtype} />
-                  <ReusableInput label="Policy Period From *" icon={calender} />
+                  <ReusableInput
+                    value={formData.car_value}
+                    name="car_value"
+                    onChange={handleChange}
+                    type="number"
+                    label="Value of Motor *"
+                    icon={caricon2}
+                  />
+                  {/* <ReusableInput label="Log Book No" icon={coverform} /> */}
+                  <ReusableInput
+                    value={formData.policy_type}
+                    name="policy_type"
+                    onChange={handleChange}
+                    label="Policy Type *"
+                    icon={coverform}
+                  />
+                  {/* <ReusableInput
+                    value={formData.motor_type}
+                    name="motor_type"
+                    onChange={handleChange}
+                    label="Motor Type *"
+                    icon={caricon2}
+                  /> */}
+                  {/* <ReusableInput
+                  value={formData.cover_type}
+                  name="cover_type"
+                  onChange={handleChange}
+                  label="Cover Type *" icon={formtype} /> */}
+                  <ReusableInput
+                    icon={cc}
+                    value={formData.engine_cc}
+                    name="engine_cc"
+                    onChange={handleChange}
+                    label="Engine CC"
+                  />
+                  <ReusableInput
+                    type="date"
+                    value={formData.policy_period}
+                    name="policy_period"
+                    onChange={handleChange}
+                    label="Policy Period From *"
+                    icon={calender}
+                  />
                 </div>
               </div>
             </div>
           </FormContainer>
+        </section>
+      </main>
+    </>
+  );
+}
+
+export function MotorCheckoutPage() {
+  const navigate = useNavigate();
+  const [initiatePayment, setInitiatePayment] = useState(false);
+  const [paymentPhone, setPaymentPhone] = useState("");
+
+  const handlePhoneInput = (e) => {
+    setPaymentPhone(e.target.value);
+  };
+
+  const cancelPayment = () => {
+    setInitiatePayment(false);
+  };
+
+  const initiatePolicyPayment = () => {
+    setInitiatePayment(true);
+  };
+
+  const motor_details = JSON.parse(localStorage.getItem("motor-cover-details"));
+  const policy_details = JSON.parse(localStorage.getItem("motor-policy"));
+
+  let authToken = JSON.parse(localStorage.getItem("authTokens"));
+
+  const motor_policy_details = {
+    ...motor_details,
+    package_details: policy_details.package_id,
+  };
+
+  function transformKeys(obj) {
+    const newObj = {};
+
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        // Replace underscores with spaces and capitalize the first letter of each word
+        const newKey = key
+          .replace(/_/g, " ")
+          .replace(/\b\w/g, (l) => l.toUpperCase());
+        newObj[newKey] = obj[key];
+      }
+    }
+
+    return newObj;
+  }
+
+  const transformedData = transformKeys(motor_details);
+
+  const editData = () => {
+    navigate("/ecommerce/motor-insurance-coverform");
+  };
+
+  const savePolicyDetails = async () => {
+    console.log(motor_policy_details);
+    // 1. save policy details
+
+    await fetchData(
+      `${BASE_URL}/motor-cover-details/`,
+      "POST",
+      motor_policy_details,
+      authToken.access
+    )
+      .then((data) => console.log("Data:", data))
+      .catch((error) => console.error("Error:", error));
+
+    // 2. save transaction details
+    await fetchData(
+      `${BASE_URL_HOME}base/transactions/`,
+      "POST",
+      {
+        amount: policy_details.price,
+        payment_number: paymentPhone,
+        payment_status: "PENDING",
+      },
+      authToken.access
+    )
+      .then((data) => console.log("Data:", data))
+      .catch((error) => console.error("Error:", error));
+  };
+
+  return (
+    <>
+      <PopUp isOpen={initiatePayment}>
+        <div className="payment-modal">
+          <h5>Complete Policy Payment</h5>
+          <ReusableInput
+            value={paymentPhone}
+            onChange={handlePhoneInput}
+            type="tel"
+            icon={money2}
+            label="Enter phone number to pay from"
+          />
+          <div className="payment-actions">
+            <button onClick={cancelPayment} className="cancel-payment">
+              Cancel
+            </button>
+            <button onClick={savePolicyDetails} className="initiate-payment">
+              Initiate Payment
+              <img src={spinner} alt="spinner" className="spinner-payment" />
+            </button>
+          </div>
+        </div>
+      </PopUp>
+      <Sidebar view="MotorcycleInsurance" />
+      <main id="dashboard" className="dashboard h-100 d-flex flex-column">
+        <div className="pagetitle z-0">
+          <h1 className="text-white">Policy Check Out</h1>
+          <nav>
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item active text-secondary">
+                Policy Checkout details.
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <section
+          className="flex-grow-1 container-fluid text-center d-flex flex-column  mb-3"
+          data-aos="fade-in"
+        >
+          <div>
+            <div id="statement">
+              <div className="top-header">
+                <div className="left-part ">
+                  <img
+                    className="st-icon"
+                    src={familycover}
+                    alt="analysis-icon"
+                  />
+                  <h4>Requested Summary</h4>
+                </div>
+                <div className="right-part">
+                  <button onClick={editData}>Edit Quote</button>
+                  <button>Send this quote to email</button>
+                  <button onClick={initiatePolicyPayment} className="buyButton">
+                    Buy Policy
+                  </button>
+                </div>
+              </div>
+              <div className="policy-checkout">
+                <div className="left-part">
+                  <div className="">
+                    <h6>Policy Details</h6>
+                  </div>
+                  <div className="policy-information">
+                    <p>
+                      <span> Policy Name : </span> {policy_details.policy_name}
+                    </p>
+                    <p>
+                      <span> Policy Price : </span> {policy_details.price}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="policy-checkout">
+                <div className="left-part">
+                  <div className="">
+                    <h6>Personal Information</h6>
+                  </div>
+                  <div className="policy-information">
+                    {Object.entries(transformedData ?? {}).map(
+                      ([key, value], index) => (
+                        <p key={index}>
+                          <span>{key ?? ""} : </span> {value ?? ""}
+                        </p>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
     </>

@@ -6,7 +6,12 @@ import logoSmallWhite from "../../../assets/images/logo-small-white.png";
 export function LogoDefault() {
   return (
     <>
-      <a href="/" rel="noreferrer" className="logo m-0 p-0 d-none d-lg-block">
+      <a
+        target="_blank"
+        href="https://www.minet.com/"
+        rel="noreferrer"
+        className="logo m-0 p-0 d-none d-lg-block"
+      >
         <img
           src={logoFull}
           width="250px"
@@ -15,7 +20,12 @@ export function LogoDefault() {
           className="img-fluid"
         />
       </a>
-      <a href="/" rel="noreferrer" className="logo m-0 p-0 d-block d-lg-none">
+      <a
+        target="_blank"
+        href="https://www.minet.com/"
+        rel="noreferrer"
+        className="logo m-0 p-0 d-block d-lg-none"
+      >
         <img
           src={logoSmall}
           width="70px"
@@ -31,7 +41,12 @@ export function LogoDefault() {
 export function LogoWhite() {
   return (
     <>
-      <a href="/" rel="noreferrer" className="logo m-0 p-0 d-none d-lg-block">
+      <a
+        target="_blank"
+        href="https://www.minet.com/"
+        rel="noreferrer"
+        className="logo m-0 p-0 d-none d-lg-block"
+      >
         <img
           src={logoFullWhite}
           width="250px"
@@ -40,7 +55,12 @@ export function LogoWhite() {
           className="img-fluid"
         />
       </a>
-      <a href="/" rel="noreferrer" className="logo m-0 p-0 d-block d-lg-none">
+      <a
+        target="_blank"
+        href="https://www.minet.com/"
+        rel="noreferrer"
+        className="logo m-0 p-0 d-block d-lg-none"
+      >
         <img
           src={logoSmallWhite}
           width="70px"

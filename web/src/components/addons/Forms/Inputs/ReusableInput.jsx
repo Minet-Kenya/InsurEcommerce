@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ReusableInput.css";
 
 function ReusableInput({
@@ -12,6 +12,13 @@ function ReusableInput({
   required = false,
   selectOptions = [],
 }) {
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  const handleChange = (event) => {
+    setYear(event.target.value);
+    onChange && onChange(event);
+  };
+
   return (
     <div className="input-container">
       <div className="form-group">
@@ -24,7 +31,12 @@ function ReusableInput({
             <img src={icon} alt={label} className="icon" />
           </div>
           {selectOptions.length > 0 ? (
-            <select>
+            <select
+              required={required}
+              id={name}
+              name={name}
+              onChange={onChange}
+            >
               <option value="">Select option</option>
               {selectOptions.map((option, index) => (
                 <option key={index} value={option}>
@@ -32,6 +44,15 @@ function ReusableInput({
                 </option>
               ))}
             </select>
+          ) : type === "year" ? (
+            <input
+              type="number"
+              required={required}
+              id={name}
+              name={name}
+              value={year}
+              onChange={handleChange}
+            />
           ) : (
             <input
               type={type}

@@ -188,39 +188,6 @@ export function IndividualSolutions() {
             </div>
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
-                className="solutions-img individual-life position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="/ecommerce/individual-life-insurance"
-                rel="noreferrer"
-              >
-                <img
-                  src={ind2}
-                  width=""
-                  height=""
-                  alt="individual-life icon"
-                  className="img-fluid"
-                />
-                <h2 className="mt-2">Individual Life Insurance</h2>
-              </a>
-            </div>
-            <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
-              <a
-                className="solutions-img individual-pension position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://mss.minet.co.ke/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  src={ind3}
-                  width=""
-                  height=""
-                  alt="individual-pension icon"
-                  className="img-fluid"
-                />
-                <h2 className="mt-2">Individual Pension Plan</h2>
-              </a>
-            </div>
-            <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
-              <a
                 className="solutions-img home-insurance position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
                 href="/ecommerce/home-insurance"
                 rel="noreferrer"
@@ -267,9 +234,58 @@ export function IndividualSolutions() {
               </Link>
             </div>
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
+              <Link
+                className="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                to="/ecommerce/boda-boda-solution"
+              >
+                <img
+                  src={ind12}
+                  width=""
+                  height=""
+                  alt="wellness icon"
+                  className="img-fluid"
+                />
+                <h2 className="mt-2">Motorcycle Insurance</h2>
+              </Link>
+            </div>
+            <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
+              <a
+                className="solutions-img individual-life position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                href="/ecommerce/individual-life-insurance"
+                rel="noreferrer"
+              >
+                <img
+                  src={ind2}
+                  width=""
+                  height=""
+                  alt="individual-life icon"
+                  className="img-fluid"
+                />
+                <h2 className="mt-2">Individual Life Insurance</h2>
+              </a>
+            </div>
+            <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
+              <a
+                className="solutions-img individual-pension position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
+                href="https://mss.minet.co.ke/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src={ind3}
+                  width=""
+                  height=""
+                  alt="individual-pension icon"
+                  className="img-fluid"
+                />
+                <h2 className="mt-2">Individual Pension Plan</h2>
+              </a>
+            </div>
+
+            <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://wellness.minet.co.ke/"
+                href="https://resteasy.minet.co.ke/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -286,8 +302,7 @@ export function IndividualSolutions() {
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://wellness.minet.co.ke/"
-                target="_blank"
+                href="/ecommerce/travel-insurance"
                 rel="noreferrer"
               >
                 <img
@@ -350,21 +365,6 @@ export function IndividualSolutions() {
                 />
                 <h2 className="mt-2">Professional Indemntity Cover</h2>
               </a>
-            </div>
-            <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
-              <Link
-                className="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                to="/ecommerce/motorcycle-insurance"
-              >
-                <img
-                  src={ind12}
-                  width=""
-                  height=""
-                  alt="wellness icon"
-                  className="img-fluid"
-                />
-                <h2 className="mt-2">Motorcycle Insurance</h2>
-              </Link>
             </div>
           </div>
         </section>

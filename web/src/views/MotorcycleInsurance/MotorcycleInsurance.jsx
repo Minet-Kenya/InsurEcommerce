@@ -208,12 +208,13 @@ export function BodaPackages() {
                 {packages1.map((p, i) => (
                   <PackageContent key={i} package={p.title} feature="">
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
                         choosePackage(p);
                       }}
                       className="content choose-btn"
                     >
-                      My Choice
+                      Select
                     </button>
                   </PackageContent>
                 ))}

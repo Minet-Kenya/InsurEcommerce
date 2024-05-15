@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 import "./Authentication.css";
+import { BASE_URL } from "../../utils/constants";
 
 const AuthContext = createContext();
 
@@ -230,7 +231,7 @@ export function LoginForm() {
   );
 }
 
-export function SignupForm() {
+export function SignupForm({ afterRegister }) {
   const [full_name, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -264,13 +265,10 @@ export function SignupForm() {
         formData.append("password", password);
 
         // Send form data to backend
-        const signupResponse = await fetch(
-          "http://127.0.0.1:8000/api/register/",
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
+        const signupResponse = await fetch(`${BASE_URL}/register/`, {
+          method: "POST",
+          body: formData,
+        });
         const responseData = await signupResponse.json();
         if (responseData.message) {
           setSuccess(responseData.message); // Handle success
@@ -283,7 +281,8 @@ export function SignupForm() {
           setHasAgreed("");
 
           form.classList.remove("was-validated");
-          navigate("/auth");
+          // navigate("/auth");
+          afterRegister();
         } else if (responseData.errors) {
           setError(responseData.errors.email[0].message); // Handle error
           form.classList.add("was-validated");
