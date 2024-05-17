@@ -9,6 +9,11 @@ class BaseModel(models.Model):
     last_modified = models.DateField(auto_now=True)
 
 class MotorCycleCoverDetails(BaseModel):
+    POLICY_STATUS=[
+        ('Pending','Pending'),
+        ('Complete','Complete'),
+    ]
+
     client= models.ForeignKey("users.Client",on_delete=models.SET_NULL,null=True)
     registration_no = models.CharField(max_length=100,unique=True)
     log_book_no = models.CharField(max_length=100,unique=True)
@@ -19,6 +24,7 @@ class MotorCycleCoverDetails(BaseModel):
     motorcycle_and_rider_details = models.JSONField(blank=True, null=True)
     payment_details = models.ForeignKey("base.Transactions",on_delete=models.SET_NULL,null=True)
     package_details = models.ForeignKey('insurance_packages.Package',on_delete=models.SET_NULL,null=True)
+    status = models.CharField(max_length=25, choices=POLICY_STATUS,default='Pending' )
 
     class Meta:
         ordering = ['-created_at']
@@ -29,10 +35,14 @@ class MotorCycleCoverDetails(BaseModel):
 
 
 class MotorVehicleDetails(BaseModel):
+    POLICY_STATUS=[
+        ('Pending','Pending'),
+        ('Complete','Complete'),
+    ]
     client= models.ForeignKey("users.Client",on_delete=models.SET_NULL,null=True)
     registration_no = models.CharField(max_length=100,unique=True)
     make = models.CharField(max_length=100)
-    manufacture_year = models.DateField()
+    manufacture_year = models.CharField(max_length=100)
     policy_type = models.CharField(max_length=100)
     policy_period= models.DateField()
     car_value = models.CharField(max_length=100)
@@ -40,6 +50,8 @@ class MotorVehicleDetails(BaseModel):
     engine_no = models.CharField(max_length=100)
     payment_details = models.ForeignKey("base.Transactions",on_delete=models.SET_NULL,null=True)
     package_details = models.ForeignKey('insurance_packages.Package',on_delete=models.SET_NULL,null=True)
+    status = models.CharField(max_length=25, choices=POLICY_STATUS,default='Pending' )
+
 
     class Meta:
         ordering = ['-created_at']

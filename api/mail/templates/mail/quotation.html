@@ -1,0 +1,20 @@
+<!-- templates/emails/policy_email.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Policy Details</title>
+  </head>
+  <body>
+    <h1>Policy Details for Policy</h1>
+    <p>Dear {{ user.username }},</p>
+    <p>Here are the details of your {{ policy_type|lower }} policy:</p>
+    <ul>
+      <li><strong>Policy Name:</strong> {{ policy.package_details.title }}</li>
+      <li>
+        <strong>Policy Amount:</strong> {{ policy.package_details.premiums }}
+      </li>
+    </ul>
+    <p>Thank you for choosing our service.</p>
+    <p>Best regards,<br />Minet Company</p>
+  </body>
+</html>

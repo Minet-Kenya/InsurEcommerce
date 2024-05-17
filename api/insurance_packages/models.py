@@ -2,11 +2,19 @@ from django.db import models
 import uuid
 
 class Package(models.Model):
+    PACKAGE_CATEGORY=[
+        ('Motorcycle','Motorcycle'),
+        ('Motor',"Motor")
+    ]
+
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
     premiums = models.CharField(max_length=255)
     features = models.JSONField()
-    category = models.CharField(max_length=255, default='default') # Add this line
+    category = models.CharField(max_length=25,
+    choices=PACKAGE_CATEGORY,
+    default='default') # Add this line
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

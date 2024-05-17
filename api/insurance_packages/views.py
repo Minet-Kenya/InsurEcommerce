@@ -2,8 +2,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Package
 from .serializers import PackageSerializer
+from rest_framework.permissions import IsAuthenticated
 
 class PackageCreateView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         # Retrieve all packages
         packages = Package.objects.all()
@@ -20,6 +24,8 @@ class PackageCreateView(APIView):
         return Response(serializer.errors, status=400)
 
 class PackageCategoryView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, category):
         packages = Package.objects.filter(category=category)
         serializer = PackageSerializer(packages, many=True)

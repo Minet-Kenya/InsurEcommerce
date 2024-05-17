@@ -1,7 +1,7 @@
 import BackToTopBtn from "../../components/addons/BackToTopBtn/BackToTopBtn";
 import Preloader from "../../components/addons/Preloader/Preloader";
 import Footer from "../../components/layout/Footer/Footer";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import Header from "../../components/layout/Header/Header";
 import Sidebar from "../../components/layout/Sidebar/Sidebar";
 import {
@@ -148,10 +148,17 @@ export function MotorInsuranceQuote() {
 
 export function MotorPackages() {
   const [packages1, setPackages] = useState([]);
+  let authToken = JSON.parse(localStorage.getItem("authTokens"));
 
   useEffect(() => {
     const getMotorPackages = async () => {
-      await fetch(`${BASE_URL}/packages/motor/`)
+      await fetch(`${BASE_URL}/packages/Motor/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken.access}`,
+        },
+      })
         .then((response) => response.json())
         .then((data) => {
           const updatedPackages = data.map((packages) => ({
@@ -364,10 +371,45 @@ export function MotorCoverForm() {
     setIsOpen(!isOpen);
   }
 
+  async function savePendingInfoData() {
+    const motor_policy = JSON.parse(localStorage.getItem("motor-policy"));
+    const motor_cover_details = JSON.parse(
+      localStorage.getItem("motor-cover-details")
+    );
+    const authToken = JSON.parse(localStorage.getItem("authTokens"));
+
+    const motor_details = {
+      package_details: motor_policy.package_id,
+      ...motor_cover_details,
+    };
+    // console.log(motor_details);
+
+    await fetchData(
+      `${BASE_URL}/motor-cover-details/`,
+      "POST",
+      motor_details,
+      authToken.access
+    )
+      .then((data) => {
+        console.log("Data:", data);
+        localStorage.setItem("motor-policy-id", data.id);
+      })
+      .catch((error) => console.error("Error:", error));
+  }
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
   const proceedMotorCheckout = (event) => {
     event.preventDefault();
     // setIsOpen(!isOpen);
-    navigate("/ecommerce/motor-checkout");
+    let is_edit = queryParams.get("edit");
+    if (is_edit) {
+      navigate("/ecommerce/motor-checkout");
+    } else {
+      savePendingInfoData();
+      navigate("/ecommerce/motor-checkout");
+    }
   };
 
   return (
@@ -562,23 +604,38 @@ export function MotorCheckoutPage() {
   const transformedData = transformKeys(motor_details);
 
   const editData = () => {
-    navigate("/ecommerce/motor-insurance-coverform");
+    const queryParams = new URLSearchParams({
+      edit: true,
+      // key2: "value2"
+    });
+    navigate(`/ecommerce/motor-insurance-coverform?${queryParams.toString()}`);
+    // navigate("/ecommerce/motor-insurance-coverform");
   };
 
-  const savePolicyDetails = async () => {
-    console.log(motor_policy_details);
-    // 1. save policy details
-
+  async function sendEmailQuatation(id) {
     await fetchData(
-      `${BASE_URL}/motor-cover-details/`,
+      `${BASE_URL}/send-policy-email/motor/${id}`,
       "POST",
-      motor_policy_details,
       authToken.access
     )
       .then((data) => console.log("Data:", data))
       .catch((error) => console.error("Error:", error));
+  }
 
-    // 2. save transaction details
+  const savePolicyDetails = async () => {
+    // console.log(motor_policy_details);
+    // 1. save policy details
+
+    // await fetchData(
+    //   `${BASE_URL}/motor-cover-details/`,
+    //   "POST",
+    //   motor_policy_details,
+    //   authToken.access
+    // )
+    //   .then((data) => console.log("Data:", data))
+    //   .catch((error) => console.error("Error:", error));
+
+    // // 2. save transaction details
     await fetchData(
       `${BASE_URL_HOME}base/transactions/`,
       "POST",
@@ -592,6 +649,18 @@ export function MotorCheckoutPage() {
       .then((data) => console.log("Data:", data))
       .catch((error) => console.error("Error:", error));
   };
+
+  async function sendQouteToEmail() {
+    const getSavedPolicyId = localStorage.getItem("motor-policy-id");
+    await fetchData(
+      `${BASE_URL}/send-policy-email/motor/${getSavedPolicyId}/`,
+      "POST",
+      {},
+      authToken.access
+    )
+      .then((data) => console.log("Data:", data))
+      .catch((error) => console.error("Error:", error));
+  }
 
   return (
     <>
@@ -645,7 +714,9 @@ export function MotorCheckoutPage() {
                 </div>
                 <div className="right-part">
                   <button onClick={editData}>Edit Quote</button>
-                  <button>Send this quote to email</button>
+                  <button onClick={sendQouteToEmail}>
+                    Send this quote to email
+                  </button>
                   <button onClick={initiatePolicyPayment} className="buyButton">
                     Buy Policy
                   </button>

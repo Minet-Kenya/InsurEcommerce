@@ -42,6 +42,8 @@ export function CartPage() {
   const [initiatePayment, setInitiatePayment] = useState(false);
   const [paymentPhone, setPaymentPhone] = useState("");
 
+  // Function to load cart items from local storage
+
   const handlePhoneInput = (e) => {
     setPaymentPhone(e.target.value);
   };
@@ -126,6 +128,13 @@ export function CartPage() {
       .catch((error) => console.error("Error:", error));
   };
 
+  function removePolicy(id) {
+    const updatedCart = [...cart];
+    updatedCart.splice(id, 1);
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  }
+
   return (
     <>
       <PopUp isOpen={initiatePayment}>
@@ -193,18 +202,24 @@ export function CartPage() {
                         <h6>Policy Details</h6>
                         <div className="">
                           <p>
-                            <span> Policy Name :</span> Fully Comprehensive
-                            insurance + Personal Accident
-                            {/* {policy_details.policy_name} */}
+                            <span> Policy Name :</span>
+                            {item.policy?.policy_name}
                           </p>
-                          <button className=" cart-action">Remove</button>
+                          <button
+                            onClick={() => {
+                              removePolicy(index);
+                            }}
+                            className=" cart-action"
+                          >
+                            Remove
+                          </button>
                         </div>
                       </div>
                       <div className=" cart-right">
                         <div className=" ">
                           <p>
-                            <span> Policy Price : </span> Ksh 3412
-                            {/* {policy_details.price} */}
+                            <span> Policy Price : </span> Ksh
+                            {item.policy?.price}
                           </p>
                           <button
                             onClick={() => {

@@ -120,10 +120,17 @@ export function MotorcycleSolutions() {
 export function BodaPackages() {
   const [packages1, setPackages] = useState([]);
   const navigate = useNavigate();
+  let authToken = JSON.parse(localStorage.getItem("authTokens"));
 
   useEffect(() => {
     const getBodaPackages = async () => {
-      await fetch(`${BASE_URL}/packages/boda-boda/`)
+      await fetch(`${BASE_URL}/packages/Motorcycle/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken.access}`,
+        },
+      })
         .then((response) => response.json())
         .then((data) => {
           const updatedPackages = data.map((packages) => ({
@@ -408,7 +415,7 @@ export function MotorcycleDetails() {
 
     const hasEmptyFields = requiredFields.some((field) => !formData[field]);
 
-    console.log(formData);
+    // console.log(formData);
 
     if (hasEmptyFields) {
       // console.log("hahahdhd");
@@ -683,7 +690,7 @@ export function MorePersonalDetails() {
 
   const handleIdFileInputChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     if (file) {
       setselectedIdFile(file.name);
 

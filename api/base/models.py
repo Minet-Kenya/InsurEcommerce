@@ -156,9 +156,9 @@ class Document(models.Model):
 
 class Transactions(BaseModel):
     PAYMENT_STATUS_CHOICES = [
-        ('INCOMPLETE', 'Incomplete'),
-        ('FAILED', 'Failed'),
-        ('PENDING', 'Pending'),
+        ('Incomplete', 'Incomplete'),
+        ('Failed', 'Failed'),
+        ('Pending', 'Pending'),
     ]
 
     client = models.ForeignKey("users.Client",on_delete=models.SET_NULL,null=True)
