@@ -286,7 +286,12 @@ export function MotorPackages() {
           data-aos="fade-in"
         >
           <div id="">
-            <div className="boda-packages">
+            <div
+              className="boda-packages"
+              style={{
+                overflowX: "auto",
+              }}
+            >
               <div className="d-flex  align-items-center">
                 <img
                   style={{ width: `33px`, marginRight: `11px` }}

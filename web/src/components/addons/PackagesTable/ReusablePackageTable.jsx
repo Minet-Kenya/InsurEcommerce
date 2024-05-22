@@ -14,7 +14,7 @@ const ReusablePackageTable = ({ children, packages, alternate = false }) => {
             <th className="empty-cell"></th>{" "}
             {/* Empty cell for package titles */}
             {features.map((feature, index) => (
-              <th className="feature-name">{feature}</th>
+              <th className=" package-title">{feature}</th>
             ))}
           </tr>
         ) : (
@@ -33,23 +33,21 @@ const ReusablePackageTable = ({ children, packages, alternate = false }) => {
         {alternate
           ? packages.map((pkg, index) => (
               <tr>
-                <td key={index} className="package-title">
+                <td key={index} className="feature-name">
                   {pkg.title}
                 </td>
-                {features.map((feature, index) =>
-                  packages.map((pkg, pkgIndex) => (
-                    <td key={pkgIndex} className="feature-description">
-                      {pkg.features[feature] || ""}{" "}
-                      {/* Description or placeholder */}
-                      {/* Slot children in content cell */}
-                      {React.Children.toArray(children).filter(
-                        (child) =>
-                          child.props.package === pkg.title &&
-                          child.props.feature === feature
-                      )}
-                    </td>
-                  ))
-                )}
+                {features.map((feature, index) => (
+                  <td key={index} className="feature-description">
+                    {pkg.features[feature] || ""}{" "}
+                    {/* Description or placeholder */}
+                    {/* Slot children in content cell */}
+                    {React.Children.toArray(children).filter(
+                      (child) =>
+                        child.props.package === pkg.title &&
+                        child.props.feature === feature
+                    )}
+                  </td>
+                ))}
                 {}
               </tr>
             ))
