@@ -28,3 +28,5 @@ export { default as spinner } from "../../assets/images/svgs/spinner-solid.svg";
 export { default as spinner2 } from "../../assets/images/svgs/spinner-2.svg";
 export { default as emptystate } from "../../assets/images/svgs/cartemptystate.svg";
 export { default as cancelIcon } from "../../assets/images/svgs/xmark-solid.svg";
+export { default as check } from "../../assets/images/svgs/check.gif";
+export { default as cross } from "../../assets/images/svgs/circle-xmark.svg";

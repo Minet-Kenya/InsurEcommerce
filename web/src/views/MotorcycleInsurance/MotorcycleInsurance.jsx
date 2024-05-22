@@ -3,7 +3,7 @@ import Header from "../../components/layout/Header/Header";
 import Preloader from "../../components/addons/Preloader/Preloader";
 import BackToTopBtn from "../../components/addons/BackToTopBtn/BackToTopBtn";
 import Footer from "../../components/layout/Footer/Footer";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import "./MotorcycleInsurance.css";
 import Sidebar from "../../components/layout/Sidebar/Sidebar";
 import {
@@ -32,6 +32,9 @@ import {
   anylisisIcon,
   shareForm,
   spinner,
+  spinner2,
+  check,
+  cross,
 } from "../../components/utils/export-images";
 import ReusablePackageTable from "../../components/addons/PackagesTable/ReusablePackageTable";
 import FormContainer from "../../components/addons/Forms/Layout/FormContainer";
@@ -672,6 +675,9 @@ export function MotorcycleRiderCoverDetails() {
 export function MorePersonalDetails() {
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
   const savedData = JSON.parse(localStorage.getItem("personal-details"));
   const [formData, setFormData] = useState(() => {
     return savedData || { first_name: "" };
@@ -719,31 +725,50 @@ export function MorePersonalDetails() {
     }
   };
 
-  const saveDetails = (e) => {
+  const saveDetails = async (e) => {
     e.preventDefault();
     const personal_info = JSON.parse(localStorage.getItem("personal-details"));
     const cover_details = JSON.parse(localStorage.getItem("cover-details"));
-    const policy = JSON.parse(localStorage.getItem("policy"));
-    const motor_rider_details = JSON.parse(
+    const policy_details = JSON.parse(localStorage.getItem("policy"));
+    const motorcycle_and_rider_details = JSON.parse(
       localStorage.getItem("motor-rider-details")
     );
+    let authToken = JSON.parse(localStorage.getItem("authTokens"));
     const motorcycle_policy = {
-      policy,
-      personal_info,
-      cover_details,
-      motor_rider_details,
+      ...cover_details,
+      motorcycle_and_rider_details,
+      policy_details,
+      package_details: policy_details.package_id,
     };
 
     let cart = JSON.parse(localStorage.getItem("cart"));
     if (cart) {
       console.log(cart);
-      cart.push(motorcycle_policy);
+      cart.push(policy_details);
       localStorage.setItem("cart", JSON.stringify(cart));
     } else {
       localStorage.setItem("cart", JSON.stringify([motorcycle_policy]));
     }
 
-    navigate("/ecommerce/policy-check-out");
+    let is_edit = queryParams.get("edit");
+    if (is_edit) {
+      navigate("/ecommerce/policy-check-out");
+    } else {
+      await fetchData(
+        `${BASE_URL}/motorcycle-cover-details/`,
+        "POST",
+        motorcycle_policy,
+        authToken.access
+      )
+        .then((data) => {
+          // console.log("Data:", data)
+          localStorage.setItem("motorcycle-policy-id", data.id);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      navigate("/ecommerce/policy-check-out");
+    }
   };
 
   return (
@@ -909,6 +934,12 @@ export function CheckoutPage() {
   const [initiatePayment, setInitiatePayment] = useState(false);
   const [paymentPhone, setPaymentPhone] = useState("");
 
+  const [emailSent, setemailSent] = useState(false);
+  const [sendingEmail, setsendingEmail] = useState(false);
+  const [sendEmail, setsendEmail] = useState(false);
+  const [emailFailed, setemailFailed] = useState(false);
+  const [stkPush, setstkPush] = useState(false);
+
   const handlePhoneInput = (e) => {
     setPaymentPhone(e.target.value);
   };
@@ -955,37 +986,81 @@ export function CheckoutPage() {
 
   const transformedData = transformKeys(personal_info);
 
-  const editData = () => {
-    navigate("/ecommerce/motorcycle-cover-details");
-  };
-
   const savePolicyDetails = async () => {
     console.log(motorcycle_policy_details);
     // 1. save policy details
 
-    await fetchData(
-      `${BASE_URL}/motorcycle-cover-details/`,
-      "POST",
-      motorcycle_policy_details,
-      authToken.access
-    )
-      .then((data) => console.log("Data:", data))
-      .catch((error) => console.error("Error:", error));
+    // await fetchData(
+    //   `${BASE_URL}/motorcycle-cover-details/`,
+    //   "POST",
+    //   motorcycle_policy_details,
+    //   authToken.access
+    // )
+    //   .then((data) => console.log("Data:", data))
+    //   .catch((error) => console.error("Error:", error));
 
     // 2. save transaction details
+    setstkPush(true);
+
     await fetchData(
       `${BASE_URL_HOME}base/transactions/`,
       "POST",
       {
         amount: policy_details.price,
         payment_number: paymentPhone,
-        payment_status: "PENDING",
+        payment_status: "Pending",
       },
       authToken.access
     )
-      .then((data) => console.log("Data:", data))
-      .catch((error) => console.error("Error:", error));
+      .then((data) => {
+        setstkPush(false);
+
+        console.log("Data:", data);
+      })
+      .catch((error) => {
+        setstkPush(false);
+
+        console.error("Error:", error);
+      });
   };
+
+  const editData = () => {
+    const queryParams = new URLSearchParams({
+      edit: true,
+      // key2: "value2"
+    });
+    navigate(`/ecommerce/motorcycle-cover-details?${queryParams.toString()}`);
+    // navigate("/ecommerce/motor-insurance-coverform");
+  };
+
+  async function sendMotorcycleEmail() {
+    const getSavedPolicyId = localStorage.getItem("motorcycle-policy-id");
+    setsendEmail(true);
+    setsendingEmail(true);
+    await fetchData(
+      `${BASE_URL}/send-policy-email/motorcycle/${getSavedPolicyId}/`,
+      "POST",
+      {},
+      authToken.access
+    )
+      .then((data) => {
+        console.log("Data:", data);
+        setemailSent(true);
+        setsendingEmail(false);
+      })
+      .catch((error) => {
+        setemailSent(false);
+        setemailFailed(true);
+
+        console.error("Error:", error);
+      });
+  }
+
+  function doneButton() {
+    setsendEmail(false);
+    setsendingEmail(false);
+    setemailSent(false);
+  }
 
   return (
     <>
@@ -1005,11 +1080,78 @@ export function CheckoutPage() {
             </button>
             <button onClick={savePolicyDetails} className="initiate-payment">
               Initiate Payment
-              <img src={spinner} alt="spinner" className="spinner-payment" />
+              {stkPush && (
+                <img src={spinner} alt="spinner" className="spinner-payment" />
+              )}
             </button>
           </div>
         </div>
       </PopUp>
+      <div>
+        <PopUp isOpen={sendEmail}>
+          <div className="complete-purchase">
+            <div>
+              {/* <div className="car-empty-state">
+                <img src={car} />
+              </div>
+              <h6>Motor Details Added</h6> */}
+              {sendingEmail && (
+                <div>
+                  <h4 className="text-center">Sending quote to your email</h4>
+
+                  <img
+                    src={spinner2}
+                    alt="spinner"
+                    className="spinner-payment larger-spinner"
+                  />
+                </div>
+              )}
+              {emailSent && (
+                <div>
+                  <h4 className="text-center">Email sent succesfully</h4>
+
+                  <img src={check} alt="spinner" className=" larger-spinner" />
+                  <div>
+                    <div className="payment-actions">
+                      <button
+                        onClick={doneButton}
+                        style={{
+                          margin: "0 auto",
+                        }}
+                        className="cancel-payment"
+                      >
+                        Done
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {emailFailed && (
+                <div>
+                  <h4 className="text-center">
+                    Something wrong happened. Try again Later
+                  </h4>
+
+                  <img src={cross} alt="spinner" className=" larger-spinner" />
+                  <div>
+                    <div className="payment-actions">
+                      <button
+                        onClick={doneButton}
+                        style={{
+                          margin: "0 auto",
+                        }}
+                        className="cancel-payment"
+                      >
+                        Ok
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </PopUp>
+      </div>
       <Sidebar view="MotorcycleInsurance" />
       <main id="dashboard" className="dashboard h-100 d-flex flex-column">
         <div className="pagetitle z-0">
@@ -1039,7 +1181,9 @@ export function CheckoutPage() {
                 </div>
                 <div className="right-part">
                   <button onClick={editData}>Edit Quote</button>
-                  <button>Send this quote to email</button>
+                  <button onClick={sendMotorcycleEmail}>
+                    Send this quote to email
+                  </button>
                   <button onClick={initiatePolicyPayment} className="buyButton">
                     Buy Policy
                   </button>

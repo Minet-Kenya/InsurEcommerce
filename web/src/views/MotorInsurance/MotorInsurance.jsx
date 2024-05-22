@@ -9,7 +9,9 @@ import {
   caricon1,
   caricon2,
   cc,
+  check,
   coverform,
+  cross,
   familycover,
   formtype,
   globeIcon,
@@ -164,9 +166,9 @@ export function MotorPackages() {
           const updatedPackages = data.map((packages) => ({
             ...packages,
             features: {
+              ...packages.features,
               Premiums: "",
               "": "",
-              ...packages.features,
             },
           }));
           // console.log(updatedPackages);
@@ -295,7 +297,7 @@ export function MotorPackages() {
                 />
                 <h4>REQUESTED ANALYSIS</h4>
               </div>
-              <ReusablePackageTable packages={packages1}>
+              <ReusablePackageTable packages={packages1} alternate={true}>
                 {packages1.map((pr, i) => (
                   <PackageContent key={i} package={pr.title} feature="Premiums">
                     <div className="content price">{pr.premiums}</div>
@@ -335,6 +337,12 @@ export function MotorCoverForm() {
   });
   const [formError, setFormError] = useState("");
 
+  const motor_policy = JSON.parse(localStorage.getItem("motor-policy"));
+  const motor_cover_details = JSON.parse(
+    localStorage.getItem("motor-cover-details")
+  );
+  const authToken = JSON.parse(localStorage.getItem("authTokens"));
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -372,12 +380,6 @@ export function MotorCoverForm() {
   }
 
   async function savePendingInfoData() {
-    const motor_policy = JSON.parse(localStorage.getItem("motor-policy"));
-    const motor_cover_details = JSON.parse(
-      localStorage.getItem("motor-cover-details")
-    );
-    const authToken = JSON.parse(localStorage.getItem("authTokens"));
-
     const motor_details = {
       package_details: motor_policy.package_id,
       ...motor_cover_details,
@@ -402,6 +404,14 @@ export function MotorCoverForm() {
 
   const proceedMotorCheckout = (event) => {
     event.preventDefault();
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    if (cart) {
+      // console.log(cart);
+      cart.push(motor_policy);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } else {
+      localStorage.setItem("cart", JSON.stringify([motor_policy]));
+    }
     // setIsOpen(!isOpen);
     let is_edit = queryParams.get("edit");
     if (is_edit) {
@@ -561,6 +571,12 @@ export function MotorCoverForm() {
 export function MotorCheckoutPage() {
   const navigate = useNavigate();
   const [initiatePayment, setInitiatePayment] = useState(false);
+  const [emailSent, setemailSent] = useState(false);
+  const [sendingEmail, setsendingEmail] = useState(false);
+  const [sendEmail, setsendEmail] = useState(false);
+  const [emailFailed, setemailFailed] = useState(false);
+  const [stkPush, setstkPush] = useState(false);
+
   const [paymentPhone, setPaymentPhone] = useState("");
 
   const handlePhoneInput = (e) => {
@@ -612,17 +628,17 @@ export function MotorCheckoutPage() {
     // navigate("/ecommerce/motor-insurance-coverform");
   };
 
-  async function sendEmailQuatation(id) {
-    await fetchData(
-      `${BASE_URL}/send-policy-email/motor/${id}`,
-      "POST",
-      authToken.access
-    )
-      .then((data) => console.log("Data:", data))
-      .catch((error) => console.error("Error:", error));
-  }
+  // async function sendEmailQuatation(id) {
+  //   await fetchData(
+  //     `${BASE_URL}/send-policy-email/motor/${id}`,
+  //     "POST",
+  //     authToken.access
+  //   )
+  //     .then((data) => console.log("Data:", data))
+  //     .catch((error) => console.error("Error:", error));
+  // }
 
-  const savePolicyDetails = async () => {
+  const triggerStkPush = async () => {
     // console.log(motor_policy_details);
     // 1. save policy details
 
@@ -636,30 +652,54 @@ export function MotorCheckoutPage() {
     //   .catch((error) => console.error("Error:", error));
 
     // // 2. save transaction details
+    setstkPush(true);
     await fetchData(
       `${BASE_URL_HOME}base/transactions/`,
       "POST",
       {
         amount: policy_details.price,
         payment_number: paymentPhone,
-        payment_status: "PENDING",
+        payment_status: "Pending",
       },
       authToken.access
     )
-      .then((data) => console.log("Data:", data))
-      .catch((error) => console.error("Error:", error));
+      .then((data) => {
+        console.log("Data:", data);
+        setstkPush(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setstkPush(false);
+      });
   };
 
   async function sendQouteToEmail() {
     const getSavedPolicyId = localStorage.getItem("motor-policy-id");
+    setsendEmail(true);
+    setsendingEmail(true);
     await fetchData(
       `${BASE_URL}/send-policy-email/motor/${getSavedPolicyId}/`,
       "POST",
       {},
       authToken.access
     )
-      .then((data) => console.log("Data:", data))
-      .catch((error) => console.error("Error:", error));
+      .then((data) => {
+        console.log("Data:", data);
+        setemailSent(true);
+        setsendingEmail(false);
+      })
+      .catch((error) => {
+        setemailSent(false);
+        setemailFailed(true);
+
+        console.error("Error:", error);
+      });
+  }
+
+  function doneButton() {
+    setsendEmail(false);
+    setsendingEmail(false);
+    setemailSent(false);
   }
 
   return (
@@ -678,13 +718,80 @@ export function MotorCheckoutPage() {
             <button onClick={cancelPayment} className="cancel-payment">
               Cancel
             </button>
-            <button onClick={savePolicyDetails} className="initiate-payment">
+            <button onClick={triggerStkPush} className="initiate-payment">
               Initiate Payment
-              <img src={spinner} alt="spinner" className="spinner-payment" />
+              {stkPush && (
+                <img src={spinner} alt="spinner" className="spinner-payment" />
+              )}
             </button>
           </div>
         </div>
       </PopUp>
+      <div>
+        <PopUp isOpen={sendEmail}>
+          <div className="complete-purchase">
+            <div>
+              {/* <div className="car-empty-state">
+                <img src={car} />
+              </div>
+              <h6>Motor Details Added</h6> */}
+              {sendingEmail && (
+                <div>
+                  <h4 className="text-center">Sending quote to your email</h4>
+
+                  <img
+                    src={spinner2}
+                    alt="spinner"
+                    className="spinner-payment larger-spinner"
+                  />
+                </div>
+              )}
+              {emailSent && (
+                <div>
+                  <h4 className="text-center">Email sent succesfully</h4>
+
+                  <img src={check} alt="spinner" className=" larger-spinner" />
+                  <div>
+                    <div className="payment-actions">
+                      <button
+                        onClick={doneButton}
+                        style={{
+                          margin: "0 auto",
+                        }}
+                        className="cancel-payment"
+                      >
+                        Done
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {emailFailed && (
+                <div>
+                  <h4 className="text-center">
+                    Something wrong happened. Try again Later
+                  </h4>
+
+                  <img src={cross} alt="spinner" className=" larger-spinner" />
+                  <div>
+                    <div className="payment-actions">
+                      <button
+                        onClick={doneButton}
+                        style={{
+                          margin: "0 auto",
+                        }}
+                        className="cancel-payment"
+                      >
+                        Ok
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </PopUp>
+      </div>
       <Sidebar view="MotorcycleInsurance" />
       <main id="dashboard" className="dashboard h-100 d-flex flex-column">
         <div className="pagetitle z-0">

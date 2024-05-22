@@ -203,7 +203,7 @@ export function CartPage() {
                         <div className="">
                           <p>
                             <span> Policy Name :</span>
-                            {item.policy?.policy_name}
+                            {item?.policy_name}
                           </p>
                           <button
                             onClick={() => {
@@ -219,7 +219,7 @@ export function CartPage() {
                         <div className=" ">
                           <p>
                             <span> Policy Price : </span> Ksh
-                            {item.policy?.price}
+                            {item?.price}
                           </p>
                           <button
                             onClick={() => {
