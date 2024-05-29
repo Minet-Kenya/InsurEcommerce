@@ -1,5 +1,5 @@
 from django.contrib import admin
-from motocycle_insurance.models import MotorCycleCoverDetails, MotorVehicleDetails
+from motocycle_insurance.models import MotorCycleCoverDetails, MotorVehicleDetails,EducationPolicy
 
 
 # Register your models here.
@@ -14,3 +14,7 @@ class MotorcycleInsuranceAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'registration_no', 'policy_type',"manufacture_year")
     search_fields = ("__str__",'registration_no', 'policy_type')
     list_filter = ('registration_no', 'policy_type')
+
+@admin.register(EducationPolicy)
+class EducationPolicyAdmin(admin.ModelAdmin):
+    list_display=('full_names','plan_type','email')

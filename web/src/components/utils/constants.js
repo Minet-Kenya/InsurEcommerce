@@ -28,13 +28,15 @@ export async function fetchData(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      let errors = await response.json();
+      // console.log(errors);
+      throw new Error(`HTTP error! Status: ${errors}`);
     }
 
     const responseData = await response.json();
     return responseData;
   } catch (error) {
-    console.error("Fetch error:", error);
+    // console.error("Fetch error:", error);
     throw error;
   }
 }

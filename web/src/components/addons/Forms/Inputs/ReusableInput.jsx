@@ -13,12 +13,6 @@ function ReusableInput({
   selectOptions = [],
 }) {
   const [year, setYear] = useState(new Date().getFullYear());
-
-  const handleChange = (event) => {
-    setYear(event.target.value);
-    onChange && onChange(event);
-  };
-
   return (
     <div className="input-container">
       <div className="form-group">
@@ -36,11 +30,15 @@ function ReusableInput({
               id={name}
               name={name}
               onChange={onChange}
+              value={value}
             >
               <option value="">Select option</option>
               {selectOptions.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
+                <option
+                  key={index}
+                  value={option.value ? option.value : option}
+                >
+                  {option.name ? option.name : option}
                 </option>
               ))}
             </select>
@@ -49,9 +47,11 @@ function ReusableInput({
               type="number"
               required={required}
               id={name}
+              min="1800"
+              placeholder={year}
               name={name}
-              value={year}
-              onChange={handleChange}
+              value={value}
+              onChange={onChange}
             />
           ) : (
             <input

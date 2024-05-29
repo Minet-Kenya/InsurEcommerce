@@ -45,6 +45,9 @@ import {
 import { MedicalCoverForm } from "./views/MedicalCover/MedicalCover";
 import { TravelInsuranceForm } from "./views/TravelInsurance/TravelInsurance";
 import { GolfCoverForm } from "./views/GolfCover/GolfCover";
+import PersonalAccident, {
+  PersonalAccidentForm,
+} from "./views/PersonalAccident/PersonalAccident";
 
 AOS.init({
   duration: 600,
@@ -126,6 +129,10 @@ function App() {
             <Route path="medical-cover" element={<MedicalCoverForm />} />
             <Route path="travel-insurance" element={<TravelInsuranceForm />} />
             <Route path="golfers-insurance" element={<GolfCoverForm />} />
+            <Route
+              path="personal-accident-insurance"
+              element={<PersonalAccidentForm />}
+            />
             <Route
               path="motor-insurance-coverform"
               element={<MotorCoverForm />}

@@ -48,8 +48,10 @@ class MotorVehicleDetails(BaseModel):
     car_value = models.CharField(max_length=100)
     engine_cc = models.CharField(max_length=100)
     engine_no = models.CharField(max_length=100)
+    vehicle_use=models.CharField(max_length=100)
     payment_details = models.ForeignKey("base.Transactions",on_delete=models.SET_NULL,null=True)
-    package_details = models.ForeignKey('insurance_packages.Package',on_delete=models.SET_NULL,null=True)
+    package_details = models.CharField(max_length=100)
+    # package_details = models.ForeignKey('insurance_packages.Package',on_delete=models.SET_NULL,null=True)
     status = models.CharField(max_length=25, choices=POLICY_STATUS,default='Pending' )
 
 
@@ -58,3 +60,12 @@ class MotorVehicleDetails(BaseModel):
 
     def __str__(self):
         return self.client.email
+
+
+class EducationPolicy(BaseModel):
+    client= models.ForeignKey("users.Client",on_delete=models.SET_NULL,null=True)
+    full_names=models.CharField(max_length=100)
+    phone_number=models.CharField(max_length=100)
+    email=models.CharField(max_length=100)
+    plan_type=models.CharField(max_length=100)
+    addational_info = models.CharField(max_length=500)

@@ -116,7 +116,7 @@ export function Solutions() {
             <div className="col-6 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img teachers-medical-scheme position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://collaborationkenya.minet.com/MinetKe/tsc"
+                href="https://collaborationkenya.minet.com/tsc"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -318,8 +318,7 @@ export function IndividualSolutions() {
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://wellness.minet.co.ke/"
-                target="_blank"
+                href="/ecommerce/golfers-insurance"
                 rel="noreferrer"
               >
                 <img
@@ -335,8 +334,7 @@ export function IndividualSolutions() {
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://wellness.minet.co.ke/"
-                target="_blank"
+                href="/ecommerce/personal-accident-insurance"
                 rel="noreferrer"
               >
                 <img
@@ -352,7 +350,7 @@ export function IndividualSolutions() {
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img wellness position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://wellness.minet.co.ke/"
+                href="https://collaborationkenya.minet.com/pacis_indemnity/"
                 target="_blank"
                 rel="noreferrer"
               >

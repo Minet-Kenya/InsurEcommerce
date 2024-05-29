@@ -1,0 +1,37 @@
+<!-- templates/emails/policy_email.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Policy Details</title>
+  </head>
+  <body>
+    <h1>Motor Policy Details</h1>
+    <p>Dear {{ user.username }},</p>
+    <p>Here are the details of your {{ policy_type|lower }} policy:</p>
+
+    <table>
+      <tbody>
+        <ul>
+          <li><strong>Policy Name:</strong> {{ policy.title }}</li>
+          <li><strong>Policy Amount:</strong> {{ policy.premiums }}</li>
+          <li><strong>Policy Cover:</strong> {{ policy.policytype }}</li>
+          <li>
+            <strong>Vehicle Registration No:</strong> {{policy.registrationno}}
+          </li>
+          <li><strong>Vehicle Value:</strong> {{ policy.carvalue }}</li>
+          <li><strong>Vehicle Make:</strong> {{ policy.make }}</li>
+          <li><strong>Vehicle Use:</strong> {{ policy.vehicleuse }}</li>
+          {% comment %}
+          <li><strong>Policy Cover:</strong> {{ policy.policytype }}</li>
+          {% endcomment %}
+          <li>
+            <strong>Manufacture Year:</strong> {{ policy.manufactureyear }}
+          </li>
+          <li><strong> Engine CC:</strong> {{ policy.enginecc }}</li>
+        </ul>
+      </tbody>
+    </table>
+    <p>Thank you for choosing our service.</p>
+    <p>Best regards,<br />Minet Company</p>
+  </body>
+</html>
