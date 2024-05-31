@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 
 def send_policy_email(user, policy, policy_type):
     subject = f'{policy_type} Policy Details'
-    from_email = 'noreply@gmail.com'
+    from_email = 'evan.wakae@minet.co.ke'
     recipient_list = [user.email]
 
     # Render the HTML template
@@ -19,7 +19,7 @@ def send_policy_email(user, policy, policy_type):
 
 def send_motor_policy_email(user, policy,policy_type):
     subject = f'{policy_type} Policy Details'
-    from_email = 'noreply@gmail.com'
+    from_email = 'evan.wakae@minet.co.ke'
     recipient_list = [user.email]
 
     # Render the HTML template

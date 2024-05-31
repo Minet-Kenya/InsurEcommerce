@@ -67,6 +67,20 @@ export function MotorInsuranceQuote() {
 
   const saveQouteDetails = (e) => {
     e.preventDefault();
+    const requiredFields = [
+      "vehicle_use",
+      "make",
+      "manufacture_year",
+      "car_value",
+      "policy_type",
+    ];
+
+    const hasEmptyFields = requiredFields.some((field) => !formData[field]);
+
+    if (hasEmptyFields) {
+      alert("Please fill in all required fields.");
+      return;
+    }
     setIsOpen(true);
 
     setTimeout(() => {
@@ -136,6 +150,7 @@ export function MotorInsuranceQuote() {
               icon={caricon1}
               name="vehicle_use"
               value={formData.vehicle_use}
+              required={true}
               onChange={handleChange}
             />
             <ReusableInput
@@ -149,6 +164,7 @@ export function MotorInsuranceQuote() {
               value={formData.policy_type}
               icon={insuranceIcon}
               onChange={handleChange}
+              required={true}
             />
             <ReusableInput
               label="MAKE e.g Toyota,Nisssan"
@@ -156,6 +172,7 @@ export function MotorInsuranceQuote() {
               icon={caricon2}
               value={formData.make}
               onChange={handleChange}
+              required={true}
             />
             <ReusableInput
               // selectOptions={["500k-1.5M", "1.6M- 2M", "2.1M-3.5M"]}
@@ -165,6 +182,7 @@ export function MotorInsuranceQuote() {
               name="car_value"
               value={formData.car_value}
               onChange={handleChange}
+              required={true}
             />
             <ReusableInput
               type="year"
@@ -173,6 +191,7 @@ export function MotorInsuranceQuote() {
               label="MAKE YEAR"
               name="manufacture_year"
               icon={calender}
+              required={true}
             />
           </FormContainer>
         </section>
@@ -252,47 +271,6 @@ export function MotorPackages() {
     // getMotorPackages();
     getAnalysis();
   }, []);
-  const packages = [
-    {
-      title: "Basic Premium ",
-      features: {
-        "DIRECTLINE ASSURANCE": "35,000.00",
-        "FIDELITY SHIELD INSURANCE CO.": "57,500.00",
-      },
-    },
-    {
-      title: "Excess Protector",
-      features: {
-        "DIRECTLINE ASSURANCE": "0.00",
-      },
-    },
-    {
-      title: "PVT",
-      Premiums: "Kshs 4,556 ",
-
-      features: {
-        "DIRECTLINE ASSURANCE": "0.00",
-      },
-    },
-    {
-      title: "Loss of Use",
-      features: {
-        "DIRECTLINE ASSURANCE": "0.00",
-      },
-    },
-    {
-      title: "Total Premiums",
-      features: {
-        "DIRECTLINE ASSURANCE": "0.00",
-      },
-    },
-    {
-      title: "",
-      features: {
-        "DIRECTLINE ASSURANCE": "",
-      },
-    },
-  ];
 
   const PackageContent = ({ children }) => {
     return children;
@@ -471,8 +449,76 @@ export function MotorCoverForm() {
     localStorage.setItem("motor-cover-details", JSON.stringify(formData));
   }, [formData]);
 
-  function saveMotocycleDetails(e) {
-    e.preventDefault();
+  let motor_details;
+
+  function set_post_data() {
+    motor_details = {
+      package_details: motor_policy.package_id,
+      ...formData,
+    };
+    // console.log(formData);
+  }
+
+  async function savePendingInfoData() {
+    // console.log(motor_details);
+    set_post_data();
+    await fetchData(
+      `${BASE_URL}/motor-cover-details/`,
+      "POST",
+      motor_details,
+      authToken.access
+    )
+      .then((data) => {
+        // console.log("Data:", data);
+        if (data.errors?.registration_no) {
+          alert(
+            "Motor vehicle details with this registration number already exists."
+          );
+          return;
+        }
+        localStorage.setItem("motor-policy-id", data.id);
+        localStorage.setItem("motor-saved-status", "true");
+        navigate("/ecommerce/motor-checkout");
+
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        console.log(cart);
+
+        if (cart) {
+          localStorage.setItem("cart", JSON.stringify(cart));
+        } else {
+          localStorage.setItem("cart", JSON.stringify([motor_policy]));
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        // return;
+        // console.log(Object.values(error));
+      });
+  }
+
+  async function updatePolicyData() {
+    set_post_data();
+    let getId = localStorage.getItem("motor-policy-id");
+    // console.log(getId);
+    await fetchData(
+      `${BASE_URL}/motor-cover-details/${getId}/`,
+      "PATCH",
+      motor_details,
+      authToken.access
+    )
+      .then((data) => {
+        // console.log("Data:", data);
+        navigate("/ecommerce/motor-checkout");
+      })
+      .catch((error) => {
+        // console.log(Object.values(error));
+      });
+  }
+
+  const proceedMotorCheckout = (event) => {
+    event.preventDefault();
+    set_post_data();
+
     const requiredFields = [
       "registration_no",
       "make",
@@ -485,110 +531,24 @@ export function MotorCoverForm() {
       "policy_period",
     ];
 
-    // const hasEmptyFields = requiredFields.some((field) => !formData[field]);
+    const hasEmptyFields = requiredFields.some((field) => !formData[field]);
 
-    // console.log(formData);
-
-    // if (hasEmptyFields) {
-    //   // console.log("hahahdhd");
-    //   setFormError("Please fill in all required fields.");
-    //   return;
-    // }else{
-
-    // }
-    setIsOpen(!isOpen);
-  }
-  const motor_details = {
-    package_details: motor_policy.package_id,
-    ...motor_cover_details,
-  };
-
-  async function savePendingInfoData() {
-    // console.log(motor_details);
-
-    await fetchData(
-      `${BASE_URL}/motor-cover-details/`,
-      "POST",
-      motor_details,
-      authToken.access
-    )
-      .then((data) => {
-        // console.log("Data:", data);
-
-        localStorage.setItem("motor-policy-id", data.id);
-        let cart = JSON.parse(localStorage.getItem("cart"));
-        if (cart) {
-          // console.log(cart);
-          // cart.push(motor_policy);
-          localStorage.setItem("cart", JSON.stringify(cart));
-        } else {
-          localStorage.setItem("cart", JSON.stringify([motor_policy]));
-        }
-      })
-      .catch((error) => {
-        // console.log(Object.values(error));
-      });
-  }
-
-  async function updatePolicyData() {
-    let getId = localStorage.getItem("motor-policy-id");
-    // console.log(getId);
-    await fetchData(
-      `${BASE_URL}/motor-cover-details/${getId}/`,
-      "PATCH",
-      motor_details,
-      authToken.access
-    )
-      .then((data) => {
-        // console.log("Data:", data);
-      })
-      .catch((error) => {
-        // console.log(Object.values(error));
-      });
-  }
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-
-  const proceedMotorCheckout = (event) => {
-    event.preventDefault();
+    if (hasEmptyFields) {
+      alert("Please fill in all required fields.");
+      return;
+    }
 
     setIsOpen(!isOpen);
     let getSavedStatus = localStorage.getItem("motor-saved-status");
     if (getSavedStatus === "true") {
       updatePolicyData();
-
-      // console.log("Already saved data");
     } else {
-      localStorage.setItem("motor-saved-status", "true");
-      // console.log("Saving data");
       savePendingInfoData();
-    }
-    let is_edit = queryParams.get("edit");
-    if (is_edit) {
-      navigate("/ecommerce/motor-checkout");
-    } else {
-      navigate("/ecommerce/motor-checkout");
     }
   };
 
   return (
     <>
-      <div>
-        <PopUp isOpen={isOpen} onClose={proceedMotorCheckout}>
-          <div className="complete-purchase">
-            <div>
-              <h4 className="text-center">Complete Payment</h4>
-              <div className="car-empty-state">
-                <img src={car} />
-              </div>
-              <h6>Motor Details Added</h6>
-              <p>Premiums = Kshs 35,397.50</p>
-              <button className="btn btn-primary ">Proceed and Buy</button>
-            </div>
-          </div>
-        </PopUp>
-      </div>
       <Sidebar view="MotorInsurance" />
       <main id="dashboard" className="dashboard h-100 d-flex flex-column">
         <div className="pagetitle z-0">
@@ -626,6 +586,7 @@ export function MotorCoverForm() {
                       name="registration_no"
                       onChange={handleChange}
                       label="Registration Number *"
+                      required={true}
                     />
                     <ReusableInput
                       value={formData.make}
@@ -633,6 +594,7 @@ export function MotorCoverForm() {
                       onChange={handleChange}
                       icon={caricon2}
                       label="Make e.g Toyota,Nisssan"
+                      required={true}
                     />
                     <ReusableInput
                       value={formData.engine_no}
@@ -640,6 +602,7 @@ export function MotorCoverForm() {
                       onChange={handleChange}
                       icon={cc}
                       label="Engine No"
+                      required={true}
                     />
                     <ReusableInput
                       icon={globeIcon}
@@ -648,6 +611,7 @@ export function MotorCoverForm() {
                       type="year"
                       onChange={handleChange}
                       label="Manufacture Year *"
+                      required={true}
                     />
 
                     {/* <ReusableInput icon={personicon} label="Passangers *" /> */}
@@ -667,6 +631,7 @@ export function MotorCoverForm() {
                     type="number"
                     label="Value of Motor *"
                     icon={caricon2}
+                    required={true}
                   />
                   {/* <ReusableInput label="Log Book No" icon={coverform} /> */}
                   {/* <ReusableInput
@@ -690,6 +655,7 @@ export function MotorCoverForm() {
                     value={formData.policy_type}
                     icon={insuranceIcon}
                     onChange={handleChange}
+                    required={true}
                   />
                   {/* <ReusableInput
                     value={formData.motor_type}
@@ -709,6 +675,7 @@ export function MotorCoverForm() {
                     name="engine_cc"
                     onChange={handleChange}
                     label="Engine CC"
+                    required={true}
                   />
                   <ReusableInput
                     type="date"
@@ -717,6 +684,7 @@ export function MotorCoverForm() {
                     onChange={handleChange}
                     label="Policy Period From *"
                     icon={calender}
+                    required={true}
                   />
                 </div>
               </div>
@@ -784,7 +752,8 @@ export function MotorCheckoutPage() {
       edit: true,
       // key2: "value2"
     });
-    navigate(`/ecommerce/motor-insurance-coverform?${queryParams.toString()}`);
+    navigate(`/ecommerce/motor-insurance-coverform/`);
+    // navigate(`/ecommerce/motor-insurance-coverform?${queryParams.toString()}`);
     // navigate("/ecommerce/motor-insurance-coverform");
   };
 
@@ -799,6 +768,10 @@ export function MotorCheckoutPage() {
   // }
 
   const triggerStkPush = async () => {
+    if (!paymentPhone) {
+      alert("Kindly enter your phone number");
+      return;
+    }
     // console.log(motor_policy_details);
     // 1. save policy details
 
@@ -858,13 +831,18 @@ export function MotorCheckoutPage() {
     )
       .then((data) => {
         // console.log("Data:", data);
+        if (data.errors?.error) {
+          setemailSent(false);
+          setsendingEmail(false);
+          setemailFailed(true);
+          return;
+        }
         setemailSent(true);
         setsendingEmail(false);
       })
       .catch((error) => {
         setemailSent(false);
         setsendingEmail(false);
-
         setemailFailed(true);
 
         // console.error("Error:", error);
@@ -879,13 +857,13 @@ export function MotorCheckoutPage() {
     // cart = cart.filter(
     //   (item) => item.policy_name !== getSavedPolicy.policy_name
     // );
-    // console.log(cart);
+    // // console.log(cart);
 
-    // Save the updated cart back to local storage
+    // // Save the updated cart back to local storage
     // localStorage.setItem("cart", JSON.stringify(cart));
-    localStorage.clear("motor-policy-id");
-    localStorage.clear("motor-cover-details");
-    localStorage.clear("motor-saved-status");
+    // localStorage.removeItem("motor-policy-id");
+    localStorage.removeItem("motor-cover-details");
+    localStorage.removeItem("motor-saved-status");
     navigate("/ecommerce/individual-solutions");
   }
 
@@ -898,6 +876,7 @@ export function MotorCheckoutPage() {
             value={paymentPhone}
             onChange={handlePhoneInput}
             type="tel"
+            required={true}
             icon={money2}
             label="Enter phone number to pay from"
           />
@@ -963,7 +942,9 @@ export function MotorCheckoutPage() {
                   <div>
                     <div className="payment-actions">
                       <button
-                        onClick={doneButton}
+                        onClick={() => {
+                          setsendEmail(false);
+                        }}
                         style={{
                           margin: "0 auto",
                         }}

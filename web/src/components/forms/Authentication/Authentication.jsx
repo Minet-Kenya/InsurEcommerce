@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 import "./Authentication.css";
-import { BASE_URL } from "../../utils/constants";
+import { BASE_URL, BASE_URL_HOME } from "../../utils/constants";
 
 const AuthContext = createContext();
 
@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
     e.preventDefault();
     try {
       // Make a POST request to authenticate user
-      let response = await fetch("http://127.0.0.1:8000/users/auth/token/", {
+      let response = await fetch(`${BASE_URL_HOME}/users/auth/token/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,19 +80,16 @@ export function AuthProvider({ children }) {
 
   // Function to update authentication tokens
   let updateToken = useCallback(async () => {
-    console.log("Update token called");
-    let response = await fetch(
-      "http://127.0.0.1:8000/users/auth/token/refresh/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          refresh: authTokens?.refresh,
-        }),
-      }
-    );
+    // console.log("Update token called");
+    let response = await fetch(`${BASE_URL_HOME}/users/auth/token/refresh/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        refresh: authTokens?.refresh,
+      }),
+    });
     let data = await response.json();
     if (response.status === 200) {
       setAuthTokens(data);

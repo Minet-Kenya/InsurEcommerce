@@ -136,7 +136,7 @@ class EducationPolicyListView(ListCreateAPIView):
         # Load the HTML template
         html_content = render_to_string('education-quatation.html', {'policy': policy})
 
-        email = EmailMultiAlternatives(subject, '', 'noreply@gmail.com', [user_email])
+        email = EmailMultiAlternatives(subject, '', 'evan.wakae@minet.co.ke', [user_email])
 
         email.attach_alternative(html_content, "text/html")
 

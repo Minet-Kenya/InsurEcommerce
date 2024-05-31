@@ -582,6 +582,7 @@ export function MotorcycleRiderCoverDetails() {
                   <div>
                     <div className="input-automobile">
                       <ReusableInput
+                        selectOptions={["Yes", "No"]}
                         icon={personicon}
                         label="Is the motor cycle(s) fitted with ANTI-THEFT device(s)? Give Details *
                         "
@@ -590,6 +591,7 @@ export function MotorcycleRiderCoverDetails() {
                         onChange={handleChange}
                       />
                       <ReusableInput
+                        selectOptions={["Yes", "No"]}
                         icon={caricon2}
                         label="Is the motor cycle normally packed within your premises overnight? *"
                         value={formData.areaof_packing}
@@ -626,6 +628,7 @@ export function MotorcycleRiderCoverDetails() {
                   </div>
                   <div className="input-automobile">
                     <ReusableInput
+                      selectOptions={["Yes", "No"]}
                       label="Are you a licensed rider? *"
                       icon={caricon2}
                       value={formData.licensed_rider}
@@ -640,6 +643,7 @@ export function MotorcycleRiderCoverDetails() {
                       onChange={handleChange}
                     />
                     <ReusableInput
+                      selectOptions={["Yes", "No"]}
                       label="Will the motor cycle be solely ridden by you? *"
                       icon={coverform}
                       value={formData.only_rider}
@@ -725,49 +729,113 @@ export function MorePersonalDetails() {
     }
   };
 
-  const saveDetails = async (e) => {
-    e.preventDefault();
-    const personal_info = JSON.parse(localStorage.getItem("personal-details"));
-    const cover_details = JSON.parse(localStorage.getItem("cover-details"));
-    const policy_details = JSON.parse(localStorage.getItem("policy"));
-    const motorcycle_and_rider_details = JSON.parse(
-      localStorage.getItem("motor-rider-details")
-    );
-    let authToken = JSON.parse(localStorage.getItem("authTokens"));
-    const motorcycle_policy = {
-      ...cover_details,
-      motorcycle_and_rider_details,
-      policy_details,
-      package_details: policy_details.package_id,
-    };
+  const personal_info = JSON.parse(localStorage.getItem("personal-details"));
+  const cover_details = JSON.parse(localStorage.getItem("cover-details"));
+  const policy_details = JSON.parse(localStorage.getItem("policy"));
+  const motorcycle_and_rider_details = JSON.parse(
+    localStorage.getItem("motor-rider-details")
+  );
+  let authToken = JSON.parse(localStorage.getItem("authTokens"));
+  const motorcycle_policy = {
+    ...cover_details,
+    motorcycle_and_rider_details,
+    policy_details,
+    package_details: policy_details.package_id,
+  };
 
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    if (cart) {
-      console.log(cart);
-      cart.push(policy_details);
-      localStorage.setItem("cart", JSON.stringify(cart));
-    } else {
-      localStorage.setItem("cart", JSON.stringify([motorcycle_policy]));
+  const saveDetails = async () => {
+    await fetchData(
+      `${BASE_URL}/motorcycle-cover-details/`,
+      "POST",
+      motorcycle_policy,
+      authToken.access
+    )
+      .then((data) => {
+        // console.log("Data:", data);
+        if (data.errors?.registration_no) {
+          alert(
+            "Motor cycle details with this registration number already exists."
+          );
+          navigate("/ecommerce/motorcycle-cover-details");
+          return;
+        }
+        localStorage.setItem("motorcycle-policy-id", data.id);
+        localStorage.setItem("motorcycle-saved-status", "true");
+
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        if (cart) {
+          // console.log(cart);
+          cart.push(policy_details);
+          localStorage.setItem("cart", JSON.stringify(cart));
+        } else {
+          localStorage.setItem("cart", JSON.stringify([motorcycle_policy]));
+        }
+
+        navigate("/ecommerce/policy-check-out");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    // navigate("/ecommerce/policy-check-out");
+
+    // let is_edit = queryParams.get("edit");
+    // if (is_edit) {
+    //   navigate("/ecommerce/policy-check-out");
+    // } else {
+
+    // }
+  };
+
+  async function updateMotocylePolicy() {
+    let getId = localStorage.getItem("motorcycle-policy-id");
+    // console.log(getId);
+    await fetchData(
+      `${BASE_URL}/motorcycle-cover-details/${getId}/`,
+      "PATCH",
+      motorcycle_policy,
+      authToken.access
+    )
+      .then((data) => {
+        // console.log("Data:", data);
+        navigate("/ecommerce/policy-check-out");
+      })
+      .catch((error) => {
+        // console.log(Object.values(error));
+      });
+  }
+
+  const proceedCheckout = (event) => {
+    event.preventDefault();
+
+    const requiredFields = [
+      "registration_no",
+      "make",
+      "engine_no",
+      "manufacture_year",
+      "engine_cc",
+      "car_value",
+      "policy_type",
+      // "motor_type",
+      "policy_period",
+    ];
+
+    const hasEmptyFields = requiredFields.some((field) =>
+      console.log(!formData[field])
+    );
+    console.log(hasEmptyFields);
+
+    if (hasEmptyFields) {
+      alert("Please fill in all required fields.");
+      return;
     }
 
-    let is_edit = queryParams.get("edit");
-    if (is_edit) {
-      navigate("/ecommerce/policy-check-out");
+    let getSavedStatus = localStorage.getItem("motorcycle-saved-status");
+    if (getSavedStatus === "true") {
+      updateMotocylePolicy();
+      // console.log("Already saved data");
     } else {
-      await fetchData(
-        `${BASE_URL}/motorcycle-cover-details/`,
-        "POST",
-        motorcycle_policy,
-        authToken.access
-      )
-        .then((data) => {
-          // console.log("Data:", data)
-          localStorage.setItem("motorcycle-policy-id", data.id);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-      navigate("/ecommerce/policy-check-out");
+      // console.log("Saving data");
+      saveDetails();
     }
   };
 
@@ -794,7 +862,7 @@ export function MorePersonalDetails() {
               action="Accept Terms and submit your request as at 2023 | 07 | 06 | 10:34: 52"
               headerIcon={coverform}
               formTitle="Personal Information"
-              onClick={saveDetails}
+              onClick={proceedCheckout}
             >
               <div className="sub-icon-header">
                 <div className="input-container">
@@ -865,6 +933,7 @@ export function MorePersonalDetails() {
                     onChange={handleChange}
                   />
                   <ReusableInput
+                    selectOptions={["Male", "Female"]}
                     label="Gender"
                     icon={personicon}
                     value={formData.gender}
@@ -1025,11 +1094,11 @@ export function CheckoutPage() {
   };
 
   const editData = () => {
-    const queryParams = new URLSearchParams({
-      edit: true,
-      // key2: "value2"
-    });
-    navigate(`/ecommerce/motorcycle-cover-details?${queryParams.toString()}`);
+    // const queryParams = new URLSearchParams({
+    //   edit: true,
+    //   // key2: "value2"
+    // });
+    navigate(`/ecommerce/motorcycle-cover-details/`);
     // navigate("/ecommerce/motor-insurance-coverform");
   };
 
@@ -1044,15 +1113,17 @@ export function CheckoutPage() {
       authToken.access
     )
       .then((data) => {
-        console.log("Data:", data);
+        // console.log("Data:", data);
         setemailSent(true);
         setsendingEmail(false);
+        setemailFailed(false);
       })
       .catch((error) => {
         setemailSent(false);
         setemailFailed(true);
+        setsendingEmail(false);
 
-        console.error("Error:", error);
+        // console.error("Error:", error);
       });
   }
 
@@ -1060,6 +1131,22 @@ export function CheckoutPage() {
     setsendEmail(false);
     setsendingEmail(false);
     setemailSent(false);
+
+    // let cart = JSON.parse(localStorage.getItem("cart"));
+    // let getSavedPolicy = JSON.parse(localStorage.getItem("policy"));
+
+    // cart = cart.filter(
+    //   (item) => item.policy_name !== getSavedPolicy.policy_name
+    // );
+    // console.log(cart);
+
+    // Save the updated cart back to local storage
+    // localStorage.setItem("cart", JSON.stringify(cart));
+    // localStorage.removeItem("motorcycle-policy-id");
+    localStorage.removeItem("motor-rider-details");
+    localStorage.removeItem("cover-details");
+    localStorage.removeItem("motorcycle-saved-status");
+    navigate("/ecommerce/individual-solutions");
   }
 
   return (
@@ -1136,7 +1223,9 @@ export function CheckoutPage() {
                   <div>
                     <div className="payment-actions">
                       <button
-                        onClick={doneButton}
+                        onClick={() => {
+                          setsendEmail(false);
+                        }}
                         style={{
                           margin: "0 auto",
                         }}
