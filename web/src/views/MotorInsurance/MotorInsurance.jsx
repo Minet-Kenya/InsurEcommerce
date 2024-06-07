@@ -864,6 +864,7 @@ export function MotorCheckoutPage() {
     // localStorage.removeItem("motor-policy-id");
     localStorage.removeItem("motor-cover-details");
     localStorage.removeItem("motor-saved-status");
+    // localStorage.removeItem("motor-policy");
     navigate("/ecommerce/individual-solutions");
   }
 

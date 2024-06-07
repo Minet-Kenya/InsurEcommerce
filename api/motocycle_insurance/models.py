@@ -51,6 +51,7 @@ class MotorVehicleDetails(BaseModel):
     vehicle_use=models.CharField(max_length=100)
     payment_details = models.ForeignKey("base.Transactions",on_delete=models.SET_NULL,null=True)
     package_details = models.CharField(max_length=100)
+    policy_details = models.JSONField(blank=True, null=True)
     # package_details = models.ForeignKey('insurance_packages.Package',on_delete=models.SET_NULL,null=True)
     status = models.CharField(max_length=25, choices=POLICY_STATUS,default='Pending' )
 
@@ -69,3 +70,32 @@ class EducationPolicy(BaseModel):
     email=models.CharField(max_length=100)
     plan_type=models.CharField(max_length=100)
     addational_info = models.CharField(max_length=500)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    # def __str__(self):
+    #     return self.client.email
+
+
+class OtherPolicies(BaseModel):
+    POLICY_TYPE=[
+        ('Education Policy','Education Policy'),
+        ('Home Insurance','Home Insurance'),
+        ('Medical Insurance','Medical Insurance'),
+        ('Individual Life','Individual Life'),
+        ('Travel Insurance','Travel Insurance'),
+        ('Golfers Insurance','Golfers Insurance'),
+        ('Personal Accident','Personal Accident'),
+    ]
+
+    client = models.ForeignKey("users.Client",on_delete=models.SET_NULL,null=True)
+    policy_details = models.JSONField(blank=True, null=True)
+    policy_type = models.CharField(max_length=25, choices=POLICY_TYPE,default='' )
+    infomation_details = models.JSONField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    # def __str__(self):
+    #     return self.client.email

@@ -5,17 +5,23 @@ import Preloader from "../../components/addons/Preloader/Preloader";
 import BackToTopBtn from "../../components/addons/BackToTopBtn/BackToTopBtn";
 import Sidebar from "../../components/layout/Sidebar/Sidebar";
 import {
+  check,
   coverform,
   emailIcon,
   familycover,
   insuranceIcon,
   personicon,
   phoneIcon,
+  spinner2,
 } from "../../components/utils/export-images";
 import ReusableInput from "../../components/addons/Forms/Inputs/ReusableInput";
 import FormContainer from "../../components/addons/Forms/Layout/FormContainer";
 import "./MedicalCover.css";
 import ReusablePackageTable from "../../components/addons/PackagesTable/ReusablePackageTable";
+import { useState } from "react";
+import { useEffect } from "react";
+import { BASE_URL, fetchData } from "../../components/utils/constants";
+import { PopUp } from "../../components/addons/PopUp/PopUp";
 
 export default function MedicalCover() {
   return (
@@ -36,9 +42,26 @@ export default function MedicalCover() {
 export function MedicalCoverForm() {
   const navigate = useNavigate();
 
+  const [formData, setFormData] = useState(() => {
+    const savedData = JSON.parse(localStorage.getItem("medical-cover-details"));
+    return savedData || { marital_status: "" };
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+  };
+  const handlchecked = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.checked });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("medical-cover-details", JSON.stringify(formData));
+  }, [formData]);
+
   const saveQouteDetails = (e) => {
     e.preventDefault();
-    // navigate("/ecommerce/motor-insurance-packages");
+    navigate("/ecommerce/medical-cover-packages");
   };
   return (
     <>
@@ -67,22 +90,41 @@ export function MedicalCoverForm() {
                       selectOptions={["Married", "Single"]}
                       label="Marital status.*"
                       icon={personicon}
+                      value={formData.marital_status}
+                      name="marital_status"
+                      onChange={handleChange}
                     />
                     <ReusableInput
                       icon={personicon}
                       type="number"
                       label="Number of Children (Below 18 Years.)"
+                      value={formData.no_of_children}
+                      name="no_of_children"
+                      onChange={handleChange}
                     />
                     <ReusableInput
                       icon={personicon}
+                      type="number"
                       label="Age of Principal member"
+                      value={formData.age_pricipal_member}
+                      name="age_pricipal_member"
+                      onChange={handleChange}
                     />
                     <ReusableInput
                       selectOptions={["Jubilee", "Single", "OLD MUTUAL"]}
                       icon={personicon}
                       label="Underwriters"
+                      value={formData.underwriters}
+                      name="underwriters"
+                      onChange={handleChange}
                     />
-                    <ReusableInput icon={emailIcon} label="Your Email" />
+                    <ReusableInput
+                      icon={emailIcon}
+                      label="Your Email"
+                      value={formData.email}
+                      name="email"
+                      onChange={handleChange}
+                    />
                   </div>
                 </div>
               </div>
@@ -90,52 +132,76 @@ export function MedicalCoverForm() {
                 <div className="input-automobile">
                   <ReusableInput
                     selectOptions={["Male", "Female"]}
-                    label="Marital status.*"
+                    label="Gender.*"
                     icon={personicon}
+                    value={formData.gender}
+                    name="gender"
+                    onChange={handleChange}
                   />
                   <ReusableInput
                     type="number"
                     label="Number of Children (Above 18 Years.)"
                     icon={personicon}
+                    value={formData.number_of_children}
+                    name="number_of_children"
+                    onChange={handleChange}
                   />
                   <ReusableInput
                     type="number"
                     label="Age of Spouse"
                     icon={personicon}
+                    value={formData.spouse_age}
+                    name="spouse_age"
+                    onChange={handleChange}
                   />
                   <div className="medical-addons">
                     <div>
                       <input
                         type="checkbox"
-                        id="myCheckbox"
+                        id="optical"
                         class="styled-checkbox"
+                        name="optical"
+                        checked={formData.optical}
+                        onChange={handlchecked}
                       />
-                      <label for="myCheckbox" class="checkbox-label">
+                      <label for="optical" class="checkbox-label">
                         Include Optical
                       </label>
                     </div>
                     <div>
                       <input
                         type="checkbox"
-                        id="myCheckbox"
+                        id="dental"
                         class="styled-checkbox"
+                        name="dental"
+                        checked={formData.dental}
+                        onChange={handlchecked}
                       />
-                      <label for="myCheckbox" class="checkbox-label">
+                      <label for="dental" class="checkbox-label">
                         Include Dental
                       </label>
                     </div>
                     <div>
                       <input
                         type="checkbox"
-                        id="myCheckbox"
+                        id="maternity"
                         class="styled-checkbox"
+                        checked={formData.maternity}
+                        name="maternity"
+                        onChange={handlchecked}
                       />
-                      <label for="myCheckbox" class="checkbox-label">
+                      <label for="maternity" class="checkbox-label">
                         Include Maternity
                       </label>
                     </div>
                   </div>
-                  <ReusableInput label="Your Name" icon={personicon} />
+                  <ReusableInput
+                    label="Your Name"
+                    icon={personicon}
+                    value={formData.your_name}
+                    name="your_name"
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
             </div>
@@ -219,9 +285,19 @@ export function MedicalCoverPackages() {
     },
   ];
 
+  const [saveSuccess, setsaveSuccess] = useState(false);
+  const [modalSuccess, setmodalSuccess] = useState(false);
+  const [sendingEmail, setsendingEmail] = useState(false);
+
   const PackageContent = ({ children }) => {
     return children;
   };
+
+  let savedMedicalPolicy = JSON.parse(
+    localStorage.getItem("medical-cover-details")
+  );
+
+  const authToken = JSON.parse(localStorage.getItem("authTokens"));
 
   const features = Array.from(
     new Set(packages.flatMap((pkg) => Object.keys(pkg.features)))
@@ -229,13 +305,116 @@ export function MedicalCoverPackages() {
 
   const navigate = useNavigate();
 
-  const choosePackage = (event) => {
-    event.preventDefault();
+  const choosePackage = async (pkg) => {
     // navigate("/ecommerce/home-insurance-packages");
+    setsendingEmail(true);
+    setmodalSuccess(true);
+    await fetchData(
+      `${BASE_URL}/other_policies/`,
+      "POST",
+      {
+        policy_details: {
+          name: "MINET HOME",
+        },
+        policy_type: "Medical Insurance",
+        infomation_details: {
+          ...savedMedicalPolicy,
+        },
+      },
+      authToken.access
+    )
+      .then((data) => {
+        if (data) {
+          setsaveSuccess(true);
+          setsendingEmail(false);
+        }
+      })
+      .catch((err) => {
+        setsendingEmail(false);
+      });
+
+    localStorage.setItem(
+      "medical_cover_policy",
+      JSON.stringify({
+        package_id: pkg.id,
+        policy_name: pkg.title,
+        price: pkg.premiums,
+      })
+    );
   };
+
+  function doneButton() {
+    setsaveSuccess(false);
+    setmodalSuccess(false);
+    setsendingEmail(false);
+    navigate("/ecommerce/individual-solutions");
+    localStorage.clear("medical-cover-details");
+  }
 
   return (
     <>
+      <PopUp isOpen={modalSuccess}>
+        {sendingEmail && (
+          <div>
+            <h4 className="text-center">Sending quote to your email</h4>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <img
+                src={spinner2}
+                alt="spinner"
+                className="spinner-payment larger-spinner"
+              />
+            </div>
+          </div>
+        )}
+        {saveSuccess && (
+          <div>
+            <h4 className="text-center">Success, Request Updated</h4>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <img src={check} alt="spinner" className=" larger-spinner" />
+            </div>
+
+            <div
+              style={{
+                textAlign: "center",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <p
+                style={{
+                  width: "93%",
+                }}
+              >
+                We will have our agents contact you within 24 hours. we have
+                sent the quatation to your email
+              </p>
+            </div>
+            <div>
+              <div className="payment-actions">
+                <button
+                  onClick={doneButton}
+                  style={{
+                    margin: "0 auto",
+                  }}
+                  className="cancel-payment"
+                >
+                  Done
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </PopUp>
       <Sidebar view="MotorInsurance" />
       <main id="dashboard" className="dashboard h-100 d-flex flex-column">
         <div className="pagetitle z-0">
@@ -265,37 +444,16 @@ export function MedicalCoverPackages() {
                 <h4>REQUESTED ANALYSIS</h4>
               </div>
               <ReusablePackageTable packages={packages}>
-                {/* {packages.map((pr, i) => (
-                <PackageContent key={i} package={pr.title} feature="Premiums">
-                  <div className="content price">{pr.Premiums}</div>
-                </PackageContent>
-              ))} */}
-
                 {features.map((p, i) => (
                   <PackageContent key={i} package="" feature={p}>
                     <button
-                      onClick={choosePackage}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        choosePackage(p);
+                      }}
                       className="content choose-btn"
                     >
-                      My Choice
-                    </button>
-                  </PackageContent>
-                ))}
-              </ReusablePackageTable>
-              <ReusablePackageTable packages={packages}>
-                {/* {packages.map((pr, i) => (
-                <PackageContent key={i} package={pr.title} feature="Premiums">
-                  <div className="content price">{pr.Premiums}</div>
-                </PackageContent>
-              ))} */}
-
-                {features.map((p, i) => (
-                  <PackageContent key={i} package="" feature={p}>
-                    <button
-                      onClick={choosePackage}
-                      className="content choose-btn"
-                    >
-                      My Choice
+                      Select
                     </button>
                   </PackageContent>
                 ))}

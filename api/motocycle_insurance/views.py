@@ -2,10 +2,11 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework import generics, permissions
 from rest_framework.generics import ListCreateAPIView, UpdateAPIView
-from .models import MotorCycleCoverDetails, MotorVehicleDetails,EducationPolicy
-from motocycle_insurance.serializers import MotorCycleCoverDetailsSerializer,MotorVehicleDetailsSerializer,EducationPolicySerializer
+from .models import MotorCycleCoverDetails, MotorVehicleDetails,EducationPolicy,OtherPolicies
+from motocycle_insurance.serializers import MotorCycleCoverDetailsSerializer,MotorVehicleDetailsSerializer,EducationPolicySerializer,OtherPoliciesSerializer
 from rest_framework.generics import get_object_or_404
 from .utilities import send_policy_email,send_motor_policy_email
 from rest_framework.response import Response
@@ -128,7 +129,6 @@ class EducationPolicyListView(ListCreateAPIView):
         user_email = self.request.user.email
         # print(user_email)
 
-
         # Define the email subject and from
         subject = 'New Education Policy Created'
         # from_email = 'from@example.com'
@@ -159,3 +159,48 @@ class EducationPolicyUpdateView(UpdateAPIView):
     queryset = EducationPolicy.objects.all()
     serializer_class = EducationPolicySerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+# class OtherPoliciesListView(ListCreateAPIView):
+#     queryset = OtherPolicies.objects.all()
+#     serializer_class = OtherPoliciesSerializer
+#     permission_classes = [permissions.IsAuthenticated]
+
+#     def perform_create(self, serializer):
+#         serializer.save(client=self.request.user)def perform_create(self, serializer):
+#         serializer.save(client=self.request.user)
+
+class OtherPoliciesViewSet(viewsets.ModelViewSet):
+    queryset = OtherPolicies.objects.all()
+    serializer_class = OtherPoliciesSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        policy=serializer.save(client=self.request.user)
+
+        user_email = self.request.user.email
+        # print(user_email)
+
+        # Define the email subject and from
+        subject = 'New Policy Created'
+        # from_email = 'from@example.com'
+
+        # Load the HTML template
+        html_content = render_to_string('other-quatation.html', {'policy': policy})
+
+        email = EmailMultiAlternatives(subject, '', 'evan.wakae@minet.co.ke', [user_email])
+
+        email.attach_alternative(html_content, "text/html")
+
+        # Send the email
+        success = email.send()
+
+        if success:
+            # If the email is successfully sent, mark the policy as emailed
+            policy.email_sent = True
+            policy.save()
+
+        if policy.email_sent:
+             return Response({"message": "Email sent successfully."}, status=200)
+        else:
+            return Response({"message": "Failed to send email. Please try again."}, status=500)

@@ -42,7 +42,10 @@ import {
   HomeInsuranceForm,
   HomeInsurancePackages,
 } from "./views/HomeInsurance/HomeIsurance";
-import { MedicalCoverForm } from "./views/MedicalCover/MedicalCover";
+import {
+  MedicalCoverForm,
+  MedicalCoverPackages,
+} from "./views/MedicalCover/MedicalCover";
 import { TravelInsuranceForm } from "./views/TravelInsurance/TravelInsurance";
 import { GolfCoverForm } from "./views/GolfCover/GolfCover";
 import PersonalAccident, {
@@ -127,6 +130,11 @@ function App() {
               element={<HomeInsurancePackages />}
             />
             <Route path="medical-cover" element={<MedicalCoverForm />} />
+            <Route
+              path="medical-cover-packages"
+              element={<MedicalCoverPackages />}
+            />
+
             <Route path="travel-insurance" element={<TravelInsuranceForm />} />
             <Route path="golfers-insurance" element={<GolfCoverForm />} />
             <Route

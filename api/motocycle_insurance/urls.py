@@ -1,5 +1,9 @@
-from django.urls import path
-from motocycle_insurance.views import MotorCycleCoverDetailsListCreateView, MotorCycleCoverDetailsRetrieveUpdateDestroyView, MotorVehicleDetailsListCreateView,MotorVehicleDetailsRetrieveUpdateDestroyView,SendPolicyEmailAPIView,SendMotorPolicyEmailAPIView,EducationPolicyListView,EducationPolicyUpdateView
+from django.urls import path,include
+from motocycle_insurance.views import MotorCycleCoverDetailsListCreateView, MotorCycleCoverDetailsRetrieveUpdateDestroyView, MotorVehicleDetailsListCreateView,MotorVehicleDetailsRetrieveUpdateDestroyView,SendPolicyEmailAPIView,SendMotorPolicyEmailAPIView,EducationPolicyListView,EducationPolicyUpdateView,OtherPoliciesViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'other_policies', OtherPoliciesViewSet)
 
 urlpatterns = [
     path('motorcycle-cover-details/', MotorCycleCoverDetailsListCreateView.as_view(), name='motorcycle-cover-details-list-create'),
@@ -10,4 +14,5 @@ urlpatterns = [
     path('send-motor-policy-email/', SendMotorPolicyEmailAPIView.as_view(), name='send_motor_policy_email'),
     path('education-policies/', EducationPolicyListView.as_view(), name='education_policies_list_create'),
     path('education-policies/<int:pk>/', EducationPolicyUpdateView.as_view(), name='education_policies_update'),
+    path('', include(router.urls)),
 ]

@@ -9,6 +9,7 @@ function ReusableInput({
   onChange,
   value,
   name,
+  normalPlaceholder = "Type inside here",
   required = false,
   selectOptions = [],
 }) {
@@ -62,6 +63,7 @@ function ReusableInput({
               className=""
               value={value}
               onChange={onChange}
+              placeholder={normalPlaceholder}
             />
           )}
         </div>

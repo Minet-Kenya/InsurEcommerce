@@ -759,6 +759,12 @@ export function MorePersonalDetails() {
           navigate("/ecommerce/motorcycle-cover-details");
           return;
         }
+        if (data.errors?.log_book_no) {
+          alert("Motor cycle details with this log number already exists.");
+          navigate("/ecommerce/motorcycle-cover-details");
+          return;
+        }
+
         localStorage.setItem("motorcycle-policy-id", data.id);
         localStorage.setItem("motorcycle-saved-status", "true");
 
@@ -1145,6 +1151,8 @@ export function CheckoutPage() {
     // localStorage.removeItem("motorcycle-policy-id");
     localStorage.removeItem("motor-rider-details");
     localStorage.removeItem("cover-details");
+    localStorage.removeItem("personal-details");
+    // localStorage.removeItem("policy");
     localStorage.removeItem("motorcycle-saved-status");
     navigate("/ecommerce/individual-solutions");
   }
