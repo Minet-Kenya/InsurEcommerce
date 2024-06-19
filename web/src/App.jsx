@@ -28,11 +28,11 @@ import {
   MotorcycleSolutions,
 } from "./views/MotorcycleInsurance/MotorcycleInsurance";
 import {
-  MotorCheckoutPage,
   MotorCoverForm,
   MotorInsuranceQuote,
   MotorPackages,
 } from "./views/MotorInsurance/MotorInsurance";
+import { MotorCheckoutPage } from "./views/MotorInsurance/MotorCheckoutPage";
 import { CartPage } from "./views/CartPage/CartPage";
 import EducationPolicy, {
   EducationPolicyForm,
@@ -47,9 +47,10 @@ import {
   MedicalCoverPackages,
 } from "./views/MedicalCover/MedicalCover";
 import { TravelInsuranceForm } from "./views/TravelInsurance/TravelInsurance";
-import { GolfCoverForm } from "./views/GolfCover/GolfCover";
+import { GolfCoverForm, GolfCoverPackages } from "./views/GolfCover/GolfCover";
 import PersonalAccident, {
   PersonalAccidentForm,
+  PersonalAccidentPackages,
 } from "./views/PersonalAccident/PersonalAccident";
 
 AOS.init({
@@ -138,8 +139,16 @@ function App() {
             <Route path="travel-insurance" element={<TravelInsuranceForm />} />
             <Route path="golfers-insurance" element={<GolfCoverForm />} />
             <Route
+              path="golfers-insurance-packages"
+              element={<GolfCoverPackages />}
+            />
+            <Route
               path="personal-accident-insurance"
               element={<PersonalAccidentForm />}
+            />
+            <Route
+              path="personal-accident-packages"
+              element={<PersonalAccidentPackages />}
             />
             <Route
               path="motor-insurance-coverform"

@@ -149,8 +149,8 @@ export function TravelInsuranceForm() {
                   width: "93%",
                 }}
               >
-                We will have our agents contact you within 24 hours. we have
-                sent the quatation to your email
+                Quatation sent to your email. We will contact you within 24
+                hours. Thanks.
               </p>
             </div>
             <div>

@@ -161,13 +161,13 @@ export function LoginForm() {
               name="username"
               id="login_username"
               className="form-control"
-              placeholder="name@example.com"
+              placeholder="name@example.com 0r 07xxxxxx"
               required
               autoFocus
             />
-            <label htmlFor="login_username">Your Username</label>
+            <label htmlFor="login_username">Your Phone Number or Email</label>
             <div className="invalid-feedback">
-              Please enter a valid username
+              Please enter a valid phone number
             </div>
           </div>
         </>
@@ -365,11 +365,11 @@ export function SignupForm({ afterRegister }) {
 
         <div className="col-12 col-md-6">
           <label htmlFor="signup_username" className="form-label">
-            Username
+            Phone Number
           </label>
 
           <input
-            type="text"
+            type="tel"
             id="signup_username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}

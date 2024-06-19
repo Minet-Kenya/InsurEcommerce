@@ -95,7 +95,7 @@ class OtherPolicies(BaseModel):
     infomation_details = models.JSONField(blank=True, null=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['created_at']
 
     # def __str__(self):
     #     return self.client.email
