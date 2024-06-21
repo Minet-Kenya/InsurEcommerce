@@ -165,7 +165,7 @@ export function LoginForm() {
               required
               autoFocus
             />
-            <label htmlFor="login_username">Your Phone Number or Email</label>
+            <label htmlFor="login_username">Enter Your Phone Number </label>
             <div className="invalid-feedback">
               Please enter a valid phone number
             </div>

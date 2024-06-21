@@ -125,10 +125,41 @@ export default function Sidebar({ view }) {
             <span className="cart-qty">{cart?.length}</span>
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/ecommerce" className="nav-link collapsed">
+            <i className="bi bi-table"></i>
+            <span>Policies</span>
+
+            {/* <span className="cart-qty">{cart?.length}</span> */}
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/ecommerce" className="nav-link collapsed">
+            <i className="bi bi-archive"></i>
+            <span>Claims</span>
+
+            {/* <span className="cart-qty">{cart?.length}</span> */}
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/ecommerce" className="nav-link collapsed">
+            <i className="bi bi-file-earmark-plus"></i>
+            <span>Renewals</span>
+
+            {/* <span className="cart-qty">{cart?.length}</span> */}
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/ecommerce" className="nav-link collapsed">
+            <i className="bi bi-chat-left-dots-fill"></i>
+            <span>Feedback</span>
+
+            {/* <span className="cart-qty">{cart?.length}</span> */}
+          </Link>
+        </li>
 
         {/* Shared Pages */}
         <li className="nav-heading">Pages</li>
-
         <li className="nav-item">
           <Link className="nav-link collapsed" to="">
             <i className="bi bi-question-circle"></i>

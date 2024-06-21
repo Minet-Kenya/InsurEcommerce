@@ -52,6 +52,8 @@ import PersonalAccident, {
   PersonalAccidentForm,
   PersonalAccidentPackages,
 } from "./views/PersonalAccident/PersonalAccident";
+import ResetPassword from "./views/ResetPassword/ResetPassword";
+import { ProfileTabs } from "./views/ProfilePage/ProfilePage";
 
 AOS.init({
   duration: 600,
@@ -155,10 +157,12 @@ function App() {
               element={<MotorCoverForm />}
             />
             <Route path="motor-checkout" element={<MotorCheckoutPage />} />
+            <Route path="profile" element={<ProfileTabs />} />
           </Route>
 
           {/* Auth View */}
           <Route path="/auth" element={<Auth />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </AuthProvider>
     </Router>

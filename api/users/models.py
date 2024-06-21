@@ -52,9 +52,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         ),
         validators=[username_validator],
         error_messages={
-            "unique": ("A user with that username already exists."),
+            "unique": ("A user with that number already exists."),
         },
     )
+
     email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(max_length=30)
     name = models.CharField(max_length=30,default=False)

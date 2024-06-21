@@ -54,6 +54,10 @@ export default function ProfileNav() {
             onClick={logoutUser}
             className="sign-out-btn link-dark"
             to="/"
+            style={{
+              border: "none",
+              backgroundColor: "#fff",
+            }}
           >
             <i className="bi bi-box-arrow-right"></i>
             <span>Sign Out</span>

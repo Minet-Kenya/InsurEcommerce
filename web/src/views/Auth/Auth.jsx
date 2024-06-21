@@ -67,7 +67,8 @@ export default function Auth() {
                       </div>
                       <div className="d-sm-table-cell">
                         <span className="form-text">
-                          Request <Link to="">Password Reset</Link>
+                          Request{" "}
+                          <Link to="/reset-password">Password Reset</Link>
                         </span>
                       </div>
                     </div>
@@ -92,7 +93,8 @@ export default function Auth() {
                       </div>
                       <div className="d-sm-table-cell">
                         <span className="form-text">
-                          Request <Link to="">Password Reset</Link>
+                          Request{" "}
+                          <Link to="/reset-password">Password Reset</Link>
                         </span>
                       </div>
                     </div>
