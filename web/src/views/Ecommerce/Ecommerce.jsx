@@ -215,7 +215,7 @@ export function IndividualSolutions() {
                   alt="medical-cover icon"
                   className="img-fluid"
                 />
-                <h2 className="mt-2">Medical Cover</h2>
+                <h2 className="mt-2">Medical Insurance</h2>
               </a>
             </div>
             <div className="col-4 col-sm-3 col-xl-2 d-flex justify-content-center align-items-center">
@@ -406,8 +406,7 @@ export function CorporateProduct() {
             <div className="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img corporate-medical position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
-                target="_blank"
+                href="/ecommerce/coperatate-medical-cover"
                 rel="noreferrer"
               >
                 <img
@@ -440,8 +439,7 @@ export function CorporateProduct() {
             <div className="col-12 col-md-6 col-xl-3 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img group-life-cover position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://play.google.com/store/apps/details?id=com.minet.minetretail"
-                target="_blank"
+                href="/ecommerce/group-life"
                 rel="noreferrer"
               >
                 <img

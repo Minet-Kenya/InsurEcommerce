@@ -348,7 +348,7 @@ export function MedicalCoverPackages() {
     setmodalSuccess(false);
     setsendingEmail(false);
     navigate("/ecommerce/individual-solutions");
-    localStorage.clear("medical-cover-details");
+    localStorage.removeItem("medical-cover-details");
   }
 
   return (

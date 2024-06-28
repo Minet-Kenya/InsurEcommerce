@@ -1,5 +1,5 @@
 from django.urls import path,include
-from motocycle_insurance.views import MotorCycleCoverDetailsListCreateView, MotorCycleCoverDetailsRetrieveUpdateDestroyView, MotorVehicleDetailsListCreateView,MotorVehicleDetailsRetrieveUpdateDestroyView,SendPolicyEmailAPIView,SendMotorPolicyEmailAPIView,EducationPolicyListView,EducationPolicyUpdateView,OtherPoliciesViewSet
+from motocycle_insurance.views import MotorCycleCoverDetailsListCreateView, MotorCycleCoverDetailsRetrieveUpdateDestroyView, MotorVehicleDetailsListCreateView,MotorVehicleDetailsRetrieveUpdateDestroyView,SendPolicyEmailAPIView,SendMotorPolicyEmailAPIView,EducationPolicyListView,EducationPolicyUpdateView,OtherPoliciesViewSet,FetchPoliciesView
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -15,4 +15,5 @@ urlpatterns = [
     path('education-policies/', EducationPolicyListView.as_view(), name='education_policies_list_create'),
     path('education-policies/<int:pk>/', EducationPolicyUpdateView.as_view(), name='education_policies_update'),
     path('', include(router.urls)),
+    path('fetch-policies/', FetchPoliciesView.as_view(), name='fetch-policies'),
 ]

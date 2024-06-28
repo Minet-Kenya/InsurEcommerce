@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
     e.preventDefault();
     try {
       // Make a POST request to authenticate user
-      let response = await fetch(`${BASE_URL_HOME}/users/auth/token/`, {
+      let response = await fetch(`${BASE_URL_HOME}users/auth/token/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +81,7 @@ export function AuthProvider({ children }) {
   // Function to update authentication tokens
   let updateToken = useCallback(async () => {
     // console.log("Update token called");
-    let response = await fetch(`${BASE_URL_HOME}/users/auth/token/refresh/`, {
+    let response = await fetch(`${BASE_URL_HOME}users/auth/token/refresh/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -231,6 +231,10 @@ export function LoginForm() {
 export function SignupForm({ afterRegister }) {
   const [full_name, setFullName] = useState("");
   const [username, setUsername] = useState("");
+  const [krapin, setKraPin] = useState("");
+  const [dob, setdob] = useState("");
+  const [idNumber, setidNumber] = useState("");
+  const [address, setaddress] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [has_agreed, setHasAgreed] = useState("");
@@ -260,6 +264,10 @@ export function SignupForm({ afterRegister }) {
         formData.append("email", email);
         formData.append("username", username);
         formData.append("password", password);
+        formData.append("krapin", krapin);
+        formData.append("idNumber", idNumber);
+        formData.append("dob", dob);
+        formData.append("address", address);
 
         // Send form data to backend
         const signupResponse = await fetch(`${BASE_URL}/register/`, {
@@ -399,7 +407,75 @@ export function SignupForm({ afterRegister }) {
           <div className="invalid-feedback">Please enter your password!</div>
         </div>
 
+        <div className="col-12 col-md-6">
+          <label htmlFor="yourPassword" className="form-label">
+            KRA Pin
+          </label>
+
+          <input
+            type="text"
+            id="kra_pin"
+            value={krapin}
+            onChange={(e) => setKraPin(e.target.value)}
+            className="form-control"
+            required
+          />
+
+          <div className="invalid-feedback">Please enter your kra pin!</div>
+        </div>
+        <div className="col-12 col-md-6">
+          <label htmlFor="yourPassword" className="form-label">
+            Id Number
+          </label>
+
+          <input
+            type="text"
+            id="id_number"
+            value={idNumber}
+            onChange={(e) => setidNumber(e.target.value)}
+            className="form-control"
+            required
+          />
+
+          <div className="invalid-feedback">Please enter your ID number!</div>
+        </div>
+
         {/* Has Agreed */}
+
+        <div className="col-12 col-md-6">
+          <label htmlFor="yourPassword" className="form-label">
+            Date of Birth
+          </label>
+
+          <input
+            type="date"
+            id="date_of_birth"
+            value={dob}
+            onChange={(e) => setdob(e.target.value)}
+            className="form-control"
+            required
+          />
+
+          <div className="invalid-feedback">
+            Please enter your date of birth!
+          </div>
+        </div>
+        <div className="col-12 col-md-6">
+          <label htmlFor="yourPassword" className="form-label">
+            Location Adress
+          </label>
+
+          <input
+            type="text"
+            id="date_of_birth"
+            value={address}
+            onChange={(e) => setaddress(e.target.value)}
+            className="form-control"
+            required
+          />
+
+          <div className="invalid-feedback">Please enter location address!</div>
+        </div>
 
         <div className="col-12">
           <div className="form-check">

@@ -54,6 +54,15 @@ import PersonalAccident, {
 } from "./views/PersonalAccident/PersonalAccident";
 import ResetPassword from "./views/ResetPassword/ResetPassword";
 import { ProfileTabs } from "./views/ProfilePage/ProfilePage";
+import {
+  UserPoliciesList,
+  ViewPolicyClaims,
+  ViewUserPolicy,
+} from "./views/UserPolicies/UserPolicies";
+import { AccountSettingsPage } from "./views/AccountSettings/AccountSettings";
+import { CoperateMedicalCoverForm } from "./views/CoperateCover/CoperateCover";
+import { GroupLifeForm } from "./views/GroupLife/GroupLife";
+import { PlaceClaimForm } from "./views/PlaceClaim/PlaceClaim";
 
 AOS.init({
   duration: 600,
@@ -75,9 +84,9 @@ function App() {
           <Route
             path="/ecommerce"
             element={
-              <PrivateRoute>
-                <Ecommerce />
-              </PrivateRoute>
+              // <PrivateRoute>
+              <Ecommerce />
+              // </PrivateRoute>
             }
           >
             <Route path="" element={<Solutions />} />
@@ -149,6 +158,13 @@ function App() {
               element={<PersonalAccidentForm />}
             />
             <Route
+              path="coperatate-medical-cover"
+              element={<CoperateMedicalCoverForm />}
+            />
+            <Route path="group-life" element={<GroupLifeForm />} />
+            <Route path="place-claim" element={<PlaceClaimForm />} />
+
+            <Route
               path="personal-accident-packages"
               element={<PersonalAccidentPackages />}
             />
@@ -158,6 +174,11 @@ function App() {
             />
             <Route path="motor-checkout" element={<MotorCheckoutPage />} />
             <Route path="profile" element={<ProfileTabs />} />
+            <Route path="user-policies" element={<UserPoliciesList />} />
+            <Route path="view-policy" element={<ViewUserPolicy />} />
+            <Route path="view-policy-claim" element={<ViewPolicyClaims />} />
+
+            <Route path="account-settings" element={<AccountSettingsPage />} />
           </Route>
 
           {/* Auth View */}

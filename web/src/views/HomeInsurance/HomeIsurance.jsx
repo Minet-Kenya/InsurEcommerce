@@ -317,7 +317,7 @@ export function HomeInsurancePackages() {
     setmodalSuccess(false);
     setsendingEmail(false);
     navigate("/ecommerce/individual-solutions");
-    localStorage.clear("home-cover-details");
+    localStorage.removeItem("home-cover-details");
   }
 
   return (

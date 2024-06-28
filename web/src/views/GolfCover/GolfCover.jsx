@@ -267,7 +267,7 @@ export function GolfCoverPackages() {
     setmodalSuccess(false);
     setsendingEmail(false);
     navigate("/ecommerce/individual-solutions");
-    localStorage.clear("golf-cover-details");
+    localStorage.removeItem("golf-cover-details");
   }
 
   return (

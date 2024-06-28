@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import GetClients,RegisterClientView, LoginClientView,UserInformationView
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, ResetPasswordView
+from .views import GetClients,RegisterClientView, LoginClientView,UserInformationView ,ResetPasswordView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
 urlpatterns = [

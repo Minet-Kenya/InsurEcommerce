@@ -57,6 +57,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     email = models.EmailField(max_length=255, unique=True)
+    krapin = models.CharField(max_length=255, unique=True)
+    idNumber = models.CharField(max_length=255, unique=True)
+    dob = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
     first_name = models.CharField(max_length=30)
     name = models.CharField(max_length=30,default=False)
     last_name = models.CharField(max_length=30)
@@ -84,7 +88,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         ordering = ['-created_at']
-
 
 
 class ClientManager(BaseUserManager):

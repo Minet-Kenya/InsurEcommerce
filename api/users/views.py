@@ -12,7 +12,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import ClientSerializer, MyTokenObtainPairSerializer
+from .serializers import ClientSerializer, MyTokenObtainPairSerializer,ResetPasswordSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 
@@ -29,8 +29,25 @@ class RegisterClientView(APIView):
 
     def post(self, request):
         serializer = ClientSerializer(data=request.data)
+
         if serializer.is_valid():
             client = serializer.save()
+
+            external_url = "https://ussd.minet.co.ke/minetapi/portals/create_account.php"
+
+            data = {
+            "IDNo": client.name,
+            "NAMES": client.address,
+            "KRAPIN": client.krapin,
+            "EMAILADD": client.email,
+            "POSTALADD":client.address,
+            "PHONENO": client.username,
+            "DOB": client.dob,
+            "PASSWORD":request.data.password
+            }
+
+            print(data)
+
             context = {'request': request}
             subject = 'Welcome to Our Site'
             message ='Thank you for registering to our e-commerce. Your username is: ' + client.username + ' and your email is: ' + client.email

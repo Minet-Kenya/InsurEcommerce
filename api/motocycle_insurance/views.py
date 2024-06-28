@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework.views import APIView
-from rest_framework import viewsets
+from rest_framework import viewsets,status
 from rest_framework import generics, permissions
 from rest_framework.generics import ListCreateAPIView, UpdateAPIView
 from .models import MotorCycleCoverDetails, MotorVehicleDetails,EducationPolicy,OtherPolicies
@@ -13,6 +13,8 @@ from rest_framework.response import Response
 import json
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
+import requests
+
 
 
 class MotorCycleCoverDetailsListCreateView(generics.ListCreateAPIView):
@@ -171,6 +173,7 @@ class EducationPolicyUpdateView(UpdateAPIView):
 #         serializer.save(client=self.request.user)
 
 class OtherPoliciesViewSet(viewsets.ModelViewSet):
+
     queryset = OtherPolicies.objects.all()
     serializer_class = OtherPoliciesSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -204,3 +207,25 @@ class OtherPoliciesViewSet(viewsets.ModelViewSet):
              return Response({"message": "Email sent successfully."}, status=200)
         else:
             return Response({"message": "Failed to send email. Please try again."}, status=500)
+
+class FetchPoliciesView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        # Fetch the authenticated user's phone number from the Client model
+
+        try:
+            # username = self.request.user.username
+            # client = Client.objects.get(user=request.user)
+            phone_number = self.request.user.username
+        except Client.DoesNotExist:
+            return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Make HTTP request to the external API
+        endpoint = f'https://ussd.minet.co.ke/minetapi/portals/all_policies.php?user={phone_number}'
+        response = requests.get(endpoint)
+
+        if response.status_code == 200:
+            return Response(response.json(), status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Failed to fetch policies from external system"}, status=response.status_code)

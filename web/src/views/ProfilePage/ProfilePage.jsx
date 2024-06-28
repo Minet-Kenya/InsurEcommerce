@@ -49,7 +49,7 @@ export function ProfileTabs() {
             <div className="col-6 d-flex justify-content-center align-items-center">
               <Link
                 className="solutions-img individual-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                to="/ecommerce/individual-solutions"
+                to="/ecommerce/account-settings"
               >
                 <img
                   src={solutions1}
@@ -81,7 +81,7 @@ export function ProfileTabs() {
             <div className="col-6 d-flex justify-content-center align-items-center">
               <Link
                 className="solutions-img corporate-product position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                to="/ecommerce/corporate-product"
+                to="/ecommerce/user-policies"
               >
                 <img
                   src={solutions3}

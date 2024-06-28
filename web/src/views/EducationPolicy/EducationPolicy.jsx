@@ -90,7 +90,7 @@ export function EducationPolicyForm() {
     setmodalSuccess(false);
     setsendingEmail(false);
     navigate("/ecommerce/individual-solutions");
-    localStorage.clear("education-policy");
+    localStorage.removeItem("education-policy");
   }
 
   return (

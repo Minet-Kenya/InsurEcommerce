@@ -120,8 +120,13 @@ class ResetPasswordSerializer(serializers.Serializer):
     def validate_phone_number(self, value):
         # Check if the client exists in the database (Client model)
         # Replace this with your own logic to check if the phone number exists
-        if not Client.objects.filter(phone_number=value).exists():
-            raise serializers.ValidationError("Client with this phone number does not exist.")
+        client_exists = Client.objects.filter(username=value).exists()
+
+        external_response = requests.get(f'https://ussd.minet.co.ke/minetapi/portals/profile.php?user={value}')
+        external_exists = external_response.status_code == 200 and external_response.json().get('exists', False)
+
+        if not client_exists and not external_exists:
+            raise serializers.ValidationError("Client with this phone number does not exist in either system.")
 
         return value
 
@@ -132,6 +137,8 @@ class ResetPasswordSerializer(serializers.Serializer):
         endpoint = 'https://ussd.minet.co.ke/minetapi/portals/ResetPassword.php'
         params = {'User': phone_number}
         response = requests.get(endpoint, params=params)
+        data = response.json()
+        print(data)
 
         # Check response status and handle accordingly
         if response.status_code == 200:

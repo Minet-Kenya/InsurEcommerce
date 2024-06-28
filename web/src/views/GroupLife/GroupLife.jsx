@@ -5,27 +5,21 @@ import Preloader from "../../components/addons/Preloader/Preloader";
 import BackToTopBtn from "../../components/addons/BackToTopBtn/BackToTopBtn";
 import Sidebar from "../../components/layout/Sidebar/Sidebar";
 import {
-  cc,
   check,
-  coverform,
   emailIcon,
   familycover,
   insuranceIcon,
-  map,
-  moneyIcon,
   personicon,
   phoneIcon,
   spinner2,
 } from "../../components/utils/export-images";
 import ReusableInput from "../../components/addons/Forms/Inputs/ReusableInput";
 import FormContainer from "../../components/addons/Forms/Layout/FormContainer";
-import ReusablePackageTable from "../../components/addons/PackagesTable/ReusablePackageTable";
-import { useEffect } from "react";
-import { useState } from "react";
-import { BASE_URL, fetchData } from "../../components/utils/constants";
 import { PopUp } from "../../components/addons/PopUp/PopUp";
+import { useEffect, useState } from "react";
+import { BASE_URL, fetchData } from "../../components/utils/constants";
 
-export default function TravelInsurance() {
+export default function GroupLife() {
   return (
     <>
       <div id="retail" className="retail vh-100 d-flex flex-column">
@@ -41,70 +35,62 @@ export default function TravelInsurance() {
   );
 }
 
-export function TravelInsuranceForm() {
+export function GroupLifeForm() {
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState(() => {
-    const savedData = JSON.parse(localStorage.getItem("travel-cover-details"));
-    return savedData || { full_names: "" };
-  });
-
   const [saveSuccess, setsaveSuccess] = useState(false);
   const [modalSuccess, setmodalSuccess] = useState(false);
   const [sendingEmail, setsendingEmail] = useState(false);
-
   const authToken = JSON.parse(localStorage.getItem("authTokens"));
 
-  useEffect(() => {
-    localStorage.setItem("travel-cover-details", JSON.stringify(formData));
-  }, [formData]);
+  const [formData, setFormData] = useState(() => {
+    const savedData = JSON.parse(localStorage.getItem("education-policy"));
+    return savedData || { email: "" };
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     // console.log(e.target.value);
   };
 
-  const saveQouteDetails = async () => {
-    // e.preventDefault();
+  useEffect(() => {
+    localStorage.setItem("education-policy", JSON.stringify(formData));
+  }, [formData]);
+
+  let savedGroupLife = JSON.parse(localStorage.getItem("education-policy"));
+
+  const saveQouteDetails = async (e) => {
+    e.preventDefault();
     setsendingEmail(true);
     setmodalSuccess(true);
+
+    // navigate("/ecommerce/motor-insurance-packages");
     await fetchData(
-      `${BASE_URL}/other_policies/`,
+      `${BASE_URL}/education-policies/`,
       "POST",
-      {
-        policy_type: "Travel Insurance",
-        infomation_details: {
-          ...formData,
-        },
-      },
+      savedGroupLife,
       authToken.access
     )
       .then((data) => {
+        // console.log("Data:", data);
         if (data) {
           setsaveSuccess(true);
           setsendingEmail(false);
         }
       })
-      .catch((err) => {
+      .catch((error) => {
         setsendingEmail(false);
+        // console.log(Object.values(error));
       });
-
-    // localStorage.setItem(
-    //   "travel_cover_policy",
-    //   JSON.stringify({
-    //     package_id: pkg.id,
-    //     policy_name: pkg.title,
-    //     price: pkg.premiums,
-    //   })
-    // );
   };
+
   function doneButton() {
     setsaveSuccess(false);
     setmodalSuccess(false);
     setsendingEmail(false);
-    navigate("/ecommerce/individual-solutions");
-    localStorage.removeItem("travel-cover-details");
+    navigate("/ecommerce/corporate-product");
+    localStorage.removeItem("education-policy");
   }
+
   return (
     <>
       <PopUp isOpen={modalSuccess}>
@@ -149,8 +135,8 @@ export function TravelInsuranceForm() {
                   width: "93%",
                 }}
               >
-                Quatation sent to your email. We will contact you within 24
-                hours. Thanks.
+                We will have our agents contact you within 24 hours. we have
+                sent the quatation to your email
               </p>
             </div>
             <div>
@@ -176,7 +162,7 @@ export function TravelInsuranceForm() {
           <nav>
             <ol className="breadcrumb">
               <li className="breadcrumb-item active text-secondary">
-                Travel insurance Quote Request
+                Education policy Quote Request
               </li>
             </ol>
           </nav>
@@ -187,16 +173,13 @@ export function TravelInsuranceForm() {
         >
           <FormContainer
             headerIcon={familycover}
-            formTitle="QUOTE REQUEST      "
-            onClick={(e) => {
-              e.preventDefault();
-              saveQouteDetails();
-            }}
+            formTitle="QUOTE REQUEST
+      "
+            onClick={saveQouteDetails}
           >
             <div className="helper-text">
               <p>Fill in the details required</p>
             </div>
-
             <ReusableInput
               label="Full Name *"
               icon={personicon}
@@ -205,56 +188,39 @@ export function TravelInsuranceForm() {
               onChange={handleChange}
             />
             <ReusableInput
+              type="tel"
               label="Mobile Number *"
               icon={phoneIcon}
-              value={formData.mobile_name}
-              name="mobile_name"
+              value={formData.phone_number}
+              name="phone_number"
               onChange={handleChange}
             />
             <ReusableInput
+              type="tel"
               label="Email *"
               icon={emailIcon}
               value={formData.email}
               name="email"
               onChange={handleChange}
             />
+
             <ReusableInput
-              label="Destination (country of travel) *"
-              icon={map}
-              value={formData.destination}
-              name="destination"
+              selectOptions={[
+                "Education Savings Plan",
+                "Whole Life Plan",
+                "Last Expense",
+              ]}
+              label="Which Plan would you like to learn more about *"
+              icon={insuranceIcon}
+              value={formData.plan_type}
+              name="plan_type"
               onChange={handleChange}
             />
             <ReusableInput
-              selectOptions={["Medical", "Study", "Leisure", "Business"]}
-              label="Purpose *"
-              icon={cc}
-              value={formData.purpose}
-              name="purpose"
-              onChange={handleChange}
-            />
-            <ReusableInput
-              type="number"
-              label="Number of Days *"
-              icon={cc}
-              value={formData.number_of_days}
-              name="number_of_days"
-              onChange={handleChange}
-            />
-            <ReusableInput
-              type="date"
-              label="Date of Departure *"
-              icon={cc}
-              value={formData.depature_date}
-              name="depature_date"
-              onChange={handleChange}
-            />
-            <ReusableInput
-              type="date"
-              label="Date of Return *"
-              icon={cc}
-              value={formData.return_date}
-              name="return_date"
+              label="Use this space to give us further details *"
+              icon={insuranceIcon}
+              value={formData.addational_info}
+              name="addational_info"
               onChange={handleChange}
             />
           </FormContainer>
