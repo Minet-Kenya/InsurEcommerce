@@ -43,8 +43,9 @@ class RegisterClientView(APIView):
             "POSTALADD":client.address,
             "PHONENO": client.username,
             "DOB": client.dob,
-            "PASSWORD":request.data.password
+            "PASSWORD":client.password
             }
+            response = requests.post(external_url, data=data)
 
             print(data)
 
