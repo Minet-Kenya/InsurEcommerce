@@ -119,7 +119,7 @@ class Company(models.Model):
 
 
 @receiver(post_save, sender=Company)
-def ensure_single_contact(sender, instance, created, **kwargs):
+def ensure_single_company(sender, instance, created, **kwargs):
     """
     Signal receiver to ensure only one record exists
     """

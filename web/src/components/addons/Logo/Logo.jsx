@@ -3,7 +3,6 @@ import logoFullWhite from '../../../assets/images/logo-full-white.png';
 import logoSmall from '../../../assets/images/logo-small.png';
 import logoSmallWhite from '../../../assets/images/logo-small-white.png';
 
-
 export function LogoDefault() {
     return (
         <>

@@ -1,32 +1,48 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, Outlet, useOutletContext } from 'react-router-dom';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './Home.css';
 
-import Header from '../../layout/Header/Header';
-import Footer from '../../layout/Footer/Footer';
-
-import ContactForm from '../../components/forms/Contact/Contact'
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
 import Preloader from '../../components/addons/Preloader/Preloader';
+import ContactForm from '../../components/forms/Contact/Contact'
+import Header from '../../components/layout/Header/Header';
+import Footer from '../../components/layout/Footer/Footer';
 
 
 export default function Home() {
+    const [headerVersion, setHeaderVersion] = useState();
+
+    const handleSetHeaderVersion = (version) => {
+        setHeaderVersion(version);
+    };
+
     return (
         <>
-            <Landing />
+            <div id="home" className="home vh-100 d-flex flex-column">
+                <Header view="Home" version={headerVersion} />
+                <Outlet context={{ handleSetHeaderVersion }} />
+            </div>
             <Preloader />
+            <BackToTopBtn />
         </>
     );
 }
 
 export function Landing() {
+    const { handleSetHeaderVersion } = useOutletContext();
+
+    useEffect(() => {
+        handleSetHeaderVersion("v2");
+    }, [handleSetHeaderVersion]);
+
     return (
-        <div className="vh-100 d-flex flex-column">
-            <Header view="Home" version="v2" />
+        <>
             <main id="landing" className="landing flex-grow-1 mheader container-fluid">
                 <section className="h-100 row d-flex align-items-center justify-content-center ps-5" data-aos="zoom-in">
                     <div className="col-12 col-md-4 d-grid gap-4">
@@ -47,7 +63,7 @@ export function Landing() {
                                 href="https://www.minet.com/kenya/"
                                 target="_blank"
                                 rel="noreferrer">Visit Our Website</a>
-                            <Link className="btn mt-2" to="/retail">Get Started</Link>
+                            <Link className="btn mt-2" to="/ecommerce">Get Started</Link>
                         </div>
                     </div>
                     <Swiper className="col-md-8 swiper d-none d-md-block position-relative"
@@ -68,14 +84,19 @@ export function Landing() {
                 </section>
             </main>
             <Footer view="Home" version="v2" />
-        </div>
+        </>
     );
 }
 
 export function Contact() {
+    const { handleSetHeaderVersion } = useOutletContext();
+
+    useEffect(() => {
+        handleSetHeaderVersion("v1");
+    }, [handleSetHeaderVersion]);
+
     return (
-        <div className="vh-100 d-flex flex-column">
-            <Header view="Home" version="v1" />
+        <>
             <main id="contact" className="contact flex-grow-1 mheader position-relative container-fluid">
                 <section className="h-100 row gy-2 d-flex align-items-center justify-content-center py-4" data-aos="fade-in">
                     <div className="col-lg-6">
@@ -133,7 +154,6 @@ export function Contact() {
                     </div>
                 </section>
             </main>
-            <BackToTopBtn />
-        </div>
+        </>
     );
 }

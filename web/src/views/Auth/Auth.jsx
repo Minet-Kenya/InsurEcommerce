@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Tab, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
 import './Auth.css'
 
 import logoSmall from '../../assets/images/logo-small.png';
 
-import { LoginForm, SignupForm } from '../../components/forms/Authentication/Authentication';
 import RedirectBtn from '../../components/addons/RedirectBtn/RedirectBtn';
 import BackToTopBtn from '../../components/addons/BackToTopBtn/BackToTopBtn';
+import { LoginForm, SignupForm } from '../../components/forms/Authentication/Authentication';
 
 
 export default function Auth() {
@@ -85,7 +86,7 @@ function TitleHeader(props) {
                         <img src={logoSmall} alt="" width="" height="" />
                     </a>
                     <h5 className="d-block card-title flex-grow-1 fw-bold text-center fs-4">{props.authview === 'Sign Up' ? "Create an account" : "Login to Your Account"}</h5>
-                    <RedirectBtn to="/landing" text="Go Back" view="Auth" />
+                    <RedirectBtn to="/" text="Go Back" view="Auth" />
                 </div>
                 <p className="text-center small">{props.authview === 'Sign Up' ? "Enter your personal details to create account" : "Enter your email & password to login"}</p>
             </section>

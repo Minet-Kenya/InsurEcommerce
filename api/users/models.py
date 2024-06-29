@@ -2,7 +2,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils import timezone
+<<<<<<< HEAD
 import uuid
+=======
+>>>>>>> c55b39740aa2b0cbd45534233fcabb595b00e288
 
 
 class UserManager(BaseUserManager):
@@ -35,7 +38,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     username_validator = UnicodeUsernameValidator()
 
+<<<<<<< HEAD
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+=======
+>>>>>>> c55b39740aa2b0cbd45534233fcabb595b00e288
     role = models.CharField(max_length=50, choices=Role.choices, blank=True)
     image = models.ImageField(
         upload_to="students/",
@@ -69,9 +75,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
     last_login = models.DateTimeField(blank=True, null=True)
+<<<<<<< HEAD
     personal_info = models.JSONField(blank=True, null=True)
     created_at = models.DateField(auto_now_add=True)  # Automatically set to current date when object is created
     last_modified = models.DateField(auto_now=True)
+=======
+>>>>>>> c55b39740aa2b0cbd45534233fcabb595b00e288
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email", "first_name", "last_name"]
@@ -83,11 +92,15 @@ class User(AbstractBaseUser, PermissionsMixin):
         return super().save(*args, **kwargs)
 
     def __str__(self):
+<<<<<<< HEAD
         # return f"{self.first_name} {self.last_name}"
         return self.email
 
     class Meta:
         ordering = ['-created_at']
+=======
+        return f"{self.first_name} {self.last_name}"
+>>>>>>> c55b39740aa2b0cbd45534233fcabb595b00e288
 
 
 class ClientManager(BaseUserManager):
@@ -102,3 +115,9 @@ class Client(User):
 
     base_role = User.Role.CLIENT
     clients = ClientManager()
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> c55b39740aa2b0cbd45534233fcabb595b00e288

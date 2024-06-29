@@ -1,5 +1,5 @@
 .social-links a {
-    color: var(--bs-primary);
+    color: var(--bs-white);
     font-size: var(--font-size-md);
     padding: 8px;
     margin-right: 7px;
@@ -10,15 +10,7 @@
 }
 
 .social-links a:hover {
-    color: rgba(var(--bs-white-rgb), 0.7);
+    background-color: rgba(var(--bs-primary-rgb), 0.8);
     text-decoration: none;
     opacity: 1;
-}
-
-.version2 .social-links a {
-    color: var(--bs-white);
-}
-
-.version2 .social-links a:hover {
-    color: rgba(var(--bs-white-rgb), 0.7);
 }

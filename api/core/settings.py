@@ -10,12 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+from datetime import timedelta
 from decouple import config
 from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Build Directory of the React JS front end
+BUILD_DIR = BASE_DIR / "../web/build"
+
 
 ENVIRONMENT = config("ENVIRONMENT", default="production")
 
@@ -36,10 +42,6 @@ ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(",")]
 )
 
-
-API_KEY = config("API_KEY")
-
-
 # Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -52,21 +54,56 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "corsheaders",
+    "rest_framework_simplejwt.token_blacklist",
     # my apps
     "home",
     "base",
-    "contact",
+    "mail",
+    "users",
+]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+}
+
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html#
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": False,
+    # custom
+    "AUTH_COOKIE": "access_token",
+    "TOKEN_OBTAIN_SERIALIZER": "users.serializers.MyTokenObtainPairSerializer",
+}
+
+AUTH_USER_MODEL = "users.User"
+
+AUTHENTICATION_BACKENDS = [
+    "users.backends.AuthBackend",  # Add the path to your custom authentication backend
+    # 'django.contrib.auth.backends.ModelBackend',
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # cors headers middleware
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    "http://minetkenya",
+    "https://minetkenya.duckdns.org",
+    "https://minet-kenya.github.io",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -74,9 +111,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BASE_DIR / "core/templates",
-        ],
+        "DIRS": [BUILD_DIR],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -92,26 +127,27 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:7000",
-    "http://127.0.0.1:3000",
-    "https://minet-kenya.github.io/minet-ecommerce",
-]
-
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": config("DB_ENGINE"),
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": config("DB_PASSWORD"),
-        "HOST": config("DB_HOST"),
-        "PORT": config("DB_PORT"),
+if ENVIRONMENT == "development":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": config("DB_ENGINE"),
+            "NAME": config("DB_NAME"),
+            "USER": config("DB_USER"),
+            "PASSWORD": config("DB_PASSWORD"),
+            "HOST": config("DB_HOST"),
+            "PORT": config("DB_PORT"),
+        }
+    }
 
 
 # Password validation
@@ -145,14 +181,16 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    BUILD_DIR / "static",
+]
 
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "core/static"
 
 
 # Media files
@@ -160,7 +198,7 @@ STATIC_ROOT = BASE_DIR / "static"
 
 MEDIA_URL = "/media/"
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / "core/media"
 
 
 # Default primary key field type
@@ -188,6 +226,3 @@ EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-
-
-LOGIN_URL = "/admin/login/"
