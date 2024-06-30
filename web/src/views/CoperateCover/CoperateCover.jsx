@@ -190,23 +190,23 @@ export function CoperateMedicalCoverForm() {
               onChange={handleChange}
             />
             <ReusableInput
-              type="tel"
-              label="Mobile Number *"
+              type="text"
+              label="Number of employees *"
               icon={phoneIcon}
               value={formData.phone_number}
               name="phone_number"
               onChange={handleChange}
             />
             <ReusableInput
-              type="tel"
-              label="Email *"
+              type="text"
+              label="Business Pin *"
               icon={emailIcon}
               value={formData.email}
               name="email"
               onChange={handleChange}
             />
 
-            <ReusableInput
+            {/* <ReusableInput
               selectOptions={[
                 "Education Savings Plan",
                 "Whole Life Plan",
@@ -217,7 +217,7 @@ export function CoperateMedicalCoverForm() {
               value={formData.plan_type}
               name="plan_type"
               onChange={handleChange}
-            />
+            /> */}
             <ReusableInput
               label="Use this space to give us further details *"
               icon={insuranceIcon}

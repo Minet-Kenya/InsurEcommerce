@@ -66,7 +66,7 @@ export function AuthProvider({ children }) {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Something went wrong");
+      alert("Something went wrong. Maybe try to reset the password");
     }
   };
 
@@ -270,13 +270,27 @@ export function SignupForm({ afterRegister }) {
         formData.append("address", address);
 
         // Send form data to backend
-        const signupResponse = await fetch(`${BASE_URL}/register/`, {
-          method: "POST",
-          body: formData,
-        });
+        const signupResponse = await fetch(
+          "https://ussd.minet.co.ke/minetapi/portals/create_account.php",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              IDNo: idNumber,
+              NAMES: full_name,
+              KRAPIN: krapin,
+              EMAILADD: email,
+              POSTALADD: address,
+              PHONENO: username,
+              DOB: dob,
+              PASSWORD: password,
+            }),
+          }
+        );
         const responseData = await signupResponse.json();
-        if (responseData.message) {
-          setSuccess(responseData.message); // Handle success
+        // console.log(responseData);
+        if (responseData.status === 0) {
+          // setSuccess(""); // Handle success
+          alert("Registered succesfully. Now Login");
 
           // Reset form fields
           setFullName("");
@@ -286,7 +300,7 @@ export function SignupForm({ afterRegister }) {
           setHasAgreed("");
 
           form.classList.remove("was-validated");
-          // navigate("/auth");
+          navigate("/auth");
           afterRegister();
         } else if (responseData.errors) {
           setError(responseData.errors.email[0].message); // Handle error
@@ -450,8 +464,12 @@ export function SignupForm({ afterRegister }) {
           <input
             type="date"
             id="date_of_birth"
-            value={dob}
-            onChange={(e) => setdob(e.target.value)}
+            onChange={(e) => {
+              const [year, month, day] = e.target.value.split("-");
+              let newdate = `${day}/${month}/${year}`;
+              // console.log(newdate);
+              setdob(newdate);
+            }}
             className="form-control"
             required
           />

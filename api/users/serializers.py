@@ -42,8 +42,30 @@ class ClientSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             password=validated_data['password'],
             name=validated_data['name'],
+            krapin=validated_data['krapin'],
+            idNumber=validated_data['idNumber'],
+            dob=validated_data['dob'],
+            address=validated_data['address'],
             # role=validated_data['role']
         )
+
+        print(user)
+
+        # external_url = "https://ussd.minet.co.ke/minetapi/portals/create_account.php"
+
+        # data = {
+        # "IDNo": client.name,
+        # "NAMES": client.address,
+        # "KRAPIN": client.krapin,
+        # "EMAILADD": client.email,
+        # "POSTALADD":client.address,
+        # "PHONENO": client.username,
+        # "DOB": client.dob,
+        # "PASSWORD":client.password
+        # }
+        # response = requests.post(external_url, data=data)
+
+        # print(data)
         return user
 
 

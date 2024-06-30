@@ -64,7 +64,7 @@ export function ProfileTabs() {
             <div className="col-6 d-flex justify-content-center align-items-center">
               <a
                 className="solutions-img business-solutions position-relative d-flex flex-column justify-content-center align-items-center rounded shadow"
-                href="https://retail.minet.co.ke/biznasure/"
+                href="#"
                 target="_blank"
                 rel="noreferrer"
               >

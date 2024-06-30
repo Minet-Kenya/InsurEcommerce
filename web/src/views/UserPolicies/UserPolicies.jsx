@@ -68,8 +68,10 @@ export function UserPoliciesList() {
         },
       });
       if (response.ok) {
-        let policies = await response.json();
-        setPolicies(policies);
+        if (policies.length > 0) {
+          let policies = await response.json();
+          setPolicies(policies);
+        }
         // console.log(policies);
       }
     };
@@ -178,13 +180,12 @@ export function UserPoliciesList() {
                 />
                 <h4>REQUESTED ANALYSIS</h4>
               </div>
-              {policies.length === 0 && (
+              {policies.length === 0 ? (
                 <div className="empty-state">
                   <img src={emptystate} alt="empty-cart" />
                   <h5>No Policies Listed.</h5>
                 </div>
-              )}
-              {policies.length > 0 && (
+              ) : (
                 <table className="package-table">
                   <thead>
                     {/* {
@@ -205,47 +206,53 @@ export function UserPoliciesList() {
                     </tr>
                   </thead>
                   <tbody>
-                    {policies.map((a, index) => (
-                      <tr key={index}>
-                        <td className="feature-name">{a?.INInsurers}</td>
-                        <td className="feature-description">{a?.PolicyNo}</td>
-                        <td className="feature-description">{a?.PolicyEnd}</td>
-                        <td className="feature-description">{a?.Status}</td>
-                        <td className="feature-description">
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              //   choosePolicy(a);
-                            }}
-                            className="content choose-btn"
-                          >
-                            Renew
-                          </button>
-                        </td>
-                        <td className="feature-description">
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              viewPolicy(a?.PolicyNo);
-                            }}
-                            className="content choose-btn"
-                          >
-                            View Policy
-                          </button>
-                        </td>
-                        <td className="feature-description">
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              viewPolicyClaim(a?.PolicyNo);
-                            }}
-                            className="content choose-btn"
-                          >
-                            Claims
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                    {policies.length === 0
+                      ? ""
+                      : policies.map((a, index) => (
+                          <tr key={index}>
+                            <td className="feature-name">{a?.INInsurers}</td>
+                            <td className="feature-description">
+                              {a?.PolicyNo}
+                            </td>
+                            <td className="feature-description">
+                              {a?.PolicyEnd}
+                            </td>
+                            <td className="feature-description">{a?.Status}</td>
+                            <td className="feature-description">
+                              <button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  //   choosePolicy(a);
+                                }}
+                                className="content choose-btn"
+                              >
+                                Renew
+                              </button>
+                            </td>
+                            <td className="feature-description">
+                              <button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  viewPolicy(a?.PolicyNo);
+                                }}
+                                className="content choose-btn"
+                              >
+                                View Policy
+                              </button>
+                            </td>
+                            <td className="feature-description">
+                              <button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  viewPolicyClaim(a?.PolicyNo);
+                                }}
+                                className="content choose-btn"
+                              >
+                                Claims
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
                   </tbody>
                 </table>
               )}

@@ -181,30 +181,30 @@ export function GroupLifeForm() {
               <p>Fill in the details required</p>
             </div>
             <ReusableInput
-              label="Full Name *"
+              label="Company Name *"
               icon={personicon}
               value={formData.full_names}
               name="full_names"
               onChange={handleChange}
             />
             <ReusableInput
-              type="tel"
-              label="Mobile Number *"
+              type="text"
+              label="Number of employees *"
               icon={phoneIcon}
               value={formData.phone_number}
               name="phone_number"
               onChange={handleChange}
             />
             <ReusableInput
-              type="tel"
-              label="Email *"
+              type="text"
+              label="Business Pin *"
               icon={emailIcon}
               value={formData.email}
               name="email"
               onChange={handleChange}
             />
 
-            <ReusableInput
+            {/* <ReusableInput
               selectOptions={[
                 "Education Savings Plan",
                 "Whole Life Plan",
@@ -215,7 +215,7 @@ export function GroupLifeForm() {
               value={formData.plan_type}
               name="plan_type"
               onChange={handleChange}
-            />
+            /> */}
             <ReusableInput
               label="Use this space to give us further details *"
               icon={insuranceIcon}

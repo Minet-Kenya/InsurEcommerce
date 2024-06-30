@@ -32,48 +32,38 @@ class RegisterClientView(APIView):
 
         if serializer.is_valid():
             client = serializer.save()
+            print(client)
 
-            external_url = "https://ussd.minet.co.ke/minetapi/portals/create_account.php"
 
-            data = {
-            "IDNo": client.name,
-            "NAMES": client.address,
-            "KRAPIN": client.krapin,
-            "EMAILADD": client.email,
-            "POSTALADD":client.address,
-            "PHONENO": client.username,
-            "DOB": client.dob,
-            "PASSWORD":client.password
-            }
-            response = requests.post(external_url, data=data)
 
-            print(data)
-
-            context = {'request': request}
-            subject = 'Welcome to Our Site'
-            message ='Thank you for registering to our e-commerce. Your username is: ' + client.username + ' and your email is: ' + client.email
-            html_content = render_to_string('mail/welcome.html', {'subject': subject, 'email': client.email,'message':message})
-            msg = EmailMultiAlternatives(
-            subject,
-            message,
-            'noreply@gmail.com',
-            [client.email], )
-            # Attach the HTML content
-            msg.attach_alternative(html_content, "text/html")
+            # context = {'request': request}
+            # subject = 'Welcome to Our Site'
+            # message ='Thank you for registering to our e-commerce. Your username is: ' + client.username + ' and your email is: ' + client.email
+            # html_content = render_to_string('mail/welcome.html', {'subject': subject, 'email': client.email,'message':message})
+            # msg = EmailMultiAlternatives(
+            # subject,
+            # message,
+            # 'noreply@gmail.com',
+            # [client.email], )
+            # # Attach the HTML content
+            # msg.attach_alternative(html_content, "text/html")
             # Send the email
             # msg.send()
-            sent = msg.send()
-            if sent:
-                return Response({
-                'client': ClientSerializer(client, context=context).data,
-                'message': 'Account Created Successfully. Check your email for verification code',
-            }, status=status.HTTP_201_CREATED)
-            else:
-                return Response({'error': 'Failed to send confirmation email.'}, status=status.HTTP_400_BAD_REQUEST)
+
+            # sent = msg.send()
+            # if sent:
+            #     return Response({
+            #     'client': ClientSerializer(client, context=context).data,
+            #     'message': 'Account Created Successfully. Check your email for verification code',
+            # }, status=status.HTTP_201_CREATED)
+            # else:
+            #     return Response({'error': 'Failed to send confirmation email.'}, status=status.HTTP_400_BAD_REQUEST)
+
             # return Response({
             #     'client': ClientSerializer(client, context=context).data,
             #     'message': 'Account Created Successfully. Check your email for verification code',
             # }, status=status.HTTP_201_CREATED)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
